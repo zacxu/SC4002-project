@@ -1,0 +1,5 @@
+model_version,split,total_parameters,trainable_parameters,intent_accuracy_percent,slot_micro_f1_percent,epochs_trained,selected_epoch
+Stage-1 system,Validation,4646571,4646571,84.36,73.61,20,19
+Stage-1 system,Test,4646571,4646571,83.96,70.51,20,19
+Stage-2 system,Validation,4939498,4939498,84.65,79.88,20,11
+Stage-2 system,Test,4939498,4939498,82.62,76.81,20,11

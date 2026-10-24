@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "project": "SC4002",
+  "paths": {
+    "dataset": "data/1.0/data/en-US.jsonl",
+    "runs": "artifacts/runs",
+    "setup": "artifacts/setup",
+    "phase2": "artifacts/phase2"
+  },
+  "dataset": {
+    "release": "MASSIVE 1.0",
+    "locale": "en-US",
+    "url": "https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.0.tar.gz",
+    "partition_counts": {"train": 11514, "dev": 2033, "test": 2974},
+    "model_input": "utt",
+    "intent_target": "intent",
+    "slots_target": "annot_utt",
+    "intent_types": 60,
+    "slot_types": 55
+  },
+  "runtime": {
+    "device": "auto",
+    "seed": 42,
+    "num_workers": 0,
+    "deterministic_algorithms": true,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "allow_tf32": false,
+    "cublas_workspace_config": ":4096:8",
+    "precision": "float32"
+  },
+  "notebook": {
+    "target": "local_jupyter",
+    "kernel_name": "sc4002",
+    "target_device": "cuda",
+    "confirmed_by_user": true
+  },
+  "preprocessing": {
+    "version": 1,
+    "tokenizer_pattern": "\\w+|[^\\w\\s]",
+    "normalization": "none",
+    "vocabulary_fit_partition": "train",
+    "vocabulary_min_frequency": 1,
+    "vocabulary_order": "descending_frequency_then_lexicographic",
+    "pad_token_id": 0,
+    "unknown_token_id": 1,
+    "slot_encoding": "BIO",
+    "slot_ignore_index": -100,
+    "padding": "dynamic_right",
+    "truncation": "none",
+    "invalid_bio_transition": "start_new_span"
+  },
+  "evaluation": {
+    "version": 1,
+    "slot_matching": "set_of_exact_type_and_surface_text_per_record",
+    "normalization": "none",
+    "offsets": "retained_for_audit_not_scoring_key",
+    "duplicate_identical_pairs": "count_once_per_record",
+    "empty_slot_denominator_f1": 0.0,
+    "empty_dataset": "error",
+    "record_join": "exact_id_set_no_duplicates",
+    "authority": "documented_project_interpretation_of_assignment"
+  },
+  "selection": {
+    "split": "dev",
+    "metric": "mean_intent_accuracy_slot_micro_f1",
+    "metric_scale": "fraction",
+    "weights": {"intent_accuracy": 0.5, "slot_micro_f1": 0.5},
+    "mode": "max",
+    "tie_break": "earliest_epoch",
+    "epoch_index_base": 1,
+    "reload_score_atol": 1e-12,
+    "require_identical_ordered_predictions": true
+  },
+  "limits": {"total_parameters": 20000000, "count_frozen_parameters": true},
+  "timing": {
+    "clock": "perf_counter",
+    "synchronize_cuda": true,
+    "record_epoch_train_and_dev_separately": true,
+    "training_total_includes": ["epochs", "epoch_validation", "checkpoint_writes"],
+    "training_total_excludes": ["setup", "data_loading", "final_evaluation", "plotting"]
+  },
+  "pending": ["architecture", "training_budget", "group_details"]
+}
+

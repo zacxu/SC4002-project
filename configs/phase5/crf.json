@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "stage": "stage2",
+  "model": {
+    "embedding_dim": 256,
+    "hidden_dim": 512,
+    "num_layers": 1,
+    "dropout": 0.3,
+    "use_char": false,
+    "char_embedding_dim": 32,
+    "char_channels": 64,
+    "char_kernel_size": 3,
+    "use_crf": true,
+    "intent_conditioning": false,
+    "intent_context_dim": 64
+  },
+  "training": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 32,
+    "max_epochs": 20,
+    "intent_loss_weight": 1.0,
+    "slot_loss_weight": 1.0,
+    "gradient_clip_norm": 5.0
+  }
+}
