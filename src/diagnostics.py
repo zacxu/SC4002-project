@@ -65,11 +65,14 @@ def validate_development(
                 raise ValueError("Predicted slot type or exact source slice is invalid")
 
 
-def unique_pairs(slots: Sequence[SlotSpan]) -> dict[tuple[str, str], SlotSpan]:
-    """Earliest occurrence represents duplicate scorer pairs for offset analysis."""
-    pairs: dict[tuple[str, str], SlotSpan] = {}
+def unique_pairs(slots: Sequence[SlotSpan]) -> dict[tuple[str, str, int, int], SlotSpan]:
+    """Exact typed occurrences; identical text at different positions is distinct."""
+    pairs: dict[tuple[str, str, int, int], SlotSpan] = {}
     for slot in sorted(slots, key=lambda item: (item.start, item.end, item.slot_type)):
-        pairs.setdefault((slot.slot_type, slot.text), slot)
+        key = (slot.slot_type, slot.text, slot.start, slot.end)
+        if key in pairs:
+            raise ValueError("Duplicate identical slot occurrence")
+        pairs[key] = slot
     return pairs
 
 
@@ -90,7 +93,7 @@ def unmatched_category(slot: SlotSpan, opposite: Sequence[SlotSpan]) -> str:
     return "no_overlap"
 
 
-def pair_counts(gold: set[tuple[str, str]], predicted: set[tuple[str, str]]) -> dict[str, int | float]:
+def pair_counts(gold: set[tuple], predicted: set[tuple]) -> dict[str, int | float]:
     tp, fp, fn = len(gold & predicted), len(predicted - gold), len(gold - predicted)
     return counts_metrics(tp, fp, fn)
 
@@ -117,7 +120,8 @@ def analyze_predictions(
     training_tokens = Counter(token.text for row in training for token in tokenize_with_offsets(row.utt))
     training_intents = Counter(row.intent for row in training)
     training_slots = Counter(key[0] for row in training for key in unique_pairs(row.slots))
-    training_surfaces = {key for row in training for key in unique_pairs(row.slots)}
+    # Surface-support strata compare type/text only, independently of occurrence scoring.
+    training_surfaces = {(slot.slot_type, slot.text) for row in training for slot in row.slots}
     confusion: Counter[tuple[str, str]] = Counter()
     intent_counts: dict[str, Counter] = defaultdict(Counter)
     slot_counts: dict[str, Counter] = defaultdict(Counter)
@@ -160,7 +164,7 @@ def analyze_predictions(
             slot_counts[key[0]]["tp" if key in gkeys & pkeys else "fn" if key in gkeys else "fp"] += 1
         for key in gs:
             outcome = "recovered" if key in ps else "missed"
-            slot_surface_recall["seen_in_train" if key in training_surfaces else "unseen_in_train"][outcome] += 1
+            slot_surface_recall["seen_in_train" if key[:2] in training_surfaces else "unseen_in_train"][outcome] += 1
             n_tokens = len(tokenize_with_offsets(key[1]))
             gold_slot_length_recall["one_token" if n_tokens == 1 else "two_tokens" if n_tokens == 2 else "three_plus_tokens"][outcome] += 1
         if not intent_correct or missing or extra:

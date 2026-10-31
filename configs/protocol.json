@@ -11,7 +11,11 @@
     "release": "MASSIVE 1.0",
     "locale": "en-US",
     "url": "https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.0.tar.gz",
-    "partition_counts": {"train": 11514, "dev": 2033, "test": 2974},
+    "partition_counts": {
+      "train": 11514,
+      "dev": 2033,
+      "test": 2974
+    },
     "model_input": "utt",
     "intent_target": "intent",
     "slots_target": "annot_utt",
@@ -51,11 +55,11 @@
     "invalid_bio_transition": "start_new_span"
   },
   "evaluation": {
-    "version": 1,
-    "slot_matching": "set_of_exact_type_and_surface_text_per_record",
+    "version": 2,
+    "slot_matching": "exact_type_text_and_character_occurrence_per_record",
     "normalization": "none",
-    "offsets": "retained_for_audit_not_scoring_key",
-    "duplicate_identical_pairs": "count_once_per_record",
+    "offsets": "zero_based_end_exclusive_scoring_key",
+    "duplicate_identical_pairs": "distinct_positions_count_separately_exact_duplicates_error",
     "empty_slot_denominator_f1": 0.0,
     "empty_dataset": "error",
     "record_join": "exact_id_set_no_duplicates",
@@ -65,21 +69,39 @@
     "split": "dev",
     "metric": "mean_intent_accuracy_slot_micro_f1",
     "metric_scale": "fraction",
-    "weights": {"intent_accuracy": 0.5, "slot_micro_f1": 0.5},
+    "weights": {
+      "intent_accuracy": 0.5,
+      "slot_micro_f1": 0.5
+    },
     "mode": "max",
     "tie_break": "earliest_epoch",
     "epoch_index_base": 1,
     "reload_score_atol": 1e-12,
     "require_identical_ordered_predictions": true
   },
-  "limits": {"total_parameters": 20000000, "count_frozen_parameters": true},
+  "limits": {
+    "total_parameters": 20000000,
+    "count_frozen_parameters": true
+  },
   "timing": {
     "clock": "perf_counter",
     "synchronize_cuda": true,
     "record_epoch_train_and_dev_separately": true,
-    "training_total_includes": ["epochs", "epoch_validation", "checkpoint_writes"],
-    "training_total_excludes": ["setup", "data_loading", "final_evaluation", "plotting"]
+    "training_total_includes": [
+      "epochs",
+      "epoch_validation",
+      "checkpoint_writes"
+    ],
+    "training_total_excludes": [
+      "setup",
+      "data_loading",
+      "final_evaluation",
+      "plotting"
+    ]
   },
-  "pending": ["architecture", "training_budget", "group_details"]
+  "pending": [
+    "architecture",
+    "training_budget",
+    "group_details"
+  ]
 }
-

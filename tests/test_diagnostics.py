@@ -50,15 +50,17 @@ class DiagnosticTests(unittest.TestCase):
         self.assertEqual(unmatched_category(gold, [SlotSpan("shade", "red", 0, 3)]), "overlap_wrong_type_and_boundary")
         self.assertEqual(unmatched_category(gold, [SlotSpan("color", "x", 9, 10)]), "no_overlap")
 
-    def test_duplicate_pairs_use_earliest_offset_but_one_score_pair(self):
+    def test_repeated_surface_occurrences_are_scored_separately(self):
         slots = (SlotSpan("color", "red", 4, 7), SlotSpan("color", "red", 0, 3))
-        self.assertEqual(unique_pairs(slots), {("color", "red"): slots[1]})
+        self.assertEqual(unique_pairs(slots), {
+            ("color", "red", item.start, item.end): item for item in slots})
         row = example(utt="red red", slots=slots)
         prediction = IntentSlotPrediction("1", "a", slots[:1])
         result = analyze_predictions(self.training, (row,), (prediction,), self.mappings)
         self.assertEqual(result["overall"]["slot_tp"], 1)
-        self.assertEqual(result["duplicate_gold_pairs_collapsed"], 1)
-        self.assertEqual(result["false_negative_categories"], {})
+        self.assertEqual(result["duplicate_gold_pairs_collapsed"], 0)
+        self.assertEqual(result["overall"]["slot_fn"], 1)
+        self.assertEqual(result["false_negative_categories"], {"no_overlap": 1})
 
     def test_hand_counted_oov_and_unmatched_counts_reconcile(self):
         rows = (example("1", slots=(SlotSpan("color", "red blue", 0, 8),)),

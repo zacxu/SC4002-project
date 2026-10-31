@@ -34,7 +34,7 @@ Official sources: [original archive](https://amazon-massive-nlu-dataset.s3.amazo
 
 1. Each stage uses **one joint framework/model for both tasks**. Two separate task-specific models are prohibited. Multiple output heads within a jointly trained model are permitted by this implementation interpretation.
 2. The **entire system for each stage** must be within **20,000,000 total parameters**, including word embeddings, all heads, other learned components and frozen parameters. Stages may use different models; the cap applies separately to each complete stage system. Print total and trainable counts.
-3. Pretrained **word vectors** are allowed; pretrained **models** are prohibited. The implemented systems use no pretrained assets.
+3. Pretrained **word vectors** are allowed; pretrained **models** are prohibited. The BiLSTM uses no pretrained assets; the Transformer uses permitted pretrained word vectors with a freshly trained encoder.
 
 ## Metrics and selection
 
@@ -43,7 +43,7 @@ Report all performance metrics as percentages with **two decimal places**:
 - Intent accuracy: `100 × correct intents / utterances`.
 - Slot micro F1: exact type/span matching pooled across examples, `100 × 2TP / (2TP + FP + FN)`.
 
-Use identical scoring for every experiment. The brief does not resolve duplicate identical slots, offsets versus surface text, normalization or zero-denominator behavior. The project explicitly adopts literal per-record `(type, surface text)` sets, duplicate pairs collapsed, offsets for audit only, and zero-denominator F1 of zero. No lecturer reference scorer was supplied; parity is unverified. See [data and scoring](MODEL_AND_EVALUATION.md#data-and-scoring).
+Use identical scoring for every experiment. The brief does not resolve duplicate identical slots, offsets versus surface text, normalization or zero-denominator behavior. The current comparison contract, **`exact_character_span_v2`**, compares typed occurrences at exact original Unicode character offsets, with end-exclusive ends and validated literal text. Distinct occurrences remain distinct even when their text is identical; duplicate representations of one occurrence are rejected. Empty slot denominators give F1 zero. The earlier type/text-set convention is historical v1. No lecturer reference scorer was supplied; parity is unverified. See the [comparison contract](EVALUATION_COMPARISON.md) and [data and scoring](MODEL_AND_EVALUATION.md#data-and-scoring).
 
 The brief permits intent accuracy, slot F1 or a combined development score for checkpoint selection. This project uses their **unrounded equal-weight mean**, with earlier checkpoints/candidates retained on exact ties. This is an implementation decision, not a lecturer-mandated formula. Test scores must not influence selection or subsequent tuning.
 
@@ -59,7 +59,7 @@ The brief permits intent accuracy, slot F1 or a combined development score for c
 6. Reload that checkpoint without further training, reproduce its selected development score, and evaluate the complete test split.
 7. Repeat the training/selection/reload/final-evaluation process for Stage 2 after documented AI collaboration.
 
-Do not type scores manually, fabricate logs or clear outputs before submission. The brief states that detected fabrication results in zero marks. A notebook that only displays historical score files does not establish training/reload evidence. The delivered notebook is self-contained and has already completed the required execution.
+Do not type scores manually, fabricate logs or clear outputs before submission. The brief states that detected fabrication results in zero marks. A notebook that only displays historical score files does not establish training/reload evidence. The previous BiLSTM notebook completed this execution under evaluator v1. The active BiLSTM and Transformer notebooks have been revised for evaluator v2 and their old outputs cleared; they require fresh training, development selection, checkpoint verification and frozen final evaluation before they can supply current submission evidence.
 
 ## Report and collaboration record
 
@@ -90,4 +90,4 @@ The cover must contain the group ID, every member's full name and each person's 
 
 The assessment weights are performance/efficiency **50%**, critical thinking **10%**, code clarity/reproducibility **10%**, and report quality **30%**. A later official announcement takes precedence; NTULearn has not been checked for updates.
 
-The notebook and model development are complete. Report, consolidated chat export, verified cover information, ZIP and submission remain **Phase 8** work.
+The historical Phases 1-7 completed under evaluator v1. The current evaluator-v2 comparison requires fresh notebook execution and acceptance before final comparative scores or a report can be produced. Report, consolidated chat export, verified cover information, ZIP and submission remain **Phase 8** work. The two model-family notebooks are comparison implementations; the assignment submission still requires one final `main.ipynb`.

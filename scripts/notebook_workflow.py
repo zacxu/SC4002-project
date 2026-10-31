@@ -22,10 +22,11 @@ import torch
 from torch.utils.data import DataLoader
 
 from src.acquisition import file_sha256
+from src.comparison_contract import EVALUATOR_VERSION
 from src.data import EXPECTED_COUNTS, FittedMappings, collate_examples, fit_mappings, write_predictions
 from src.models import BaselineConfig, JointBiLSTM, enforce_parameter_cap
 from src.runtime import configuration_hash, configure_reproducibility, dataloader_generator, is_improvement, selection_score
-from src.stage2_model import fit_char_vocab
+from src.stage2_model import Stage2Config, fit_char_vocab
 from src.stage2_experiment import make_loader as s2_make_loader, new_model as s2_new_model, _epoch as s2_epoch, evaluate as s2_evaluate
 from src.training import train_epoch, evaluate_model
 
@@ -73,25 +74,32 @@ def nb_state_sha256(model):
 
 
 def nb_validate_config(stage, stage_config, runtime):
-    """The notebook executes the frozen settings; it performs no new search."""
+    """Validate supported editable settings without changing the data/scorer."""
     if stage not in ('stage1', 'stage2') or stage_config.get('stage') != stage:
         raise ValueError('Unknown or inconsistent model stage')
-    expected_training = {'optimizer': 'AdamW', 'learning_rate': .001, 'weight_decay': .0001,
-                         'batch_size': 32, 'max_epochs': 20, 'intent_loss_weight': 1.0,
-                         'slot_loss_weight': 1.0, 'gradient_clip_norm': 5.0}
-    if stage_config.get('schema_version') != 1 or stage_config.get('training') != expected_training:
-        raise ValueError('Notebook training must use the previously fixed 20-epoch settings')
-    model = stage_config['model']
-    for key, expected in {'embedding_dim': 256, 'hidden_dim': 512, 'num_layers': 1, 'dropout': .3}.items():
-        if model.get(key) != expected:
-            raise ValueError('Selected architecture changed: ' + key)
-    if stage == 'stage2':
-        for key, expected in {'use_char': True, 'char_embedding_dim': 32, 'char_channels': 64,
-                              'char_kernel_size': 3, 'use_crf': True,
-                              'intent_conditioning': True, 'intent_context_dim': 64}.items():
-            if model.get(key) != expected:
-                raise ValueError('Selected Stage 2 architecture changed: ' + key)
-    for key, expected in {'seed': 42, 'num_workers': 0, 'deterministic_algorithms': True,
+    training = stage_config.get('training', {})
+    required = {'optimizer', 'learning_rate', 'weight_decay', 'batch_size', 'max_epochs',
+                'intent_loss_weight', 'slot_loss_weight', 'gradient_clip_norm'}
+    if stage_config.get('schema_version') != 1 or set(training) != required:
+        raise ValueError('Unsupported training configuration fields')
+    if training['optimizer'] != 'AdamW' or any(type(training[key]) is bool or training[key] != 1.0
+            for key in ('intent_loss_weight', 'slot_loss_weight')):
+        raise ValueError('This workflow supports AdamW and equal task weights of 1.0')
+    for key in ('batch_size', 'max_epochs'):
+        if type(training[key]) is not int or training[key] <= 0:
+            raise ValueError(key + ' must be a positive integer')
+    for key in ('learning_rate', 'weight_decay', 'gradient_clip_norm'):
+        value = training[key]
+        if (isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value)
+                or value < 0 or (key != 'weight_decay' and value == 0)):
+            raise ValueError(key + ' must be finite and positive (weight decay may be zero)')
+    if stage == 'stage1':
+        BaselineConfig.from_dict(stage_config['model'])
+    else:
+        Stage2Config.from_dict(stage_config['model'])
+    if type(runtime.get('seed')) is not int or not 0 <= runtime['seed'] < 2**32:
+        raise ValueError('Seed must be a 32-bit nonnegative integer')
+    for key, expected in {'num_workers': 0, 'deterministic_algorithms': True,
                           'cudnn_deterministic': True, 'cudnn_benchmark': False,
                           'allow_tf32': False, 'cublas_workspace_config': ':4096:8',
                           'precision': 'float32'}.items():
@@ -159,6 +167,7 @@ def nb_save_checkpoint(path, stage, model, optimizer, mappings, char_to_id, stag
                        runtime, epoch, validation, data_sha256, code_sha256):
     """Save selected weights and an independent CPU snapshot of AdamW state."""
     payload = {'schema_version': 1, 'purpose': 'notebook_fixed_configuration_reproduction',
+               'evaluator_version': EVALUATOR_VERSION,
                'stage': stage, 'model_class': type(model).__name__, 'created_at_utc': nb_now(),
                'training_pid': os.getpid(), 'stage_config': copy.deepcopy(stage_config),
                'runtime': copy.deepcopy(runtime), 'mappings': mappings.to_dict(),
@@ -186,6 +195,8 @@ def nb_load_checkpoint(checkpoint, mappings, char_to_id, device, data_sha256, co
     if not sidecar.is_file() or sidecar.read_text(encoding='ascii').strip() != file_sha256(checkpoint):
         raise ValueError('Checkpoint checksum is missing or changed')
     payload = torch.load(checkpoint, map_location='cpu', weights_only=True)
+    if payload.get('evaluator_version') != EVALUATOR_VERSION:
+        raise ValueError('Checkpoint belongs to a different evaluator; fresh development selection is required')
     if payload.get('schema_version') != 1 or payload.get('purpose') != 'notebook_fixed_configuration_reproduction':
         raise ValueError('Expected a fresh notebook checkpoint')
     nb_validate_config(payload['stage'], payload['stage_config'], payload['runtime'])
@@ -243,7 +254,7 @@ def nb_train_stage(stage, prepared, mappings, char_to_id, stage_config, runtime,
     output.mkdir(parents=True, exist_ok=False)
     nb_write_json(output / 'run.json', {'stage': stage, 'created_at_utc': nb_now(),
                   'stage_config': stage_config, 'runtime': runtime, 'data_sha256': data_sha256,
-                  'code_sha256': code_sha256, 'training_pid': os.getpid(),
+                  'code_sha256': code_sha256, 'evaluator_version': EVALUATOR_VERSION, 'training_pid': os.getpid(),
                   'python': sys.version, 'torch': str(torch.__version__), 'torch_cuda': torch.version.cuda,
                   'device': str(device), 'gpu': torch.cuda.get_device_name(device) if torch.device(device).type == 'cuda' else None,
                   'selection': 'maximum unrounded mean(dev intent accuracy, dev slot micro F1), earliest exact tie',
@@ -254,9 +265,6 @@ def nb_train_stage(stage, prepared, mappings, char_to_id, stage_config, runtime,
     torch.set_default_dtype(torch.float32)
     model = nb_new_model(stage, mappings, chars, stage_config, device)
     counts = enforce_parameter_cap(model, 20_000_000)
-    expected_count = 4_646_571 if stage == 'stage1' else 4_939_498
-    if counts != {'total': expected_count, 'trainable': expected_count}:
-        raise ValueError('Selected whole-system parameter count changed')
     training = stage_config['training']
     loaders = {partition: nb_make_loader(stage, prepared[partition], partition, training['batch_size'],
                                         runtime['seed'], chars) for partition in ('train', 'dev')}
@@ -307,7 +315,7 @@ def nb_train_stage(stage, prepared, mappings, char_to_id, stage_config, runtime,
             if epoch == 1:
                 writer.writeheader()
             writer.writerow(row)
-        print(f'{stage} epoch {epoch:02d}/20: train_loss={train["loss"]:.6f}; '
+        print(f'{stage} epoch {epoch:02d}/{training["max_epochs"]}: train_loss={train["loss"]:.6f}; '
               f'dev_loss={dev["loss"]:.6f}; intent={100 * dev["metrics"].intent_accuracy:.2f}%; '
               f'slot_F1={100 * dev["metrics"].slot_micro_f1:.2f}%; mean={100 * score:.2f}%; '
               f'train={train["num_examples"]}/{train["num_tokens"]} records/tokens; '
@@ -319,13 +327,13 @@ def nb_train_stage(stage, prepared, mappings, char_to_id, stage_config, runtime,
                'epochs_trained': len(history), 'best_epoch': best_epoch, 'best_score': best_score,
                'checkpoint': f'{stage}/best.pt', 'checkpoint_sha256': file_sha256(checkpoint),
                'training_seconds': workflow_seconds, 'training_workflow_seconds': workflow_seconds,
-               'timing_scope': '20 training epochs, epoch development evaluation, selected checkpoint writes and epoch evidence; excludes setup, plotting and final evaluations',
+               'timing_scope': f'{len(history)} training epochs, epoch development evaluation, selected checkpoint writes and epoch evidence; excludes setup, plotting and final evaluations',
                'parameter_counts': counts, 'data_sha256': data_sha256, 'code_sha256': code_sha256,
                'peak_allocated_cuda_bytes': torch.cuda.max_memory_allocated(torch.device(device)) if torch.device(device).type == 'cuda' else None,
                'test_model_evaluations': 0, 'completed_at_utc': nb_now()}
     nb_write_json(output / 'training_summary.json', summary)
     nb_plot_learning_curves(history, output / 'learning_curves.png', stage)
-    print(f'{stage}: selected epoch {best_epoch}/20; development mean={100 * best_score:.2f}%; '
+    print(f'{stage}: selected epoch {best_epoch}/{training["max_epochs"]}; development mean={100 * best_score:.2f}%; '
           f'checkpoint={checkpoint.name}; training workflow={workflow_seconds:.2f} seconds', flush=True)
     # The returned value contains evidence only, not the last epoch's model.
     del optimizer, model
@@ -338,8 +346,9 @@ def nb_assert_selected_history(checkpoint, payload):
     output = Path(checkpoint).parent
     history = [json.loads(line) for line in (output / 'history.jsonl').read_text(encoding='utf-8').splitlines()]
     summary = json.loads((output / 'training_summary.json').read_text(encoding='utf-8'))
-    if [row['epoch'] for row in history] != list(range(1, 21)) or summary['epochs_trained'] != 20:
-        raise ValueError('Every one of the fixed 20 epochs must complete before finalization')
+    epochs = payload['stage_config']['training']['max_epochs']
+    if [row['epoch'] for row in history] != list(range(1, epochs + 1)) or summary['epochs_trained'] != epochs:
+        raise ValueError('Every configured epoch must complete before finalization')
     for row in history:
         if row['train_num_examples'] != EXPECTED_COUNTS['train'] or row['dev_num_examples'] != EXPECTED_COUNTS['dev']:
             raise ValueError('Partial experiment history')
@@ -387,7 +396,7 @@ def nb_verify_development(checkpoint, prepared_dev, mappings, char_to_id, device
 
 
 def nb_finalize_stage(checkpoint, prepared_dev, prepared_test, mappings, char_to_id,
-                      device, data_sha256, code_sha256):
+                      device, data_sha256, code_sha256, *, evaluate_test=True):
     """Persist a model freeze, then perform one complete final test evaluation."""
     checkpoint = Path(checkpoint)
     output = checkpoint.parent
@@ -411,8 +420,9 @@ def nb_finalize_stage(checkpoint, prepared_dev, prepared_test, mappings, char_to
     stage = payload['stage']
     loaders = {partition: nb_make_loader(stage, prepared, partition, payload['stage_config']['training']['batch_size'],
                                          payload['runtime']['seed'], payload['char_to_id'])
-               for partition, prepared in (('dev', prepared_dev), ('test', prepared_test))}
-    nb_validate_prepared(prepared_test, 'test')
+               for partition, prepared in ((('dev', prepared_dev), ('test', prepared_test)) if evaluate_test else (('dev', prepared_dev),))}
+    if evaluate_test:
+        nb_validate_prepared(prepared_test, 'test')
     dev = nb_evaluate(stage, model, loaders['dev'], mappings, device)
     nb_validate_result(dev, prepared_dev, 'dev')
     score = selection_score(dev['metrics'].intent_accuracy, dev['metrics'].slot_micro_f1)
@@ -422,6 +432,28 @@ def nb_finalize_stage(checkpoint, prepared_dev, prepared_test, mappings, char_to
     counts = enforce_parameter_cap(model, 20_000_000)
     weights_before = nb_state_sha256(model)
     checkpoint_before = file_sha256(checkpoint)
+    if not evaluate_test:
+        nb_write_json(output / 'dev_evaluation.json', nb_result_data(dev))
+        write_predictions(output / 'dev_predictions.jsonl', dev['predictions'])
+        summary = {'schema_version': 1, 'stage': stage, 'status': 'complete',
+                   'mode': 'development_only', 'evaluator_version': EVALUATOR_VERSION,
+                   'completed_at_utc': nb_now(), 'selected_epoch': payload['epoch'],
+                   'epochs_trained': len(history), 'checkpoint': f'{stage}/best.pt',
+                   'checkpoint_sha256': checkpoint_before, 'model_state_sha256': weights_before,
+                   'parameter_counts': counts, 'dev': nb_result_data(dev), 'test': None,
+                   'training_workflow_seconds': training_summary['training_workflow_seconds'],
+                   'fresh_process_reload': verification, 'ordered_development_predictions_equal': True,
+                   'absolute_development_score_difference': 0.0, 'test_model_evaluations': 0,
+                   'model_weights_unchanged': nb_state_sha256(model) == weights_before,
+                   'checkpoint_bytes_unchanged': file_sha256(checkpoint) == checkpoint_before,
+                   'training_and_tuning_closed': False, 'test_evaluation_finished': False,
+                   'data_sha256': data_sha256, 'code_sha256': code_sha256}
+        nb_write_json(output / 'final_summary.json', summary)
+        print(f'{stage}: development-only run complete; NO test model evaluation performed', flush=True)
+        del model
+        if torch.device(device).type == 'cuda':
+            torch.cuda.empty_cache()
+        return summary
     manifest = {'schema_version': 1, 'stage': stage, 'frozen_at_utc': nb_now(),
                 'checkpoint': checkpoint.name, 'checkpoint_sha256': checkpoint_before,
                 'model_state_sha256': weights_before, 'selected_epoch': payload['epoch'],
@@ -447,7 +479,8 @@ def nb_finalize_stage(checkpoint, prepared_dev, prepared_test, mappings, char_to
         raise ValueError('Frozen weights or checkpoint changed during final evaluation')
     nb_write_json(output / 'test_evaluation.json', nb_result_data(test))
     write_predictions(output / 'test_predictions.jsonl', test['predictions'])
-    summary = {'schema_version': 1, 'stage': stage, 'status': 'complete', 'completed_at_utc': nb_now(),
+    summary = {'schema_version': 1, 'stage': stage, 'status': 'complete', 'mode': 'final',
+               'evaluator_version': EVALUATOR_VERSION, 'completed_at_utc': nb_now(),
                'selected_epoch': payload['epoch'], 'epochs_trained': len(history),
                'checkpoint': f'{stage}/best.pt', 'checkpoint_sha256': checkpoint_before,
                'parameter_counts': counts, 'dev': nb_result_data(dev), 'test': nb_result_data(test),
@@ -459,7 +492,7 @@ def nb_finalize_stage(checkpoint, prepared_dev, prepared_test, mappings, char_to
                'freeze_manifest_sha256': file_sha256(output / 'freeze_manifest.json'),
                'data_sha256': data_sha256, 'code_sha256': code_sha256}
     nb_write_json(output / 'final_summary.json', summary)
-    print(f'{stage}: selected epoch {payload["epoch"]}/20; reloaded development intent={100 * dev["metrics"].intent_accuracy:.2f}%, '
+    print(f'{stage}: selected epoch {payload["epoch"]}/{len(history)}; reloaded development intent={100 * dev["metrics"].intent_accuracy:.2f}%, '
           f'slot F1={100 * dev["metrics"].slot_micro_f1:.2f}%; '
           f'final test intent={100 * test["metrics"].intent_accuracy:.2f}%, '
           f'slot F1={100 * test["metrics"].slot_micro_f1:.2f}%; one frozen test pass', flush=True)

@@ -1,0 +1,161 @@
+{
+  "schema_version": 2,
+  "status": "passed",
+  "evaluator_version": "exact_character_span_v2",
+  "scope": "Shared inline scorer, adapter fixtures and exact original dataset identity; no model training or test inference",
+  "dataset": {
+    "evaluator_version": "exact_character_span_v2",
+    "dataset_sha256": "c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e",
+    "source_url": "https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.0.tar.gz",
+    "archive_member": "1.0/data/en-US.jsonl",
+    "counts": {
+      "train": 11514,
+      "dev": 2033,
+      "test": 2974
+    },
+    "split_id_sha256": {
+      "train": "b8165414cd52ae41e997e053252c4467deb4bed4a062600a25b4efb1b8516b18",
+      "dev": "c639005344d7d0a2d93b919a2f17e4e3e8ba1e0fe1cd4a8462ea85b7762e6170",
+      "test": "33aa94f6b04c58b015554af6faa1fd8b40614dc0442ac2ab8e3704ff41fa3bd8"
+    },
+    "split_content_sha256": {
+      "train": "ba104c94781f77633762bb262ab50926143477db4a37a778b9ee3f299d73227f",
+      "dev": "7f1b358b5e5246a4be6b0557ef53cc763fcb04371ede3463959d91dac9e0fb8f",
+      "test": "b3a1a6c8370a4db616ebc916e68d3d3c36f71ea139a53cdfe94facdd48067dda"
+    },
+    "identity_scope": "Pinned original bytes; original row order and every record field retained"
+  },
+  "inline_contracts_byte_identical": true,
+  "dataset_manifests_identical": true,
+  "bilstm_original_annotation_roundtrips": 16521,
+  "notebooks": {
+    "main.ipynb": {
+      "notebook_sha256": "43fe2c23fdaab6d9fd552aa47ac4596426f500b2a6a78d856515a63191a893c7",
+      "inline_contract_sha256": "c57d46c76642edf0a1e5b283c52d153631b2b4c30b639166c3761fd8ade4a37c",
+      "code_cells_compile": 27,
+      "stale_output_cells": 0,
+      "fresh_training": "pending",
+      "scorer_fixtures": {
+        "wrong_repeated_occurrence": {
+          "intent_accuracy": 1.0,
+          "slot_micro_f1": 0.0,
+          "slot_tp": 0,
+          "slot_fp": 1,
+          "slot_fn": 1,
+          "num_examples": 1,
+          "correct_intents": 1
+        },
+        "two_occurrences_one_found": {
+          "intent_accuracy": 1.0,
+          "slot_micro_f1": 0.6666666666666666,
+          "slot_tp": 1,
+          "slot_fp": 0,
+          "slot_fn": 1,
+          "num_examples": 1,
+          "correct_intents": 1
+        },
+        "exact_occurrences": {
+          "intent_accuracy": 1.0,
+          "slot_micro_f1": 1.0,
+          "slot_tp": 2,
+          "slot_fp": 0,
+          "slot_fn": 0,
+          "num_examples": 1,
+          "correct_intents": 1
+        },
+        "wrong_type": {
+          "intent_accuracy": 1.0,
+          "slot_micro_f1": 0.0,
+          "slot_tp": 0,
+          "slot_fp": 1,
+          "slot_fn": 1,
+          "num_examples": 1,
+          "correct_intents": 1
+        },
+        "wrong_boundary": {
+          "intent_accuracy": 1.0,
+          "slot_micro_f1": 0.0,
+          "slot_tp": 0,
+          "slot_fp": 1,
+          "slot_fn": 1,
+          "num_examples": 1,
+          "correct_intents": 1
+        },
+        "zero_slot_denominator": {
+          "intent_accuracy": 1.0,
+          "slot_micro_f1": 0.0,
+          "slot_tp": 0,
+          "slot_fp": 0,
+          "slot_fn": 0,
+          "num_examples": 1,
+          "correct_intents": 1
+        }
+      }
+    },
+    "NLP_Final_project.ipynb": {
+      "notebook_sha256": "d64228204d1d8a130dafa45929efb78fd61a174deb26d2547fc796a61435e56f",
+      "inline_contract_sha256": "c57d46c76642edf0a1e5b283c52d153631b2b4c30b639166c3761fd8ade4a37c",
+      "code_cells_compile": 22,
+      "stale_output_cells": 0,
+      "fresh_training": "pending",
+      "scorer_fixtures": {
+        "wrong_repeated_occurrence": {
+          "intent_accuracy": 1.0,
+          "slot_micro_f1": 0.0,
+          "slot_tp": 0,
+          "slot_fp": 1,
+          "slot_fn": 1,
+          "num_examples": 1,
+          "correct_intents": 1
+        },
+        "two_occurrences_one_found": {
+          "intent_accuracy": 1.0,
+          "slot_micro_f1": 0.6666666666666666,
+          "slot_tp": 1,
+          "slot_fp": 0,
+          "slot_fn": 1,
+          "num_examples": 1,
+          "correct_intents": 1
+        },
+        "exact_occurrences": {
+          "intent_accuracy": 1.0,
+          "slot_micro_f1": 1.0,
+          "slot_tp": 2,
+          "slot_fp": 0,
+          "slot_fn": 0,
+          "num_examples": 1,
+          "correct_intents": 1
+        },
+        "wrong_type": {
+          "intent_accuracy": 1.0,
+          "slot_micro_f1": 0.0,
+          "slot_tp": 0,
+          "slot_fp": 1,
+          "slot_fn": 1,
+          "num_examples": 1,
+          "correct_intents": 1
+        },
+        "wrong_boundary": {
+          "intent_accuracy": 1.0,
+          "slot_micro_f1": 0.0,
+          "slot_tp": 0,
+          "slot_fp": 1,
+          "slot_fn": 1,
+          "num_examples": 1,
+          "correct_intents": 1
+        },
+        "zero_slot_denominator": {
+          "intent_accuracy": 1.0,
+          "slot_micro_f1": 0.0,
+          "slot_tp": 0,
+          "slot_fp": 0,
+          "slot_fn": 0,
+          "num_examples": 1,
+          "correct_intents": 1
+        }
+      }
+    }
+  },
+  "current_model_results": "pending_fresh_training_and_development_selection",
+  "historical_results": "results/historical_v1/"
+}

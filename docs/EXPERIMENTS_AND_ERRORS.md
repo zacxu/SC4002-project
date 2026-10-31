@@ -1,6 +1,8 @@
 # Experiments and error analysis
 
-The executed [notebook](../main.ipynb) and its [generated results](../results/) are the final report sources. This document consolidates the useful content of the former experiment-plan, diagnosis and error-analysis files. The exact original registrations and raw documents remain in the ignored local archive and immutable snapshots; they are historical provenance, not additional public entry points.
+**Historical evaluator-v1 evidence.** All scores, chosen epochs, ablations, paired counts, error strata and plots below came from the earlier type/text-set scorer. They are preserved as a dated research record. The current `exact_character_span_v2` scorer uses original character occurrences in both notebooks; current comparative scores and fresh error analysis are **pending rerun**. Do not rank the revised BiLSTM and Transformer from this table or relabel these numbers as v2. See the [comparison contract](EVALUATION_COMPARISON.md).
+
+The previously executed BiLSTM notebook and its [preserved results](../results/historical_v1/) were the evaluator-v1 report sources. Its original executed bytes are retained locally under `artifacts/evaluator_v2/prechange/`; the active [BiLSTM](../main.ipynb) and [Transformer](../NLP_Final_project.ipynb) notebooks await fresh v2 execution. This document consolidates the useful content of the former experiment-plan, diagnosis and error-analysis files. The exact original registrations and raw documents remain in the ignored local archive and immutable snapshots; they are historical provenance, not additional public entry points.
 
 ## Registered research
 
@@ -42,7 +44,7 @@ Selected dev TP/FP/FN are **1,576/359/435**, versus **1,531/618/480**. Paired in
 
 Research motivation: [Ma and Hovy, 2016](https://aclanthology.org/P16-1101/) for character CNN/BiLSTM/CRF sequence labeling; [Goo et al., 2018](https://aclanthology.org/N18-2118/) for intent-slot interaction. The small soft-context implementation does not reproduce the full published slot-gate system or inherit its benchmark claims.
 
-## Genuine notebook reproduction
+## Historical evaluator-v1 notebook reproduction
 
 The notebook independently trained both selected configurations for 20 epochs each, selected epochs 19/11 again, and produced the same model-state values, ordered predictions and full-precision metrics as the scripts. It used its own newly trained checkpoints; file hashes differ because provenance/metadata are new.
 
@@ -55,9 +57,9 @@ The notebook independently trained both selected configurations for 20 epochs ea
 
 Workflow timing includes train, epoch development scoring, checkpoint writes and logs, excluding setup/download, plotting, independent reload and final evaluation. Per-evaluation timer boundaries differ across stage algorithms. CRF NLL and token CE also differ, so neither evaluation seconds nor absolute loss heights establish isolated architectural superiority.
 
-## Four actual remaining Stage 2 development errors
+## Four actual historical Stage 2 development errors
 
-These are drawn from the notebook's own saved predictions. It displays full original gold/predicted spans and offsets; no examples were invented or added to training. There are **674** development utterances with any remaining error.
+These are drawn from the evaluator-v1 notebook's own saved predictions; they remain genuine historical errors, not current v2 acceptance evidence. It displays full original gold/predicted spans and offsets; no examples were invented or added to training. There are **674** development utterances with any remaining error.
 
 | Record | Original utterance | Gold | Prediction | Possible explanation, explicitly an inference |
 | --- | --- | --- | --- | --- |
@@ -66,11 +68,11 @@ These are drawn from the notebook's own saved predictions. It displays full orig
 | 24 | make a room darker | Intent `iot_hue_lightdim`; place `room` | Intent `iot_hue_lightup`; place correct | The model confuses opposite lighting actions despite finding the location. This example alone does not establish a cause. |
 | 30 | cleaning is good dust is so bad do now your magic clean my carpet | Intent `iot_cleaning`; place `carpet` | Intent `calendar_remove`; no slots | Long, loosely structured wording may obscure the action/location; both task predictions fail. |
 
-Further work should examine training support and development error strata, calibration and boundary/type behavior in a separately designed study. This single-seed search does not establish statistical significance or a global optimum, and it does not authorize test-driven retraining. The report must retain the intent regression and analyze at least two real cases.
+Further work should examine training support and development error strata, calibration and boundary/type behavior in a separately designed study. This single-seed search does not establish statistical significance or a global optimum, and it does not authorize test-driven retraining. Any account of the historical v1 run must retain its intent regression. A new report must use fresh v2 results and at least two errors from the freshly evaluated final system.
 
 ## Learning curves
 
-Both plots are genuine notebook outputs, also embedded in the notebook. Rising development loss alongside falling training loss remains a limitation; checkpoint selection follows the declared task metrics.
+Both plots are genuine historical evaluator-v1 notebook outputs. The original executed notebook is preserved in the ignored prechange archive; the active notebooks have no retained v2 training outputs yet. Rising development loss alongside falling training loss remains a limitation; checkpoint selection follows the declared task metrics.
 
 ![Stage 1 notebook learning curves](assets/stage1_learning_curves.png)
 

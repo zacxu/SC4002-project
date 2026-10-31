@@ -34,9 +34,9 @@ PREPROCESSING_PROFILE = {
     "invalid_bio_transition": "start_new_span",
 }
 EVALUATION_PROFILE = {
-    "version": 1, "slot_matching": "set_of_exact_type_and_surface_text_per_record",
-    "normalization": "none", "offsets": "retained_for_audit_not_scoring_key",
-    "duplicate_identical_pairs": "count_once_per_record", "empty_slot_denominator_f1": 0.0,
+    "version": 2, "slot_matching": "exact_type_text_and_character_occurrence_per_record",
+    "normalization": "none", "offsets": "zero_based_end_exclusive_scoring_key",
+    "duplicate_identical_pairs": "distinct_positions_count_separately_exact_duplicates_error", "empty_slot_denominator_f1": 0.0,
     "empty_dataset": "error", "record_join": "exact_id_set_no_duplicates",
     "authority": "documented_project_interpretation_of_assignment",
 }

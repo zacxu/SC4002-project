@@ -32,7 +32,7 @@ try {
     Invoke-ProjectPython -Arguments @('scripts/check_environment.py', '--device', 'cuda')
     Invoke-ProjectPython -Arguments @('-m', 'pip', 'check')
     # These offline checks also run in a fresh clone without local training artifacts.
-    Invoke-ProjectPython -Arguments @('-m', 'unittest', 'tests.test_acquisition', 'tests.test_runtime', 'tests.test_metrics', 'tests.test_diagnostics', 'tests.test_notebook_build', '-v')
+    Invoke-ProjectPython -Arguments @('-m', 'unittest', 'tests.test_acquisition', 'tests.test_runtime', 'tests.test_metrics', 'tests.test_comparison_contract', 'tests.test_comparison_notebooks', 'tests.test_diagnostics', 'tests.test_notebook_build', 'tests.test_notebook_reruns', '-v')
 }
 finally {
     Pop-Location

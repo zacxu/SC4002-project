@@ -1,15 +1,10 @@
-"""Shared intent accuracy and exact slot-pair micro F1.
+"""Evaluation v2: exact typed character-span occurrences, joined by record ID.
 
-Scoring convention frozen for this project: each utterance has a *set* of
-``(slot_type, exact_surface_text)`` pairs. Strings are compared without case,
-whitespace, or Unicode normalization. Offsets remain in predictions for audit
-and reconstruction but are not part of a scoring key. Repeated identical pairs
-within one utterance collapse; the same pair in different utterances counts
-separately. This is the project's interpretation of the assignment's requested
-set of [type:span] pairs, not a claim about an official MASSIVE evaluator.
-
-Scores are fractions. Multiply by 100 only for presentation. A split with no
-gold or predicted slots receives slot F1 0.0; an empty split is an error.
+The canonical implementation is shared with both standalone notebooks. Repeated
+surface values at distinct positions remain separate occurrences. Exact text,
+type and original character boundaries must match; there is no normalization.
+Historical v1 text-set results/checkpoint selections are not v2 results.
+Scores are fractions; presentation alone multiplies by 100.
 """
 
 from __future__ import annotations
@@ -18,6 +13,7 @@ from collections.abc import Iterable
 from dataclasses import asdict, dataclass
 
 from src.schema import IntentSlotPrediction
+from src.comparison_contract import EVALUATOR_VERSION, score_exact_spans
 
 
 @dataclass(frozen=True)
@@ -71,24 +67,5 @@ def evaluate_predictions(
             f"missing={sorted(missing_ids)!r}, unexpected={sorted(unexpected_ids)!r}"
         )
 
-    correct_intents = slot_tp = slot_fp = slot_fn = 0
-    for record_id, gold_record in gold_by_id.items():
-        predicted = predicted_by_id[record_id]
-        correct_intents += int(predicted.intent == gold_record.intent)
-        gold_pairs = {(slot.slot_type, slot.text) for slot in gold_record.slots}
-        predicted_pairs = {(slot.slot_type, slot.text) for slot in predicted.slots}
-        slot_tp += len(gold_pairs & predicted_pairs)
-        slot_fp += len(predicted_pairs - gold_pairs)
-        slot_fn += len(gold_pairs - predicted_pairs)
-
-    denominator = 2 * slot_tp + slot_fp + slot_fn
-    return EvaluationResult(
-        intent_accuracy=correct_intents / len(gold_by_id),
-        slot_micro_f1=2 * slot_tp / denominator if denominator else 0.0,
-        slot_tp=slot_tp,
-        slot_fp=slot_fp,
-        slot_fn=slot_fn,
-        num_examples=len(gold_by_id),
-        correct_intents=correct_intents,
-    )
+    return EvaluationResult(**score_exact_spans(gold_by_id.values(), predicted_by_id.values()))
 

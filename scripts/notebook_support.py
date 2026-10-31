@@ -6,6 +6,7 @@ runtime import from this file, the checkout, or historical experiment artifacts.
 from __future__ import annotations
 
 import csv
+import ast
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -14,6 +15,7 @@ from pathlib import Path
 import subprocess
 import sys
 from IPython.display import Markdown, display
+from src.comparison_contract import EVALUATOR_VERSION
 
 
 def nb_code_source(cell):
@@ -21,16 +23,75 @@ def nb_code_source(cell):
     return value if isinstance(value, str) else "".join(value)
 
 
+def nb_notebook_configuration(notebook):
+    """Allow literal settings edits only; keep every implementation cell protected."""
+    cells = [cell for cell in notebook['cells'] if cell['cell_type'] == 'code']
+    metadata = notebook['metadata']['phase7']
+    expected = metadata['code_cell_sha256']
+    indices = metadata.get('configuration_cell_indices', [])
+    tagged = [i for i, cell in enumerate(cells) if 'configuration' in cell.get('metadata', {}).get('tags', [])]
+    if indices != tagged or len(indices) != 1 or any(type(i) is not int for i in indices):
+        raise ValueError('Exactly one registered editable configuration cell is required')
+    if len(expected) != len(cells):
+        raise ValueError('Notebook cell count differs from its reviewed source manifest')
+    values = {}
+    for index, cell in enumerate(cells):
+        text = nb_code_source(cell)
+        if index not in indices:
+            if hashlib.sha256(text.encode('utf-8')).hexdigest() != expected[index]:
+                raise ValueError('Notebook implementation differs from its reviewed source manifest')
+            continue
+        for statement in ast.parse(text).body:
+            if (not isinstance(statement, ast.Assign) or len(statement.targets) != 1
+                    or not isinstance(statement.targets[0], ast.Name)):
+                raise ValueError('Configuration must contain only literal dictionary assignments')
+            name = statement.targets[0].id
+            if name not in {'RUNTIME', 'STAGE1_CONFIG', 'STAGE2_CONFIG', 'RUN_OPTIONS'} or name in values:
+                raise ValueError('Unexpected or duplicate configuration name: ' + name)
+            try:
+                values[name] = ast.literal_eval(statement.value)
+            except (ValueError, TypeError) as error:
+                raise ValueError('Use literal configuration values, not expressions or function calls') from error
+            if not isinstance(values[name], dict):
+                raise ValueError('Every configuration value must be a dictionary')
+    if set(values) != {'RUNTIME', 'STAGE1_CONFIG', 'STAGE2_CONFIG', 'RUN_OPTIONS'}:
+        raise ValueError('All four configuration dictionaries must be present')
+    options = values['RUN_OPTIONS']
+    if (not {'evaluate_test', 'dataset_path', 'device'} <= set(options)
+            or set(options) - {'evaluate_test', 'dataset_path', 'device', 'verification_timeout_seconds'}
+            or type(options['evaluate_test']) is not bool):
+        raise ValueError('RUN_OPTIONS must declare evaluate_test, dataset_path and device')
+    if options['device'] not in {'cpu', 'cuda', 'auto'}:
+        raise ValueError('Choose cpu, cuda or auto for device')
+    if options['dataset_path'] is not None and (not isinstance(options['dataset_path'], str) or not options['dataset_path']):
+        raise ValueError('dataset_path must be None or a nonempty path string')
+    timeout = options.get('verification_timeout_seconds', 300)
+    if timeout is not None and (type(timeout) is not int or timeout <= 0):
+        raise ValueError('verification_timeout_seconds must be positive or None for no limit')
+    return values
+
+
 def nb_source_identity(notebook_path):
     notebook = json.loads(Path(notebook_path).read_text(encoding="utf-8"))
-    code = [nb_code_source(cell) for cell in notebook["cells"] if cell["cell_type"] == "code"]
-    hashes = [hashlib.sha256(source.encode("utf-8")).hexdigest() for source in code]
-    if hashes != notebook["metadata"]["phase7"]["code_cell_sha256"]:
-        raise ValueError("Notebook code differs from its reviewed source manifest")
-    return hashlib.sha256(json.dumps(hashes, separators=(",", ":")).encode("ascii")).hexdigest()
+    nb_notebook_configuration(notebook)
+    hashes = [hashlib.sha256(nb_code_source(cell).encode('utf-8')).hexdigest()
+              for cell in notebook['cells'] if cell['cell_type'] == 'code']
+    return hashlib.sha256(json.dumps(hashes, separators=(',', ':')).encode('ascii')).hexdigest()
 
 
-def nb_run_fresh_verifier(notebook_path, checkpoint, dataset_path, code_sha256, device):
+def nb_capture_configuration(notebook_path, runtime, stage1, stage2, options, output):
+    notebook = json.loads(Path(notebook_path).read_text(encoding='utf-8'))
+    values = {'RUNTIME': runtime, 'STAGE1_CONFIG': stage1, 'STAGE2_CONFIG': stage2, 'RUN_OPTIONS': options}
+    if nb_notebook_configuration(notebook) != values:
+        raise ValueError('Save the edited notebook before restarting and running every cell')
+    snapshot = {**values, 'code_sha256': nb_source_identity(notebook_path),
+                'configuration_sha256': hashlib.sha256(json.dumps(values, ensure_ascii=False,
+                    sort_keys=True, separators=(',', ':')).encode('utf-8')).hexdigest()}
+    nb_support_write_json(output, snapshot)
+    return snapshot
+
+
+def nb_run_fresh_verifier(notebook_path, checkpoint, dataset_path, code_sha256, device, timeout=300):
     """Generate ordinary Python from visible definitions and run a new process."""
     notebook = json.loads(Path(notebook_path).read_text(encoding="utf-8"))
     assert nb_source_identity(notebook_path) == code_sha256
@@ -68,7 +129,7 @@ if __name__ == "__main__":
     result = subprocess.run([sys.executable, "-B", str(worker), str(Path(checkpoint).resolve()),
                              str(Path(dataset_path).resolve()), code_sha256, str(device)],
                             cwd=Path(checkpoint).parent, env=environment,
-                            capture_output=True, text=True, encoding="utf-8", timeout=300)
+                            capture_output=True, text=True, encoding="utf-8", timeout=timeout)
     (worker.parent / "fresh_process_console.txt").write_text(result.stdout + result.stderr, encoding="utf-8")
     if result.returncode:
         raise RuntimeError("Fresh-process verification failed; see fresh_process_console.txt\n" + result.stderr[-2500:])
@@ -102,7 +163,7 @@ def nb_build_result_table(stage1, stage2, output_root):
     rows, full_precision = [], {}
     for label, summary in (("Stage-1 system", stage1), ("Stage-2 system", stage2)):
         full_precision[label] = {}
-        for part in ("dev", "test"):
+        for part in (("dev", "test") if summary.get('test') is not None else ("dev",)):
             metrics = summary[part]["metrics"]
             full_precision[label][part] = metrics
             rows.append({"model_version": label, "split": "Validation" if part == "dev" else "Test",
@@ -111,11 +172,12 @@ def nb_build_result_table(stage1, stage2, output_root):
                          "intent_accuracy_percent": f"{100*metrics['intent_accuracy']:.2f}",
                          "slot_micro_f1_percent": f"{100*metrics['slot_micro_f1']:.2f}",
                          "epochs_trained": summary["epochs_trained"], "selected_epoch": summary["selected_epoch"]})
-    report = {"rows": rows, "full_precision": full_precision,
+    report = {"rows": rows, "full_precision": full_precision, "evaluator_version": EVALUATOR_VERSION,
               "source": "This notebook's own checkpoint-reloaded final evaluations",
               "stage2_minus_stage1_percentage_points": {
                   part: {key: 100 * (stage2[part]["metrics"][key] - stage1[part]["metrics"][key])
-                         for key in ("intent_accuracy", "slot_micro_f1")} for part in ("dev", "test")}}
+                         for key in ("intent_accuracy", "slot_micro_f1")}
+                  for part in (("dev", "test") if stage1.get('test') is not None else ("dev",))}}
     output_root = Path(output_root)
     nb_support_write_json(output_root / "results.json", report)
     with (output_root / "results.csv").open("x", encoding="utf-8", newline="") as handle:

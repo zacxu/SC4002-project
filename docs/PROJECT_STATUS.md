@@ -1,8 +1,46 @@
 # Project status and implementation history
 
+**BiLSTM rerun workflow, 31 October 2026:** [main.ipynb](../main.ipynb) now supports
+one editable configuration cell for future hyperparameter runs. See
+[RUNNING_BILSTM.md](RUNNING_BILSTM.md) for complete Jupyter/CLI instructions and
+output locations. Development-only mode trains/selects/reloads without test;
+final mode additionally freezes and tests. A small-model, one-epoch execution
+over the full original train/dev records passed independent acceptance with
+zero test model passes; this verifies the workflow, not the default models'
+final performance. Default evaluator-v2 comparison scores remain pending.
+
+Updated **31 October 2026 (Singapore time)**. **Current evaluator-v2 execution and comparison are pending.** Completed historical Phases 1-7 below describe the earlier evaluator-v1 project; their old results and acceptance records do not validate the revised notebooks.
+
+## Current comparison revision
+
+- The active [BiLSTM notebook](../main.ipynb) and [Transformer notebook](../NLP_Final_project.ipynb) are intentionally different implementations, with the same inline [comparison contract](../src/comparison_contract.py).
+- Both use the pinned official MASSIVE 1.0 English JSONL, all original records/partitions, and manifests identifying ordered split IDs and complete split contents. Transformer CSV upload has been removed.
+- **`exact_character_span_v2`** scores exact typed original Unicode character occurrences, including literal text validation. Distinct occurrences are not collapsed by equal surface text. The previous type/text-set results are historical v1.
+- Transformer task labels now derive from train only and contain the complete 111 BIO tags. Revised whole-model counts are **4,345,243 / 4,379,947** for its two stages. BiLSTM architectures/counts remain **4,646,571 / 4,939,498**.
+- The rebuilt active BiLSTM notebook has **40 cells / 27 code cells** and cleared outputs; this is a source revision, not a completed training run.
+- One dependency file now retains the original 105 pins and adds 10 compatible Transformer support packages, **115 pinned distributions**. Installed-package consistency passed; no fresh empty-environment installation is claimed.
+- The original executed notebooks and associated files were preserved with checksums in the ignored `artifacts/evaluator_v2/prechange/` archive. Active notebook outputs are cleared because the metric changes checkpoint selection. No new full training run or final model test evaluation is claimed for this code-contract revision.
+
+### Current verification, 31 October
+
+- **185 full-workspace tests passed** in 6.897 seconds; **83 portable offline tests passed** in 2.388 seconds.
+- All **49 code cells compile**: 27 in the BiLSTM notebook and 22 in the Transformer. Both notebooks have zero stale output cells and byte-identical inline contract source.
+- The [public comparison audit](../results/comparison_contract.json) confirms the same pinned data/split identities and exact original gold-span round trips for **all 16,521 records in both adapters**. Transformer development-collation/evaluator fixtures cover all 2,033 records with and without character features, without trained-model inference.
+- Dependency consistency passed. Runtime pins agree apart from installed pip **26.2.2** versus the specification's historical **25.2** installer pin; no fresh empty-environment installation is claimed.
+
+These checks validate code, data and bookkeeping. They do not replace complete training, development checkpoint selection or final model evaluation under v2. The public historical performance files are isolated under [results/historical_v1/](../results/historical_v1/).
+
+The two implementations still differ in tokenizer, word-vector initialization and optimization/budgets. A shared dataset/scorer supports comparison but does not isolate a causal architecture effect. See [EVALUATION_COMPARISON.md](EVALUATION_COMPARISON.md) for precise semantics, upstream context and rerun requirements.
+
+Before Phase 8 can use new scores, execute fresh complete training/development selection, save/reload verification, freezing and final evaluation for each family/stage. Retain the new manifests, evaluator identity, genuine logs, results and errors. Do not reuse historical selected epochs, v1 tables or previously accepted outputs as new v2 evidence. The deadline/group/AI-history requirements in [ASSIGNMENT.md](ASSIGNMENT.md) remain unchanged.
+
+## Historical position at 24 October 2026
+
+The following historical summary and phase narratives are preserved as the record of the accepted evaluator-v1 implementation. References to a completed/executed notebook, selected checkpoints and metrics are scoped to that archived version.
+
 Updated **24 October 2026 (Singapore time)**. **Phases 1–7 are complete; Phase 8 is pending.** This is the single progress record, consolidating all seven original phase updates and the implementation plan. The executable deliverable is [main.ipynb](../main.ipynb); the [README](../README.md) gives the current installation and reproduction instructions.
 
-## Current position
+### Historical phase position
 
 | Phase | Outcome | State |
 | --- | --- | --- |
@@ -15,13 +53,13 @@ Updated **24 October 2026 (Singapore time)**. **Phases 1–7 are complete; Phase
 | 7 | Self-contained notebook genuinely retrained both selected systems; acceptance and parity passed | Complete |
 | 8 | Two-page report, genuine AI collaboration export, verified group cover, exact submission ZIP | Pending |
 
-The completed notebook has **39 cells, 26 executed code cells, no execution errors, 40 genuine training epochs, two plots and four real development error cases**. The historical acceptance passed **192 parity checks** and **157 tests**. Test intent/slot scores are **83.96% / 70.51%** for Stage 1 and **82.62% / 76.81%** for Stage 2; the intent regression remains disclosed. See [results](../results/) and [experiments and errors](EXPERIMENTS_AND_ERRORS.md).
+The completed notebook has **39 cells, 26 executed code cells, no execution errors, 40 genuine training epochs, two plots and four real development error cases**. The historical acceptance passed **192 parity checks** and **157 tests**. Test intent/slot scores are **83.96% / 70.51%** for Stage 1 and **82.62% / 76.81%** for Stage 2; the intent regression remains disclosed. See [historical results](../results/historical_v1/) and [experiments and errors](EXPERIMENTS_AND_ERRORS.md).
 
 The final runtime target is **local Jupyter on the RTX 3060 Ti (8 GB)**. Group ID, full names and verified individual contributions remain pending at the user's request. The brief's original no-AI Stage 1 requirement and actual assistance are disclosed in [assignment requirements](ASSIGNMENT.md); no lecturer exemption has been provided.
 
-## Repository cleanup
+## Historical repository cleanup, 24 October
 
-The two former root notebooks were byte-for-byte identical. Keep only `main.ipynb` as the public notebook. Its accepted SHA-256 is `95e4b943be08fae9ed9959d8f49e120c29e397121be9d5b9a37c0954823ca7b3`.
+The two former root notebooks, `main.ipynb` and `main_revised.ipynb`, were byte-for-byte identical, so the redundant revised copy was removed at that cleanup. This does not refer to the subsequently added, distinct `NLP_Final_project.ipynb` Transformer comparison. The accepted evaluator-v1 `main.ipynb` SHA-256 was `95e4b943be08fae9ed9959d8f49e120c29e397121be9d5b9a37c0954823ca7b3`.
 
 - All phase status updates and the original implementation plan are consolidated here.
 - The brief and later model rules are consolidated in [ASSIGNMENT.md](ASSIGNMENT.md).
@@ -32,7 +70,7 @@ The two former root notebooks were byte-for-byte identical. Keep only `main.ipyn
 
 Exact pre-cleanup documents are preserved under the ignored local `artifacts/cleanup/originals/`, with `artifacts/cleanup/original_files.json` recording their checksums. Historical phase snapshots, registrations, checkpoints and notebook backups remain untouched. **Old raw-hash audit commands expect the pre-cleanup layout.** Their records describe that layout; running them against the consolidated layout requires restoring the exact historical files/source version first. The notebook runs independently of those archives. The current README distinguishes portable fixture tests from archive-dependent audits.
 
-## Phase 8 remaining work
+## Historical Phase 8 plan before the evaluator-v2 revision
 
 1. Obtain the real group ID, member names and confirmed contributions; do not invent human work.
 2. Consolidate genuine AI chat/context to one `ai_collaboration.md` or `.txt`, including actual Stage 1 assistance, accepted/modified/rejected suggestions and verified human reasoning. Retain the original conversation; the brief does not resolve whether excerpts suffice. Phase working summaries alone do not demonstrate the actual exchange.
@@ -41,7 +79,7 @@ Exact pre-cleanup documents are preserved under the ignored local `artifacts/cle
 5. Verify the final notebook still retains genuine outputs and all three deliverables contain no credentials. Build `Group_<ID>.zip` with exactly `main.ipynb`, the collaboration file and `report.pdf`.
 6. Check current official submission announcements, then submit through NTULearn. The brief's interpreted deadline is **15 November 2026, 23:59 SGT**; see [administrative details](ASSIGNMENT.md#administration-and-submission).
 
-## How to read the historical records
+## How to read the original phase records
 
 The sections below preserve the full original phase narratives and original implementation plan, including early model dimensions, then-pending tasks, original filenames, commands and old test counts. **They are dated history, not the current setup guide.** Later completed phases supersede earlier pending statements. For example, Stage 1's original dropout 0.2 default was followed by development selection of dropout 0.3; the 128/128 diagnostic model was replaced before full runs by the requested 256/512 model.
 

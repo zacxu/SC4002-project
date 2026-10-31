@@ -136,6 +136,36 @@ def _manifest_hashes(notebook: Any) -> list[str] | None:
     return hashes
 
 
+CONFIGURATION_NAMES = {"RUNTIME", "STAGE1_CONFIG", "STAGE2_CONFIG", "RUN_OPTIONS"}
+
+
+def configuration_values(source: str) -> dict[str, Any]:
+    """Read the editable cell without executing expressions or hidden code."""
+    values: dict[str, Any] = {}
+    try:
+        statements = ast.parse(source).body
+    except SyntaxError as error:
+        raise ValidationError("Configuration cell must contain ordinary literal assignments") from error
+    for node in statements:
+        if (not isinstance(node, ast.Assign) or len(node.targets) != 1
+                or not isinstance(node.targets[0], ast.Name)
+                or node.targets[0].id not in CONFIGURATION_NAMES):
+            raise ValidationError("Configuration cell permits only the four named literal assignments")
+        name = node.targets[0].id
+        if name in values:
+            raise ValidationError("Configuration assigns the same name more than once")
+        try:
+            value = ast.literal_eval(node.value)
+        except (ValueError, TypeError, SyntaxError) as error:
+            raise ValidationError("Configuration values must be literal dictionaries") from error
+        if not isinstance(value, dict):
+            raise ValidationError("Configuration values must be literal dictionaries")
+        values[name] = value
+    if set(values) != CONFIGURATION_NAMES:
+        raise ValidationError("Configuration must assign RUNTIME, STAGE1_CONFIG, STAGE2_CONFIG and RUN_OPTIONS")
+    return values
+
+
 def validate_notebook_source(notebook: Any, *, require_manifest: bool = True) -> dict[str, Any]:
     nbformat.validate(notebook)
     cells = [cell for cell in notebook.cells if cell.cell_type == "code"]
@@ -151,10 +181,22 @@ def validate_notebook_source(notebook: Any, *, require_manifest: bool = True) ->
     expected = _manifest_hashes(notebook)
     if require_manifest and expected is None:
         raise ValidationError("Notebook is missing its builder code-cell source manifest")
-    if expected is not None and actual != expected:
+    registered = notebook.metadata.get("phase7", {}).get("configuration_cell_indices", [])
+    tagged = [index for index, cell in enumerate(cells)
+              if "configuration" in cell.get("metadata", {}).get("tags", [])]
+    if (not isinstance(registered, list) or any(type(index) is not int for index in registered)
+            or registered != tagged or len(registered) > 1):
+        raise ValidationError("Configuration tags differ from the registered editable-cell indices")
+    configuration = configuration_values(cells[registered[0]].source) if registered else {}
+    if expected is not None and (len(actual) != len(expected)
+            or any(observed != expected[index] for index, observed in enumerate(actual) if index not in registered)):
         raise ValidationError("Visible notebook source changed after the builder manifest was recorded")
+    edited = expected is not None and any(actual[index] != expected[index] for index in registered)
     return {"code_cells": len(cells), "code_cell_sha256": actual,
-            "implementation_sha256": canonical_hash(actual), "source_manifest_matches": expected is not None}
+            "implementation_sha256": canonical_hash(actual), "source_manifest_matches": expected is not None,
+            "configuration_cell_indices": registered, "configuration_edited": edited,
+            "configuration": configuration,
+            "configuration_sha256": canonical_hash(configuration) if configuration else None}
 
 
 def validate_execution_outputs(notebook: Any) -> dict[str, Any]:
@@ -264,10 +306,14 @@ def score_saved_predictions(gold: list[dict[str, Any]], predictions: list[dict[s
                 raise ValidationError("Predicted slot offsets must be integers")
             if not slot.get("slot_type") or not slot.get("text") or slot["start"] < 0 or slot["end"] <= slot["start"]:
                 raise ValidationError("Invalid predicted slot")
+            if slot["end"] > len(original["utt"]) or slot["end"] - slot["start"] != len(slot["text"]):
+                raise ValidationError("Predicted slot offsets exceed the original utterance or text length")
             if original["utt"][slot["start"]:slot["end"]] != slot["text"]:
                 raise ValidationError("Predicted slot is not a literal original utterance slice")
-        target = {(slot["slot_type"], slot["text"]) for slot in original["slots"]}
-        actual = {(slot["slot_type"], slot["text"]) for slot in predicted["slots"]}
+        target = {(slot["slot_type"], slot["start"], slot["end"], slot["text"]) for slot in original["slots"]}
+        actual = {(slot["slot_type"], slot["start"], slot["end"], slot["text"]) for slot in predicted["slots"]}
+        if len(target) != len(original["slots"]) or len(actual) != len(predicted["slots"]):
+            raise ValidationError("Duplicate identical slot occurrence")
         correct += predicted["intent"] == original["intent"]
         tp += len(target & actual)
         fp += len(actual - target)
@@ -289,9 +335,12 @@ def check_metrics(recorded: dict[str, Any], actual: dict[str, Any]) -> None:
             raise ValidationError(f"Saved metric/count mismatch for {key}: {observed!r} versus {expected!r}")
 
 
-def validate_history(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    if [row.get("epoch") for row in rows] != list(range(1, 21)):
-        raise ValidationError("A selected configuration must genuinely train all 20 ordered epochs")
+def validate_history(rows: list[dict[str, Any]], max_epochs: int = 20,
+                     batch_size: int = 32) -> dict[str, Any]:
+    if type(max_epochs) is not int or max_epochs <= 0 or type(batch_size) is not int or batch_size <= 0:
+        raise ValidationError("Configured epochs and batch size must be positive integers")
+    if [row.get("epoch") for row in rows] != list(range(1, max_epochs + 1)):
+        raise ValidationError("A selected configuration must genuinely train all configured ordered epochs")
     best = -float("inf")
     selected = None
     for row in rows:
@@ -302,7 +351,7 @@ def validate_history(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 value = row.get(f"{split}_{suffix}")
                 if not isinstance(value, (float, int)) or not math.isfinite(value) or value < 0:
                     raise ValidationError("Epoch contains missing/nonfinite/negative loss")
-            if f"{split}_num_batches" in row and row[f"{split}_num_batches"] != math.ceil(EXPECTED_COUNTS[split] / 32):
+            if f"{split}_num_batches" in row and row[f"{split}_num_batches"] != math.ceil(EXPECTED_COUNTS[split] / batch_size):
                 raise ValidationError("Epoch contains an incomplete original batch traversal")
         if "max_gradient_norm" in row and (not math.isfinite(row["max_gradient_norm"]) or row["max_gradient_norm"] < 0):
             raise ValidationError("Epoch contains nonfinite/negative gradients")
@@ -317,7 +366,7 @@ def validate_history(rows: list[dict[str, Any]]) -> dict[str, Any]:
             raise ValidationError("Checkpoint selection does not preserve earliest exact tie")
         if improvement:
             best, selected = score, row["epoch"]
-    return {"epochs_trained": 20, "selected_epoch": selected, "selection_score": best}
+    return {"epochs_trained": max_epochs, "selected_epoch": selected, "selection_score": best}
 
 
 def validate_execution_evidence(root: Path, completion: dict[str, Any], source: dict[str, Any],
@@ -329,6 +378,21 @@ def validate_execution_evidence(root: Path, completion: dict[str, Any], source: 
         raise ValidationError("Notebook execution ledger is incomplete")
     if completion.get("implementation_sha256") != source["implementation_sha256"]:
         raise ValidationError("Execution ledger is for different visible notebook definitions")
+    configuration = source.get("configuration", {})
+    if set(configuration) != CONFIGURATION_NAMES:
+        raise ValidationError("Executed notebook lacks its complete editable configuration")
+    snapshot = read_json(evidence_path(root, "run_configuration.json"))
+    if (any(snapshot.get(key) != configuration[key] for key in CONFIGURATION_NAMES)
+            or snapshot.get("code_sha256") != source["implementation_sha256"]
+            or snapshot.get("configuration_sha256") != canonical_hash(configuration)):
+        raise ValidationError("Saved run configuration differs from executed notebook source")
+    evaluate_test = configuration["RUN_OPTIONS"].get("evaluate_test")
+    if type(evaluate_test) is not bool:
+        raise ValidationError("evaluate_test must explicitly be True or False")
+    mode = "final" if evaluate_test else "development_only"
+    if completion.get("mode") != mode:
+        raise ValidationError("Execution mode differs from saved configuration")
+    evaluation_splits = ("dev", "test") if evaluate_test else ("dev",)
     if not stage_names or len(set(stage_names)) != len(stage_names) or set(stage_names) - EXPECTED_PARAMETERS.keys():
         raise ValidationError("Unknown or repeated requested stage audit")
     data = load_original(evidence_path(root, completion["dataset"]))
@@ -337,30 +401,38 @@ def validate_execution_evidence(root: Path, completion: dict[str, Any], source: 
         raise ValidationError("Original training-only vocabulary/label/character cardinalities changed")
     stages = {}
     for name in stage_names:
-        expected_parameters = EXPECTED_PARAMETERS[name]
+        stage_config = configuration["STAGE1_CONFIG" if name == "stage1" else "STAGE2_CONFIG"]
+        training = stage_config.get("training", {})
+        max_epochs, batch_size = training.get("max_epochs"), training.get("batch_size")
         entry = completion["stages"][name]
         directory = entry["directory"].rstrip("/")
         summary = read_json(evidence_path(root, entry.get("summary", directory + "/final_summary.json")))
-        history = validate_history(read_jsonl(evidence_path(root, directory + "/history.jsonl")))
+        history = validate_history(read_jsonl(evidence_path(root, directory + "/history.jsonl")), max_epochs, batch_size)
         for row in read_jsonl(evidence_path(root, directory + "/history.jsonl")):
             for partition in ("train", "dev"):
                 ids = [record["record_id"] for record in data[partition]]
                 expected = canonical_hash({"ids": sorted(ids) if partition == "train" else ids})
                 if row.get(partition + "_record_ids_sha256") != expected:
                     raise ValidationError(f"{name} original {partition} membership/order hash changed during training")
-        if summary.get("status") != "complete" or summary.get("test_model_evaluations") != 1:
-            raise ValidationError(f"{name} did not record exactly one completed final test pass")
-        for alternatives in (("model_weights_unchanged", "weights_unchanged"),
-                             ("checkpoint_bytes_unchanged", "checkpoint_unchanged"),
-                             ("training_and_tuning_closed", "tuning_closed")):
+        if summary.get("status") != "complete" or summary.get("test_model_evaluations") != int(evaluate_test):
+            raise ValidationError(f"{name} completed test count differs from the requested mode")
+        checks = [("model_weights_unchanged", "weights_unchanged"),
+                  ("checkpoint_bytes_unchanged", "checkpoint_unchanged")]
+        if evaluate_test:
+            checks.append(("training_and_tuning_closed", "tuning_closed"))
+        elif summary.get("mode") != mode or summary.get("test") is not None:
+            raise ValidationError(f"{name} development-only summary claims a final test result")
+        for alternatives in checks:
             if not any(summary.get(key) is True for key in alternatives):
                 key = alternatives[0]
                 raise ValidationError(f"{name} lacks required integrity/closure evidence: {key}")
-        if summary.get("selected_epoch") != history["selected_epoch"] or summary.get("epochs_trained") != 20:
+        if summary.get("selected_epoch") != history["selected_epoch"] or summary.get("epochs_trained") != max_epochs:
             raise ValidationError(f"{name} selected/trained epochs disagree with actual history")
         counts = summary["parameter_counts"]
-        if counts.get("total") != expected_parameters or counts.get("trainable") != expected_parameters:
-            raise ValidationError(f"{name} whole-model parameter count differs from fixed selected architecture")
+        expected_parameters = counts.get("total")
+        if (type(expected_parameters) is not int or not 0 < expected_parameters <= 20_000_000
+                or counts.get("trainable") != expected_parameters):
+            raise ValidationError(f"{name} whole-model parameter count is invalid or exceeds the cap")
         checkpoint = evidence_path(root, summary["checkpoint"])
         if sha256(checkpoint) != summary.get("checkpoint_sha256"):
             raise ValidationError(f"{name} checkpoint bytes changed")
@@ -371,6 +443,10 @@ def validate_execution_evidence(root: Path, completion: dict[str, Any], source: 
         payload = torch.load(checkpoint, map_location="cpu", weights_only=True)
         if payload.get("purpose") != "notebook_fixed_configuration_reproduction" or payload.get("stage") != name:
             raise ValidationError(f"{name} checkpoint is not a fresh notebook reproduction")
+        if (payload.get("stage_config") != stage_config or payload.get("runtime") != configuration["RUNTIME"]
+                or payload.get("parameter_counts") != counts
+                or payload.get("evaluator_version") != "exact_character_span_v2"):
+            raise ValidationError(f"{name} checkpoint differs from the effective run configuration")
         if payload.get("mappings") != mappings or payload.get("char_to_id") != (chars if name == "stage2" else {}):
             raise ValidationError(f"{name} learned dictionaries were not fitted to original train only")
         if payload.get("epoch") != history["selected_epoch"] or abs(payload.get("selection_score", float("inf")) - history["selection_score"]) > 1e-12:
@@ -389,7 +465,7 @@ def validate_execution_evidence(root: Path, completion: dict[str, Any], source: 
         if learned != expected_parameters:
             raise ValidationError(f"{name} checkpoint learned-tensor count differs from complete model count")
         recorded = {}
-        for split in ("dev", "test"):
+        for split in evaluation_splits:
             predictions = read_jsonl(evidence_path(root, directory + f"/{split}_predictions.jsonl"))
             if any(row.get("intent") not in mappings["intent_to_id"]
                    or any(slot.get("slot_type") not in mappings["slot_types"] for slot in row.get("slots", []))
@@ -400,7 +476,7 @@ def validate_execution_evidence(root: Path, completion: dict[str, Any], source: 
             check_metrics(evaluation["metrics"], actual)
             summary_split = summary["development"] if split == "dev" and "development" in summary else summary[split]
             check_metrics(summary_split["metrics"], actual)
-            if evaluation.get("num_tokens") != EXPECTED_TOKENS[split] or evaluation.get("num_batches") != math.ceil(EXPECTED_COUNTS[split] / 32):
+            if evaluation.get("num_tokens") != EXPECTED_TOKENS[split] or evaluation.get("num_batches") != math.ceil(EXPECTED_COUNTS[split] / batch_size):
                 raise ValidationError(f"{name} final {split} traversal was incomplete")
             recorded[split] = actual
             if split == "dev" and predictions != payload.get("validation_predictions"):
@@ -416,23 +492,30 @@ def validate_execution_evidence(root: Path, completion: dict[str, Any], source: 
         reload_path = evidence_path(root, directory + "/reload_check.json")
         if read_json(reload_path) != reload:
             raise ValidationError(f"{name} independent fresh-process verification record differs")
-        freeze_path = evidence_path(root, directory + "/freeze_manifest.json")
-        freeze = read_json(freeze_path)
-        started = read_json(evidence_path(root, directory + "/test_started.json"))
-        if (freeze.get("test_model_evaluations_at_freeze") != 0 or freeze.get("tuning_closed") is not True
-                or started.get("test_model_evaluations") != 1 or started.get("reporting_only") is not True
-                or started.get("freeze_manifest_sha256") != sha256(freeze_path)
-                or summary.get("freeze_manifest_sha256") != sha256(freeze_path)
-                or not (datetime.fromisoformat(reload["verified_at_utc"]) <= datetime.fromisoformat(freeze["frozen_at_utc"])
-                        <= datetime.fromisoformat(started["started_at_utc"]) <= datetime.fromisoformat(summary["completed_at_utc"]))):
-            raise ValidationError(f"{name} final-test freeze/chronology is inconsistent")
-        for basename, field in (("history.jsonl", "history_sha256"),
-                                ("training_summary.json", "training_summary_sha256"),
-                                ("reload_check.json", "reload_check_sha256")):
-            if sha256(evidence_path(root, directory + "/" + basename)) != freeze.get(field):
-                raise ValidationError(f"{name} pre-test frozen evidence changed: {basename}")
-        if freeze.get("checkpoint_sha256") != sha256(checkpoint):
-            raise ValidationError(f"{name} checkpoint differs from pre-test freeze")
+        if evaluate_test:
+            freeze_path = evidence_path(root, directory + "/freeze_manifest.json")
+            freeze = read_json(freeze_path)
+            started = read_json(evidence_path(root, directory + "/test_started.json"))
+            if (freeze.get("test_model_evaluations_at_freeze") != 0 or freeze.get("tuning_closed") is not True
+                    or started.get("test_model_evaluations") != 1 or started.get("reporting_only") is not True
+                    or started.get("freeze_manifest_sha256") != sha256(freeze_path)
+                    or summary.get("freeze_manifest_sha256") != sha256(freeze_path)
+                    or not (datetime.fromisoformat(reload["verified_at_utc"]) <= datetime.fromisoformat(freeze["frozen_at_utc"])
+                            <= datetime.fromisoformat(started["started_at_utc"]) <= datetime.fromisoformat(summary["completed_at_utc"]))):
+                raise ValidationError(f"{name} final-test freeze/chronology is inconsistent")
+            for basename, field in (("history.jsonl", "history_sha256"),
+                                    ("training_summary.json", "training_summary_sha256"),
+                                    ("reload_check.json", "reload_check_sha256")):
+                if sha256(evidence_path(root, directory + "/" + basename)) != freeze.get(field):
+                    raise ValidationError(f"{name} pre-test frozen evidence changed: {basename}")
+            if freeze.get("checkpoint_sha256") != sha256(checkpoint):
+                raise ValidationError(f"{name} checkpoint differs from pre-test freeze")
+            expected_state_sha256 = freeze.get("model_state_sha256")
+        else:
+            for forbidden in ("freeze_manifest.json", "test_started.json", "test_evaluation.json", "test_predictions.jsonl"):
+                if (root / directory / forbidden).exists():
+                    raise ValidationError(f"{name} development-only run contains final-test evidence: {forbidden}")
+            expected_state_sha256 = summary.get("model_state_sha256")
         digest = hashlib.sha256()
         for key, tensor in sorted(state.items()):
             tensor = tensor.detach().cpu().contiguous()
@@ -440,13 +523,13 @@ def validate_execution_evidence(root: Path, completion: dict[str, Any], source: 
             digest.update(str(tensor.dtype).encode("ascii"))
             digest.update(str(tuple(tensor.shape)).encode("ascii"))
             digest.update(tensor.numpy().tobytes())
-        if digest.hexdigest() != freeze.get("model_state_sha256"):
-            raise ValidationError(f"{name} learned tensors differ from the pre-test weight freeze")
+        if digest.hexdigest() != expected_state_sha256:
+            raise ValidationError(f"{name} learned tensors differ from the verified weight fingerprint")
         optimizer = payload.get("optimizer_state", {})
         groups = optimizer.get("param_groups", [])
         if len(groups) != 1 or not groups[0].get("params") or set(groups[0]["params"]) != set(optimizer.get("state", {})):
             raise ValidationError(f"{name} does not retain one complete joint AdamW optimizer")
-        expected_steps = history["selected_epoch"] * math.ceil(EXPECTED_COUNTS["train"] / 32)
+        expected_steps = history["selected_epoch"] * math.ceil(EXPECTED_COUNTS["train"] / batch_size)
         if any(float(record.get("step", -1)) != expected_steps for record in optimizer["state"].values()):
             raise ValidationError(f"{name} optimizer steps do not match complete selected training epochs")
         stages[name] = {**history, "parameter_counts": counts, **recorded,
@@ -461,21 +544,22 @@ def validate_execution_evidence(root: Path, completion: dict[str, Any], source: 
     expected_rows = []
     for name in EXPECTED_PARAMETERS:
         label = "Stage-1 system" if name == "stage1" else "Stage-2 system"
-        for split in ("dev", "test"):
+        for split in evaluation_splits:
             metrics = stages[name][split]
             expected_rows.append({"model_version": label, "split": "Validation" if split == "dev" else "Test",
-                                  "total_parameters": EXPECTED_PARAMETERS[name], "trainable_parameters": EXPECTED_PARAMETERS[name],
+                                  "total_parameters": stages[name]["parameter_counts"]["total"],
+                                  "trainable_parameters": stages[name]["parameter_counts"]["trainable"],
                                   "intent_accuracy_percent": f"{100 * metrics['intent_accuracy']:.2f}",
                                   "slot_micro_f1_percent": f"{100 * metrics['slot_micro_f1']:.2f}",
-                                  "epochs_trained": 20, "selected_epoch": stages[name]["selected_epoch"]})
+                                  "epochs_trained": stages[name]["epochs_trained"], "selected_epoch": stages[name]["selected_epoch"]})
             check_metrics(reporting.get("full_precision", {}).get(label, {}).get(split, {}), metrics)
     if rows != expected_rows:
-        raise ValidationError("The four-row report table differs from actual reloaded notebook evaluations")
+        raise ValidationError("The report table differs from actual reloaded notebook evaluations")
     with evidence_path(root, "results.csv").open(encoding="utf-8", newline="") as handle:
         csv_rows = list(csv.DictReader(handle))
     if csv_rows != [{key: str(value) for key, value in row.items()} for row in expected_rows]:
         raise ValidationError("The generated CSV and JSON results tables differ")
-    for split in ("dev", "test"):
+    for split in evaluation_splits:
         for key in ("intent_accuracy", "slot_micro_f1"):
             actual = 100 * (stages["stage2"][split][key] - stages["stage1"][split][key])
             observed = reporting.get("stage2_minus_stage1_percentage_points", {}).get(split, {}).get(key, float("nan"))
@@ -497,7 +581,7 @@ def validate_execution_evidence(root: Path, completion: dict[str, Any], source: 
                 or case.get("gold_slots") != original["slots"] or case.get("predicted_intent") != predicted["intent"]
                 or case.get("predicted_slots") != predicted["slots"]):
             raise ValidationError("An error case does not reproduce genuine gold/prediction facts")
-        pair_set = lambda slots: {(slot["slot_type"], slot["text"]) for slot in slots}
+        pair_set = lambda slots: {(slot["slot_type"], slot["start"], slot["end"], slot["text"]) for slot in slots}
         if original["intent"] == predicted["intent"] and pair_set(original["slots"]) == pair_set(predicted["slots"]):
             raise ValidationError("A claimed error case is actually fully correct")
         hypotheses = case.get("possible_causes_labelled_as_inferences", [])
@@ -508,12 +592,15 @@ def validate_execution_evidence(root: Path, completion: dict[str, Any], source: 
         if sha256(evidence_path(root, name)) != expected:
             raise ValidationError(f"Generated execution artifact changed: {name}")
     return {"stages": stages, "artifact_hashes_verified": len(hashes),
+            "mode": mode, "configuration_sha256": canonical_hash(configuration),
             "dataset_sha256": DATA_SHA256, "original_split_counts": EXPECTED_COUNTS,
             "generated_result_rows": len(rows), "verified_genuine_error_cases": len(cases)}
 
 
 def run(notebook_path: Path, execution_dir: Path | None = None) -> dict[str, Any]:
     notebook = nbformat.read(notebook_path, as_version=4)
+    if notebook.metadata.get("comparison_contract", {}).get("evaluator_version") != "exact_character_span_v2":
+        raise ValidationError("Use the archived validator for historical v1 notebooks")
     source = validate_notebook_source(notebook)
     outputs = validate_execution_outputs(notebook)
     text = outputs.pop("visible_text")
@@ -524,20 +611,32 @@ def run(notebook_path: Path, execution_dir: Path | None = None) -> dict[str, Any
                 "nb_verify_development", "nb_finalize_stage"}
     if missing := required - definitions:
         raise ValidationError(f"Notebook omits required inline implementation: {sorted(missing)}")
+    configuration = source.get("configuration", {})
+    if set(configuration) != CONFIGURATION_NAMES:
+        raise ValidationError("Notebook lacks its complete editable configuration")
     for stage in EXPECTED_PARAMETERS:
-        epochs = re.findall(rf"{stage} epoch (\d+)/20:", text)
-        if [int(epoch) for epoch in epochs] != list(range(1, 21)):
-            raise ValidationError(f"Visible {stage} training logs do not retain all 20 ordered epochs")
+        key = "STAGE1_CONFIG" if stage == "stage1" else "STAGE2_CONFIG"
+        max_epochs = configuration[key].get("training", {}).get("max_epochs")
+        if type(max_epochs) is not int or max_epochs <= 0:
+            raise ValidationError("Configured epoch budget must be a positive integer")
+        epochs = re.findall(rf"{stage} epoch (\d+)/(\d+):", text)
+        if [(int(epoch), int(total)) for epoch, total in epochs] != [(epoch, max_epochs) for epoch in range(1, max_epochs + 1)]:
+            raise ValidationError(f"Visible {stage} logs do not retain every configured ordered epoch")
         fresh_marker = any("FRESH_PROCESS_DEVELOPMENT_VERIFIED" in line
                            and json.loads(line.split("FRESH_PROCESS_DEVELOPMENT_VERIFIED", 1)[1].strip()).get("stage") == stage
                            for line in text.splitlines() if "FRESH_PROCESS_DEVELOPMENT_VERIFIED" in line)
         if not fresh_marker and f"{stage}: fresh-process reload reproduced all 2,033 ordered development predictions exactly" not in text:
             raise ValidationError(f"Visible {stage} output omits fresh-interpreter development verification")
-    report = {"schema_version": 1, "status": "passed", "notebook_sha256": sha256(notebook_path),
+    mode = "final" if configuration["RUN_OPTIONS"].get("evaluate_test") is True else "development_only"
+    report = {"schema_version": 1, "status": "passed", "mode": mode,
+              "scope": "Final submission evidence" if mode == "final" else "Development-only run; no final-test/submission acceptance",
+              "notebook_sha256": sha256(notebook_path),
               "source": source, "outputs": outputs, "model_inference_performed": False}
     if execution_dir is not None:
         completion_path = evidence_path(execution_dir, "completion.json")
         completion = read_json(completion_path)
+        if completion.get("evaluator_version") != "exact_character_span_v2":
+            raise ValidationError("Historical v1 execution cannot validate an evaluator-v2 notebook")
         report["evidence"] = validate_execution_evidence(execution_dir, completion, source)
         report["completion_sha256"] = sha256(completion_path)
         for name in EXPECTED_PARAMETERS:

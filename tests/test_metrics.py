@@ -24,11 +24,11 @@ class SharedEvaluatorTests(unittest.TestCase):
                        record("r2", "intent-A"),
                        record("r3", "intent-C", (span(),))]
         result = evaluate_predictions(gold, predictions)
-        self.assertEqual((result.slot_tp, result.slot_fp, result.slot_fn), (1, 2, 2))
+        self.assertEqual((result.slot_tp, result.slot_fp, result.slot_fn), (1, 2, 3))
         self.assertEqual((result.num_examples, result.correct_intents), (3, 2))
         self.assertAlmostEqual(result.intent_accuracy, 2 / 3)
-        self.assertAlmostEqual(result.slot_micro_f1, 1 / 3)
-        self.assertEqual(result.to_dict()["slot_fn"], 2)
+        self.assertAlmostEqual(result.slot_micro_f1, 2 / 7)
+        self.assertEqual(result.to_dict()["slot_fn"], 3)
         self.assertEqual(result.to_dict()["intent_accuracy"], 2 / 3)
         with self.assertRaises(FrozenInstanceError):
             result.slot_tp = 7
@@ -46,12 +46,18 @@ class SharedEvaluatorTests(unittest.TestCase):
         shuffled = evaluate_predictions(iter(gold), reversed(gold))
         self.assertEqual(ordered, shuffled)
 
-    def test_duplicate_pairs_collapse_within_each_record_in_both_inputs(self):
+    def test_same_text_at_different_positions_must_not_match(self):
         gold = [record(slots=(span(), span(start=4)))]
         predictions = [record(slots=(span(start=8), span(start=10)))]
         result = evaluate_predictions(gold, predictions)
-        self.assertEqual((result.slot_tp, result.slot_fp, result.slot_fn), (1, 0, 0))
-        self.assertEqual(result.slot_micro_f1, 1.0)
+        self.assertEqual((result.slot_tp, result.slot_fp, result.slot_fn), (0, 2, 2))
+        self.assertEqual(result.slot_micro_f1, 0.0)
+
+    def test_original_utterance_sidecar_validates_predicted_source_slice(self):
+        gold = [IntentSlotPrediction("r1", "intent-A", (span(text="room"),), utt="room bed")]
+        wrong = [record(slots=(span(text="room", start=5),))]
+        with self.assertRaisesRegex(ValueError, "original utterance"):
+            evaluate_predictions(gold, wrong)
 
     def test_matching_pairs_in_different_records_count_separately(self):
         gold = [record("r1", slots=(span(),)), record("r2", slots=(span(),))]

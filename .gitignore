@@ -17,6 +17,7 @@ dist/
 .ipynb_checkpoints/
 .jupyter/
 /main_revised.ipynb
+NLP_Final_project.ipynb
 
 # Downloaded datasets and local experiment/reproduction evidence
 /data/*

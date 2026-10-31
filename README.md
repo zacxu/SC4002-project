@@ -1,40 +1,14 @@
 # SC4002: joint intent classification and slot filling
 
-Two jointly trained NLP systems for the original **MASSIVE 1.0 English** dataset. Each system predicts intent and slot spans from the utterance using one shared model. Both models are randomly initialized, use no pretrained assets, and count every learned component toward the **20 million parameter** limit.
+Two implementations for original **MASSIVE 1.0 English** predict intent and slot spans together: [main.ipynb](main.ipynb) contains our two BiLSTM stages; [NLP_Final_project.ipynb](NLP_Final_project.ipynb) contains the Transformer comparison. Each stage is one joint model, and its complete parameter count must stay below **20 million**, including embeddings and output heads.
 
-**Start with [main.ipynb](main.ipynb).** This is the single authoritative notebook, fully executed with retained training logs, learning curves, results, and genuine error cases. All required code is inline; it does not import repository modules or load historical checkpoints.
+**Yes: after environment setup, you can run `main.ipynb` to train, select checkpoints and generate results.** For later experiments, change its editable configuration cell, save it, and run all cells in a **new directory with a fresh kernel**. Ordinary hyperparameter changes do not require rebuilding the notebook or manually changing source hashes. Both BiLSTM stages run; the notebook is not a Stage 1-only launcher.
 
-**Status:** Phases 1–7 are complete. Phase 8 remains: the two-page report, consolidated genuine AI collaboration history, verified group details, and exact three-file coursework ZIP. See [project status](docs/PROJECT_STATUS.md) and [assignment requirements](docs/ASSIGNMENT.md).
+The active notebooks use evaluator **`exact_character_span_v2`**. Fresh assessed v2 results are pending. Historical v1 scores do not become v2 results merely by changing the scorer. The [full BiLSTM run guide](docs/RUNNING_BILSTM.md) covers interactive execution, tuning, output files and troubleshooting.
 
-## Results
+## 1. Install the environment once
 
-The notebook retrained both selected configurations for **20 complete epochs each**, selected checkpoints using development data, saved and independently reloaded its own checkpoints, then froze each system before one complete test pass.
-
-| System | Split | Intent accuracy | Slot micro F1 | Parameters | Selected epoch |
-| --- | --- | ---: | ---: | ---: | ---: |
-| Stage 1: joint BiLSTM | Development | 84.36% | 73.61% | 4,646,571 | 19 / 20 |
-| Stage 1: joint BiLSTM | Test | 83.96% | 70.51% | 4,646,571 | 19 / 20 |
-| Stage 2: enhanced joint BiLSTM | Development | 84.65% | 79.88% | 4,939,498 | 11 / 20 |
-| Stage 2: enhanced joint BiLSTM | Test | 82.62% | 76.81% | 4,939,498 | 11 / 20 |
-
-On test, Stage 2 improves slot F1 by **6.30 percentage points** while intent accuracy decreases by **1.34 points**. Their mean improves by **2.48 points**. Differences use unrounded values. Selection used development only; test results did not change the settings.
-
-The notebook reproduces the earlier script results exactly. Observed training-workflow times were **127.51 seconds** for Stage 1 and **359.09 seconds** for Stage 2, excluding setup/download, plotting, independent verification, and final evaluation. Timings describe this execution rather than an isolated architecture benchmark. Machine-readable outputs are in [results](results/).
-
-## Models and evaluation
-
-- **Baseline:** random 256-dimensional word embeddings, one bidirectional LSTM with 512 hidden units per direction, dropout 0.3, masked max pooling for intent classification, and a token-level slot head.
-- **Stage 2 additions:** train-fitted character CNN features, differentiable context from predicted intent probabilities, and BIO-constrained CRF slot decoding. Gold intents are never predictive inputs.
-- **Training:** AdamW, learning rate 0.001, weight decay 0.0001, batch size 32, gradient clipping 5, equally weighted intent and slot losses, seed 42, and deterministic FP32 settings. All parameters are trainable.
-- **Data:** preserve all 11,514 train, 2,033 development, and 2,974 test records. Fit vocabulary and character mappings on train only; no augmentation, truncation, or new split.
-- **Scoring:** intent accuracy and micro F1 over each record's set of exact `(slot type, literal surface text)` pairs. Duplicate pairs collapse; offsets are retained for audit. This is the disclosed project interpretation; lecturer-scorer parity is unverified.
-- **Selection:** maximize the unrounded mean of development intent accuracy and slot F1; exact ties keep the earliest checkpoint. The historical search covered three Stage 1 and five Stage 2 candidates, 160 full epochs. The notebook reproduces the two selected configurations, 40 epochs.
-
-See [models and evaluation](docs/MODEL_AND_EVALUATION.md) for architecture, preprocessing, losses, and scoring; see [experiments and errors](docs/EXPERIMENTS_AND_ERRORS.md) for the registered search, ablations, negative findings, and genuine failures.
-
-## Install the tested environment
-
-The supported reproduction target is **Windows, Python 3.12, and an NVIDIA CUDA GPU**. The completed run used Python 3.12.0, PyTorch 2.7.1+cu126, and an RTX 3060 Ti with 8 GB VRAM. The notebook explicitly requests CUDA. A compatible NVIDIA driver and internet access for the official dataset download are required.
+The supported target is **Windows x64, Python 3.12, PyTorch 2.7.1+cu126 and an NVIDIA CUDA GPU**. Development used an RTX 3060 Ti with 8 GB VRAM. The BiLSTM notebook defaults to CUDA.
 
 From the repository root in PowerShell:
 
@@ -43,71 +17,166 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m pip check
 .\.venv\Scripts\python.exe -m ipykernel install --sys-prefix --name sc4002 --display-name 'SC4002 (.venv)'
-```
-
-[requirements.txt](requirements.txt) is the single dependency specification for the tested Windows/CUDA environment, including PyTorch and pinned supporting packages. Other platforms or hardware may need compatible package choices and are not verified for identical training.
-
-Check the environment without training or downloading data:
-
-```powershell
 .\.venv\Scripts\python.exe scripts/check_environment.py --device cuda
 ```
 
-## Reproduce the notebook
+[requirements.txt](requirements.txt) is the single pinned dependency file for both notebook families. The Transformer additionally downloads permitted pretrained Word2Vec vectors; our BiLSTM requires no pretrained assets. Internet access is needed for official dataset acquisition and any Word2Vec download.
 
-The completed notebook already contains its genuine outputs. To run it again, use the executor with a **new execution directory** inside the repository:
+## 2. Run the BiLSTM: choose Jupyter or terminal
 
-```powershell
-.\.venv\Scripts\python.exe scripts/execute_notebook.py --execution-dir artifacts/reproduction/run_01
-```
+After the one-time setup above, open PowerShell in the **repository root** (the folder containing `main.ipynb`). Choose either option below; both run the same notebook and evaluator.
 
-The executor starts the `sc4002` kernel with deterministic startup settings and copies only the notebook into that directory. It downloads original data, trains both models, writes checkpoints, verifies development predictions in separate processes, and generates results under `run_artifacts/`. After success, it updates the root notebook with the new genuine outputs. Use a new directory name for another run; existing directories are protected from overwrite.
+### Option A: open Jupyter and run the notebook yourself
 
-For interactive Jupyter, copy `main.ipynb` into a fresh working directory first. From that directory, launch Jupyter using the repository's environment:
+Create an isolated notebook copy, set the required startup variables and launch Jupyter:
 
 ```powershell
+$projectPath = (Get-Location).Path
+$runPath = Join-Path $projectPath 'artifacts\notebook_runs\jupyter_001'
+if (Test-Path -LiteralPath $runPath) { throw 'Choose a new run directory.' }
+New-Item -ItemType Directory -Path $runPath | Out-Null
+Copy-Item -LiteralPath (Join-Path $projectPath 'main.ipynb') -Destination (Join-Path $runPath 'main.ipynb')
 $env:PYTHONHASHSEED='42'
 $env:CUBLAS_WORKSPACE_CONFIG=':4096:8'
-# Replace this with your repository's absolute path.
-& 'C:\path\to\SC4002\.venv\Scripts\python.exe' -m jupyterlab --no-browser
+Push-Location -LiteralPath $runPath
+try {
+    & (Join-Path $projectPath '.venv\Scripts\python.exe') -m jupyterlab
+}
+finally {
+    Pop-Location
+}
 ```
 
-Choose **SC4002 (.venv)**, start a fresh kernel, keep the filename `main.ipynb`, and run every cell in order. Hash seeding must be configured before the kernel starts. The notebook refuses to overwrite an existing `run_artifacts` directory. Generated data, checkpoints, and logs stay local and are excluded from Git.
+Jupyter should open in your browser. If it does not, open the local URL printed in PowerShell. Keep that terminal running while you use Jupyter.
 
-## Tests and verification
+1. Open the copied **`main.ipynb`** and select **SC4002 (.venv)** as its kernel.
+2. Edit the **Editable run configuration** cell if needed. Use `evaluate_test=False` while tuning, or `True` for final development/test results.
+3. **Save**, then choose **Restart Kernel and Run All Cells**. Keep the filename `main.ipynb` and its kernel working directory as this new run folder.
+4. Wait for the final completion output, then save the executed notebook. Results are in `artifacts/notebook_runs/jupyter_001/run_artifacts/results.csv` and `results.json`.
 
-Run the fixture-based offline checks available from a fresh clone:
+For another run, change `jupyter_001` to a new folder name and use a fresh kernel. See the [full interactive guide](docs/RUNNING_BILSTM.md#run-interactively-in-jupyter) for details.
+
+### Option B: run everything from the terminal
+
+No browser or Jupyter window is needed. Save any configuration edits in the source notebook, then run:
 
 ```powershell
-.\.venv\Scripts\python.exe -m unittest tests.test_acquisition tests.test_runtime tests.test_metrics tests.test_diagnostics tests.test_notebook_build -v
+.\.venv\Scripts\python.exe scripts/execute_notebook.py --execution-dir artifacts/notebook_runs/final_001
 ```
 
-These **55 tests** cover safe acquisition, runtime conventions, hand-counted scoring, development diagnostics, and notebook acceptance guards, without downloading data or training models.
+Use a **new directory name for every run**. The executor starts the `sc4002` kernel with deterministic startup settings, copies the notebook into that directory and runs every cell in order. After success, it copies the genuinely executed notebook back to the source location. A failed run retains its partial notebook and logs for diagnosis.
 
-The completed development workspace passed **157 tests**, **192 script/notebook parity checks**, and an independent notebook acceptance audit. Some tests and historical audit scripts require ignored dataset, mapping, checkpoint, and registration artifacts, so full discovery is not a fresh-clone check. Those evidence dependencies are recorded in [project status](docs/PROJECT_STATUS.md); the standalone notebook is the reproducible path from a clean checkout.
+Wait for `"status": "complete"` in the terminal. Open `artifacts/notebook_runs/final_001/run_artifacts/results.csv` or `results.json` for the results; the executed notebook is retained in that run folder too.
 
-## Repository guide
+The executor allows 900 seconds per code cell by default. For a larger model or epoch budget, add `--cell-timeout -1` for unlimited cell execution, or provide a larger positive timeout in seconds.
+
+<a id="reproduce-the-notebook"></a>
+
+The full notebook automatically verifies the original data, fits train-only mappings, counts parameters, trains both models for their configured epochs, selects development checkpoints, and independently reloads/verifies them. With final evaluation enabled it freezes each model, evaluates the complete test split once, and saves four comparison rows with genuine error cases.
+
+## 3. Change hyperparameters for a future experiment
+
+Open the notebook's cell tagged **`configuration`**. Edit literal values inside its existing `RUNTIME`, `STAGE1_CONFIG`, `STAGE2_CONFIG` and `RUN_OPTIONS` dictionaries. Save the notebook before execution.
+
+| Setting | Where to edit | Default |
+| --- | --- | --- |
+| Stage 1 word embedding size | `STAGE1_CONFIG['model']['embedding_dim']` | 256 |
+| Stage 1 hidden units per direction | `STAGE1_CONFIG['model']['hidden_dim']` | 512 |
+| Stage 1 LSTM layers / dropout | `STAGE1_CONFIG['model']` | 1 / 0.3 |
+| Stage 2 model dimensions / additions | `STAGE2_CONFIG['model']` | Character CNN, shared BiLSTM, intent context and CRF |
+| Learning rate / weight decay | Each stage's `training` dictionary | 0.001 / 0.0001 |
+| Batch size / maximum epochs | Each stage's `training` dictionary | 32 / 20 |
+| Gradient clipping | Each stage's `training` dictionary | 5.0 |
+| Training RNG seed | `RUNTIME['seed']` | 42 |
+| Run final test evaluation | `RUN_OPTIONS['evaluate_test']` | `True` |
+| Reuse a verified local English JSONL | `RUN_OPTIONS['dataset_path']` | `None`: download official data |
+| Compute device | `RUN_OPTIONS['device']` | `'cuda'` |
+| Fresh-process reload timeout | `RUN_OPTIONS['verification_timeout_seconds']` | 300 seconds; `None` means unlimited |
+
+Change dictionary **values**, rather than adding code that mutates settings later. Effective settings and code/configuration identities are recorded in `run_artifacts/run_configuration.json`; parameter counts are recorded in each stage's summaries/checkpoint and the generated results. Protected model/data/evaluator definitions remain checked; ordinary hyperparameter edits do not disable those checks. A configuration exceeding the cap is rejected before training. AdamW and equal task-loss weights of 1.0 remain fixed; the notebook does not implement alternative optimizers or loss weighting.
+
+For tuning, change the existing `evaluate_test` value to **`False`**, run each candidate in a separate fresh directory, and compare development scores. This produces two development rows without test inference. Select settings using the unrounded mean of development intent accuracy and slot F1. Once settings are fixed, change `evaluate_test` to **`True`** and start a fresh complete run to produce four development/test rows. Test scores must not choose hyperparameters or checkpoints.
+
+For example, change Stage 1's existing learning rate value to `0.0005`, batch size to `16`, or maximum epochs to `30`; then save and run from the first cell. Stage 1 changes do not automatically change Stage 2. [Detailed tuning instructions](docs/RUNNING_BILSTM.md#tune-on-development-then-produce-final-results) explain the full sequence.
+
+**Editing JSON under `configs/` does not change an existing notebook.** Edit the notebook cell for routine runs. Intentional implementation/source changes use the separately reviewed [builder workflow](docs/RUNNING_BILSTM.md#notebook-settings-versus-repository-configurations).
+
+## 4. Find and verify the results
+
+For the example run, generated files are under:
+
+```text
+artifacts/notebook_runs/final_001/
+  main.ipynb
+  run_artifacts/
+    run_configuration.json
+    dataset_identity.json
+    results.csv
+    results.json
+    completion.json
+    stage1/   # checkpoint, histories, curves, reload and evaluation evidence
+    stage2/   # corresponding Stage 2 evidence
+```
+
+With `evaluate_test=True`, `results.csv` contains **four rows**: Stage 1 development/test and Stage 2 development/test. With `False`, it contains **two development rows** and no test result. `results.json` also retains full-precision metrics and raw counts. Each row reports actual total/trainable parameters, epochs trained and selected checkpoint epoch. Read generated results; do not type scores manually.
+
+The notebook saves learning curves, checkpoint/reload evidence and genuine Stage 2 development error cases in both modes. Final runs additionally save freeze/test records. Keep the entire run directory with the executed notebook; copying only the CSV loses provenance. See the [output-file guide](docs/RUNNING_BILSTM.md#output-files-and-what-they-mean).
+
+Validate a completed run against its own evidence directory:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/validate_notebook.py --notebook artifacts/notebook_runs/final_001/main.ipynb --execution-dir artifacts/notebook_runs/final_001/run_artifacts --output artifacts/notebook_runs/final_001/acceptance.json
+```
+
+The validator checks retained outputs and generated evidence for the declared run mode; it does not train or run another trained-model test inference. Use a new validation output filename if one already exists. Development-only acceptance is not final-test submission acceptance.
+
+## Shared evaluator and verified data
+
+Both notebooks inline the same [comparison_contract.py](src/comparison_contract.py). Slot micro F1 requires exact slot type, original character start, exclusive end and literal text, pooled across records. Repeated text at distinct positions counts separately; invalid source slices and missing/duplicate prediction IDs fail. Intent accuracy is exact label agreement.
+
+Both load the same pinned original English JSONL: **11,514 train / 2,033 development / 2,974 test**. They verify source SHA-256, ordered split IDs and full split contents. Train alone fits vocabularies and the common 111-tag BIO inventory. The Transformer no longer accepts arbitrary CSV input. See the [evaluation rationale and contract](docs/EVALUATION_COMPARISON.md).
+
+For a contract/data check without model training:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/check_comparison_contract.py
+```
+
+This reads an already downloaded verified local dataset and writes [results/comparison_contract.json](results/comparison_contract.json). It checks source/data identity and scoring fixtures, **not learned-model performance**. Use `--dataset` to check another location containing the exact original JSONL. A notebook run can download official data itself or reuse the pinned JSONL specified by `RUN_OPTIONS['dataset_path']`.
+
+## Models and historical evidence
+
+| Model, default settings | Architecture | Parameters |
+| --- | --- | ---: |
+| BiLSTM Stage 1 | Random E256 embeddings; shared BiLSTM H512 per direction; intent and BIO heads | 4,646,571 |
+| BiLSTM Stage 2 | Character CNN + shared BiLSTM + predicted-intent context + BIO CRF | 4,939,498 |
+| Transformer Stage 1 | Word2Vec-initialized embeddings; four-layer encoder; intent and BIO heads | 4,345,243 |
+| Transformer Stage 2 | Character CNN + shared encoder; intent and BIO heads | 4,379,947 |
+
+Counts are for defaults; future runs compute their actual totals. The Transformer uses permitted pretrained word vectors, with its encoder trained from scratch. Sharing data/scoring does not isolate architecture from different tokenizers, initialization and optimization. Its supplied sequence defines Stage 2 but does not train it; a BiLSTM run does not execute the Transformer notebook. See [model details](docs/MODEL_AND_EVALUATION.md).
+
+Original notebooks/results are preserved locally under ignored `artifacts/evaluator_v2/prechange/`. Public [v1 results](results/historical_v1/results.json), [CSV](results/historical_v1/results.csv), plots and [experiment/error analysis](docs/EXPERIMENTS_AND_ERRORS.md) are historical. V1 BiLSTM test intent/slot scores were 83.96%/70.51% and 82.62%/76.81%; they are not v2 results. New scoring may select different epochs, so one rescored old checkpoint is insufficient evidence of a new best-development model.
+
+## Tests and project guide
+
+Portable offline checks, after installing requirements:
+
+```powershell
+.\.venv\Scripts\python.exe -m unittest tests.test_acquisition tests.test_runtime tests.test_metrics tests.test_diagnostics tests.test_notebook_build tests.test_comparison_contract tests.test_comparison_notebooks tests.test_notebook_reruns -v
+```
+
+Validation passed **199 full-workspace tests** and **97 portable offline tests**. The rerun workflow was exercised end to end with configuration-only edits: one epoch of small E16/H16 models, both complete original train/development splits, verified cached data and development-only mode. Both checkpoints passed independent fresh-process reload verification, the two development rows were generated, and independent notebook acceptance passed. No test-model inference or assessed default-model result was produced by this smoke check.
+
+Full discovery also uses ignored local data and historical evidence. Correctness tests and contract checks do not replace a completed final training/reload/test-evaluation run.
 
 | Path | Purpose |
 | --- | --- |
-| [main.ipynb](main.ipynb) | Self-contained, executed notebook for both selected systems |
-| [requirements.txt](requirements.txt) | Single pinned environment specification |
-| [docs/](docs/) | Consolidated progress, assignment, design, methodology, and analysis |
-| [results/](results/) | Lightweight results and review evidence from the completed notebook |
-| [src/](src/) | Script-first data, scoring, model, training, and checkpoint implementations |
-| [scripts/](scripts/) | Setup, acquisition, experiment, audit, and notebook tooling |
-| [configs/](configs/) | Preserved protocol and candidate configurations |
-| [tests/](tests/) | Unit, integration, and artifact-acceptance checks |
-| `data/`, `artifacts/`, `run_artifacts/` | Ignored downloads, research evidence, and execution outputs |
+| [docs/RUNNING_BILSTM.md](docs/RUNNING_BILSTM.md) | Complete interactive/automated run instructions, settings and troubleshooting |
+| [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md) | Current revision and consolidated phase history |
+| [docs/ASSIGNMENT.md](docs/ASSIGNMENT.md) | Brief and additional clarifications |
+| [src/](src/), [scripts/](scripts/), [configs/](configs/), [tests/](tests/) | Development source, tooling, registered settings and tests |
+| `data/`, `artifacts/`, `run_artifacts/` | Ignored datasets, run evidence, checkpoints and local backups |
 
-Final configurations are [Stage 1](configs/phase4/stage1_dropout03.json) and [Stage 2](configs/phase5/char_crf_intent_context.json). Earlier defaults and protocol placeholders remain for provenance; the final configurations and notebook settings take precedence. Historical experiment launchers require their original registration/audit evidence; the notebook embeds everything needed for clean reproduction. Raw historical hash audits also expect the original pre-cleanup file layout, preserved locally in the ignored cleanup archive. The notebook builder requires the historical Phase 6 reference and refuses to replace a notebook containing executed outputs.
+The original Phases 1–7 completed under evaluator v1. Fresh assessed v2 execution/acceptance remains necessary before report results are current. Phase 8 still includes the two-page report, genuine AI history, verified group details and exact three-file submission ZIP. The brief requires Stage 1 without generative AI; assistance occurred at the user's request and no lecturer-approved exception is claimed. Group ID, full names and confirmed contributions remain pending.
 
-The [project status](docs/PROJECT_STATUS.md) consolidates all seven phase updates and the implementation plan. [Assignment requirements](docs/ASSIGNMENT.md) consolidate the brief and later clarifications. [Experiments and errors](docs/EXPERIMENTS_AND_ERRORS.md) retain the scientifically useful registration, comparisons, and error analysis; redundant standalone drafts have been removed from the active layout.
-
-## Coursework and limitations
-
-This is SC4002 coursework. The brief requires Stage 1 without generative AI; the user requested assistance despite that rule, and assistance occurred. **No lecturer-approved exception is claimed.** Group ID, full names, and confirmed individual contributions remain pending at the user's request. The Phase 8 collaboration record must describe actual assistance and verified human work.
-
-Results use one seed and do not establish statistical significance, a global optimum, or cross-hardware bitwise reproducibility. Remaining errors include intent ambiguity, artist/song boundaries, and light-dimming polarity; see [experiments and errors](docs/EXPERIMENTS_AND_ERRORS.md).
-
-The coursework submission will contain exactly `main.ipynb`, `ai_collaboration.md` or `.txt`, and `report.pdf`. This GitHub repository is the development project; the final report and submission archive remain Phase 8 work.
+The coursework ZIP contains one final `main.ipynb`, one `ai_collaboration.md` or `.txt`, and `report.pdf`. Preserve genuine notebook outputs. The two development notebooks are not instructions to submit two notebooks.

@@ -22,6 +22,10 @@ from nbclient import NotebookClient
 from jupyter_client import KernelManager
 from jupyter_client.kernelspec import KernelSpecManager
 
+# Script entry point support, independent of the user's current directory.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.notebook_support import nb_source_identity, nb_notebook_configuration
+
 
 def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -32,27 +36,38 @@ def main():
     root = Path(__file__).resolve().parents[1]
     parser.add_argument("--notebook", type=Path, default=root / "main.ipynb")
     parser.add_argument("--execution-dir", type=Path, default=root / "artifacts/phase7/clean_execution")
+    parser.add_argument('--cell-timeout', type=int, default=900,
+                        help='Maximum seconds per cell; use -1 for long training cells without a limit')
     args = parser.parse_args()
+    if args.cell_timeout != -1 and args.cell_timeout <= 0:
+        raise ValueError('--cell-timeout must be positive or -1')
     source, directory = args.notebook.resolve(), args.execution_dir.resolve()
     if not directory.is_relative_to(root) or directory == root or directory.exists():
         raise ValueError("Use a fresh execution directory inside this workspace")
     notebook = nbformat.read(source, as_version=4)
     nbformat.validate(notebook)
-    actual = [hashlib.sha256(cell.source.encode("utf-8")).hexdigest() for cell in notebook.cells if cell.cell_type == "code"]
-    if actual != notebook.metadata.phase7.code_cell_sha256:
-        raise ValueError("Source cells differ from the built notebook manifest")
+    actual_identity = nb_source_identity(source)
+    configuration = nb_notebook_configuration(notebook)
+    for cell in notebook.cells:
+        if cell.cell_type == 'code':
+            cell.outputs = []
+            cell.execution_count = None
     directory.mkdir(parents=True, exist_ok=False)
     target = directory / "main.ipynb"
-    shutil.copyfile(source, target)
+    target.write_text(nbformat.writes(notebook), encoding='utf-8', newline='\n')
     report_path = directory.parent / (directory.name + "_execution.json")
     report = {"status": "running", "started_at_utc": datetime.now(timezone.utc).isoformat(),
-              "source_notebook_sha256": digest(source), "execution_directory": directory.relative_to(root).as_posix(),
+              "source_notebook_sha256": digest(source), "effective_code_sha256": actual_identity,
+              "run_options": configuration['RUN_OPTIONS'], "execution_directory": directory.relative_to(root).as_posix(),
               "initial_files": sorted(path.name for path in directory.iterdir()),
               "kernel_name": "sc4002", "kernel_interpreter": sys.executable,
               "startup_environment": {"PYTHONHASHSEED": "42", "CUBLAS_WORKSPACE_CONFIG": ":4096:8"},
               "source_modules_or_existing_checkpoints_copied": False, "completed_cells": []}
     environment = os.environ.copy()
     environment.update(PYTHONHASHSEED="42", CUBLAS_WORKSPACE_CONFIG=":4096:8", PYTHONIOENCODING="utf-8", PYTHONDONTWRITEBYTECODE="1")
+    # Keep kernel history/profile writes inside its isolated execution directory.
+    environment['IPYTHONDIR'] = str(directory / '.ipython')
+    environment['JUPYTER_RUNTIME_DIR'] = str(directory / '.jupyter_runtime')
     environment.pop("PYTHONPATH", None)
     kernels = KernelSpecManager(kernel_dirs=[str(Path(sys.prefix) / "share/jupyter/kernels")])
     specification = kernels.get_kernel_spec("sc4002")
@@ -67,23 +82,23 @@ def main():
         report["completed_cells"].append({"index": cell_index, "type": cell.cell_type,
                                           "execution_count": cell.get("execution_count"),
                                           "finished_at_utc": datetime.now(timezone.utc).isoformat()})
-        nbformat.write(notebook, target)
+        target.write_text(nbformat.writes(notebook), encoding='utf-8', newline='\n')
         save_report()
         print("CELL_FINISHED", cell_index, cell.get("execution_count"), flush=True)
 
-    client = NotebookClient(notebook, km=manager, kernel_name="sc4002", timeout=900,
+    client = NotebookClient(notebook, km=manager, kernel_name="sc4002", timeout=args.cell_timeout,
                             allow_errors=False, resources={"metadata": {"path": str(directory)}},
                             on_cell_executed=after_cell, record_timing=True)
     save_report()
     try:
         client.execute(cwd=str(directory), env=environment, cleanup_kc=True)
     except BaseException as error:
-        nbformat.write(notebook, target)
+        target.write_text(nbformat.writes(notebook), encoding='utf-8', newline='\n')
         report.update(status="failed", error=str(error), traceback=traceback.format_exc(),
                       finished_at_utc=datetime.now(timezone.utc).isoformat())
         save_report()
         raise
-    nbformat.write(notebook, target)
+    target.write_text(nbformat.writes(notebook), encoding='utf-8', newline='\n')
     completion_path = directory / "run_artifacts/completion.json"
     completion = json.loads(completion_path.read_text(encoding="utf-8"))
     if completion["status"] != "complete":

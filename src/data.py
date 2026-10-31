@@ -42,7 +42,7 @@ class UtteranceExample:
     slots: tuple[SlotSpan, ...]
 
     def gold_prediction(self) -> IntentSlotPrediction:
-        return IntentSlotPrediction(self.record_id, self.intent, self.slots)
+        return IntentSlotPrediction(self.record_id, self.intent, self.slots, utt=self.utt)
 
 
 @dataclass(frozen=True)
