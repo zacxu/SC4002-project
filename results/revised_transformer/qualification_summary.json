@@ -1,0 +1,33 @@
+{
+  "status": "complete",
+  "mode": "development_only",
+  "scope": "Genuine default-size training with no test model inference",
+  "stages": {
+    "stage1": {
+      "parameter_counts": {
+        "total": 4345243,
+        "trainable": 4345243
+      },
+      "selected_epoch": 20,
+      "epochs_trained": 20,
+      "training_workflow_seconds": 222.14224280000053,
+      "peak_allocated_cuda_bytes": 207506432,
+      "checkpoint_sha256": "3fffdfbcf16af3c1958792bce3c731f4f0f24b5be98028117bf8a236f50a8d65",
+      "model_state_sha256": "686b1f7e54a05d530ed93294534118f4000e9081180a5e9bd24fc711aded7093",
+      "test_model_evaluations": 0
+    },
+    "stage2": {
+      "parameter_counts": {
+        "total": 19748595,
+        "trainable": 19748595
+      },
+      "selected_epoch": 19,
+      "epochs_trained": 20,
+      "training_workflow_seconds": 616.4374326999996,
+      "peak_allocated_cuda_bytes": 668684800,
+      "checkpoint_sha256": "2bbcebad84b3df6671afa84997259f158903360743ea8b1795cec808381843aa",
+      "model_state_sha256": "468b4c88e3d79852bde0e180db3c0222ebfbfebc20837a1e059428d622f98fb0",
+      "test_model_evaluations": 0
+    }
+  }
+}

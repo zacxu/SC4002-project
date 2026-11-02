@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "mode": "development_only",
+  "scope": "Independent source/data/history/checkpoint/prediction audit; development-only is not final-test acceptance",
+  "model_construction_performed": false,
+  "model_forward_performed": false,
+  "model_training_performed": false,
+  "notebook_sha256": "7f76093e9d4be928e3065e5e40ae6bb8b77f1bd09857d2f9a92ecd19f310c269",
+  "code_sha256": "624fcec128bb84d488fa946a85eb11d46c69bf6224e96706e574428539218f30",
+  "configuration_sha256": "a782cbbb2c23dcfba7e9953aa4ea2b2f9f1499a39ca313baaa4f8426dfea049b",
+  "canonical_contract_sha256": "c57d46c76642edf0a1e5b283c52d153631b2b4c30b639166c3761fd8ade4a37c",
+  "code_cells": 13,
+  "dataset_sha256": "c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e",
+  "counts": {
+    "train": 11514,
+    "dev": 2033,
+    "test": 2974
+  },
+  "stages": {
+    "stage1": {
+      "epochs_trained": 20,
+      "selected_epoch": 20,
+      "selection_score": 0.7686114480220343,
+      "parameter_counts": {
+        "total": 4345243,
+        "trainable": 4345243
+      },
+      "metrics": {
+        "dev": {
+          "intent_accuracy": 0.8416133792424988,
+          "slot_micro_f1": 0.6956095168015698,
+          "slot_tp": 1418,
+          "slot_fp": 647,
+          "slot_fn": 594,
+          "num_examples": 2033,
+          "correct_intents": 1711
+        }
+      },
+      "checkpoint_sha256": "3fffdfbcf16af3c1958792bce3c731f4f0f24b5be98028117bf8a236f50a8d65"
+    },
+    "stage2": {
+      "epochs_trained": 20,
+      "selected_epoch": 19,
+      "selection_score": 0.8179720032913527,
+      "parameter_counts": {
+        "total": 19748595,
+        "trainable": 19748595
+      },
+      "metrics": {
+        "dev": {
+          "intent_accuracy": 0.8583374323659616,
+          "slot_micro_f1": 0.7776065742167437,
+          "slot_tp": 1514,
+          "slot_fp": 368,
+          "slot_fn": 498,
+          "num_examples": 2033,
+          "correct_intents": 1745
+        }
+      },
+      "checkpoint_sha256": "2bbcebad84b3df6671afa84997259f158903360743ea8b1795cec808381843aa"
+    }
+  },
+  "generated_result_rows": 2,
+  "genuine_development_error_cases": 4
+}

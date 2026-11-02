@@ -1,10 +1,22 @@
 # SC4002: joint intent classification and slot filling
 
-Two implementations for original **MASSIVE 1.0 English** predict intent and slot spans together: [main.ipynb](main.ipynb) contains our two BiLSTM stages; [NLP_Final_project.ipynb](NLP_Final_project.ipynb) contains the Transformer comparison. Each stage is one joint model, and its complete parameter count must stay below **20 million**, including embeddings and output heads.
+Two model families for original **MASSIVE 1.0 English** predict intent and slot spans together: [main.ipynb](main.ipynb) contains our two BiLSTM stages; [NLP_Final_project.ipynb](NLP_Final_project.ipynb) is the supplied Transformer implementation; [NLP_Final_project_revised.ipynb](NLP_Final_project_revised.ipynb) is the separate improved Transformer study. Each stage is one joint model, and its complete parameter count must stay below **20 million**, including embeddings and output heads.
 
 **Yes: after environment setup, you can run `main.ipynb` to train, select checkpoints and generate results.** For later experiments, change its editable configuration cell, save it, and run all cells in a **new directory with a fresh kernel**. Ordinary hyperparameter changes do not require rebuilding the notebook or manually changing source hashes. Both BiLSTM stages run; the notebook is not a Stage 1-only launcher.
 
-The active notebooks use evaluator **`exact_character_span_v2`**. Fresh assessed v2 results are pending. Historical v1 scores do not become v2 results merely by changing the scorer. The [full BiLSTM run guide](docs/RUNNING_BILSTM.md) covers interactive execution, tuning, output files and troubleshooting.
+The active notebooks use evaluator **`exact_character_span_v2`**. Read each run's completion and acceptance records for its actual execution status. Historical v1 scores do not become v2 results merely by changing the scorer. The [full BiLSTM run guide](docs/RUNNING_BILSTM.md) covers interactive execution, tuning, output files and troubleshooting.
+
+## Revised Transformer notebook
+
+Use [NLP_Final_project_revised.ipynb](NLP_Final_project_revised.ipynb) for the improved Transformer: six independently initialized encoder blocks, width 512, eight heads, masked character CNN, attention/max intent pooling, predicted-intent context and a constrained CRF. The default complete model has **19,748,595 parameters**. It also trains the original-size **4,345,243-parameter** baseline under the same declared new training protocol, data, initialization and evaluator.
+
+After the environment setup below, execute it from PowerShell in a fresh run directory:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/execute_revised_transformer.py --execution-dir artifacts/revised_transformer/run_001
+```
+
+It automatically downloads the original data and permitted Word2Vec archive if caches are not supplied. The original and revised Transformer notebooks are standalone: open the revised file in Jupyter with the project kernel, save its configuration and Run All in a fresh folder. The default is **development-only**; set `evaluate_test=True` only for a new chosen-configuration final run. Outputs are in that run's `transformer_run_artifacts/` directory. See [TRANSFORMER_REVISION.md](docs/TRANSFORMER_REVISION.md) for measured diagnosis, exact architecture, cache options, both execution methods and independent acceptance instructions. The original Transformer and existing BiLSTM evidence are preserved.
 
 ## 1. Install the environment once
 
@@ -165,7 +177,13 @@ Portable offline checks, after installing requirements:
 .\.venv\Scripts\python.exe -m unittest tests.test_acquisition tests.test_runtime tests.test_metrics tests.test_diagnostics tests.test_notebook_build tests.test_comparison_contract tests.test_comparison_notebooks tests.test_notebook_reruns -v
 ```
 
-Validation passed **199 full-workspace tests** and **97 portable offline tests**. The rerun workflow was exercised end to end with configuration-only edits: one epoch of small E16/H16 models, both complete original train/development splits, verified cached data and development-only mode. Both checkpoints passed independent fresh-process reload verification, the two development rows were generated, and independent notebook acceptance passed. No test-model inference or assessed default-model result was produced by this smoke check.
+The earlier BiLSTM rerun-workflow revision passed **199 full-workspace tests** and **97 portable offline tests**. Its end-to-end check used one epoch of small E16/H16 models, full original train/development splits, verified cached data and development-only mode; independent reload and acceptance passed without test inference.
+
+For the separate revised Transformer, **59 dedicated model/data/training/notebook/auditor tests pass**. The current full-workspace run reports **11 existing failures tied to `main.ipynb`**: its protected source/contract metadata differs from the reviewed contents. Those BiLSTM files and saved results were preserved; resolve that source-provenance mismatch before treating a BiLSTM rerun as accepted. The revised Transformer has its own standalone execution and independent acceptance path.
+
+```powershell
+.\.venv\Scripts\python.exe -m unittest tests.test_revised_transformer_model tests.test_revised_transformer_data tests.test_revised_transformer_training tests.test_revised_transformer_notebook tests.test_revised_transformer_validation -v
+```
 
 Full discovery also uses ignored local data and historical evidence. Correctness tests and contract checks do not replace a completed final training/reload/test-evaluation run.
 

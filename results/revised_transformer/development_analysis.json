@@ -1,0 +1,124 @@
+{
+  "status": "complete",
+  "scope": "Saved development predictions only; no model inference or test scoring",
+  "dataset": {
+    "evaluator_version": "exact_character_span_v2",
+    "dataset_sha256": "c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e",
+    "source_url": "https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.0.tar.gz",
+    "archive_member": "1.0/data/en-US.jsonl",
+    "counts": {
+      "train": 11514,
+      "dev": 2033,
+      "test": 2974
+    },
+    "split_id_sha256": {
+      "train": "b8165414cd52ae41e997e053252c4467deb4bed4a062600a25b4efb1b8516b18",
+      "dev": "c639005344d7d0a2d93b919a2f17e4e3e8ba1e0fe1cd4a8462ea85b7762e6170",
+      "test": "33aa94f6b04c58b015554af6faa1fd8b40614dc0442ac2ab8e3704ff41fa3bd8"
+    },
+    "split_content_sha256": {
+      "train": "ba104c94781f77633762bb262ab50926143477db4a37a778b9ee3f299d73227f",
+      "dev": "7f1b358b5e5246a4be6b0557ef53cc763fcb04371ede3463959d91dac9e0fb8f",
+      "test": "b3a1a6c8370a4db616ebc916e68d3d3c36f71ea139a53cdfe94facdd48067dda"
+    },
+    "identity_scope": "Pinned original bytes; original row order and every record field retained"
+  },
+  "prediction_sha256": {
+    "stage1": "0b980b152accd6f345dccd95ebd41569f644a812301697bd7b8de435f025c96e",
+    "stage2": "9f1257d89e6155381fed94f97a3497daa9df7f841e735b78c2c8597841d1d124"
+  },
+  "overall": {
+    "stage1": {
+      "intent_accuracy": 0.8416133792424988,
+      "slot_micro_f1": 0.6956095168015698,
+      "slot_tp": 1418,
+      "slot_fp": 647,
+      "slot_fn": 594,
+      "num_examples": 2033,
+      "correct_intents": 1711
+    },
+    "stage2": {
+      "intent_accuracy": 0.8583374323659616,
+      "slot_micro_f1": 0.7776065742167437,
+      "slot_tp": 1514,
+      "slot_fp": 368,
+      "slot_fn": 498,
+      "num_examples": 2033,
+      "correct_intents": 1745
+    }
+  },
+  "oov_strata": {
+    "No-Train-OOV": {
+      "num_examples": 1669,
+      "stage1": {
+        "intent_accuracy": 0.871779508687837,
+        "slot_micro_f1": 0.7590325470289638,
+        "slot_tp": 1271,
+        "slot_fp": 463,
+        "slot_fn": 344,
+        "num_examples": 1669,
+        "correct_intents": 1455
+      },
+      "stage2": {
+        "intent_accuracy": 0.8909526662672259,
+        "slot_micro_f1": 0.8370646766169154,
+        "slot_tp": 1346,
+        "slot_fp": 255,
+        "slot_fn": 269,
+        "num_examples": 1669,
+        "correct_intents": 1487
+      }
+    },
+    "NonSlot-Train-OOV": {
+      "num_examples": 149,
+      "stage1": {
+        "intent_accuracy": 0.5704697986577181,
+        "slot_micro_f1": 0.5901639344262295,
+        "slot_tp": 54,
+        "slot_fp": 53,
+        "slot_fn": 22,
+        "num_examples": 149,
+        "correct_intents": 85
+      },
+      "stage2": {
+        "intent_accuracy": 0.5570469798657718,
+        "slot_micro_f1": 0.6705882352941176,
+        "slot_tp": 57,
+        "slot_fp": 37,
+        "slot_fn": 19,
+        "num_examples": 149,
+        "correct_intents": 83
+      }
+    },
+    "Slot-Train-OOV": {
+      "num_examples": 215,
+      "stage1": {
+        "intent_accuracy": 0.7953488372093023,
+        "slot_micro_f1": 0.3412844036697248,
+        "slot_tp": 93,
+        "slot_fp": 131,
+        "slot_fn": 228,
+        "num_examples": 215,
+        "correct_intents": 171
+      },
+      "stage2": {
+        "intent_accuracy": 0.813953488372093,
+        "slot_micro_f1": 0.43700787401574803,
+        "slot_tp": 111,
+        "slot_fp": 76,
+        "slot_fn": 210,
+        "num_examples": 215,
+        "correct_intents": 175
+      }
+    }
+  },
+  "paired_outcomes": {
+    "intent_corrected": 98,
+    "intent_regressed": 64,
+    "fully_correct_stage1": 1189,
+    "fully_correct_stage2": 1318,
+    "slot_occurrences_recovered": 164,
+    "slot_occurrences_lost": 68
+  },
+  "limitations": "One seed; groups overlap in linguistic difficulty and do not establish causal effects."
+}

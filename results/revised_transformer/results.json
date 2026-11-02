@@ -1,0 +1,57 @@
+{
+  "evaluator_version": "exact_character_span_v2",
+  "dataset_sha256": "c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e",
+  "rows": [
+    {
+      "model_version": "stage1",
+      "split": "dev",
+      "total_parameters": 4345243,
+      "trainable_parameters": 4345243,
+      "intent_accuracy_percent": "84.16",
+      "slot_micro_f1_percent": "69.56",
+      "epochs_trained": 20,
+      "selected_epoch": 20
+    },
+    {
+      "model_version": "stage2",
+      "split": "dev",
+      "total_parameters": 19748595,
+      "trainable_parameters": 19748595,
+      "intent_accuracy_percent": "85.83",
+      "slot_micro_f1_percent": "77.76",
+      "epochs_trained": 20,
+      "selected_epoch": 19
+    }
+  ],
+  "full_precision": {
+    "stage1": {
+      "dev": {
+        "intent_accuracy": 0.8416133792424988,
+        "slot_micro_f1": 0.6956095168015698,
+        "slot_tp": 1418,
+        "slot_fp": 647,
+        "slot_fn": 594,
+        "num_examples": 2033,
+        "correct_intents": 1711
+      }
+    },
+    "stage2": {
+      "dev": {
+        "intent_accuracy": 0.8583374323659616,
+        "slot_micro_f1": 0.7776065742167437,
+        "slot_tp": 1514,
+        "slot_fp": 368,
+        "slot_fn": 498,
+        "num_examples": 2033,
+        "correct_intents": 1745
+      }
+    }
+  },
+  "stage2_minus_stage1_percentage_points": {
+    "dev": {
+      "intent_accuracy": 1.6724053123462812,
+      "slot_micro_f1": 8.199705741517393
+    }
+  },
+  "development_winner": "stage2"
+}

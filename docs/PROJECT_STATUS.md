@@ -1,5 +1,17 @@
 # Project status and implementation history
 
+**Transformer revision, 2 November 2026:** the separate
+[NLP_Final_project_revised.ipynb](../NLP_Final_project_revised.ipynb) now contains
+genuine 20-epoch baseline and revised-model development runs. The selected
+19,748,595-parameter revision achieved **85.83% intent / 77.76% slot F1**, versus
+**84.16% / 69.56%** for the original-size Transformer under the same new protocol.
+Independent artifact acceptance passed; no Transformer test model evaluation was
+performed. A preserved initial prototype and a controlled branch-normalization
+correction document the development reasoning. See
+[TRANSFORMER_REVISION.md](TRANSFORMER_REVISION.md) and the
+[measured results](../results/revised_transformer/results.json). Original
+Transformer/BiLSTM notebooks and existing BiLSTM result files are unchanged.
+
 **BiLSTM rerun workflow, 31 October 2026:** [main.ipynb](../main.ipynb) now supports
 one editable configuration cell for future hyperparameter runs. See
 [RUNNING_BILSTM.md](RUNNING_BILSTM.md) for complete Jupyter/CLI instructions and

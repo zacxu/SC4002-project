@@ -1,0 +1,127 @@
+{
+  "source": "Actual revised development predictions",
+  "cases": [
+    {
+      "record_id": "30",
+      "utt": "cleaning is good dust is so bad do now your magic clean my carpet",
+      "gold": {
+        "record_id": "30",
+        "utt": "cleaning is good dust is so bad do now your magic clean my carpet",
+        "intent": "iot_cleaning",
+        "slots": [
+          {
+            "slot_type": "house_place",
+            "text": "carpet",
+            "start": 59,
+            "end": 65
+          }
+        ]
+      },
+      "prediction": {
+        "record_id": "30",
+        "utt": "cleaning is good dust is so bad do now your magic clean my carpet",
+        "intent": "general_quirky",
+        "slots": []
+      },
+      "explanation": "Inference: inspect training support, unfamiliar spelling and boundary/type/context ambiguity; one example does not prove a cause."
+    },
+    {
+      "record_id": "42",
+      "utt": "give me the status on my available memory",
+      "gold": {
+        "record_id": "42",
+        "utt": "give me the status on my available memory",
+        "intent": "general_quirky",
+        "slots": []
+      },
+      "prediction": {
+        "record_id": "42",
+        "utt": "give me the status on my available memory",
+        "intent": "social_post",
+        "slots": []
+      },
+      "explanation": "Inference: inspect training support, unfamiliar spelling and boundary/type/context ambiguity; one example does not prove a cause."
+    },
+    {
+      "record_id": "67",
+      "utt": "i'd like to hear queen's barcelona",
+      "gold": {
+        "record_id": "67",
+        "utt": "i'd like to hear queen's barcelona",
+        "intent": "play_music",
+        "slots": [
+          {
+            "slot_type": "artist_name",
+            "text": "queen's",
+            "start": 17,
+            "end": 24
+          },
+          {
+            "slot_type": "song_name",
+            "text": "barcelona",
+            "start": 25,
+            "end": 34
+          }
+        ]
+      },
+      "prediction": {
+        "record_id": "67",
+        "utt": "i'd like to hear queen's barcelona",
+        "intent": "play_music",
+        "slots": [
+          {
+            "slot_type": "artist_name",
+            "text": "queen's barcelona",
+            "start": 17,
+            "end": 34
+          }
+        ]
+      },
+      "explanation": "Inference: inspect training support, unfamiliar spelling and boundary/type/context ambiguity; one example does not prove a cause."
+    },
+    {
+      "record_id": "68",
+      "utt": "play me barcelona by queen",
+      "gold": {
+        "record_id": "68",
+        "utt": "play me barcelona by queen",
+        "intent": "play_music",
+        "slots": [
+          {
+            "slot_type": "song_name",
+            "text": "barcelona",
+            "start": 8,
+            "end": 17
+          },
+          {
+            "slot_type": "artist_name",
+            "text": "queen",
+            "start": 21,
+            "end": 26
+          }
+        ]
+      },
+      "prediction": {
+        "record_id": "68",
+        "utt": "play me barcelona by queen",
+        "intent": "play_music",
+        "slots": [
+          {
+            "slot_type": "place_name",
+            "text": "barcelona",
+            "start": 8,
+            "end": 17
+          },
+          {
+            "slot_type": "artist_name",
+            "text": "queen",
+            "start": 21,
+            "end": 26
+          }
+        ]
+      },
+      "explanation": "Inference: inspect training support, unfamiliar spelling and boundary/type/context ambiguity; one example does not prove a cause."
+    }
+  ],
+  "note": "All available real cases are retained if fewer than two; no errors are invented."
+}

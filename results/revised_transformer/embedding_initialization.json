@@ -1,0 +1,21 @@
+{
+  "source": "word2vec",
+  "seed": 42,
+  "dimension": 300,
+  "task_vocabulary_size": 5300,
+  "task_embedding_parameters": 1590000,
+  "fit_partition": "train",
+  "full_source_table_retained_for_prediction": false,
+  "pretrained_initialized": 4731,
+  "random_initialized": 567,
+  "source_url": "https://vectors.nlpl.eu/repository/20/6.zip",
+  "source_archive_sha256": "6d97295d630f7e50d6f2ab2242926f0b962087054ee3b96be2b44a0a2ce1ae19",
+  "source_member": "model.txt",
+  "source_vector_count": 302866,
+  "pos_suffix_probe_ratio": 0.0,
+  "pos_suffixes_stripped": false,
+  "matching": "casefold_average",
+  "pretrained_coverage": 0.8929784824462061,
+  "source_identity": "Locally observed source bytes; no independently published digest supplied",
+  "matrix_sha256": "8607fc1f115fb5cf8d2c129d40d2aa949119f14bbfd27b0266ae9280432c28f1"
+}
