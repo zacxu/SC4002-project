@@ -1,0 +1,133 @@
+source,group,name,split,seeds,needs_approval,intent,slot_f1,joint,slot_oov_f1
+KP ladder,A,A1_fresh_lr5e-4,dev,1,False,84.75,73.44,79.1,43.67
+KP ladder,A,A1_fresh_recipe,dev,1,False,84.6,72.59,78.6,44.77
+KP ladder,A,A1_ft_recipe,dev,1,False,84.9,72.38,78.64,39.77
+KP ladder,A,A2_bs32,dev,1,False,84.31,70.55,77.43,39.5
+KP ladder,A,A2_drop.10,dev,1,False,84.6,73.27,78.94,43.73
+KP ladder,A,A2_drop.25,dev,1,False,84.16,71.81,77.99,38.24
+KP ladder,A,A2_emb.1,dev,1,False,85.44,71.44,78.44,40.0
+KP ladder,A,A2_emb0,dev,1,False,86.13,68.19,77.16,37.71
+KP ladder,A,A2_ep80,dev,1,False,84.21,74.29,79.25,47.72
+KP ladder,A,A2_ls.2,dev,1,False,84.46,73.5,78.98,46.99
+KP ladder,A,A2_ls0,dev,1,False,84.31,73.19,78.75,41.45
+KP ladder,A,A2_rare.25,dev,1,False,85.19,73.59,79.39,48.59
+KP ladder,A,A2_rare1,dev,3,False,85.91,73.82,79.87,51.0
+KP ladder,A,A2_slot2,dev,1,False,84.65,74.73,79.69,50.87
+KP ladder,A,A2_slotdrop.2,dev,1,False,84.7,72.05,78.38,51.54
+KP ladder,A,A2_wd.01,dev,1,False,84.51,73.23,78.87,43.67
+KP ladder,A,A2_wdrop.2,dev,1,False,85.15,71.85,78.5,43.21
+KP ladder,A,A3g2_slot2,dev,3,False,86.13,76.02,81.07,55.91
+KP ladder,A,A3g3_ep80,dev,3,False,86.16,76.61,81.39,58.71
+KP ladder,A,A4_vit,dev,3,False,86.16,79.22,82.69,59.38
+KP ladder,B,B1_all3,dev,3,False,86.29,79.54,82.92,61.78
+KP ladder,B,B1_bpe,dev,3,False,86.24,79.55,82.89,63.8
+KP ladder,B,B1_bpe_char,dev,1,False,86.52,79.56,83.04,65.02
+KP ladder,B,B1_bpe_ngram,dev,1,False,85.54,79.53,82.54,60.9
+KP ladder,B,B1_char,dev,3,False,87.28,79.4,83.34,63.57
+KP ladder,B,B1_gaz,dev,1,False,86.28,78.12,82.2,53.82
+KP ladder,B,B1_ngram,dev,1,False,86.08,79.22,82.65,61.99
+KP ladder,B,B1_wide10k,dev,3,False,87.48,79.26,83.37,60.97
+KP ladder,B,B1_wide20k,dev,1,False,87.01,78.99,83.0,60.32
+KP ladder,B,B1_wslot14,dev,1,False,85.59,79.17,82.38,54.2
+KP ladder,B,B1_wslot15,dev,1,False,85.49,79.25,82.37,55.91
+KP ladder,B,B1g2_char,dev,3,False,87.8,79.2,83.5,63.43
+KP ladder,B,B2_ext100k_pca100,dev,1,True,88.1,80.05,84.07,65.79
+KP ladder,B,B2_ext10k,dev,1,True,88.39,80.03,84.21,63.89
+KP ladder,B,B2_ext20k,dev,1,True,88.15,80.23,84.19,64.71
+KP ladder,B,B2_ext20k_noswap,dev,1,True,87.95,79.34,83.64,60.62
+KP ladder,B,B2_ext40k,dev,3,True,87.8,80.56,84.18,68.24
+KP ladder,C,C1_attn,dev,1,False,87.6,78.4,83.0,60.38
+KP ladder,C,C1_auxlm,dev,1,False,88.24,78.86,83.55,62.14
+KP ladder,C,C1_biaffine,dev,1,False,87.51,79.44,83.47,60.87
+KP ladder,C,C1_bioes_crf,dev,3,False,87.95,80.3,84.12,65.23
+KP ladder,C,C1_coint,dev,1,False,88.59,78.92,83.76,63.77
+KP ladder,C,C1_crf,dev,3,False,87.74,80.54,84.14,65.56
+KP ladder,C,C1_factorized,dev,1,False,87.8,79.89,83.85,64.75
+KP ladder,C,C1_hier,dev,1,False,87.46,78.47,82.96,60.59
+KP ladder,C,C1_i2s,dev,1,False,88.05,78.97,83.51,59.28
+KP ladder,C,C1_interact,dev,1,False,88.15,79.54,83.85,65.2
+KP ladder,C,C1_labelattn,dev,1,False,87.65,79.13,83.39,63.41
+KP ladder,C,C1_meanmax,dev,1,False,88.15,79.34,83.74,62.24
+KP ladder,C,C1_oweight.5,dev,3,False,88.08,79.46,83.77,63.74
+KP ladder,C,C1_prelstm,dev,1,False,87.21,79.4,83.31,67.33
+KP ladder,C,C1_presence,dev,1,False,88.15,78.59,83.37,62.29
+KP ladder,C,C1_refine,dev,1,False,87.95,79.93,83.94,64.64
+KP ladder,C,C1_relbias,dev,1,False,88.15,79.54,83.84,64.52
+KP ladder,C,C1_s2i,dev,1,False,88.19,78.55,83.37,60.87
+KP ladder,C,C1_tasktop,dev,3,False,88.0,79.75,83.88,62.67
+KP ladder,C,C1_tokintent,dev,1,False,87.85,79.19,83.52,62.27
+KP ladder,C,C1g2_tasktop,dev,3,False,87.82,80.25,84.03,64.61
+KP ladder,C,C2f_flagged,dev,3,True,88.16,80.7,84.43,69.47
+KP ladder,D,D1_bilstm256,dev,3,False,87.83,80.82,84.33,66.33
+KP ladder,D,D1_bilstm256_lr3,dev,1,False,87.56,78.88,83.22,65.18
+KP ladder,D,D1_bilstm384,dev,1,False,87.7,80.73,84.21,67.91
+KP ladder,D,D1_tfm128x2,dev,1,False,87.41,80.17,83.79,64.58
+KP ladder,D,D1_tfm256x2,dev,1,False,87.85,80.39,84.12,67.01
+KP ladder,D,D1_tfm256x6,dev,1,False,88.05,80.17,84.11,63.84
+KP ladder,D,D1_tfm384x6,dev,1,False,87.95,79.42,83.68,59.86
+KP ladder,D,D2f_flagged,dev,3,True,88.16,81.55,84.85,68.99
+KP ladder,F,F_flagged_ep80,dev,3,True,88.06,81.48,84.77,68.61
+KP ladder,F,F_strict_ep80,dev,3,False,87.95,81.15,84.55,67.64
+KP ladder,H,H_00,dev,1,False,87.9,80.06,83.98,65.51
+KP ladder,H,H_01,dev,1,False,87.65,80.94,84.3,67.92
+KP ladder,H,H_02,dev,1,False,88.1,80.88,84.49,67.12
+KP ladder,H,H_03,dev,1,False,87.95,80.85,84.4,68.14
+KP ladder,H,H_04,dev,1,False,88.1,81.36,84.73,69.52
+KP ladder,H,H_05,dev,1,False,87.11,78.32,82.71,65.74
+KP ladder,H,H_06,dev,1,False,87.51,80.06,83.78,64.73
+KP ladder,H,H_07,dev,1,False,87.56,80.65,84.11,67.12
+KP ladder,H,H_08,dev,1,False,88.15,80.77,84.46,68.04
+KP ladder,H,H_09,dev,1,False,87.75,80.53,84.14,68.49
+KP ladder,H,H_10,dev,1,False,88.34,79.74,84.04,66.09
+KP ladder,H,H_11,dev,1,False,87.41,76.57,81.99,60.73
+KP ladder,R,R1_adv.05,dev,1,False,88.0,80.98,84.49,69.37
+KP ladder,R,R1_adv.2,dev,1,False,87.65,77.75,82.7,63.3
+KP ladder,R,R1_anchor1e-2,dev,1,False,87.75,80.6,84.18,66.55
+KP ladder,R,R1_anchor1e-3,dev,1,False,87.85,80.23,84.04,64.48
+KP ladder,R,R1_cons.25,dev,1,False,87.46,80.94,84.2,66.67
+KP ladder,R,R1_cons1,dev,1,False,87.8,80.93,84.36,64.62
+KP ladder,R,R1_dualemb,dev,1,False,87.7,79.74,83.72,63.89
+KP ladder,R,R1_ema,dev,1,False,88.0,80.95,84.47,66.44
+KP ladder,R,R1_mdrop.1,dev,1,False,87.26,80.88,84.07,65.73
+KP ladder,R,R1_mdrop.3,dev,1,False,87.95,80.14,84.05,64.63
+KP ladder,R,R1_mixup.2,dev,1,False,87.46,80.83,84.14,67.01
+KP ladder,R,R1_rdrop.25,dev,1,False,87.7,80.9,84.3,66.1
+KP ladder,R,R1_rdrop1,dev,1,False,87.41,81.69,84.55,68.04
+KP ladder,R,R1_sam.05,dev,1,False,87.85,81.5,84.67,66.55
+KP ladder,R,R1_sam.2,dev,3,False,88.18,81.65,84.92,68.83
+KP ladder,R,R1_supcon.1,dev,1,False,88.0,80.45,84.22,68.14
+KP ladder,R,R2f_flagged,dev,3,True,88.21,81.42,84.81,68.62
+KP ladder,R,R3_lwtr.3,dev,1,True,87.95,80.72,84.33,68.14
+KP ladder,R,R3_mention.3,dev,3,True,87.87,81.56,84.71,67.91
+KP ladder,R,R3_mention.6,dev,1,True,87.46,81.27,84.36,65.64
+KP ladder,R,R3_sis.3,dev,1,True,87.9,80.99,84.45,67.12
+KP ladder,s,stage1_baseline,dev,1,False,82.83,66.09,74.46,34.51
+KP ladder,E,strict_single,dev,1,False,88.15,82.83,85.49,70.57
+KP ladder,E,strict_single_mc8,dev,1,False,88.15,82.86,85.5,68.74
+KP ladder,E,strict_single_mc32,dev,1,False,88.05,82.42,85.24,68.12
+KP ladder,E,strict_ensemble,dev,1,False,88.83,83.33,86.08,68.38
+KP ladder,E,flagged_single,dev,1,True,88.59,81.99,85.29,69.4
+KP ladder,E,flagged_single_mc8,dev,1,True,88.69,81.95,85.32,68.35
+KP ladder,E,flagged_single_mc32,dev,1,True,88.59,82.12,85.35,68.84
+KP ladder,final,KP Stage 1,dev,1,False,82.83,66.09,74.46,34.51
+KP ladder,final,KP strict single,dev,1,False,88.15,82.83,85.49,70.57
+KP ladder,final,KP flagged single,dev,1,True,88.59,81.99,85.29,69.4
+KP ladder,final,KP Stage 1,test,1,False,81.57,63.23,72.4,29.9
+KP ladder,final,KP strict single,test,1,False,86.42,79.01,82.72,62.99
+KP ladder,final,KP flagged single,test,1,True,86.58,79.38,82.98,64.59
+"Notebook, recorded",recorded,"Notebook Stage 1, recorded",dev,1,False,84.16,69.56,76.86,34.13
+"Notebook, recorded",recorded,"Notebook Stage 2, recorded",dev,1,False,85.83,77.76,81.8,43.7
+"Notebook, reruns",stage1,r0 Word2Vec,dev,1,False,84.9,69.18,77.04,33.21
+"Notebook, reruns",stage2,r0 Word2Vec,dev,1,False,85.93,77.24,81.58,38.82
+"Notebook, reruns",stage1,r1 Word2Vec + SAM,dev,1,False,85.69,66.08,75.89,33.75
+"Notebook, reruns",stage2,r1 Word2Vec + SAM,dev,1,False,86.87,78.74,82.8,53.53
+"Notebook, reruns",stage1,r2 fastText,dev,1,True,86.23,71.57,78.9,48.25
+"Notebook, reruns",stage2,r2 fastText,dev,1,True,86.23,79.17,82.7,59.31
+"Notebook, reruns",stage1,r3 GloVe,dev,1,True,86.57,70.85,78.71,48.35
+"Notebook, reruns",stage2,r3 GloVe,dev,1,True,86.23,76.07,81.15,53.18
+"Notebook, reruns",stage1,r4 fastText + SAM,dev,1,True,86.82,68.49,77.65,42.17
+"Notebook, reruns",stage2,r4 fastText + SAM,dev,1,True,86.33,79.42,82.87,60.48
+"Notebook, reruns",stage1,r5 GloVe + SAM,dev,1,True,86.08,66.73,76.4,40.18
+"Notebook, reruns",stage2,r5 GloVe + SAM,dev,1,True,86.87,78.88,82.87,57.95
+"Notebook, reruns",stage2,r0 Word2Vec,test,1,False,84.84,75.47,80.15,40.0
+"Notebook, reruns",stage2,r1 Word2Vec + SAM,test,1,False,85.91,76.41,81.16,47.51

@@ -1,0 +1,19 @@
+{
+  "loss": 0.986265378302262,
+  "intent_loss": 0.7569798627353468,
+  "slot_loss": 0.22928551556691523,
+  "num_examples": 2974,
+  "num_tokens": 20563,
+  "num_batches": 93,
+  "seconds": 1.9453464000253007,
+  "record_ids_sha256": "33aa94f6b04c58b015554af6faa1fd8b40614dc0442ac2ab8e3704ff41fa3bd8",
+  "metrics": {
+    "intent_accuracy": 0.8591123066577001,
+    "slot_micro_f1": 0.7640819312362839,
+    "slot_tp": 2089,
+    "slot_fp": 564,
+    "slot_fn": 726,
+    "num_examples": 2974,
+    "correct_intents": 2555
+  }
+}

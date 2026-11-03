@@ -1,0 +1,8 @@
+{
+  "started_at_utc": "2026-11-03T17:19:52.417494+00:00",
+  "reason": "user approved one evaluation of r0 Stage 2, the no-SAM control for r1; nothing is selected from it",
+  "checkpoint_sha256": "931564d3c4d77a4644540907161c918d1e9288d5b4a0b2410c2e28d58f9398c5",
+  "model_state_sha256": "78403a7a8aba5f31576ae0444858109b20ecf3663f76eaffb7caa6dde485bcdb",
+  "selected_epoch": null,
+  "test_model_evaluations": 1
+}
