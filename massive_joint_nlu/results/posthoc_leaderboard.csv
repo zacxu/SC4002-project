@@ -1,0 +1,8 @@
+system,members,stored,params,dev_intent,dev_slot_f1,dev_joint,f1_slot_oov,decode,mc,flagged,run_list
+strict_single,1,5669696,5637816,88.15,82.83,85.49,70.57,"Decode(method='span', tau=0.5, gm=0.0, eta=0.0, gamma=0.1, wide_mix=0.65, avg='prob', mask_beta=0.0, top_k=1, lam=0.0)",0,False,R1_sam.2__s7
+strict_single_mc8,1,5669696,5637816,88.15,82.86,85.5,68.74,"Decode(method='span', tau=0.5, gm=0.0, eta=0.0, gamma=0.1, wide_mix=0.65, avg='prob', mask_beta=0.0, top_k=1, lam=0.0)",8,False,R1_sam.2__s7
+strict_single_mc32,1,5669696,5637816,88.05,82.42,85.24,68.12,"Decode(method='span', tau=0.5, gm=0.0, eta=0.0, gamma=0.1, wide_mix=0.65, avg='prob', mask_beta=0.0, top_k=1, lam=0.0)",32,False,R1_sam.2__s7
+strict_ensemble,2,11931480,11871336,88.83,83.33,86.08,68.38,"Decode(method='span', tau=0.5, gm=0.0, eta=0.0, gamma=0.0, wide_mix=0.5, avg='prob', mask_beta=0.0, top_k=1, lam=0.0)",0,False,R1_sam.2__s7+C1_tasktop
+flagged_single,1,19172816,19140936,88.59,81.99,85.29,69.4,"Decode(method='span', tau=0.55, gm=0.0, eta=0.0, gamma=0.0, wide_mix=0.5, avg='prob', mask_beta=0.0, top_k=1, lam=0.0)",0,True,D2f_flagged__s7
+flagged_single_mc8,1,19172816,19140936,88.69,81.95,85.32,68.35,"Decode(method='span', tau=0.55, gm=0.0, eta=0.0, gamma=0.0, wide_mix=0.5, avg='prob', mask_beta=0.0, top_k=1, lam=0.0)",8,True,D2f_flagged__s7
+flagged_single_mc32,1,19172816,19140936,88.59,82.12,85.35,68.84,"Decode(method='span', tau=0.55, gm=0.0, eta=0.0, gamma=0.0, wide_mix=0.5, avg='prob', mask_beta=0.0, top_k=1, lam=0.0)",32,True,D2f_flagged__s7

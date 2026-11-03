@@ -1,0 +1,440 @@
+tok,rule,target
+memory,none,
+queen's,possessive or clitic -> base,queen
+hurts,suffix strip,hurt
+cannibal,none,
+newspaper's,possessive or clitic -> base,newspaper
+chopin,none,
+gonbad,none,
+proper,none,
+dangerous,none,
+hilary,none,
+issue,edit distance 1,issues
+boogie,none,
+butt,none,
+hollywood,edit distance 1,holywood
+assistants,suffix strip,assistant
+kenny,edit distance 1,jenny
+leviathan,none,
+knock,none,
+superb,edit distance 1,super
+academy,none,
+romero's,none,
+shuffling,suffix strip,shuffle
+collection,none,
+analysts,none,
+cleanup,none,
+aman,none,
+cover,edit distance 1,over
+cherry,none,
+bomb,none,
+homestead,none,
+closet,edit distance 1,close
+forever,none,
+modern,none,
+responses,suffix strip,response
+speaking,suffix strip,speak
+council,none,
+yankees,suffix strip,yankee
+restaurant's,possessive or clitic -> base,restaurant
+sitting,edit distance 1,setting
+t'so,none,
+eggroll,none,
+master,edit distance 1,baster
+nighttime,edit distance 1,nightime
+craving,none,
+though,edit distance 1,hough
+chamber,edit distance 1,chambers
+lead,none,
+dooa,none,
+shutdown,none,
+afi's,possessive or clitic -> base,afi
+pieces,suffix strip,piece
+zimbabwe,none,
+aretha,none,
+franklin's,possessive or clitic -> base,franklin
+produced,none,
+ucl,none,
+flip,none,
+flop,none,
+thriller,none,
+premier,none,
+blake,edit distance 1,bake
+shelton,none,
+joni,none,
+mitchell,none,
+riff,none,
+stole,edit distance 1,stolen
+exactly,suffix strip,exact
+z,none,
+dynamite,none,
+lamp's,possessive or clitic -> base,lamp
+loudest,none,
+interior,edit distance 1,inferior
+layers,edit distance 1,lakers
+gave,none,
+double,none,
+smashing,none,
+pumpkins,none,
+giraffe,edit distance 1,giraffes
+catering,none,
+packages,suffix strip,package
+overcast,none,
+rained,suffix strip,rain
+nerd,none,
+uptown,none,
+foo,none,
+sung,none,
+cools,suffix strip,cool
+finlee's,none,
+bedtime,none,
+opacity,none,
+guam,none,
+prescription,none,
+drug,none,
+abuse,none,
+predication,none,
+kindly,suffix strip,kind
+drawing,suffix strip,draw
+cheteshwar,none,
+pujara,none,
+scored,edit distance 1,scores
+wayne,none,
+sheriffs,none,
+ireland,edit distance 1,iceland
+zaalima,none,
+poll,none,
+view,none,
+gavenda,none,
+defrosting,none,
+salt,none,
+toggle,none,
+weatherit,none,
+either,none,
+forecasts,suffix strip,forecast
+intellicast,none,
+weathercom,none,
+both,none,
+ricky,edit distance 1,rocky
+matin,edit distance 1,latin
+orevena,none,
+recorder,suffix strip,record
+buble,edit distance 1,bible
+tube,none,
+opened,suffix strip,open
+jackpot,none,
+wakey,edit distance 1,wake
+bakey,edit distance 1,bake
+alcoholic,none,
+hypoallergenic,none,
+sarcastic,none,
+drenched,none,
+answers,suffix strip,answer
+cheat,edit distance 1,chat
+cosmos,none,
+heating,suffix strip,heat
+apt,none,
+advice,edit distance 1,advise
+concerning,none,
+seo,none,
+research,none,
+gossiping,suffix strip,gossip
+picnic,none,
+regent,edit distance 1,recent
+visited,suffix strip,visit
+society,none,
+kimberly,none,
+aaronson,none,
+therapist,none,
+inauguration,none,
+reunion,none,
+evan,none,
+parker,suffix strip,park
+king's,possessive or clitic -> base,king
+feb,none,
+swatishs,none,
+biology,none,
+fsu,none,
+maggie,none,
+known,edit distance 1,know
+tomo,none,
+arcata,none,
+groomer,none,
+reflect,none,
+pete,none,
+greens,suffix strip,green
+evening's,possessive or clitic -> base,evening
+jack's,possessive or clitic -> base,jack
+sara,none,
+thursday's,possessive or clitic -> base,thursday
+bistro,none,
+italia,edit distance 1,italian
+eric's,possessive or clitic -> base,eric
+visa,none,
+required,suffix strip,require
+convention,none,
+showcase,none,
+iheartradio,none,
+rov,none,
+shoutcast,none,
+famosa,none,
+kamp,none,
+osteen's,possessive or clitic -> base,osteen
+buzz,none,
+neal,none,
+brennan,none,
+palhunik,none,
+chapter,none,
+alma,none,
+kingdom,none,
+harrypotter,none,
+martian,edit distance 1,martial
+downpour,none,
+shades,suffix strip,shade
+grey,none,
+jai,none,
+ho,none,
+lesson,edit distance 1,lessen
+partridge,none,
+garlic,none,
+sexiest,none,
+crispy,none,
+pea,none,
+noodle,edit distance 1,noodles
+gluten,none,
+icebox,edit distance 1,icebo
+hotdog,none,
+crockpot,none,
+breasts,none,
+comments,suffix strip,comment
+almond,none,
+pinball,none,
+snake,edit distance 1,snakes
+puzzle,none,
+pear,none,
+saga,none,
+enemy,none,
+coc,none,
+millionaires,suffix strip,millionaire
+vodka,none,
+purchased,suffix strip,purchase
+depend,none,
+pon,none,
+seen,none,
+mad,none,
+excel,none,
+bing,none,
+pepper,edit distance 1,peppers
+translate,none,
+cereal,none,
+rearrange,none,
+soap,none,
+santana,none,
+pastries,none,
+proceed,none,
+dancing,suffix strip,dance
+anew,none,
+duncan,none,
+trussel's,none,
+mythical,none,
+heavyweight,none,
+clearer,suffix strip,clear
+oriented,none,
+exhibits,none,
+metropolitan,none,
+court,edit distance 1,count
+vin,none,
+diesel,none,
+netbooks,none,
+rotten,edit distance 1,gotten
+flags,suffix strip,flag
+grab,none,
+milligrams,none,
+cornwall,none,
+chinatown,none,
+canal,none,
+bowery,none,
+railway,edit distance 1,railways
+queens,suffix strip,queen
+coach,edit distance 1,poach
+fare,none,
+repurchase,none,
+phillyx,none,
+septa,none,
+listing,suffix strip,list
+purchasing,suffix strip,purchase
+fransisco,edit distance 1,francisco
+udrive,edit distance 1,drive
+washingdon,edit distance 1,washington
+wide,none,
+narrow,edit distance 1,arrow
+northern,none,
+poland,edit distance 1,boland
+croatia,none,
+inconvenience,none,
+resistance,none,
+resistor,none,
+browsing,none,
+evacuation,none,
+represented,suffix strip,represent
+revelation,none,
+lynch,edit distance 1,lunch
+bur,none,
+comedian,none,
+iliza,none,
+schleshinger,none,
+hanks,edit distance 1,hands
+demonetisation,none,
+buildings,suffix strip,building
+arrahman,none,
+acts,suffix strip,act
+aamir,none,
+none,none,
+calculation,edit distance 1,calculations
+language,edit distance 1,languages
+happier,none,
+rich,none,
+base,none,
+killed,suffix strip,kill
+kennedy,none,
+original,none,
+ramanujan,none,
+asks,suffix strip,ask
+actions,suffix strip,action
+swerving,none,
+defining,suffix strip,define
+thesaurus,none,
+goal,none,
+scorers,edit distance 1,scores
+benjamin,none,
+approval,none,
+laws,suffix strip,law
+correlation,none,
+tense,edit distance 1,lense
+ambulance,none,
+jello,edit distance 1,hello
+shots,edit distance 1,shoes
+touring,suffix strip,tour
+framework,none,
+adel,none,
+diamond,none,
+strange,none,
+stockton,none,
+francs,edit distance 1,france
+pullman,none,
+fields,suffix strip,field
+toddlers,none,
+stakes,edit distance 1,snakes
+tinder,none,
+matches,suffix strip,match
+fjord,edit distance 1,fjords
+triumph,none,
+farthest,none,
+stonehenge,none,
+tiangle,edit distance 1,triangle
+philippine,edit distance 1,philippines
+bio,none,
+gandhiji,none,
+pant,none,
+culotte,none,
+brazil,none,
+adviser,edit distance 1,advise
+watson,none,
+various,none,
+plants,edit distance 1,pants
+hypothesis,none,
+phelps,none,
+arnold,none,
+schwarzenegger,none,
+inchoate,none,
+haggis,none,
+volkswagen,none,
+ipad,none,
+concern,edit distance 1,concert
+effectively,suffix strip,effective
+bali,none,
+airplane,none,
+circuit,none,
+beyonce,none,
+hypertrophy,none,
+wheat,edit distance 1,heat
+factor,edit distance 1,actor
+prediction,edit distance 1,predictions
+implement,none,
+broiler,none,
+schemes,none,
+mega,none,
+pixel,none,
+hilton,none,
+roberts,suffix strip,robert
+natural,none,
+aud,none,
+capricorns,none,
+nasa,none,
+princess,edit distance 1,prince's
+pregnant,none,
+easily,none,
+marinara,none,
+manner,edit distance 1,panner
+christie,none,
+brinkley,none,
+smallest,none,
+trading,suffix strip,trade
+integral,none,
+exponential,none,
+citizens,none,
+mexico,edit distance 1,mexco
+kenny's,none,
+celebrate,none,
+relatives,suffix strip,relative
+unhappy,none,
+crashed,suffix strip,crash
+lfi,none,
+arrived,suffix strip,arrive
+levis,edit distance 1,elvis
+manger,edit distance 1,manager
+navy,none,
+airlines,none,
+bags,suffix strip,bag
+alzacz,none,
+accounts,suffix strip,account
+dell,none,
+aww,none,
+tumblr,none,
+refrigerator,none,
+gallery,none,
+gram,none,
+choke,edit distance 1,chore
+disappointed,none,
+interaction,none,
+emilia,none,
+erosser,none,
+rosser,suffix strip,ross
+ebay,none,
+budgets,suffix strip,budget
+ashmit,none,
+accumulated,none,
+matthews,suffix strip,matthew
+deadlines,suffix strip,deadline
+enalen,none,
+files,suffix strip,file
+stamp,none,
+gbaby,edit distance 1,baby
+gma,none,
+loves,suffix strip,love
+hopes,suffix strip,hop
+clinic,none,
+exams,suffix strip,exam
+cindy,edit distance 1,candy
+mark's,possessive or clitic -> base,mark
+spoken,edit distance 1,spoke
+activation,none,
+terry's,none,
+brady,edit distance 1,brad
+metion,edit distance 1,mention
+palmer,none,
+homework,none,
+jean's,possessive or clitic -> base,jean
+claire,none,
+marissa,none,
+bert,none,

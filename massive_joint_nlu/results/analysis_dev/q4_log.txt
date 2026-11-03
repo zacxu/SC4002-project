@@ -1,0 +1,86 @@
+﻿[mem loaded] wset 176 MB | peak wset 178 MB | private 206 MB | peak private 208 MB
+features word, char: [29531, 30416] | total 59947 | nnz train 899193 | params if used as a wide head: 3596880
+[mem features] wset 182 MB | peak wset 200 MB | private 213 MB | peak private 230 MB
+{'C': 1.0, 'dev_acc': 84.26, 'train_acc': 95.05, 'iters': 19, 'sec': 4}
+[mem C=1.0] wset 197 MB | peak wset 240 MB | private 228 MB | peak private 271 MB
+{'C': 10.0, 'dev_acc': 85.93, 'train_acc': 99.9, 'iters': 56, 'sec': 12}
+[mem C=10.0] wset 211 MB | peak wset 255 MB | private 241 MB | peak private 285 MB
+{'C': 100.0, 'dev_acc': 86.08, 'train_acc': 99.97, 'iters': 200, 'sec': 42}
+[mem C=100.0] wset 211 MB | peak wset 255 MB | private 241 MB | peak private 285 MB
+selected C=100.0: dev accuracy 86.08
+top-3 accuracy: 95.08 | gold in top 3 among linear errors: 183 of 283
+       model   acc  linear_acc  model_errors  linear_fixes  linear_breaks  both_wrong  both_wrong_same_label  both_wrong_diff_label  oracle_union_acc  mcnemar_p  agreement_pct  acc_when_agree
+     Stage 1 82.83       86.08           349           145             79         204                    107                     97             89.97     0.0000           84.2           93.75
+A1_ft_recipe 84.90       86.08           307            97             73         210                    125                     85             89.67     0.0774           87.5           92.97
+
+per OOV group:
+            group    n    S1    A1  linear  lin_fixes_S1  lin_breaks_S1  lin_fixes_A1  lin_breaks_A1
+     No-Train-OOV 1669 86.10 87.84   88.80           102             57            68             52
+NonSlot-Train-OOV  149 55.70 60.40   57.05            19             17            12             17
+   Slot-Train-OOV  215 76.28 79.07   85.12            24              5            17              4
+          Overall 2033 82.83 84.90   86.08           145             79            97             73
+
+confidence-gated ensemble, 5-fold CV of the threshold on dev:
+        base  base_acc  linear_acc  gated_cv_acc                          thresholds
+     Stage 1     82.83       86.08         85.54 [0.479, 0.204, 0.404, 0.567, 0.567]
+A1_ft_recipe     84.90       86.08         85.98 [0.479, 0.748, 0.607, 0.607, 0.709]
+
+intents where linear loses most to Stage 1:
+         intent  dev  S1_recall  A1_recall  lin_recall  lin_minus_S1  lin_minus_S1_n
+    email_query   73       93.2       94.5        87.7          -5.5              -4
+   social_query   18       83.3       83.3        72.2         -11.1              -2
+  general_greet    2      100.0      100.0         0.0        -100.0              -2
+ takeaway_query   24       95.8       91.7        87.5          -8.3              -2
+calendar_remove   47       97.9       93.6        93.6          -4.3              -2
+ music_likeness   16       81.2       81.2        68.8         -12.5              -2
+transport_query   36       88.9       88.9        83.3          -5.6              -2
+   alarm_remove   14       92.9       92.9        78.6         -14.3              -2
+intents where linear gains most on Stage 1:
+               intent  dev  S1_recall  A1_recall  lin_recall  lin_minus_S1  lin_minus_S1_n
+recommendation_events   26       50.0       57.7        61.5          11.5               3
+       general_quirky  105       48.6       43.8        52.4           3.8               4
+           news_query   82       80.5       84.1        86.6           6.1               5
+           play_radio   46       78.3       82.6        89.1          10.9               5
+       takeaway_order   20       60.0       75.0        95.0          35.0               7
+       datetime_query   64       82.8       92.2        95.3          12.5               8
+           qa_factoid   90       66.7       71.1        77.8          11.1              10
+         calendar_set  131       85.5       90.8        93.1           7.6              10
+
+S1 wrong, linear right (sample):
+                                                                  utt      gold_intent     pred_intent    lin_p   train_oov_group
+order a double bacon cheeseburger with bacon an white american cheese   takeaway_order  cooking_recipe 0.812130 NonSlot-Train-OOV
+         olly i'll be seeing my therapist every thursday at two p. m.     calendar_set  general_quirky 0.818324    Slot-Train-OOV
+          go to youtube and play me the best wedding songs collection       play_music      play_radio 0.969091 NonSlot-Train-OOV
+                                                 what does tweet mean    qa_definition     social_post 0.985809      No-Train-OOV
+                          what day does my birthday fall on next year   datetime_query  calendar_query 0.876304      No-Train-OOV
+                       follow news about hilary email issue in future       news_query     email_query 0.869449    Slot-Train-OOV
+   nine hundred and ninety nine f. m. is currently playing what music      music_query      play_radio 0.964935      No-Train-OOV
+                                                purchase train ticket transport_ticket transport_query 0.968294      No-Train-OOV
+                                                         load spotify       play_music      play_radio 0.370227      No-Train-OOV
+                                                           play games        play_game      play_music 0.983905      No-Train-OOV
+                                                       i like r. & b.   music_likeness      play_music 0.565793      No-Train-OOV
+cancel my meeting with lisa on tuesday and reschedule it for thursday     calendar_set calendar_remove 0.663596      No-Train-OOV
+
+S1 right, linear wrong (sample):
+                                                                                  utt              gold_intent              lin_pred    lin_p   train_oov_group
+                                                              what is the rate of inr              qa_currency            qa_factoid 0.724747      No-Train-OOV
+                                                  recent advice concerning google seo           general_quirky            news_query 0.418927 NonSlot-Train-OOV
+                                          when is that meeting with my boss next week           calendar_query          calendar_set 0.712712      No-Train-OOV
+ give me details of my twitter handle profile including the total number of followers             social_query            qa_factoid 0.374267      No-Train-OOV
+                                        where should i go for mexican food in my area recommendation_locations recommendation_events 0.477179      No-Train-OOV
+                                                      what new movies available today    recommendation_movies        general_quirky 0.700100      No-Train-OOV
+                                    get me a ride on the commuter train from nj to ny         transport_ticket       transport_query 0.662440      No-Train-OOV
+                                                          did my mom send me an email              email_query       email_sendemail 0.896238      No-Train-OOV
+                                                                  tell me a play list              music_query           lists_query 0.540109      No-Train-OOV
+email david about the meeting tomorrow david can we have the meeting in the afternoon          email_sendemail        calendar_query 0.949350      No-Train-OOV
+                                                                     up coming events           calendar_query recommendation_events 0.822111      No-Train-OOV
+                                  i need to keep two toddlers busy tell me what to do           general_quirky           lists_query 0.373379 NonSlot-Train-OOV
+[mem after compare] wset 198 MB | peak wset 255 MB | private 228 MB | peak private 285 MB
+
+feature families and caps at the selected C:
+{'features': 'word 1-2 only', 'n_features': 29531, 'wide_params': 1771920, 'dev_acc': 84.6, 'No-Trai': 87.3, 'NonSlot': 55.7, 'Slot-Tr': 83.72, 'fixes_S1': 137, 'breaks_S1': 101, 'sec': 4}
+{'features': 'char_wb 3-5 only', 'n_features': 30416, 'wide_params': 1825020, 'dev_acc': 85.24, 'No-Trai': 87.96, 'NonSlot': 58.39, 'Slot-Tr': 82.79, 'fixes_S1': 139, 'breaks_S1': 90, 'sec': 19}
+{'features': 'both, cap 5k+5k', 'n_features': 10000, 'wide_params': 600060, 'dev_acc': 85.44, 'No-Trai': 88.38, 'NonSlot': 54.36, 'Slot-Tr': 84.19, 'fixes_S1': 145, 'breaks_S1': 92, 'sec': 33}
+{'features': 'both, cap 10k+10k', 'n_features': 20000, 'wide_params': 1200060, 'dev_acc': 85.88, 'No-Trai': 88.56, 'NonSlot': 56.38, 'Slot-Tr': 85.58, 'fixes_S1': 143, 'breaks_S1': 81, 'sec': 35}
+{'features': 'both, cap 20k+20k', 'n_features': 40000, 'wide_params': 2400060, 'dev_acc': 86.03, 'No-Trai': 88.68, 'NonSlot': 57.05, 'Slot-Tr': 85.58, 'fixes_S1': 145, 'breaks_S1': 80, 'sec': 41}
+[mem end] wset 191 MB | peak wset 255 MB | private 221 MB | peak private 285 MB

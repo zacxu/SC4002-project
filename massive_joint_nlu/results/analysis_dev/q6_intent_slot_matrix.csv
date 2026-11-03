@@ -1,0 +1,61 @@
+intent,train_utts,slots,n_types,types
+alarm_query,130,59,7,date:28; timeofday:14; time:11; event_name:2; alarm_type:2; device_type:1; house_place:1
+alarm_remove,78,61,6,time:25; date:20; timeofday:9; alarm_type:5; event_name:1; relation:1
+alarm_set,182,247,9,time:141; date:53; timeofday:24; event_name:21; general_frequency:2; alarm_type:2; relation:2; order_type:1; time_zone:1
+audio_volume_down,52,7,2,change_amount:6; device_type:1
+audio_volume_mute,110,30,5,time:22; device_type:4; change_amount:2; timeofday:1; event_name:1
+audio_volume_other,18,1,1,change_amount:1
+audio_volume_up,110,27,4,change_amount:19; device_type:6; song_name:1; media_type:1
+calendar_query,566,675,12,date:298; event_name:217; time:73; timeofday:28; person:23; relation:14; place_name:9; meal_type:4; sport_type:4; general_frequency:2; list_name:2; business_name:1
+calendar_remove,312,268,12,date:107; event_name:105; time:25; meal_type:11; person:10; place_name:3; relation:2; transport_type:1; general_frequency:1; app_name:1; business_type:1; list_name:1
+calendar_set,810,1640,16,event_name:530; date:421; time:271; person:151; general_frequency:70; relation:65; timeofday:52; place_name:50; meal_type:19; media_type:3; business_name:3; personal_info:1; house_place:1; song_name:1; artist_name:1; sport_type:1
+cooking_query,4,3,2,food_type:2; meal_type:1
+cooking_recipe,207,196,9,food_type:148; ingredient:20; cooking_type:17; drink_type:4; meal_type:2; business_name:2; date:1; event_name:1; app_name:1
+datetime_convert,52,96,5,place_name:46; time_zone:31; time:17; timeofday:1; person:1
+datetime_query,350,304,6,date:133; place_name:118; time_zone:24; event_name:15; time:13; timeofday:1
+email_addcontact,54,30,5,email_address:14; person:10; personal_info:4; relation:1; list_name:1
+email_query,418,263,9,person:127; relation:33; date:32; email_folder:31; time:27; event_name:5; business_name:4; timeofday:2; personal_info:2
+email_querycontact,127,174,8,person:90; personal_info:63; relation:13; event_name:3; place_name:2; media_type:1; device_type:1; list_name:1
+email_sendemail,354,375,14,person:165; relation:90; date:39; time:18; email_address:18; event_name:17; timeofday:10; meal_type:7; place_name:4; general_frequency:3; artist_name:1; personal_info:1; business_name:1; email_folder:1
+general_greet,25,3,1,date:3
+general_joke,72,44,6,joke_type:35; relation:3; date:2; person:2; food_type:1; business_type:1
+general_quirky,555,175,16,date:92; person:19; place_name:16; event_name:8; relation:8; meal_type:7; time:7; food_type:3; artist_name:3; business_type:3; device_type:2; timeofday:2; media_type:2; news_topic:1; movie_name:1; drink_type:1
+iot_cleaning,93,102,6,device_type:72; house_place:19; time:7; date:2; general_frequency:1; place_name:1
+iot_coffee,124,58,7,coffee_type:22; device_type:17; time:11; business_type:3; date:2; business_name:2; timeofday:1
+iot_hue_lightchange,125,139,5,color_type:98; house_place:34; change_amount:5; player_setting:1; time:1
+iot_hue_lightdim,76,32,4,house_place:21; change_amount:9; device_type:1; color_type:1
+iot_hue_lightoff,153,118,4,house_place:91; device_type:22; time:4; color_type:1
+iot_hue_lighton,22,7,2,house_place:4; device_type:3
+iot_hue_lightup,76,25,3,house_place:17; change_amount:7; device_type:1
+iot_wemo_off,52,47,2,device_type:45; house_place:2
+iot_wemo_on,48,37,2,device_type:33; house_place:4
+lists_createoradd,177,92,9,list_name:72; date:8; event_name:3; person:2; drink_type:2; music_descriptor:2; time:1; place_name:1; relation:1
+lists_query,198,74,8,list_name:47; date:21; business_name:1; person:1; music_genre:1; device_type:1; timeofday:1; app_name:1
+lists_remove,164,87,9,list_name:67; date:7; person:6; relation:2; song_name:1; event_name:1; meal_type:1; timeofday:1; place_name:1
+music_dislikeness,14,2,1,music_descriptor:2
+music_likeness,113,29,8,music_genre:11; artist_name:8; music_descriptor:3; player_setting:2; app_name:2; song_name:1; playlist_name:1; date:1
+music_query,154,28,9,artist_name:9; music_genre:5; date:4; song_name:3; timeofday:2; person:2; player_setting:1; music_album:1; media_type:1
+music_settings,51,58,8,player_setting:41; media_type:4; device_type:4; song_name:3; artist_name:2; music_genre:2; app_name:1; music_descriptor:1
+news_query,503,473,10,news_topic:177; media_type:129; place_name:67; date:60; person:24; time:9; timeofday:3; general_frequency:2; device_type:1; transport_type:1
+play_audiobook,150,230,9,player_setting:80; audiobook_name:73; media_type:52; audiobook_author:6; artist_name:6; time:5; app_name:5; date:2; song_name:1
+play_game,112,89,3,game_name:87; device_type:1; game_type:1
+play_music,639,611,13,artist_name:185; music_genre:149; song_name:117; playlist_name:61; music_descriptor:36; player_setting:17; date:16; media_type:9; app_name:7; time:6; movie_name:4; timeofday:3; device_type:1
+play_podcasts,193,159,9,podcast_descriptor:68; podcast_name:56; player_setting:18; person:6; date:4; transport_type:3; time:2; place_name:1; timeofday:1
+play_radio,283,201,12,radio_name:131; app_name:26; music_genre:13; person:9; device_type:8; media_type:4; house_place:4; date:2; relation:1; time:1; timeofday:1; music_descriptor:1
+qa_currency,142,220,3,currency_name:213; date:5; place_name:2
+qa_definition,267,225,1,definition_word:225
+qa_factoid,544,376,8,person:194; place_name:144; artist_name:17; event_name:12; date:5; time:2; food_type:1; movie_name:1
+qa_maths,78,2,2,general_frequency:1; date:1
+qa_stock,152,142,6,business_name:114; date:19; news_topic:4; currency_name:3; time:1; person:1
+recommendation_events,190,187,10,place_name:77; date:50; event_name:35; timeofday:11; business_type:6; time:4; meal_type:1; personal_info:1; business_name:1; movie_type:1
+recommendation_locations,173,211,8,business_type:123; place_name:48; food_type:25; business_name:5; meal_type:3; date:3; time:3; drink_type:1
+recommendation_movies,70,58,10,place_name:12; movie_name:10; movie_type:9; event_name:6; date:6; business_type:6; timeofday:5; time:2; media_type:1; business_name:1
+social_post,283,372,10,media_type:203; business_name:139; event_name:6; person:6; relation:6; date:4; place_name:3; personal_info:3; business_type:1; device_type:1
+social_query,108,110,8,media_type:67; date:18; person:12; relation:6; time:3; event_name:2; general_frequency:1; news_topic:1
+takeaway_order,135,222,10,food_type:91; business_name:63; order_type:38; business_type:11; meal_type:6; time:5; app_name:4; date:2; drink_type:1; timeofday:1
+takeaway_query,122,162,9,order_type:68; business_name:37; business_type:29; food_type:23; place_name:1; time:1; timeofday:1; event_name:1; person:1
+transport_query,227,384,14,place_name:178; transport_type:134; date:30; time:15; business_name:7; timeofday:6; transport_name:5; business_type:3; event_name:1; relation:1; person:1; food_type:1; transport_descriptor:1; app_name:1
+transport_taxi,100,173,12,transport_type:70; transport_agency:31; place_name:29; time:21; timeofday:8; date:6; business_name:2; business_type:2; event_name:1; person:1; transport_name:1; app_name:1
+transport_ticket,127,273,10,transport_type:109; place_name:96; date:36; time:12; transport_descriptor:7; timeofday:6; transport_name:3; relation:2; currency_name:1; app_name:1
+transport_traffic,117,64,5,place_name:51; date:6; timeofday:4; time:2; event_name:1
+weather_query,573,787,8,weather_descriptor:320; date:267; place_name:126; timeofday:40; time:29; event_name:3; general_frequency:1; meal_type:1

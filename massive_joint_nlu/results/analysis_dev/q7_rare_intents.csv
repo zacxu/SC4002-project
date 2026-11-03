@@ -1,0 +1,15 @@
+intent,train,dev,S1_recall,linear_recall
+cooking_query,4,2,50.0,50.0
+music_dislikeness,14,2,50.0,50.0
+audio_volume_other,18,0,,
+iot_hue_lighton,22,5,40.0,100.0
+general_greet,25,2,100.0,0.0
+iot_wemo_on,48,7,85.7,100.0
+music_settings,51,8,87.5,87.5
+audio_volume_down,52,8,62.5,87.5
+datetime_convert,52,9,77.8,88.9
+iot_wemo_off,52,5,80.0,100.0
+email_addcontact,54,5,100.0,100.0
+recommendation_movies,70,12,75.0,75.0
+general_joke,72,15,100.0,100.0
+iot_hue_lightup,76,12,100.0,91.7

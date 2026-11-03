@@ -1,0 +1,14 @@
+type,word,inside_span,outside_span,inside_share_pct
+date,this,198,23,89.6
+date,next,72,51,58.5
+timeofday,this,22,18,55.0
+business_name,at,20,19,51.3
+place_name,the,18,96,15.8
+date,the,15,101,12.9
+time,in,12,23,34.3
+time,the,8,60,11.8
+news_topic,the,6,46,11.5
+time,this,5,11,31.2
+place_name,my,5,9,35.7
+business_name,the,5,18,21.7
+relation,my,5,126,3.8

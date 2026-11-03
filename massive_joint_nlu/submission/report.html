@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Joint intent classification and slot filling on MASSIVE en-US</title>
+<style>
+@page { size: A4; margin: 11mm 12mm; }
+body { font-family: Arial, Helvetica, sans-serif; font-size: 9.4pt; line-height: 1.3; color: #111; margin: 0; }
+.cover { page-break-after: always; }
+.cover h1 { font-size: 20pt; margin-top: 46mm; line-height: 1.2; }
+.cover p { font-size: 11pt; margin: 6px 0; }
+h2 { font-size: 10.5pt; margin: 9px 0 3px; padding-bottom: 1px; border-bottom: 0.6px solid #888; }
+p { margin: 3px 0; text-align: justify; }
+table { border-collapse: collapse; width: 100%; margin: 4px 0; font-size: 8.6pt; }
+table.ladder td:first-child { white-space: nowrap; width: 9%; }
+th, td { border-bottom: 0.5px solid #bbb; padding: 1px 4px; text-align: left; vertical-align: top; }
+th { font-weight: bold; }
+td.n, th.n { text-align: right; white-space: nowrap; }
+.small { font-size: 8pt; color: #333; }
+ul { margin: 1px 0 1px 13px; padding: 0; }
+li { margin: 1px 0; text-align: justify; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+<h1>Joint intent classification and slot filling on MASSIVE en-US</h1>
+<p>NTU SC4002 Natural Language Processing &middot; Group assignment</p>
+<p><b>Group ID:</b> [to be filled in]</p>
+<table>
+<tr><th>Group member</th><th>Student ID</th><th>Contribution</th></tr>
+<tr><td>[name]</td><td>[ID]</td><td>[contribution]</td></tr>
+<tr><td>[name]</td><td>[ID]</td><td>[contribution]</td></tr>
+<tr><td>[name]</td><td>[ID]</td><td>[contribution]</td></tr>
+<tr><td>[name]</td><td>[ID]</td><td>[contribution]</td></tr>
+<tr><td>[name]</td><td>[ID]</td><td>[contribution]</td></tr>
+</table>
+<p class="small">To be completed by the group. The Stage 1 baseline in this report was developed with AI assistance and must be replaced by the group's own independent Stage 1 before submission (Section 7; ai_collaboration.md).</p>
+</div>
+
+<h2>1. Setup</h2>
+<p>MASSIVE 1.0 en-US with the official splits (11,514 / 2,033 / 2,974 utterances; 60 intents; 55 slot types, written as 108 BIO labels). The only embedding source is NLPL Word2Vec model 6 (300-d; 89.3% of training words covered); no pretrained language model is used. Every stored value stays below 20M. Selection uses dev only; test was scored once, after a lock file was written. The joint score is the mean of intent accuracy and exact-span slot micro-F1.</p>
+
+<h2>2. Stage 1 baseline</h2>
+<p>A 4-layer Transformer with 4.34M parameters, trained for 12 epochs (best epoch 11). Dev: intent 82.83, slot F1 66.09, joint 74.46. Test: 81.57 and 63.23. Slot F1 on the Slot-Train-OOV subset (a slot word unseen in training) is 29.9 on test, against 70.1 for utterances without an unseen word.</p>
+
+<h2>3. Method ladder (dev, 3-seed mean joint, strict track)</h2>
+<table class="ladder">
+<tr><th>Rung</th><th>Change</th><th class="n">Dev joint</th><th class="n">Gain</th><th>Outcome</th></tr>
+<tr><td>Stage 1</td><td>Reference</td><td class="n">74.46</td><td class="n">&mdash;</td><td>&mdash;</td></tr>
+<tr><td>A</td><td>Training recipe: 40 epochs, cosine warm-up, label smoothing, word dropout</td><td class="n">81.07</td><td class="n">+6.61</td><td>Adopted</td></tr>
+<tr><td>A4</td><td>+ BIO-constrained Viterbi decoding</td><td class="n">82.69</td><td class="n">+1.62</td><td>Adopted</td></tr>
+<tr><td>B</td><td>+ TF-IDF wide intent path and character n-gram residual</td><td class="n">83.50</td><td class="n">+0.81</td><td>Adopted</td></tr>
+<tr><td>C</td><td>CRF slot head</td><td class="n">84.14</td><td class="n">+0.64</td><td>Adopted</td></tr>
+<tr><td>D</td><td>BiLSTM encoder, 2 layers of 256 per direction</td><td class="n">84.33</td><td class="n">+0.19</td><td>Adopted</td></tr>
+<tr><td>R</td><td>Sharpness-aware training, rho = 0.2</td><td class="n">84.92</td><td class="n">+0.59</td><td>Adopted (tentative)</td></tr>
+<tr><td>H</td><td>12 random configurations around R</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td>None beat the base (best seed 84.73)</td></tr>
+<tr><td>F</td><td>80-epoch schedule on the strict and flagged bases</td><td class="n">84.55</td><td class="n">&minus;0.37</td><td>Rejected</td></tr>
+<tr><td>E</td><td>Decoding, MC dropout, mention tables, ensembles (dev)</td><td class="n">85.49</td><td class="n">&mdash;</td><td>Single model with span decoding (Section 6)</td></tr>
+</table>
+<p>Most of the total rise of 10.5 joint points comes from rung A and A4. After rung A, each adopted change added 0.2 to 0.8 points on dev. Those are real dev differences, but small next to the test intervals in Section 4, so we treat them as tentative.</p>
+
+<h2>4. Final systems and one-time test results</h2>
+<table>
+<tr><th>System (test split)</th><th class="n">Total params (stored)</th><th class="n">Trainable</th><th class="n">Intent acc.</th><th class="n">Slot F1</th><th class="n">Slot-OOV F1</th><th class="n">Best / run epochs</th></tr>
+<tr><td>Stage 1 (Transformer)</td><td class="n">4.34M (4.37M)</td><td class="n">4.34M</td><td class="n">81.57</td><td class="n">63.23</td><td class="n">29.90</td><td class="n">11 / 12</td></tr>
+<tr><td>Strict single: R1_sam.2, seed 7 (BiLSTM, CRF head, span decoding)</td><td class="n">5.64M (5.67M)</td><td class="n">5.63M</td><td class="n">86.42</td><td class="n">79.01</td><td class="n">62.99</td><td class="n">22 / 30</td></tr>
+<tr><td>Flagged single: D2f, seed 7 (Transformer, extended Word2Vec vocabulary)</td><td class="n">19.14M (19.17M)</td><td class="n">5.72M</td><td class="n">86.58</td><td class="n">79.38</td><td class="n">64.59</td><td class="n">23 / 31</td></tr>
+</table>
+<p>Strict single against Stage 1 on test: intent +4.84 (95% CI 3.63 to 5.95), slot F1 +15.78 (14.04 to 17.49). On Slot-Train-OOV slots the slot-F1 gain is +33.10 (28.09 to 37.60), against +12.79 for utterances without an unseen word. A difficulty-matched control (length and slot count) shrinks the OOV gap from 40.2 to 21.1. The flagged single is +0.37 slot F1 above the strict single on test but 0.2 lower on dev joint; we did not test that difference for significance. Intent accuracy, 86.4%, falls well short of the 95% target.</p>
+
+<h2>5. Error analysis (strict single, test)</h2>
+<p>967 of 2,974 utterances contain an error: 563 slot-only, 224 intent-only, 180 both. 63% of Slot-Train-OOV utterances contain an error, against 27% of utterances without an unseen word.</p>
+<ul>
+<li><i>&ldquo;i like senatra songs&rdquo;</i>: unseen misspelled artist tagged music_genre; the context word &ldquo;songs&rdquo; drives the type.</li>
+<li><i>&ldquo;play a retro song in my playlist&rdquo;</i>: the unseen word &ldquo;retro&rdquo; receives no tag.</li>
+<li><i>&ldquo;send a giggle my way&rdquo;</i>: predicted email_sendemail, not general_joke; the verb &ldquo;send&rdquo; outweighs the unseen word &ldquo;giggle&rdquo;.</li>
+</ul>
+
+<h2>6. What was rejected; verification</h2>
+<ul>
+<li><b>Rejected in the ladder:</b> 80-epoch training (84.55 against 84.92); mention-replacement augmentation (84.71); the 12 random configurations (none beat the base).</li>
+<li><b>Rejected in rung E:</b> MC-dropout inference (at most +0.06); a train-only mention table (+0.02 strict, +0.34 flagged); a two-member ensemble (+0.59 over the single). Under the 0.8-point one-seed tie margin of the protocol, the simpler system was kept in each case.</li>
+<li><b>Caveat:</b> rungs C, D and R were adopted on any improvement of the 3-seed mean. Under the 0.8 margin used in rung E, D and R would be ties; read the final systems with that in mind.</li>
+<li><b>Verification:</b> four independent code reviews found an MC intent-mix bug, a seed-spread leak into the test split, a lock-ordering problem and a cap-counting issue. All were fixed before the one-time test. The notebook retrains the final systems and reproduces their dev numbers within one point.</li>
+</ul>
+
+<h2>7. Limitations and future work</h2>
+<ul>
+<li><b>Authorship:</b> Stage 1 was developed with AI assistance. The group must replace it with its own independent Stage 1 before submission.</li>
+<li><b>Evidence:</b> dev-selected numbers are optimistic, and each final system has one training seed on test. Across dev seeds the strict family varies by &plusmn;0.17 intent and &plusmn;0.30 slot F1.</li>
+<li><b>Ceiling:</b> without a pretrained language model and under the 20M cap, the remaining errors are mostly unseen-word and ambiguous-intent cases.</li>
+<li><b>Data:</b> one BIO label (I-transport_type) occurs only in test, inherited from the hand-off. It is never a training target and has no dev effect. Data come from the verified CSV, not the official en-US.jsonl.</li>
+<li><b>Future work:</b> pointer-style span copying for unseen names; character-level span detection for misspellings; intent&ndash;slot consistency reranking.</li>
+</ul>
+
+</body>
+</html>

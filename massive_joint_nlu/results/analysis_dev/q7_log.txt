@@ -1,0 +1,232 @@
+﻿=== casing and characters ===
+train: utterances with uppercase 0 | non-ASCII 0 | with digits 0 = 0.0% | annot differs from utt in tokens: 0 by assertion
+dev: utterances with uppercase 0 | non-ASCII 0 | with digits 0 = 0.0% | annot differs from utt in tokens: 0 by assertion
+non-ASCII chars: []
+
+=== punctuation tokens ===
+train: non-lexical tokens 1314 = 1.62% of tokens | utterances with one 549 = 4.8% | inside gold slots 1216 | top [('.', 1299), ("'", 8), ('&', 5), ('<', 1), ('>', 1)]
+   tokens with apostrophe 952 (curly 0) | with hyphen 35
+dev: non-lexical tokens 212 = 1.50% of tokens | utterances with one 94 = 4.6% | inside gold slots 199 | top [('.', 208), ('&', 3), ("'", 1)]
+   tokens with apostrophe 171 (curly 0) | with hyphen 5
+dev utterances ending in punctuation: [('.', 44)]
+dev tokens with apostrophe, top: [("what's", 58), ("i'm", 10), ("today's", 9), ("it's", 9), ("don't", 6), ("i'd", 4), ("o'clock", 4), ("tomorrow's", 3), ("week's", 3), ("how's", 3), ("i've", 3), ("can't", 2), ("let's", 2), ("valentine's", 2), ("domino's", 2)]
+gold span contains '.': n 89 | exact hit 58.4% | boundary 29.2% | missed 3.4%
+gold span has no '.': n 1923 | exact hit 66.7% | boundary 10.7% | missed 14.9%
+dotted spans by type: {'time': 42, 'radio_name': 10, 'place_name': 8, 'currency_name': 6, 'media_type': 5, 'artist_name': 5, 'person': 3, 'relation': 2}
+forms \ba \. m\b vs \bam\b: train 1 vs 303 | dev 0 vs 42
+forms \bp \. m\b vs \bpm\b: train 266 vs 0 | dev 44 vs 0
+wake word 'olly' in train: 379 = 3.3%
+wake word 'olly' in dev: 70 = 3.4%
+dev with olly: S1 intent 94.29 F1 67.43 | without: intent 82.42 F1 66.03
+olly tokens inside a gold slot (train+dev): 0
+
+=== annotation shape ===
+train: spans 11344 (0.99/utt) | empty-value slots 0 | adjacent same-type spans 0 | utterances with no slot 3755 = 32.6%
+dev: spans 2012 (0.99/utt) | empty-value slots 0 | adjacent same-type spans 0 | utterances with no slot 646 = 31.8%
+train span lengths: {1: 61.8, 2: 25.1, 3: 5.6, 4: 1.6, 5: 3.3, 6: 1.7, 7: 0.4, 8: 0.3}
+dev span lengths: {1: 62.3, 2: 25.2, 3: 5.5, 4: 1.6, 5: 3.4, 6: 1.1, 7: 0.2, 8: 0.4}
+
+=== same value inside and outside slots ===
+train slot values (<=6 tokens): 3880 | seen as a slot at least twice: 1197 | with more than one type: 181 | both slot and plain-text occurrences: 608
+values with >=5 train occurrences: 713 | also outside a slot: 437 | with tagged share between 20% and 80%: 307
+
+checked closed-class time and date values:
+    value          top_type  tr_exact  tr_other_type  tr_outside  tr_partial  tagged_share  dv_exact  dv_top_type  dv_outside  dv_partial                        types
+    today              date       524              0          21           7         0.949        91           91           1           2                {'date': 524}
+ tomorrow              date       220              0           2           5         0.969        51           51           0           0                {'date': 220}
+     week              time         6              2          23         170         0.030         0            0          10          48       {'time': 4, 'date': 2}
+  morning         timeofday        88              0          10          10         0.815        23           22           1           5            {'timeofday': 88}
+this week              date        93              0           0           2         0.979        25           25           0           1                 {'date': 93}
+   friday              date        70              0           0          19         0.787        10           10           0           6                 {'date': 70}
+    month              date         4              0          11          52         0.060         0            0           0          10                  {'date': 4}
+  weekend              time        14              6           0          52         0.212         3            3           1           4       {'time': 8, 'date': 6}
+  tonight         timeofday        62              1           2           0         0.969        12           12           0           0 {'timeofday': 61, 'date': 1}
+   monday              date        44              0           1          14         0.746         6            6           0           5                 {'date': 44}
+     hour              time         2              0          17          39         0.034         0            0           1           8                  {'time': 2}
+next week              date        37              0           1           5         0.860        11           11           1           0                 {'date': 37}
+afternoon         timeofday        16              0           2          18         0.444         2            2           0           2            {'timeofday': 16}
+  evening         timeofday        20              0           6          10         0.556         6            6           0           3            {'timeofday': 20}
+  nine am              time        34              0           0           1         0.971         3            3           0           1                 {'time': 34}
+ eight am              time        35              0           0           0         1.000         5            5           0           0                 {'time': 35}
+   ten am              time        35              0           0           0         1.000         6            6           0           1                 {'time': 35}
+    night              time        15              4           7          11         0.455         1            1           2           3 {'time': 11, 'timeofday': 4}
+     noon         timeofday        26              1           0           7         0.788         4            4           0           2 {'timeofday': 25, 'time': 1}
+ seven am              time        29              0           0           2         0.935         1            1           0           0                 {'time': 29}
+yesterday              date        30              1           0           0         1.000         4            4           0           0 {'date': 29, 'song_name': 1}
+   six am              time        26              0           0           0         1.000         4            4           0           0                 {'time': 26}
+  five am              time        14              0           0           1         0.933         2            2           0           1                 {'time': 14}
+    daily general_frequency         7              0           4           0         0.636         3            3           0           1     {'general_frequency': 7}
+every day general_frequency        10              0           0           0         1.000         2            2           0           0    {'general_frequency': 10}
+ midnight              time         5              0           1           2         0.625         0            0           0           0                  {'time': 5}
+
+largest mixed values (minority count >= 5), date/time/place style first by count:
+      value           top_type  tr_exact  tr_other_type  tr_outside  tr_partial  tagged_share  dv_exact  dv_outside                                                                        types
+      to do          list_name        32              0          38           0         0.457         6           7                                                            {'list_name': 32}
+       home         place_name        26              7          31          14         0.366         6           2                   {'place_name': 19, 'house_place': 4, 'definition_word': 3}
+    meeting         event_name       279              0          26          42         0.804        48           8                                                          {'event_name': 279}
+      world         place_name        41              1          24           5         0.586         5           6                                          {'place_name': 40, 'news_topic': 1}
+      today               date       524              0          21           7         0.949        91           1                                                                {'date': 524}
+     repeat     player_setting        21              2          26           2         0.429         4           5                               {'player_setting': 19, 'general_frequency': 2}
+      house        house_place        23              1          15          14         0.442         4           1                                         {'house_place': 22, 'place_name': 1}
+   shopping          list_name        44              4          15          11         0.629         8           4                       {'list_name': 40, 'business_type': 3, 'event_name': 1}
+      start     player_setting        13              0         165           4         0.071         1          28                                                       {'player_setting': 13}
+         us         place_name        13              6          21          15         0.265         2           5                                        {'place_name': 7, 'currency_name': 6}
+temperature weather_descriptor        27              0          12           6         0.600         7           1                                                   {'weather_descriptor': 27}
+    country        music_genre        12              0          12           5         0.414         5           1                                                          {'music_genre': 12}
+        ten               time        12              1          26          78         0.103         5           4                                                {'time': 11, 'radio_name': 1}
+     google      business_name        11              1          64           7         0.134         3          15                                       {'business_name': 10, 'media_type': 1}
+      train     transport_type       242              2          11           9         0.924        38           0                    {'transport_type': 240, 'news_topic': 1, 'event_name': 1}
+    morning          timeofday        88              0          10          10         0.815        23           1                                                            {'timeofday': 88}
+    grocery          list_name        32              1          10           9         0.627         7           4                                        {'list_name': 31, 'business_type': 1}
+      email      personal_info        10              1         475           5         0.020         0          77                                        {'personal_info': 9, 'event_name': 1}
+      music         media_type        10              2         241          26         0.036         1          34                           {'media_type': 8, 'news_topic': 1, 'list_name': 1}
+        hot weather_descriptor        12              2          10           8         0.400         6           2                                 {'weather_descriptor': 10, 'coffee_type': 2}
+       five               time         9              0          37         122         0.054         4           8                                                                  {'time': 9}
+     friend           relation        15              1           9           2         0.577         5           2                                            {'relation': 14, 'event_name': 1}
+       room        house_place        24              0           8          56         0.273         3           1                                                          {'house_place': 24}
+        car     transport_type         8              3          15           5         0.286         1           1 {'transport_type': 5, 'joke_type': 1, 'event_name': 1, 'definition_word': 1}
+       skip     player_setting         8              0          11           0         0.421         0           3                                                        {'player_setting': 8}
+     vacuum        device_type        19              0           8          40         0.284         3           0                                                          {'device_type': 19}
+      night               time        15              4           7          11         0.455         1           2                                                 {'time': 11, 'timeofday': 4}
+     dollar      currency_name        34              0           7          27         0.500         6           2                                                        {'currency_name': 34}
+      shops      business_type        15              3           7           2         0.625         2           0                   {'business_type': 12, 'event_name': 2, 'business_name': 1}
+       shop      business_type         7              2          11          12         0.233         0           2                        {'business_type': 5, 'place_name': 1, 'list_name': 1}
+
+values with most type disagreement in train:
+       value          top_type  tr_exact  tr_other_type                                                                        types  dv_exact
+       trump            person        21              8                                              {'person': 13, 'news_topic': 8}         3
+        home        place_name        26              7                   {'place_name': 19, 'house_place': 4, 'definition_word': 3}         6
+     weekend              time        14              6                                                       {'time': 8, 'date': 6}         3
+          us        place_name        13              6                                        {'place_name': 7, 'currency_name': 6}         2
+    facebook        media_type        70              4                                       {'media_type': 66, 'business_name': 4}        18
+    shopping         list_name        44              4                       {'list_name': 40, 'business_type': 3, 'event_name': 1}         8
+       night              time        15              4                                                 {'time': 11, 'timeofday': 4}         1
+       shops     business_type        15              3                   {'business_type': 12, 'event_name': 2, 'business_name': 1}         2
+olive garden     business_name        10              3                                     {'business_name': 7, 'business_type': 3}         2
+      office        place_name         9              3                                          {'place_name': 6, 'house_place': 3}         1
+         car    transport_type         8              3 {'transport_type': 5, 'joke_type': 1, 'event_name': 1, 'definition_word': 1}         1
+      orange        color_type         8              3                                      {'color_type': 5, 'definition_word': 3}         0
+   r . & b .     playlist_name         5              2                                       {'playlist_name': 3, 'music_genre': 2}         2
+       train    transport_type       242              2                    {'transport_type': 240, 'news_topic': 1, 'event_name': 1}        38
+       music        media_type        10              2                           {'media_type': 8, 'news_topic': 1, 'list_name': 1}         1
+appointments        event_name        27              2                                           {'event_name': 25, 'list_name': 2}         4
+        uber  transport_agency        30              2           {'transport_agency': 28, 'definition_word': 1, 'business_name': 1}         9
+        kids          relation         6              2                            {'relation': 4, 'song_name': 1, 'music_genre': 1}         0
+  television       device_type         5              2                                     {'device_type': 3, 'definition_word': 2}         0
+    everyday general_frequency         9              2                                          {'general_frequency': 7, 'date': 2}         0
+
+=== dev gold spans by value history in train ===
+                                  value history    n  share_pct  exact_hit_pct  wrong_type_pct  boundary_pct  missed_pct
+                    seen as a slot of this type 1484       73.8           83.0             3.3           6.1         6.0
+                      value has Train-OOV token  225       11.2           12.0             4.9          18.7        56.4
+        string never seen in train, words known  166        8.3           22.9             1.8          44.6        16.9
+seen only as plain text or inside a longer slot   83        4.1           26.5             6.0          18.1        45.8
+            seen as a slot of another type only   39        1.9           28.2            41.0           5.1        15.4
+                           longer than 6 tokens   15        0.7           26.7             0.0          53.3         6.7
+
+=== Stage-1 false positives vs train evidence ===
+spurious spans 192 | exact (value,type) is a gold slot in train: 80 = 41.7% | at least 3 times: 56
+              type         value  n  train_as_slot
+        event_name       meeting  7            279
+        media_type         audio  5              5
+         meal_type        dinner  3             29
+        media_type       twitter  2             44
+         list_name       grocery  2             31
+              time          five  2              9
+        event_name   appointment  2             43
+        place_name         world  2             40
+weather_descriptor          rain  2             34
+    player_setting          skip  1              8
+        news_topic         blank  1              5
+        order_type       deliver  1              5
+    player_setting      continue  1              8
+weather_descriptor          snow  1             16
+          relation        friend  1             14
+        media_type         tweet  1            129
+              time eight p . m .  1              9
+              time          four  1              5
+              time           one  1              3
+         timeofday       morning  1             88
+          relation        mother  1             10
+        color_type          blue  1             28
+     currency_name        dollar  1             34
+         list_name      shopping  1             40
+         joke_type         funny  1             15
+missed spans: 289 | value history: {'value has Train-OOV token': 127, 'seen as a slot of this type': 89, 'seen only as plain text or inside a longer slot': 38, 'string never seen in train, words known': 28, 'seen as a slot of another type only': 6, 'longer than 6 tokens': 1}
+
+=== boundary convention ===
+k               fw   
+pred too long   False     25
+                True       3
+pred too short  False    173
+                True      27
+shifted         False      4
+difference tokens when only function words or dots: [('next', 6), ('the', 5), ('last', 4), ('this', 4), ('my', 2), ('.', 1), ('a', 1), ('by', 1), ('the last', 1), ('around the', 1), ('a .', 1), ('to', 1), ('i', 1), ('at', 1)]
+difference tokens otherwise: [('news', 5), ('monday', 4), ('city', 4), ('', 4), ('playlist', 4), ('us', 4), ('new', 3), ('dollar', 3), ('after', 2), ('daily', 2), ('c .', 2), ('z .', 2), ('day', 2), ('before', 2), ('every', 2), ('b . b . c . radio', 2), ('book', 2), ('are', 2), ('hanks', 2), ('hurts like', 1), ('disable', 1), ('a little', 1), ('sacramento', 1), ('post', 1), ('kenny', 1)]
+if only function-word/dot boundary errors were repaired: +30 TP -> F1 67.57
+train spans starting with a function word: 711 | (type, word, core) patterns annotated both ways: 39 | spans inside those patterns: 287
+[('timeofday', 'this + evening', 6, 3), ('time', 'in + ten minutes', 3, 4), ('house_place', 'my + room', 2, 4), ('date', 'the + twenty second', 2, 6), ('time', 'in + two hours', 2, 3), ('date', 'this + sunday', 2, 3), ('date', 'this + friday', 2, 6), ('date', 'this + saturday', 2, 3), ('date', 'the + month', 2, 3), ('time', 'in + an hour', 2, 2), ('date', 'this + week', 93, 1), ('place_name', 'the + city', 1, 2), ('house_place', 'this + room', 1, 5), ('time', 'an + hour', 4, 1), ('time', 'this + hour', 2, 1), ('place_name', 'my + city', 1, 2), ('date', 'the + fifteenth', 1, 4), ('date', 'the + twenty fifth', 1, 1), ('date', 'the + twenty sixth', 1, 2), ('house_place', 'the + room', 1, 10)]
+         type word  inside_span  outside_span  inside_share_pct
+         date this          198            23              89.6
+         date next           72            51              58.5
+    timeofday this           22            18              55.0
+business_name   at           20            19              51.3
+   place_name  the           18            96              15.8
+         date  the           15           101              12.9
+         time   in           12            23              34.3
+         time  the            8            60              11.8
+   news_topic  the            6            46              11.5
+         time this            5            11              31.2
+   place_name   my            5             9              35.7
+business_name  the            5            18              21.7
+     relation   my            5           126               3.8
+
+=== length ===
+train tokens: {0.05: 3, 0.25: 5, 0.5: 6, 0.75: 9, 0.95: 14, 0.99: 18, 1.0: 35} | mean 7.04 | >=20: 67 | >=30: 3
+dev tokens: {0.05: 2, 0.25: 5, 0.5: 6, 0.75: 9, 0.95: 13, 0.99: 17, 1.0: 27} | mean 6.97 | >=20: 11 | >=30: 0
+tokens    n  share_pct  train_share_pct  S1_intent  A1_intent  linear_intent  S1_slot_f1  gold_spans  errors_share_pct
+     1   25        1.2              1.1       64.0       52.0           48.0         0.0           3               2.6
+     2   79        3.9              3.8       69.6       74.7           73.4        76.6          25               6.9
+   3-4  344       16.9             17.8       80.8       83.1           85.5        61.9         175              18.9
+   5-8 1057       52.0             50.3       85.1       86.9           88.7        68.9         985              45.0
+  9-12  401       19.7             19.8       83.3       86.3           85.8        66.4         591              19.2
+ 13-20  118        5.8              6.7       78.8       80.5           81.4        57.9         223               7.2
+   21+    9        0.4              0.4       88.9       88.9           88.9        43.8          10               0.3
+
+=== rare intents and types ===
+               intent  train  dev  S1_recall  linear_recall
+        cooking_query      4    2       50.0           50.0
+    music_dislikeness     14    2       50.0           50.0
+   audio_volume_other     18    0        NaN            NaN
+      iot_hue_lighton     22    5       40.0          100.0
+        general_greet     25    2      100.0            0.0
+          iot_wemo_on     48    7       85.7          100.0
+       music_settings     51    8       87.5           87.5
+    audio_volume_down     52    8       62.5           87.5
+     datetime_convert     52    9       77.8           88.9
+         iot_wemo_off     52    5       80.0          100.0
+     email_addcontact     54    5      100.0          100.0
+recommendation_movies     70   12       75.0           75.0
+         general_joke     72   15      100.0          100.0
+      iot_hue_lightup     76   12      100.0           91.7
+total variation distance train vs dev intent mix: 0.064
+intents with train<100: 18 covering dev: 155 | their S1 acc: 84.52
+macro recall S1: 82.1 | linear: 84.41
+dev support <5 intents: {'music_dislikeness': 2, 'general_greet': 2, 'cooking_query': 2}
+rarest slot types (train, dev): [('music_album', 1, 0), ('game_type', 1, 1), ('sport_type', 5, 1), ('audiobook_author', 6, 1), ('transport_descriptor', 8, 0), ('alarm_type', 9, 2), ('drink_type', 9, 3), ('transport_name', 9, 2), ('movie_type', 10, 1), ('movie_name', 16, 2), ('cooking_type', 17, 2), ('ingredient', 20, 4), ('coffee_type', 22, 2), ('transport_agency', 31, 9)]
+types absent from dev: ['music_album', 'transport_descriptor']
+top 5 types' share of dev gold spans: 48.6 [('date', 339), ('place_name', 209), ('event_name', 160), ('time', 137), ('person', 132)]
+I- labels in train but never B-:  [] | single-token-only types (B- without I-): ['cooking_type', 'email_folder', 'game_type', 'transport_type']
+
+=== dev sampling noise ===
+    quantity  mean   se  ci_low  ci_high
+   S1 intent 82.84 0.83   81.16    84.41
+     S1 slot 66.08 1.10   63.95    68.25
+    S1 joint 74.46 0.73   73.07    75.88
+   A1 intent 84.89 0.79   83.28    86.43
+     A1 slot 72.37 1.03   70.32    74.37
+    A1 joint 78.63 0.70   77.28    79.98
+A1-S1 intent  2.05 0.53    1.03     3.10
+  A1-S1 slot  6.29 0.79    4.81     7.82
+ A1-S1 joint  4.17 0.49    3.25     5.14
+[mem end] wset 123 MB | peak wset 123 MB | private 132 MB | peak private 132 MB

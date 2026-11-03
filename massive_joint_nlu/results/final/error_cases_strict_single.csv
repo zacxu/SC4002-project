@@ -1,0 +1,968 @@
+id,group,utt,gold_intent,pred_intent,gold_slots,pred_slots,error
+8,No-Train-OOV,pink is all we need,iot_hue_lightchange,play_music,"[('color_type', 'pink')]","[('artist_name', 'pink')]",intent+slot
+14,NonSlot-Train-OOV,and the darkness has fallen,iot_hue_lighton,weather_query,[],[],intent
+27,No-Train-OOV,it's dirty here make some noise,iot_cleaning,play_music,[],[],intent
+31,No-Train-OOV,hoover the hallway,iot_cleaning,email_querycontact,"[('house_place', 'hallway')]",[],intent+slot
+71,Slot-Train-OOV,i like senatra songs,music_likeness,music_likeness,"[('artist_name', 'senatra')]","[('music_genre', 'senatra')]",slot
+100,No-Train-OOV,what's the week's forecast,weather_query,weather_query,"[('time', ""week's"")]","[('date', ""week's"")]",slot
+122,NonSlot-Train-OOV,send a giggle my way,general_joke,email_sendemail,[],[],intent
+170,No-Train-OOV,do they deliver home,takeaway_query,takeaway_query,"[('order_type', 'deliver')]",[],slot
+171,No-Train-OOV,olly do they deliver home,takeaway_query,takeaway_query,"[('order_type', 'deliver')]",[],slot
+182,No-Train-OOV,play my rock playlist,play_music,play_music,"[('music_genre', 'rock')]","[('playlist_name', 'rock playlist')]",slot
+220,No-Train-OOV,play music from my rock list,play_music,play_music,"[('playlist_name', 'rock list')]","[('music_genre', 'rock')]",slot
+250,No-Train-OOV,i feel like jazz right now how about you,play_music,music_likeness,"[('music_genre', 'jazz')]","[('music_genre', 'jazz')]",intent
+254,No-Train-OOV,olly play a good track from my favorite jazz player,play_music,play_music,"[('music_genre', 'jazz')]","[('music_genre', 'jazz player')]",slot
+281,No-Train-OOV,what is the exchange rate of us dollar to pound sterling,news_query,qa_currency,"[('news_topic', 'exchange rate of us dollar to pound sterling')]","[('currency_name', 'us dollar'), ('currency_name', 'pound sterling')]",intent+slot
+286,No-Train-OOV,light up the lights in the kitchen,iot_hue_lighton,iot_hue_lightup,"[('house_place', 'kitchen')]","[('house_place', 'kitchen')]",intent
+296,Slot-Train-OOV,play a nirvana playlist,play_music,play_music,"[('playlist_name', 'nirvana playlist')]","[('music_genre', 'nirvana')]",slot
+297,No-Train-OOV,shuffle songs by coldplay,play_music,music_settings,"[('player_setting', 'shuffle'), ('artist_name', 'coldplay')]","[('player_setting', 'shuffle'), ('artist_name', 'coldplay')]",intent
+310,No-Train-OOV,what day is new year's eve this year,datetime_query,calendar_query,"[('date', 'this year')]","[('event_name', ""new year's eve"")]",intent+slot
+319,No-Train-OOV,tell me the weather in barcelona in two days from now,weather_query,weather_query,"[('place_name', 'barcelona'), ('time', 'two days from now')]","[('place_name', 'barcelona')]",slot
+321,Slot-Train-OOV,disable my okug,iot_wemo_off,alarm_remove,"[('device_type', 'okug')]",[],intent+slot
+329,No-Train-OOV,seven years,play_music,qa_maths,"[('song_name', 'seven years')]",[],intent+slot
+385,NonSlot-Train-OOV,what's sensational in time of india,news_query,datetime_query,"[('media_type', 'time of india')]","[('place_name', 'india')]",intent+slot
+393,Slot-Train-OOV,play a retro song in my playlist,play_music,play_music,"[('music_genre', 'retro')]",[],slot
+426,No-Train-OOV,power up the plug socket one,iot_wemo_on,iot_wemo_off,"[('device_type', 'plug socket one')]","[('device_type', 'plug socket')]",intent+slot
+451,Slot-Train-OOV,get me the latest stock price for costco,news_query,qa_stock,"[('news_topic', 'stock price for costco')]","[('business_name', 'costco')]",intent+slot
+473,No-Train-OOV,play the weekend,play_music,play_radio,"[('song_name', 'weekend')]","[('time', 'weekend')]",intent+slot
+475,NonSlot-Train-OOV,what mistakes do you usually make,general_quirky,cooking_recipe,[],[],intent
+506,Slot-Train-OOV,open songs from major lazer,play_music,play_music,"[('artist_name', 'major lazer')]","[('song_name', 'major lazer')]",slot
+512,NonSlot-Train-OOV,by get marks,weather_query,play_music,[],[],intent
+525,No-Train-OOV,prepare the order as soon as possible,takeaway_query,takeaway_order,[],[],intent
+540,NonSlot-Train-OOV,play the song sung by katy perry,play_music,play_music,"[('artist_name', 'katy perry')]","[('song_name', 'sung'), ('artist_name', 'katy perry')]",slot
+555,Slot-Train-OOV,play mf doom anything,play_music,play_music,"[('artist_name', 'mf doom')]",[],slot
+625,No-Train-OOV,please play the radio gaga song,play_music,play_radio,"[('artist_name', 'gaga')]",[],intent+slot
+668,No-Train-OOV,i want two burgers and one coke order it fast,takeaway_order,takeaway_order,"[('food_type', 'burgers'), ('food_type', 'coke')]","[('food_type', 'burgers')]",slot
+680,Slot-Train-OOV,keep me informed about bitcoin price,news_query,qa_stock,"[('news_topic', 'bitcoin price')]","[('business_name', 'bitcoin')]",intent+slot
+726,NonSlot-Train-OOV,summarize week's weather details,weather_query,weather_query,"[('time', ""week's"")]",[],slot
+765,No-Train-OOV,could you please give me up to date news headlines from my newest provider,news_query,news_query,"[('media_type', 'newest provider')]",[],slot
+779,No-Train-OOV,i want to hear snow by red hot chili peppers,play_music,play_music,"[('song_name', 'snow'), ('artist_name', 'red hot chili peppers')]","[('artist_name', 'red hot'), ('song_name', 'chili peppers')]",slot
+781,Slot-Train-OOV,play bilando,play_music,play_music,"[('song_name', 'bilando')]",[],slot
+782,Slot-Train-OOV,play let me love you by ariana grande,play_music,play_music,"[('song_name', 'let me love you'), ('artist_name', 'ariana grande')]","[('song_name', 'love you'), ('artist_name', 'ariana grande')]",slot
+783,No-Train-OOV,play love songs,play_music,play_music,"[('song_name', 'love songs')]",[],slot
+790,Slot-Train-OOV,mild or heavy weather,weather_query,weather_query,"[('weather_descriptor', 'mild'), ('weather_descriptor', 'heavy')]",[],slot
+837,Slot-Train-OOV,what are the b. b. c. poll predictions for the upcoming us elections,news_query,news_query,"[('media_type', 'b . b . c . poll'), ('news_topic', 'upcoming us elections')]",[],slot
+862,No-Train-OOV,alarm settings,alarm_query,alarm_set,[],[],intent
+864,No-Train-OOV,robot vacuum the living room now,iot_cleaning,iot_cleaning,"[('house_place', 'living room')]","[('device_type', 'robot vacuum'), ('house_place', 'living room')]",slot
+891,No-Train-OOV,play some christian music,play_music,play_music,"[('music_descriptor', 'christian')]","[('music_genre', 'christian')]",slot
+936,No-Train-OOV,open up and play music from my jogging playlist,play_music,play_music,"[('playlist_name', 'jogging playlist')]",[],slot
+964,NonSlot-Train-OOV,i want dimmer lights,iot_hue_lightdim,iot_hue_lightdim,[],"[('house_place', 'dimmer')]",slot
+967,No-Train-OOV,can i get take-out from pf changs,takeaway_query,takeaway_query,"[('order_type', 'take-out'), ('business_name', 'pf changs')]","[('business_name', 'pf changs')]",slot
+1007,Slot-Train-OOV,play creed from my rock playlist,play_music,play_music,"[('artist_name', 'creed'), ('music_genre', 'rock')]","[('playlist_name', 'rock playlist')]",slot
+1042,No-Train-OOV,open the folder app please,takeaway_order,play_music,[],[],intent
+1047,NonSlot-Train-OOV,i need a good cry can you play me sad rock songs,play_music,play_music,"[('music_descriptor', 'sad'), ('music_genre', 'rock')]","[('music_genre', 'rock')]",slot
+1071,No-Train-OOV,brighten the lights in the hallway,iot_hue_lightup,iot_hue_lightup,"[('house_place', 'hallway')]",[],slot
+1072,No-Train-OOV,please turn up the screen brightness all the way,iot_hue_lightup,iot_hue_lightup,"[('device_type', 'screen'), ('change_amount', 'all the way')]",[],slot
+1076,No-Train-OOV,do not play rock metal,music_dislikeness,play_music,"[('music_genre', 'rock metal')]","[('music_genre', 'rock metal')]",intent
+1084,NonSlot-Train-OOV,user friendly,news_query,qa_definition,[],[],intent
+1093,No-Train-OOV,go to the washington post website,news_query,transport_query,"[('media_type', 'washington post')]","[('place_name', 'washington post website')]",intent+slot
+1120,Slot-Train-OOV,is there any special in politic,news_query,recommendation_events,"[('news_topic', 'politic')]",[],intent+slot
+1123,No-Train-OOV,next play justin bieber's sorry,play_music,play_music,"[('artist_name', ""justin bieber's""), ('song_name', 'sorry')]","[('artist_name', ""justin bieber's"")]",slot
+1124,Slot-Train-OOV,get sia's cheap thrills ready to play next,play_music,play_game,"[('artist_name', ""sia's""), ('song_name', 'cheap thrills')]",[],intent+slot
+1160,No-Train-OOV,how cold will it get each night this week,weather_query,weather_query,"[('weather_descriptor', 'cold'), ('general_frequency', 'each night'), ('date', 'this week')]","[('weather_descriptor', 'cold'), ('date', 'this week')]",slot
+1176,No-Train-OOV,who sings the song about a long black train,music_query,music_query,"[('song_name', 'long black train')]",[],slot
+1180,Slot-Train-OOV,find today's wapo articles about trump,news_query,news_query,"[('date', ""today's""), ('media_type', 'wapo'), ('news_topic', 'trump')]","[('date', ""today's""), ('news_topic', 'trump')]",slot
+1191,Slot-Train-OOV,if it's sunrise in stockholm what time is it in okinawa,datetime_convert,datetime_convert,"[('time', 'sunrise'), ('place_name', 'stockholm'), ('place_name', 'okinawa')]","[('weather_descriptor', 'sunrise'), ('place_name', 'stockholm'), ('place_name', 'okinawa')]",slot
+1238,No-Train-OOV,pandora,play_music,play_radio,[],"[('app_name', 'pandora')]",intent+slot
+1249,No-Train-OOV,how is the weather likely to be this week,weather_query,weather_query,"[('date', 'this week')]","[('weather_descriptor', 'likely'), ('date', 'this week')]",slot
+1294,Slot-Train-OOV,fast me the news of academy awards,news_query,news_query,"[('news_topic', 'academy awards')]",[],slot
+1300,No-Train-OOV,fast,audio_volume_up,recommendation_movies,[],[],intent
+1301,No-Train-OOV,tell me about the new foreign policy of trump,news_query,news_query,"[('news_topic', 'foreign policy of trump')]","[('person', 'trump')]",slot
+1336,Slot-Train-OOV,i like the songs of yeshudas please play it,music_likeness,music_likeness,"[('artist_name', 'yeshudas')]",[],slot
+1371,Slot-Train-OOV,what do we have on new york time's front page,news_query,transport_query,"[('media_type', ""new york time's"")]","[('place_name', 'new york')]",intent+slot
+1377,No-Train-OOV,please turn off the light of my son's room,iot_hue_lightoff,iot_hue_lightoff,"[('house_place', ""my son's room"")]","[('house_place', ""son's room"")]",slot
+1400,NonSlot-Train-OOV,i mostly pay attention,weather_query,calendar_query,[],[],intent
+1401,NonSlot-Train-OOV,i occasionally pay attention,weather_query,calendar_query,[],[],intent
+1423,No-Train-OOV,tell me about trump,news_query,general_quirky,"[('news_topic', 'trump')]","[('person', 'trump')]",intent+slot
+1425,No-Train-OOV,let me know when you hear about france,news_query,news_query,"[('news_topic', 'france')]","[('place_name', 'france')]",slot
+1440,No-Train-OOV,play the latest rock songs having rating of four or above,play_music,play_music,"[('music_genre', 'rock'), ('music_descriptor', 'rating of four or above')]","[('music_genre', 'rock')]",slot
+1449,No-Train-OOV,when is easter in the year two thousand and eighteen,datetime_query,datetime_query,"[('event_name', 'easter'), ('date', 'two thousand and eighteen')]","[('event_name', 'easter'), ('date', 'year two thousand and eighteen')]",slot
+1454,No-Train-OOV,set the alarm off,alarm_remove,alarm_set,[],[],intent
+1509,No-Train-OOV,do not make any noise until morning alarm,audio_volume_mute,alarm_remove,"[('timeofday', 'morning')]","[('timeofday', 'morning')]",intent
+1510,No-Train-OOV,quiet mode on until i am home from work,audio_volume_mute,audio_volume_mute,[],"[('time', 'until i am')]",slot
+1516,Slot-Train-OOV,order a pizza with sausage from domino's,takeaway_order,takeaway_order,"[('food_type', 'pizza'), ('ingredient', 'sausage'), ('business_name', ""domino's"")]","[('food_type', 'pizza'), ('business_name', ""domino's"")]",slot
+1542,NonSlot-Train-OOV,the sun is shinning bright will we have this weather for the rest of the day,weather_query,weather_query,"[('time', 'rest of the day')]","[('place_name', 'rest')]",slot
+1546,No-Train-OOV,play my summer jams playlist,play_music,play_music,"[('playlist_name', 'summer jams playlist')]","[('artist_name', 'summer jams')]",slot
+1579,No-Train-OOV,find me a joke related to baseball,general_joke,general_joke,"[('joke_type', 'baseball')]",[],slot
+1593,No-Train-OOV,set notification from world news,news_query,news_query,"[('media_type', 'world news')]","[('place_name', 'world')]",slot
+1636,Slot-Train-OOV,show me the latest news from the guardian,news_query,news_query,"[('media_type', 'guardian')]","[('news_topic', 'guardian')]",slot
+1666,No-Train-OOV,so clean news in past six hours is what,news_query,news_query,"[('media_type', 'so clean'), ('time', 'past six hours')]","[('time', 'past six hours')]",slot
+1671,No-Train-OOV,play only all music released between the year one thousand nine hundred and ninety and two thousand,play_music,play_music,"[('date', 'one thousand nine hundred and ninety'), ('date', 'two thousand')]","[('date', 'year one thousand nine hundred and ninety'), ('date', 'two thousand')]",slot
+1710,No-Train-OOV,change the music mode to rock,music_settings,play_music,"[('player_setting', 'change'), ('music_genre', 'rock')]",[],intent+slot
+1744,No-Train-OOV,what do you think,music_likeness,general_quirky,[],[],intent
+1750,No-Train-OOV,turn off all lights,iot_hue_lightoff,iot_hue_lightoff,"[('device_type', 'all lights')]",[],slot
+1760,Slot-Train-OOV,latest news on terrorism,news_query,news_query,"[('news_topic', 'terrorism')]","[('media_type', 'terrorism')]",slot
+1794,NonSlot-Train-OOV,will trump visit russia anytime soon,news_query,qa_factoid,"[('person', 'trump'), ('place_name', 'russia')]","[('person', 'trump'), ('place_name', 'russia')]",intent
+1803,Slot-Train-OOV,which teams are playing today in the premier league,news_query,recommendation_events,"[('date', 'today'), ('news_topic', 'premier league')]","[('date', 'today')]",intent+slot
+1807,No-Train-OOV,song title,music_query,music_likeness,[],[],intent
+1808,No-Train-OOV,title,music_query,email_querycontact,[],[],intent
+1812,Slot-Train-OOV,please make me coffee without sweetener,iot_coffee,iot_coffee,"[('coffee_type', 'without sweetener')]",[],slot
+1830,No-Train-OOV,i want to eat some spicy thing,takeaway_order,cooking_recipe,"[('food_type', 'spicy')]",[],intent+slot
+1832,No-Train-OOV,play coldplay album,play_music,play_music,"[('playlist_name', 'coldplay')]","[('artist_name', 'coldplay')]",slot
+1833,Slot-Train-OOV,can you loop the playlist themes,play_music,play_music,"[('playlist_name', 'themes')]",[],slot
+1874,No-Train-OOV,add song to running list,music_likeness,lists_createoradd,"[('playlist_name', 'running')]",[],intent+slot
+1904,No-Train-OOV,get me match highlights,news_query,social_query,"[('news_topic', 'match highlights')]",[],intent+slot
+1962,Slot-Train-OOV,hi google play me playlist wacky in my gaana application,play_music,play_music,"[('playlist_name', 'wacky')]",[],slot
+1994,No-Train-OOV,can you open my itunes,play_music,general_quirky,[],[],intent
+2007,No-Train-OOV,please play thirteen,play_music,play_music,"[('song_name', 'thirteen')]",[],slot
+2056,No-Train-OOV,i never want to hear that song again,music_dislikeness,play_music,[],[],intent
+2113,Slot-Train-OOV,tell me all the current events in my hometown,recommendation_events,recommendation_events,"[('place_name', 'hometown')]",[],slot
+2128,NonSlot-Train-OOV,color of light should be dimmed bright,iot_hue_lightdim,iot_hue_lightchange,[],[],intent
+2146,Slot-Train-OOV,what's the date of the winter solstice two years from now,datetime_query,datetime_query,"[('event_name', 'winter solstice'), ('time', 'two years')]",[],slot
+2164,No-Train-OOV,when can we eat,takeaway_query,recommendation_locations,[],[],intent
+2165,No-Train-OOV,is dinner ready yet,takeaway_query,calendar_query,"[('meal_type', 'dinner')]","[('meal_type', 'dinner')]",intent
+2174,No-Train-OOV,who is the singer of hotel california,music_query,qa_factoid,"[('song_name', 'hotel california')]",[],intent+slot
+2178,No-Train-OOV,what is the current weather condition in my place,weather_query,weather_query,"[('place_name', 'my place')]",[],slot
+2198,No-Train-OOV,what day of the week was december four one thousand nine hundred and eighty two,datetime_query,datetime_query,"[('date', 'december four one thousand nine hundred and eighty two')]",[],slot
+2203,No-Train-OOV,b. b. c. world headlines,news_query,news_query,"[('media_type', 'b . b . c . world')]","[('media_type', 'b . b . c .'), ('place_name', 'world')]",slot
+2207,NonSlot-Train-OOV,silently adjust,audio_volume_mute,audio_volume_other,[],[],intent
+2225,Slot-Train-OOV,play ella fitzgerals get happy,play_music,play_music,"[('artist_name', 'ella fitzgerals'), ('song_name', 'get happy')]","[('artist_name', 'ella fitzgerals')]",slot
+2255,Slot-Train-OOV,can i order take out from licari's,takeaway_order,takeaway_order,"[('order_type', 'take out'), ('business_name', ""licari's"")]","[('business_name', ""licari's"")]",slot
+2264,No-Train-OOV,light color for study room,iot_hue_lightup,iot_hue_lightchange,"[('house_place', 'study room')]","[('house_place', 'study room')]",intent
+2283,No-Train-OOV,i need to change my house lights color to blue,iot_hue_lightchange,iot_hue_lightchange,"[('house_place', 'house'), ('color_type', 'blue')]","[('color_type', 'blue')]",slot
+2296,No-Train-OOV,keep me up to date with today's n. b. a. scores,news_query,news_query,"[('date', ""today's""), ('news_topic', 'n . b . a . scores')]","[('date', ""today's""), ('media_type', 'n . b . a .')]",slot
+2350,No-Train-OOV,put dark colors instead of light ones in the house,iot_hue_lightchange,iot_hue_lightchange,"[('color_type', 'dark'), ('house_place', 'house')]","[('house_place', 'house')]",slot
+2351,No-Train-OOV,olly put dark colors instead of light ones in the house,iot_hue_lightchange,iot_hue_lightchange,"[('color_type', 'dark'), ('house_place', 'house')]","[('house_place', 'house')]",slot
+2365,No-Train-OOV,what song is on the radio,music_query,play_radio,[],[],intent
+2438,No-Train-OOV,send tech news,news_query,news_query,"[('news_topic', 'tech')]","[('person', 'tech')]",slot
+2441,Slot-Train-OOV,turn off the shed light,iot_hue_lightoff,iot_hue_lightoff,"[('house_place', 'shed')]","[('device_type', 'shed light')]",slot
+2447,No-Train-OOV,i feel like having soup for lunch order from wangs kitchen restaurant a chicken manchow soup,takeaway_order,takeaway_order,"[('food_type', 'soup'), ('meal_type', 'lunch'), ('business_name', 'wangs kitchen'), ('business_type', 'restaurant')]","[('business_name', 'wangs kitchen'), ('business_type', 'restaurant'), ('business_name', 'chicken manchow soup')]",slot
+2451,No-Train-OOV,seven hundred,datetime_convert,qa_maths,[],[],intent
+2472,No-Train-OOV,is the time currently correct for where i am located,datetime_query,datetime_convert,[],[],intent
+2542,No-Train-OOV,make the bedroom lights red and the hall lights normal color please,iot_hue_lightchange,iot_hue_lightchange,"[('house_place', 'bedroom'), ('color_type', 'red'), ('house_place', 'hall'), ('color_type', 'normal')]","[('house_place', 'bedroom'), ('color_type', 'red'), ('house_place', 'hall')]",slot
+2578,No-Train-OOV,turn off the porch light,iot_hue_lightoff,iot_hue_lightoff,"[('house_place', 'porch')]","[('device_type', 'porch light')]",slot
+2610,Slot-Train-OOV,i've canceled the order placed at mcd did it go through,takeaway_query,takeaway_order,"[('business_name', 'mcd')]",[],intent+slot
+2639,No-Train-OOV,show me news about the environment,news_query,news_query,"[('news_topic', 'environment')]",[],slot
+2647,No-Train-OOV,could you please create a pandora channel for adele,music_settings,play_radio,"[('artist_name', 'adele')]","[('app_name', 'pandora'), ('app_name', 'adele')]",intent+slot
+2690,No-Train-OOV,turn off the socket,iot_wemo_off,iot_wemo_off,"[('device_type', 'socket')]",[],slot
+2704,No-Train-OOV,let's hear some indie rock okay,play_music,play_music,"[('music_genre', 'indie rock')]","[('artist_name', 'indie rock')]",slot
+2708,NonSlot-Train-OOV,olly i feel like dancing play me some rock north roll,play_music,play_music,"[('music_genre', 'rock north roll')]",[],slot
+2709,No-Train-OOV,olly i need to hear some sad songs today,play_music,play_music,"[('music_genre', 'sad songs'), ('date', 'today')]","[('date', 'today')]",slot
+2775,NonSlot-Train-OOV,discontinue use of lights,iot_hue_lightoff,iot_hue_lightdim,[],[],intent
+2777,No-Train-OOV,should i bring an umbrella today,weather_query,weather_query,"[('date', 'today')]","[('weather_descriptor', 'umbrella'), ('date', 'today')]",slot
+2780,No-Train-OOV,are there any upcoming concerts by,music_likeness,recommendation_events,"[('event_name', 'concerts')]","[('event_name', 'concerts')]",intent
+2781,No-Train-OOV,please play some jazz music,play_music,play_music,"[('music_genre', 'jazz music')]","[('music_genre', 'jazz')]",slot
+2840,Slot-Train-OOV,the second of next mont lands on what day,datetime_query,datetime_query,"[('event_name', 'second of next mont lands')]","[('date', 'second of next mont')]",slot
+2850,No-Train-OOV,is there takeaway at papa john's,takeaway_query,takeaway_query,"[('business_name', ""papa john's"")]","[('order_type', 'takeaway'), ('business_name', ""papa john's"")]",slot
+2870,No-Train-OOV,olly tell me my alarms,alarm_query,general_greet,[],[],intent
+2887,No-Train-OOV,please show me any articles related to weather in the morning news,news_query,news_query,"[('news_topic', 'weather'), ('media_type', 'morning news')]","[('media_type', 'morning news')]",slot
+2908,No-Train-OOV,tell me if taco bell delivers,takeaway_query,takeaway_query,"[('business_name', 'taco bell')]","[('business_name', 'taco bell'), ('order_type', 'delivers')]",slot
+2921,No-Train-OOV,what are the news stories on the c. n. n. website,news_query,news_query,"[('media_type', 'c . n . n .')]","[('media_type', 'c . n . n . website')]",slot
+3020,Slot-Train-OOV,does louie's do take out,takeaway_query,takeaway_query,"[('business_name', ""louie's"")]","[('business_name', ""louie's""), ('order_type', 'take out')]",slot
+3021,Slot-Train-OOV,take out available louies,takeaway_query,general_quirky,"[('business_name', 'louies')]",[],intent+slot
+3029,No-Train-OOV,i hate this song,music_dislikeness,music_likeness,[],[],intent
+3080,No-Train-OOV,it's time for junk food,takeaway_order,general_quirky,"[('food_type', 'junk food')]",[],intent+slot
+3099,No-Train-OOV,show me some current events,news_query,recommendation_events,[],[],intent
+3103,No-Train-OOV,don't play this song again,music_dislikeness,play_music,[],[],intent
+3117,Slot-Train-OOV,play something from keane's hopes and fears album,play_music,play_music,"[('artist_name', ""keane's"")]","[('artist_name', ""keane's hopes"")]",slot
+3184,No-Train-OOV,stop start the juice,iot_wemo_on,audio_volume_mute,[],"[('device_type', 'juice')]",intent+slot
+3193,No-Train-OOV,rate five,music_likeness,qa_currency,[],[],intent
+3204,No-Train-OOV,please note i like jazz and hate disco,music_likeness,music_likeness,"[('music_genre', 'jazz'), ('place_name', 'disco')]","[('music_genre', 'jazz')]",slot
+3214,Slot-Train-OOV,what is the current state of the investigation into trump's ties with russia,news_query,qa_factoid,"[('news_topic', ""investigation into trump's ties""), ('place_name', 'russia')]","[('place_name', 'russia')]",intent+slot
+3253,No-Train-OOV,should we expect rain this afternoon,weather_query,weather_query,"[('timeofday', 'afternoon')]","[('weather_descriptor', 'rain'), ('timeofday', 'this afternoon')]",slot
+3295,No-Train-OOV,does the nearby dominoes have delivery,takeaway_query,takeaway_query,"[('business_name', 'dominoes')]","[('business_name', 'dominoes'), ('order_type', 'delivery')]",slot
+3306,No-Train-OOV,what is the forecast for the week,weather_query,weather_query,"[('date', 'week')]","[('time', 'week')]",slot
+3326,No-Train-OOV,turn the plug off,iot_wemo_off,iot_wemo_off,[],"[('device_type', 'plug')]",slot
+3337,No-Train-OOV,report weather for thirty three thousand seven hundred and seventy four,weather_query,weather_query,[],"[('time', 'thirty three thousand seven hundred and seventy four')]",slot
+3349,No-Train-OOV,where is the car,audio_volume_up,calendar_query,[],[],intent
+3364,NonSlot-Train-OOV,knock knock,general_joke,news_query,[],[],intent
+3386,No-Train-OOV,turn down the lights to medium,iot_hue_lightoff,iot_hue_lightdim,[],"[('change_amount', 'to medium')]",intent+slot
+3387,No-Train-OOV,make it red in here,iot_hue_lightchange,iot_hue_lightchange,"[('color_type', 'red')]","[('color_type', 'red'), ('house_place', 'here')]",slot
+3407,NonSlot-Train-OOV,are there any forecasts of rain or snow this week,weather_query,weather_query,"[('weather_descriptor', 'rain or snow'), ('date', 'this week')]","[('weather_descriptor', 'rain'), ('weather_descriptor', 'snow'), ('date', 'this week')]",slot
+3426,No-Train-OOV,what degree is it outside,weather_query,weather_query,"[('weather_descriptor', 'degree')]",[],slot
+3441,No-Train-OOV,is the twenty second on a wednesday,datetime_query,datetime_query,"[('date', 'twenty second')]","[('date', 'twenty second'), ('date', 'wednesday')]",slot
+3486,No-Train-OOV,speak softer please,audio_volume_down,audio_volume_up,[],[],intent
+3539,Slot-Train-OOV,please play shake it off by taylor swiftm,play_music,play_music,"[('song_name', 'shake it off'), ('artist_name', 'taylor swiftm')]","[('artist_name', 'taylor swiftm')]",slot
+3542,No-Train-OOV,change the lights in the living room to green and red,iot_hue_lightchange,iot_hue_lightchange,"[('house_place', 'living room'), ('color_type', 'green and red')]","[('house_place', 'living room'), ('color_type', 'green'), ('color_type', 'red')]",slot
+3543,Slot-Train-OOV,i want the light to be a little more red ish,iot_hue_lightchange,iot_hue_lightchange,"[('color_type', 'red ish')]","[('color_type', 'red')]",slot
+3600,No-Train-OOV,remind me after ten minutes,calendar_set,calendar_set,"[('time', 'after ten minutes')]","[('time', 'ten minutes')]",slot
+3623,No-Train-OOV,what is going on in the world today,news_query,news_query,"[('date', 'today')]","[('place_name', 'world'), ('date', 'today')]",slot
+3669,NonSlot-Train-OOV,tell me the time in someplace,datetime_convert,datetime_query,[],"[('place_name', 'someplace')]",intent+slot
+3700,No-Train-OOV,lights at percent,iot_hue_lightchange,iot_hue_lightchange,[],"[('change_amount', 'at percent')]",slot
+3723,Slot-Train-OOV,i would like to hear aretha franklin's call me after this song,play_music,play_music,"[('artist_name', ""aretha franklin's"")]",[],slot
+3750,Slot-Train-OOV,olly if any new news comes out about the flood can you let me know right away,news_query,news_query,"[('news_topic', 'flood')]",[],slot
+3779,No-Train-OOV,play youtube playlist blank,play_music,play_music,"[('media_type', 'youtube')]",[],slot
+3780,No-Train-OOV,play my midnight love playlist,play_music,play_music,"[('playlist_name', 'midnight love')]","[('playlist_name', 'midnight love playlist')]",slot
+3822,No-Train-OOV,find me info on cars,news_query,general_quirky,"[('news_topic', 'cars')]",[],intent+slot
+3870,No-Train-OOV,what is the wake up time for my alarm i have set for the flight this weekend,alarm_query,alarm_query,"[('alarm_type', 'wake up'), ('date', 'this weekend')]","[('event_name', 'flight'), ('date', 'this weekend')]",slot
+3894,No-Train-OOV,read that back,play_audiobook,play_podcasts,[],[],intent
+3907,No-Train-OOV,play me last year's hits,play_music,play_music,[],"[('music_descriptor', ""last year's"")]",slot
+3912,No-Train-OOV,i'd like to listen to hear a music of dance and country,play_music,play_music,"[('music_genre', 'dance and country')]","[('song_name', 'dance and country')]",slot
+3980,No-Train-OOV,please play shape of you by said sheeran,play_music,play_music,"[('song_name', 'shape of you'), ('artist_name', 'said sheeran')]","[('artist_name', 'said sheeran')]",slot
+3982,No-Train-OOV,please select the first song in my itunes library,play_music,play_music,"[('playlist_name', 'itunes library')]",[],slot
+3993,No-Train-OOV,can you make the lights go out,iot_hue_lightoff,iot_hue_lightchange,[],[],intent
+3995,No-Train-OOV,olly what day of the week is halloween,datetime_query,datetime_query,"[('date', 'day of the week'), ('event_name', 'halloween')]","[('event_name', 'halloween')]",slot
+4001,No-Train-OOV,what happened on the walking dead,news_query,news_query,"[('news_topic', 'walking dead')]",[],slot
+4013,NonSlot-Train-OOV,let's suck out the dust,iot_cleaning,play_game,[],[],intent
+4024,No-Train-OOV,please power down,iot_wemo_off,audio_volume_down,[],[],intent
+4081,No-Train-OOV,i want to set an alarm when i'm driving home tomorrow to remember to stop at the store and get food,alarm_set,alarm_set,"[('date', 'tomorrow'), ('event_name', 'stop at the store and get food')]","[('date', 'tomorrow')]",slot
+4088,No-Train-OOV,turn off overhead light,iot_hue_lightoff,iot_hue_lightoff,[],"[('device_type', 'overhead light')]",slot
+4119,NonSlot-Train-OOV,i want to know everything that breaks about the dam breaking in california,news_query,qa_factoid,"[('place_name', 'california')]","[('place_name', 'california')]",intent
+4125,Slot-Train-OOV,where can i get a shot of tequila and some to go mexican food,takeaway_query,recommendation_locations,"[('food_type', 'tequila'), ('food_type', 'mexican')]","[('food_type', 'mexican')]",intent+slot
+4130,No-Train-OOV,is my reminder alarm set for dance class,alarm_query,alarm_set,"[('event_name', 'dance class')]","[('event_name', 'dance class')]",intent
+4137,Slot-Train-OOV,could you please confirm if paradise does takeaway,takeaway_query,takeaway_query,"[('business_name', 'paradise'), ('order_type', 'takeaway')]","[('order_type', 'takeaway')]",slot
+4154,No-Train-OOV,turn off my wifi,iot_wemo_off,iot_wemo_off,[],"[('device_type', 'wifi')]",slot
+4177,No-Train-OOV,give me the latest political headlines across the world,news_query,news_query,"[('news_topic', 'political'), ('place_name', 'world')]","[('news_topic', 'political')]",slot
+4183,No-Train-OOV,current time new york,datetime_query,datetime_query,"[('time_zone', 'time'), ('place_name', 'new york')]","[('place_name', 'new york')]",slot
+4201,No-Train-OOV,power on wemo,iot_wemo_on,iot_wemo_off,"[('device_type', 'wemo')]","[('device_type', 'wemo')]",intent
+4205,Slot-Train-OOV,i want to hear limelight by rush,play_music,play_music,"[('song_name', 'limelight'), ('artist_name', 'rush')]","[('artist_name', 'rush')]",slot
+4212,No-Train-OOV,am i going to be able to mow the grass this evening,weather_query,weather_query,"[('weather_descriptor', 'mow the grass'), ('timeofday', 'this evening')]",[],slot
+4217,No-Train-OOV,i would like to hear some good funny jokes,general_joke,general_joke,"[('joke_type', 'good funny')]","[('joke_type', 'funny')]",slot
+4236,No-Train-OOV,is it afternoon yet,datetime_query,weather_query,[],"[('timeofday', 'afternoon')]",intent+slot
+4248,No-Train-OOV,house lights blue,iot_hue_lightchange,iot_hue_lightchange,"[('color_type', 'blue')]","[('house_place', 'house'), ('color_type', 'blue')]",slot
+4254,No-Train-OOV,what time is it on the east coast of the united states,datetime_query,datetime_query,"[('time_zone', 'east coast'), ('place_name', 'united states')]","[('time_zone', 'east coast'), ('place_name', 'the united states')]",slot
+4268,No-Train-OOV,move to the next song in the list,music_settings,play_music,"[('player_setting', 'move')]",[],intent+slot
+4283,No-Train-OOV,increase the brightness in this room,iot_hue_lightup,iot_hue_lightup,"[('house_place', 'this room')]","[('house_place', 'room')]",slot
+4299,Slot-Train-OOV,make the light in here redder,iot_hue_lightchange,iot_hue_lightchange,"[('color_type', 'redder')]",[],slot
+4309,No-Train-OOV,in how many hours will it be midnight in london england,datetime_query,datetime_convert,"[('time', 'midnight'), ('place_name', 'london england')]","[('time', 'midnight'), ('place_name', 'london england')]",intent
+4312,No-Train-OOV,will the weather be less than ten degree in paris,weather_query,weather_query,"[('weather_descriptor', 'less than ten degree'), ('place_name', 'paris')]","[('place_name', 'paris')]",slot
+4347,NonSlot-Train-OOV,cease operating lights,iot_hue_lightoff,iot_hue_lightup,[],[],intent
+4361,No-Train-OOV,give me some good sounds,play_music,general_joke,[],[],intent
+4402,NonSlot-Train-OOV,will i need to carry around a brolly today,weather_query,weather_query,"[('date', 'today')]","[('weather_descriptor', 'brolly'), ('date', 'today')]",slot
+4449,No-Train-OOV,is it going to rain at one p. m. today,weather_query,weather_query,"[('weather_descriptor', 'going to rain'), ('time', 'one p . m .'), ('date', 'today')]","[('weather_descriptor', 'rain'), ('time', 'one p . m .'), ('date', 'today')]",slot
+4461,NonSlot-Train-OOV,is fongs dine in only,takeaway_query,email_querycontact,"[('business_name', 'fongs')]","[('business_name', 'fongs dine')]",intent+slot
+4463,No-Train-OOV,how many saturdays are in march,datetime_query,datetime_query,"[('date', 'saturdays are in march')]","[('date', 'march')]",slot
+4482,No-Train-OOV,will i need to shovel my driveway this morning,weather_query,weather_query,"[('weather_descriptor', 'driveway'), ('timeofday', 'morning')]","[('timeofday', 'morning')]",slot
+4492,No-Train-OOV,what are the latest crime statistics for me area,news_query,news_query,"[('news_topic', 'crime statistics')]",[],slot
+4496,Slot-Train-OOV,what did vogue post today,news_query,social_query,"[('media_type', 'vogue'), ('date', 'today')]","[('date', 'today')]",intent+slot
+4544,Slot-Train-OOV,order a twelve piece honey mustard wing combo with seasonimg altnon the fries and a sprite as the drink,takeaway_order,takeaway_order,"[('food_type', 'honey mustard wing combo'), ('drink_type', 'sprite')]","[('food_type', 'honey mustard wing combo')]",slot
+4589,No-Train-OOV,set a notification for sports game,calendar_set,calendar_set,"[('event_name', 'sports game')]",[],slot
+4606,No-Train-OOV,find information on today's stocks,news_query,qa_stock,"[('date', ""today's"")]","[('date', ""today's"")]",intent
+4614,No-Train-OOV,will the temperature be higher than forty tomorrow,weather_query,weather_query,"[('weather_descriptor', 'temperature'), ('weather_descriptor', 'higher than forty'), ('date', 'tomorrow')]","[('weather_descriptor', 'temperature'), ('date', 'tomorrow')]",slot
+4618,No-Train-OOV,enable smart socket,iot_wemo_on,iot_wemo_off,"[('device_type', 'smart socket')]","[('device_type', 'smart socket')]",intent
+4672,No-Train-OOV,this is the best band ever,music_likeness,general_quirky,[],[],intent
+4680,Slot-Train-OOV,should i wear sandals or shoes with socks,weather_query,weather_query,"[('weather_descriptor', 'sandals or shoes with socks')]",[],slot
+4710,No-Train-OOV,what day is halloween this year,datetime_query,datetime_query,"[('event_name', 'halloween'), ('date', 'this year')]","[('event_name', 'halloween')]",slot
+4767,No-Train-OOV,is there any new information regarding the mexican american border wall,news_query,news_query,"[('news_topic', 'the mexican american border wall')]",[],slot
+4780,No-Train-OOV,what day does my birthday fall on this year june twenty seventh,datetime_query,datetime_query,"[('event_name', 'birthday'), ('date', 'june twenty seventh')]","[('event_name', 'birthday'), ('date', 'this year june twenty seventh')]",slot
+4833,No-Train-OOV,clear data,audio_volume_mute,calendar_remove,[],[],intent
+4874,NonSlot-Train-OOV,enter song suggestion,music_likeness,music_query,[],[],intent
+4881,No-Train-OOV,search to find current local time and time zone,datetime_query,datetime_convert,[],[],intent
+4887,Slot-Train-OOV,save my opinion on adele's song,music_likeness,music_likeness,"[('artist_name', ""adele's"")]",[],slot
+4890,Slot-Train-OOV,set notifications on the current weather disasters in america,calendar_set,weather_query,"[('event_name', 'weather disasters'), ('place_name', 'america')]","[('place_name', 'america')]",intent+slot
+4896,No-Train-OOV,lower the overhead lights,iot_hue_lightdim,iot_hue_lightdim,"[('house_place', 'overhead')]","[('device_type', 'overhead')]",slot
+4928,No-Train-OOV,play my soundtrack,play_music,play_music,"[('playlist_name', 'my soundtrack')]",[],slot
+4955,No-Train-OOV,would you love to see,iot_hue_lightchange,general_quirky,[],[],intent
+4960,No-Train-OOV,music third day,play_music,play_music,"[('artist_name', 'third day')]",[],slot
+4968,No-Train-OOV,who won the presidential election this year,qa_factoid,general_quirky,"[('news_topic', 'the presidential election'), ('date', 'this year')]",[],intent+slot
+4973,No-Train-OOV,olly play i can't feel my face,play_music,play_music,"[('song_name', ""i can't feel my face"")]",[],slot
+4998,No-Train-OOV,add this song for the next playing song,play_music,music_likeness,[],[],intent
+5016,Slot-Train-OOV,tell me the news about share market ups and downs,news_query,qa_stock,"[('news_topic', 'share market ups and downs')]","[('news_topic', 'share market ups and downs')]",intent
+5027,No-Train-OOV,when is the next friday the thirteenth,datetime_query,datetime_query,"[('date', 'friday the thirteenth')]","[('date', 'friday'), ('date', 'thirteenth')]",slot
+5062,No-Train-OOV,please play me songs from the eighties,play_music,play_music,"[('music_genre', 'eighties')]",[],slot
+5128,No-Train-OOV,confirm a travel ticket to german,transport_ticket,general_quirky,"[('place_name', 'german')]","[('place_name', 'german')]",intent
+5134,No-Train-OOV,find songs from my big band playlist,play_music,play_music,"[('playlist_name', 'big band playlist')]",[],slot
+5152,No-Train-OOV,please skip two songs,music_settings,music_settings,"[('player_setting', 'skip')]",[],slot
+5158,Slot-Train-OOV,please play the latest song from the album abbas,play_music,play_music,"[('music_album', 'abbas')]",[],slot
+5196,No-Train-OOV,i want to know about the brexit,news_query,news_query,"[('news_topic', 'the brexit')]","[('news_topic', 'brexit')]",slot
+5250,No-Train-OOV,title of song,music_query,music_likeness,[],[],intent
+5278,Slot-Train-OOV,please play only music of pop mix,play_music,play_music,"[('music_genre', 'pop mix')]","[('music_genre', 'pop')]",slot
+5279,No-Train-OOV,please play only sad song in music player,play_music,play_music,"[('music_descriptor', 'sad'), ('device_type', 'music player')]","[('device_type', 'music player')]",slot
+5307,No-Train-OOV,is it twentieth march today,datetime_query,datetime_query,"[('date', 'twentieth march today')]","[('date', 'twentieth'), ('date', 'today')]",slot
+5318,Slot-Train-OOV,please play only are rehman's songs,play_music,play_music,"[('artist_name', ""rehman's"")]",[],slot
+5332,No-Train-OOV,time between us and canada,datetime_convert,qa_currency,"[('place_name', 'us'), ('place_name', 'canada')]","[('place_name', 'us'), ('place_name', 'canada')]",intent
+5341,No-Train-OOV,please alert me to the time,datetime_query,calendar_set,[],[],intent
+5370,No-Train-OOV,what's the latest trump controversy,news_query,news_query,"[('news_topic', 'trump controversy')]","[('news_topic', 'trump')]",slot
+5378,No-Train-OOV,s.,play_music,news_query,[],[],intent
+5439,No-Train-OOV,do i need umbrella for night,weather_query,weather_query,"[('weather_descriptor', 'umbrella'), ('timeofday', 'night')]","[('weather_descriptor', 'umbrella'), ('time', 'night')]",slot
+5468,Slot-Train-OOV,have i need to take a sun glass,weather_query,general_quirky,"[('weather_descriptor', 'sun glass')]",[],intent+slot
+5501,No-Train-OOV,please put all the lights,iot_hue_lightup,iot_hue_lightoff,"[('device_type', 'all the lights')]",[],intent+slot
+5523,Slot-Train-OOV,convert eight thirty from gtm four to g. m. t. five thirty,datetime_convert,datetime_convert,"[('time', 'eight thirty'), ('time_zone', 'gtm four'), ('time_zone', 'g . m . t . five thirty')]",[],slot
+5524,No-Train-OOV,weather at the moment,weather_query,weather_query,"[('time', 'the moment')]",[],slot
+5529,Slot-Train-OOV,what time should i go for a hike,weather_query,recommendation_events,"[('event_name', 'hike')]",[],intent+slot
+5531,No-Train-OOV,the song in background is cool,music_likeness,music_dislikeness,[],[],intent
+5554,No-Train-OOV,is this song ed sheeran,music_query,music_query,"[('artist_name', 'ed sheeran')]",[],slot
+5557,Slot-Train-OOV,i want reggae,play_music,iot_coffee,"[('music_genre', 'reggae')]",[],intent+slot
+5573,NonSlot-Train-OOV,please set the brightness of lightness appropriately in kitchen,iot_hue_lightup,iot_hue_lightchange,"[('house_place', 'kitchen')]","[('color_type', 'appropriately'), ('house_place', 'kitchen')]",intent+slot
+5577,Slot-Train-OOV,i will require full cover jacket if it is too stormy in evening,weather_query,weather_query,"[('weather_descriptor', 'full cover jacket'), ('weather_descriptor', 'too stormy'), ('timeofday', 'evening')]","[('weather_descriptor', 'stormy'), ('timeofday', 'evening')]",slot
+5578,Slot-Train-OOV,i will need warm socks in winter in morning,weather_query,weather_query,"[('weather_descriptor', 'warm socks'), ('weather_descriptor', 'winter'), ('timeofday', 'morning')]","[('weather_descriptor', 'warm socks'), ('timeofday', 'morning')]",slot
+5593,Slot-Train-OOV,play giants by banks and steelz,play_music,play_music,"[('song_name', 'giants'), ('artist_name', 'banks and steelz')]","[('song_name', 'giants'), ('artist_name', 'banks'), ('artist_name', 'steelz')]",slot
+5600,No-Train-OOV,check the dish price and all,takeaway_query,qa_stock,"[('food_type', 'dish')]",[],intent+slot
+5614,No-Train-OOV,what's on the radio right now,music_query,play_radio,[],[],intent
+5619,No-Train-OOV,play previous song,play_music,play_music,"[('music_descriptor', 'previous'), ('song_name', 'song')]",[],slot
+5658,No-Train-OOV,play for me the music by the beatles,play_music,play_music,"[('artist_name', 'the beatles')]","[('artist_name', 'beatles')]",slot
+5683,No-Train-OOV,play my playlist party songs,play_music,play_music,"[('playlist_name', 'party songs')]",[],slot
+5697,No-Train-OOV,begin vacuuming,iot_cleaning,iot_cleaning,"[('device_type', 'vacuuming')]",[],slot
+5722,No-Train-OOV,display the seven day forecast for this week,weather_query,weather_query,"[('weather_descriptor', 'the seven day forecast'), ('date', 'this week')]","[('time', 'seven day'), ('date', 'this week')]",slot
+5732,Slot-Train-OOV,shall i change my car tires to snow tires soon,weather_query,weather_query,"[('weather_descriptor', 'snow tires')]",[],slot
+5757,No-Train-OOV,a quarter to two,datetime_query,qa_maths,"[('time', 'a quarter to two')]",[],intent+slot
+5758,No-Train-OOV,how's the weather in the capital city,weather_query,weather_query,"[('place_name', 'the capital city')]",[],slot
+5774,Slot-Train-OOV,current time in cpt,datetime_query,datetime_query,"[('place_name', 'cpt')]",[],slot
+5797,No-Train-OOV,should i wear raincoat before getting out,weather_query,weather_query,"[('weather_descriptor', 'raincoat')]","[('weather_descriptor', 'raincoat before getting out')]",slot
+5812,NonSlot-Train-OOV,set the default audio setting,audio_volume_other,play_audiobook,[],[],intent
+5813,No-Train-OOV,play silent song,play_music,play_music,"[('song_name', 'silent')]",[],slot
+5820,Slot-Train-OOV,comfort my ears with arijit singh,play_music,general_quirky,"[('song_name', 'comfort my ears'), ('artist_name', 'arijit singh')]","[('person', 'arijit singh')]",intent+slot
+5871,No-Train-OOV,hows mysore climate today,weather_query,weather_query,"[('weather_descriptor', 'mysore climate'), ('date', 'today')]","[('date', 'today')]",slot
+5911,NonSlot-Train-OOV,replay the musics,music_settings,play_music,"[('player_setting', 'replay')]",[],intent+slot
+5912,NonSlot-Train-OOV,cut the songs in this musics,music_settings,music_likeness,[],[],intent
+5919,No-Train-OOV,what is the latest update on the new york bridge proposal,news_query,news_query,"[('news_topic', 'new york bridge proposal')]","[('media_type', 'new york bridge proposal')]",slot
+5948,No-Train-OOV,play some good song from my play list,play_music,play_music,"[('music_descriptor', 'good song')]",[],slot
+5952,No-Train-OOV,say a good joke for me right now,general_joke,general_joke,"[('joke_type', 'good')]",[],slot
+5953,NonSlot-Train-OOV,is the city cheaper or costlier to live,weather_query,qa_factoid,"[('place_name', 'city')]",[],intent+slot
+5955,NonSlot-Train-OOV,how safe is the city regarding law and order,weather_query,takeaway_query,[],[],intent
+5974,Slot-Train-OOV,did i set an alarm to have tablets in the noon,alarm_query,alarm_query,"[('event_name', 'to have tablets'), ('timeofday', 'noon')]","[('timeofday', 'noon')]",slot
+5985,Slot-Train-OOV,show me the latest news from the un,news_query,news_query,"[('media_type', 'un')]",[],slot
+5988,No-Train-OOV,adjust the lights to a lower setting please,iot_hue_lightdim,iot_hue_lightchange,[],[],intent
+6013,No-Train-OOV,who is this on the radio,music_query,play_radio,[],[],intent
+6023,Slot-Train-OOV,will it be a sticky night,weather_query,weather_query,"[('weather_descriptor', 'sticky'), ('timeofday', 'night')]","[('weather_descriptor', 'sticky'), ('time', 'night')]",slot
+6024,No-Train-OOV,should i take a sweater or a coat to work today,weather_query,weather_query,"[('weather_descriptor', 'sweater'), ('weather_descriptor', 'coat'), ('date', 'today')]","[('date', 'today')]",slot
+6055,No-Train-OOV,did i leave the light on in the garage,iot_hue_lightoff,iot_hue_lighton,"[('house_place', 'garage')]","[('house_place', 'garage')]",intent
+6069,Slot-Train-OOV,are storms likely today,weather_query,general_quirky,"[('weather_descriptor', 'storms'), ('date', 'today')]","[('date', 'today')]",intent+slot
+6072,No-Train-OOV,how many minutes do i need to wait to pick up my food from china on the go,takeaway_query,takeaway_query,"[('business_name', 'china on the go')]","[('business_name', 'china')]",slot
+6073,No-Train-OOV,turn off porch light,iot_hue_lightoff,iot_hue_lightoff,"[('house_place', 'porch')]","[('device_type', 'porch light')]",slot
+6093,Slot-Train-OOV,should i open the sun roof,weather_query,weather_query,"[('weather_descriptor', 'open the sun roof')]","[('weather_descriptor', 'sun roof')]",slot
+6112,No-Train-OOV,hey order two wings with french fries from the chinese food store,takeaway_order,takeaway_order,"[('food_type', 'wings with french fries'), ('business_name', 'chinese food store')]","[('food_type', 'wings'), ('business_name', 'french fries')]",slot
+6127,Slot-Train-OOV,do you recommend an umbrellas,weather_query,qa_definition,"[('weather_descriptor', 'umbrellas')]","[('definition_word', 'umbrellas')]",intent+slot
+6159,No-Train-OOV,clean the floor,iot_cleaning,iot_cleaning,"[('house_place', 'floor')]","[('place_name', 'floor')]",slot
+6172,No-Train-OOV,are sunglasses a good choice for today,weather_query,recommendation_movies,"[('weather_descriptor', 'sunglasses'), ('date', 'today')]","[('date', 'today')]",intent+slot
+6214,Slot-Train-OOV,when is my friend's birthday coming up,general_quirky,calendar_query,"[('relation', ""friend's""), ('event_name', 'birthday')]","[('relation', ""friend's""), ('event_name', 'birthday')]",intent
+6241,No-Train-OOV,i helped a poor needy today olly,general_quirky,iot_coffee,"[('date', 'today')]","[('date', 'today')]",intent
+6248,No-Train-OOV,how old are you,general_quirky,general_greet,[],[],intent
+6282,No-Train-OOV,lets have a chat,general_quirky,general_quirky,[],"[('event_name', 'chat')]",slot
+6295,No-Train-OOV,i hate how long the traffic jams get,general_quirky,transport_traffic,"[('time', 'long')]",[],intent+slot
+6301,Slot-Train-OOV,what's shakin bacon,general_quirky,qa_factoid,"[('food_type', 'shakin bacon')]",[],intent+slot
+6319,No-Train-OOV,do you think i should go to the theater today,general_quirky,weather_query,"[('place_name', 'theater'), ('date', 'today')]","[('date', 'today')]",intent+slot
+6322,NonSlot-Train-OOV,please tell me the score of the game,general_quirky,calendar_query,[],[],intent
+6331,No-Train-OOV,i bought pre season baseball tickets,general_quirky,general_quirky,"[('event_name', 'pre season baseball')]",[],slot
+6366,No-Train-OOV,tell me some best tourist places to visit in america,recommendation_locations,recommendation_locations,"[('place_name', 'best tourist places'), ('place_name', 'america')]","[('place_name', 'america')]",slot
+6370,No-Train-OOV,what's my upcoming week look like,calendar_query,calendar_query,"[('date', 'upcoming week')]",[],slot
+6372,Slot-Train-OOV,plant based news,news_query,news_query,"[('news_topic', 'plant based')]",[],slot
+6382,No-Train-OOV,hey what has been happening interesting in sports lately,general_quirky,news_query,[],"[('news_topic', 'sports')]",intent+slot
+6402,NonSlot-Train-OOV,give me some health tips,general_quirky,news_query,[],[],intent
+6405,No-Train-OOV,what sound does a dog make,general_quirky,general_quirky,[],"[('definition_word', 'dog')]",slot
+6426,No-Train-OOV,technology,general_quirky,news_query,[],[],intent
+6431,No-Train-OOV,today i had a meeting with george,general_quirky,general_quirky,"[('date', 'today'), ('event_name', 'meeting'), ('person', 'george')]","[('event_name', 'meeting'), ('person', 'george')]",slot
+6433,No-Train-OOV,please know that today i had a meeting with george,general_quirky,calendar_query,"[('event_name', 'meeting'), ('person', 'george')]","[('date', 'today'), ('event_name', 'meeting'), ('person', 'george')]",intent+slot
+6439,No-Train-OOV,have you heard any good music lately,general_quirky,music_likeness,[],[],intent
+6448,No-Train-OOV,trump,general_quirky,news_query,[],"[('person', 'trump')]",intent+slot
+6457,No-Train-OOV,are you smart,general_quirky,qa_definition,[],[],intent
+6473,No-Train-OOV,the weather was bad today,general_quirky,weather_query,"[('date', 'today')]","[('weather_descriptor', 'bad'), ('date', 'today')]",intent+slot
+6477,No-Train-OOV,baseball scores,general_quirky,news_query,[],"[('news_topic', 'baseball')]",intent+slot
+6539,No-Train-OOV,mark today as the start of my diet,calendar_set,calendar_set,"[('date', 'today'), ('event_name', 'the start of my diet')]","[('date', 'today'), ('relation', 'diet')]",slot
+6542,No-Train-OOV,is soft cheese better than hard,cooking_recipe,qa_factoid,"[('food_type', 'soft cheese')]",[],intent+slot
+6550,No-Train-OOV,i got promoted today it feels so good,general_quirky,general_quirky,"[('date', 'today')]",[],slot
+6557,No-Train-OOV,play videos,general_quirky,play_music,[],[],intent
+6562,No-Train-OOV,math,general_quirky,qa_maths,[],[],intent
+6568,NonSlot-Train-OOV,what happens to me if you become sentient,general_quirky,news_query,[],[],intent
+6575,NonSlot-Train-OOV,plants,general_quirky,play_podcasts,[],[],intent
+6593,No-Train-OOV,start a gossip,general_quirky,news_query,[],[],intent
+6596,No-Train-OOV,when i came back from this place,general_quirky,transport_query,"[('place_name', 'this place')]",[],intent+slot
+6600,No-Train-OOV,health,general_quirky,play_radio,[],[],intent
+6621,No-Train-OOV,latest movies in theaters,general_quirky,recommendation_movies,[],[],intent
+6646,NonSlot-Train-OOV,what is the top searches in google today,general_quirky,news_query,"[('date', 'today')]","[('place_name', 'google'), ('date', 'today')]",intent+slot
+6652,NonSlot-Train-OOV,sticking to diet,general_quirky,takeaway_order,[],[],intent
+6663,No-Train-OOV,vacation spots,general_quirky,play_podcasts,[],[],intent
+6682,No-Train-OOV,elections in up,news_query,news_query,[],"[('news_topic', 'elections')]",slot
+6683,No-Train-OOV,economic affairs,news_query,general_quirky,[],[],intent
+6701,NonSlot-Train-OOV,general health tips,general_quirky,news_query,[],[],intent
+6720,Slot-Train-OOV,what do you know about fringe in edinburgh next year,general_quirky,qa_factoid,"[('event_name', 'fringe'), ('place_name', 'edinburgh'), ('date', 'next year')]","[('event_name', 'fringe'), ('place_name', 'edinburgh'), ('date', 'next year')]",intent
+6732,Slot-Train-OOV,add meeting reminder for sunday with my parents in law,calendar_set,calendar_set,"[('event_name', 'meeting'), ('date', 'sunday'), ('relation', 'parents in law')]","[('event_name', 'meeting'), ('date', 'sunday'), ('place_name', 'law')]",slot
+6746,No-Train-OOV,set first week of june as holiday in my calendar,calendar_set,calendar_set,"[('time', 'first week of june'), ('event_name', 'holiday')]","[('date', 'first week of june'), ('event_name', 'holiday')]",slot
+6764,No-Train-OOV,remind me to wash the windows,calendar_set,calendar_set,"[('event_name', 'wash the windows')]",[],slot
+6789,Slot-Train-OOV,set meeting with joanna on saturday four p. m.,calendar_set,calendar_set,"[('person', 'joanna'), ('date', 'saturday'), ('time', 'four p . m .')]","[('event_name', 'meeting'), ('person', 'joanna'), ('date', 'saturday'), ('time', 'four p . m .')]",slot
+6801,No-Train-OOV,show me my meetings this friday,calendar_query,calendar_query,"[('date', 'this friday')]","[('event_name', 'meetings'), ('date', 'friday')]",slot
+6806,No-Train-OOV,show me my calendar event this friday afternoon,calendar_query,calendar_query,"[('date', 'this friday'), ('timeofday', 'afternoon')]","[('date', 'friday'), ('timeofday', 'afternoon')]",slot
+6878,No-Train-OOV,schedule a meeting with the accounting department on two thirty p. m. on friday,calendar_set,calendar_set,"[('event_name', 'meeting'), ('business_name', 'accounting department'), ('time', 'two thirty p . m .'), ('date', 'friday')]","[('event_name', 'meeting'), ('relation', 'accounting department'), ('time', 'two thirty p . m .'), ('date', 'friday')]",slot
+6891,No-Train-OOV,are there morning shows available,calendar_query,general_quirky,"[('timeofday', 'morning'), ('event_name', 'shows')]",[],intent+slot
+6892,No-Train-OOV,can you give me the movie schedule,calendar_query,calendar_set,"[('event_name', 'movie')]",[],intent+slot
+6902,No-Train-OOV,set a reminder up next month to get my oil changed,calendar_set,calendar_set,"[('date', 'next month'), ('event_name', 'oil changed')]","[('date', 'next month')]",slot
+6909,No-Train-OOV,what is happening after one and before three p. m.,calendar_query,calendar_query,"[('time', 'after one'), ('time', 'before three p . m .')]",[],slot
+6936,No-Train-OOV,remind me to take my medicine at nine am,calendar_set,calendar_set,"[('event_name', 'medicine'), ('time', 'nine am')]","[('event_name', 'take my medicine'), ('time', 'nine am')]",slot
+6937,No-Train-OOV,set reminder for noon to get lunch with boss,calendar_set,calendar_set,"[('timeofday', 'noon'), ('event_name', 'lunch with boss')]","[('timeofday', 'noon'), ('meal_type', 'lunch'), ('relation', 'boss')]",slot
+6958,No-Train-OOV,make sure there is no events on my calendar,calendar_remove,calendar_query,[],[],intent
+6959,NonSlot-Train-OOV,remind me about my meeting an hour before it begins,calendar_set,calendar_set,"[('event_name', 'meeting'), ('time', 'an hour')]","[('event_name', 'meeting'), ('time', 'hour before it begins')]",slot
+6962,No-Train-OOV,can i know what i have to do the next saturday at six p. m.,calendar_set,calendar_query,"[('date', 'saturday'), ('time', 'six p . m .')]","[('date', 'saturday'), ('time', 'six p . m .')]",intent
+6967,NonSlot-Train-OOV,can you check the facts on this issue,calendar_query,play_podcasts,[],[],intent
+6974,No-Train-OOV,i have a function at washington tomorrow remind it,calendar_set,calendar_set,"[('event_name', 'function'), ('place_name', 'washington'), ('date', 'tomorrow')]","[('place_name', 'washington'), ('date', 'tomorrow')]",slot
+6980,No-Train-OOV,give me to do list,calendar_query,lists_query,[],[],intent
+7026,No-Train-OOV,what events are going in my town this week,recommendation_events,recommendation_events,"[('place_name', 'town'), ('date', 'this week')]","[('date', 'this week')]",slot
+7057,No-Train-OOV,schedule a lunch meeting with brent on wednesday at noon,calendar_set,calendar_set,"[('event_name', 'lunch meeting'), ('person', 'brent'), ('date', 'wednesday'), ('timeofday', 'noon')]","[('event_name', 'lunch meeting'), ('date', 'wednesday'), ('timeofday', 'noon')]",slot
+7061,Slot-Train-OOV,give me a reminder twenty four hours before my friday meeting with edg,calendar_set,calendar_set,"[('time', 'twenty four hours before'), ('date', 'friday'), ('event_name', 'meeting'), ('person', 'edg')]","[('time', 'twenty four hours'), ('date', 'friday'), ('event_name', 'meeting'), ('person', 'edg')]",slot
+7073,NonSlot-Train-OOV,search my calendar for my next event and notify me before it occurs,calendar_set,calendar_set,"[('time', 'before')]",[],slot
+7100,No-Train-OOV,remind me the day before my car is due,calendar_set,calendar_set,"[('date', 'day before'), ('event_name', 'car')]","[('event_name', 'car')]",slot
+7113,No-Train-OOV,will there any events downtown this weekend,calendar_query,recommendation_events,"[('place_name', 'downtown'), ('date', 'this weekend')]","[('place_name', 'downtown'), ('date', 'this weekend')]",intent
+7140,No-Train-OOV,set a reminder to notify me one hour before lunch meeting,calendar_set,calendar_set,"[('event_name', 'lunch meeting')]","[('time', 'one hour'), ('event_name', 'lunch meeting')]",slot
+7151,Slot-Train-OOV,for every odd numbered sunday set a reminder for,calendar_set,calendar_set,"[('general_frequency', 'odd numbered sunday')]","[('general_frequency', 'numbered sunday')]",slot
+7168,No-Train-OOV,can you give me the details of upcoming annual function on twenty sixth march,general_quirky,calendar_query,"[('general_frequency', 'annual'), ('event_name', 'function'), ('date', 'twenty sixth march')]","[('event_name', 'annual function'), ('date', 'twenty sixth march')]",intent+slot
+7181,No-Train-OOV,wake me at six am thursday so i have time for the meeting,calendar_set,alarm_set,"[('time', 'six am'), ('date', 'thursday'), ('event_name', 'meeting')]","[('time', 'six am'), ('date', 'thursday'), ('event_name', 'meeting')]",intent
+7185,No-Train-OOV,when is my next appointment with doctor smith,calendar_query,calendar_query,"[('event_name', 'appointment'), ('person', 'doctor smith')]","[('event_name', 'appointment'), ('relation', 'doctor smith')]",slot
+7196,No-Train-OOV,remind me the meeting with allen on fifteenth march,calendar_set,calendar_set,"[('event_name', 'meeting'), ('person', 'allen'), ('time', 'fifteenth march')]","[('event_name', 'meeting'), ('person', 'allen'), ('date', 'fifteenth march')]",slot
+7199,No-Train-OOV,set a notification for three two and one hours before next week's english final,calendar_set,calendar_set,"[('date', ""next week's""), ('event_name', 'english final')]","[('event_name', 'english final')]",slot
+7224,No-Train-OOV,where is the venue in which the marriage of tom is going to take place,calendar_query,calendar_query,"[('event_name', 'marriage')]","[('event_name', 'marriage'), ('person', 'tom')]",slot
+7257,No-Train-OOV,please remind me to call mom in half an hour,calendar_set,calendar_set,"[('event_name', 'call'), ('relation', 'mom'), ('time', 'in half an hour')]","[('relation', 'mom'), ('time', 'in half an hour')]",slot
+7258,No-Train-OOV,remind me to send email to boss after one hour,calendar_set,calendar_set,"[('relation', 'boss')]","[('person', 'boss'), ('time', 'after one hour')]",slot
+7278,Slot-Train-OOV,remind me of rita's birthday twenty four hours in advance,calendar_set,calendar_set,"[('person', ""rita's""), ('event_name', 'birthday'), ('time', 'twenty four hours in advance')]","[('person', ""rita's""), ('event_name', 'birthday'), ('date', 'twenty'), ('time', 'four hours')]",slot
+7287,No-Train-OOV,remind me about my anniversary in one day advance,calendar_set,calendar_set,"[('event_name', 'anniversary'), ('date', 'in one day advance')]","[('event_name', 'anniversary')]",slot
+7292,No-Train-OOV,i am unavailable from four to six in the evening tomorrow mark my calendar,calendar_set,calendar_set,"[('time', 'four'), ('time', 'six'), ('timeofday', 'evening'), ('date', 'tomorrow')]","[('time', 'four to six'), ('timeofday', 'evening'), ('date', 'tomorrow')]",slot
+7293,No-Train-OOV,schedule a one hour appointment for saturday,calendar_set,calendar_set,"[('time', 'one hour'), ('date', 'saturday')]","[('time', 'one hour'), ('event_name', 'appointment'), ('date', 'saturday')]",slot
+7295,No-Train-OOV,please clear my calendar,calendar_remove,calendar_remove,"[('time', 'clear')]",[],slot
+7353,No-Train-OOV,just let me know next weeks weather in california,email_query,weather_query,"[('time', 'next weeks'), ('place_name', 'california')]","[('date', 'next weeks'), ('place_name', 'california')]",intent+slot
+7355,Slot-Train-OOV,remind me to check the stew at six o'clock,calendar_set,calendar_set,"[('event_name', 'check the stew'), ('time', 'six')]","[('time', ""six o'clock"")]",slot
+7380,No-Train-OOV,please show today meeting with clients,calendar_query,calendar_query,"[('date', 'today'), ('relation', 'clients')]","[('date', 'today'), ('event_name', 'meeting'), ('relation', 'clients')]",slot
+7463,No-Train-OOV,inform my group that the new meeting date is tomorrow,calendar_set,calendar_query,"[('event_name', 'meeting'), ('date', 'tomorrow')]","[('event_name', 'meeting'), ('date', 'tomorrow')]",intent
+7477,Slot-Train-OOV,remind me on fifth march of every year to arrange wedding anniversary presents,calendar_set,calendar_set,"[('date', 'fifth march'), ('general_frequency', 'every year'), ('event_name', 'wedding anniversary presents')]","[('date', 'fifth march'), ('general_frequency', 'every year'), ('event_name', 'wedding anniversary')]",slot
+7502,No-Train-OOV,what is on the agenda for the four p. m. meeting with joe,calendar_query,calendar_query,"[('time', 'four p . m .'), ('person', 'joe')]","[('time', 'four p . m .'), ('event_name', 'meeting'), ('person', 'joe')]",slot
+7524,Slot-Train-OOV,how much mehta willing to invest in my company in meeting which held today at five hundred and twenty p. m.,calendar_query,calendar_set,"[('person', 'mehta'), ('event_name', 'meeting'), ('date', 'today'), ('time', 'five hundred and twenty p . m .')]","[('event_name', 'meeting'), ('date', 'today'), ('time', 'five hundred and twenty p . m .')]",intent+slot
+7528,No-Train-OOV,thirteenth june is a day of election result please set it,calendar_set,news_query,"[('date', 'thirteenth june'), ('event_name', 'election result')]","[('date', 'thirteenth june')]",intent+slot
+7531,No-Train-OOV,please add my pay days,calendar_set,calendar_set,"[('event_name', 'pay days')]",[],slot
+7549,No-Train-OOV,i want a meeting till three o'clock,calendar_set,calendar_set,"[('event_name', 'meeting'), ('time', ""three o'clock"")]","[('event_name', 'meeting'), ('time', 'till three')]",slot
+7559,No-Train-OOV,remind me tonight to pick up my dry cleaning at eight p. m.,calendar_set,calendar_set,"[('event_name', 'pick up my dry cleaning'), ('time', 'eight p . m .')]","[('timeofday', 'tonight'), ('event_name', 'pick up my dry cleaning'), ('time', 'eight p . m .')]",slot
+7563,No-Train-OOV,remind me about the meeting tomorrow one hour before,calendar_set,calendar_set,"[('event_name', 'meeting'), ('date', 'tomorrow')]","[('event_name', 'meeting'), ('date', 'tomorrow'), ('time', 'one hour')]",slot
+7569,No-Train-OOV,plan for tomorrow,calendar_query,calendar_remove,"[('date', 'tomorrow')]","[('date', 'tomorrow')]",intent
+7570,No-Train-OOV,what is the plan today,calendar_query,calendar_query,[],"[('date', 'today')]",slot
+7596,Slot-Train-OOV,please schedule a meeting with derrick in haysi at noon,calendar_set,calendar_set,"[('event_name', 'meeting'), ('person', 'derrick'), ('place_name', 'haysi'), ('timeofday', 'noon')]","[('event_name', 'meeting'), ('relation', 'derrick'), ('place_name', 'haysi'), ('timeofday', 'noon')]",slot
+7598,Slot-Train-OOV,please set a meeting to discuss terrorism with fred on the next available meeting day,calendar_set,calendar_set,"[('event_name', 'meeting'), ('event_name', 'discuss terrorism'), ('person', 'fred'), ('date', 'next available')]","[('event_name', 'meeting'), ('person', 'fred')]",slot
+7628,No-Train-OOV,remind me when i am at the library to get a new library card,calendar_set,calendar_set,"[('place_name', 'library'), ('event_name', 'get a new library card')]","[('place_name', 'library')]",slot
+7660,No-Train-OOV,cancel all my appointments after three p. m. today and inform me the details,calendar_remove,calendar_remove,"[('event_name', 'appointments'), ('time', 'three p . m .'), ('date', 'today')]","[('event_name', 'appointments'), ('time', 'after three p . m .'), ('date', 'today')]",slot
+7680,No-Train-OOV,in my calendar delete all of my golf events for the current month,calendar_remove,calendar_remove,"[('event_name', 'golf events'), ('date', 'month')]","[('event_name', 'golf'), ('date', 'current month')]",slot
+7711,No-Train-OOV,hey cancel all my other meetings and calls for second march as it is jim's birthday tag it as an event in your calendar,calendar_set,calendar_remove,"[('date', 'second march'), ('person', ""jim's""), ('event_name', 'birthday')]","[('event_name', 'meetings'), ('date', 'second march'), ('person', ""jim's""), ('event_name', 'birthday')]",intent+slot
+7712,No-Train-OOV,hey olly cancel all my other meetings and calls for second march as it is jim's birthday tag it as an event in your calendar,calendar_set,calendar_remove,"[('date', 'second march'), ('person', ""jim's""), ('event_name', 'birthday')]","[('event_name', 'meetings'), ('date', 'second march'), ('person', ""jim's""), ('event_name', 'birthday')]",intent+slot
+7718,No-Train-OOV,hey send a meeting invite to mr. ross for this friday's meeting and block my calendar for friday afternoon,calendar_set,calendar_set,"[('event_name', 'meeting'), ('person', 'mr . ross'), ('date', ""this friday's""), ('date', 'friday afternoon')]","[('event_name', 'meeting'), ('person', 'mr . ross'), ('date', ""this friday's""), ('event_name', 'meeting'), ('date', 'friday'), ('timeofday', 'afternoon')]",slot
+7767,Slot-Train-OOV,add practice to calendar on feb four at king's park at two p. m.,calendar_set,calendar_set,"[('date', 'feb four'), ('place_name', ""king's park""), ('time', 'two p . m .')]","[('place_name', 'feb four'), ('place_name', ""king's park""), ('time', 'two p . m .')]",slot
+7768,Slot-Train-OOV,please add practice on feb four at king's park at two p. m.,calendar_set,calendar_set,"[('date', 'feb four'), ('place_name', ""king's park""), ('time', 'two p . m .')]","[('place_name', 'feb four'), ('place_name', ""king's park""), ('time', 'two p . m .')]",slot
+7774,No-Train-OOV,add shopping to my calendar for tomorrow,calendar_set,calendar_set,"[('date', 'tomorrow')]","[('event_name', 'shopping'), ('date', 'tomorrow')]",slot
+7808,Slot-Train-OOV,remind me i take mom to the hairdresser's thursday at one thousand one hundred am,calendar_set,calendar_set,"[('relation', 'mom'), ('relation', ""hairdresser's""), ('date', 'thursday'), ('time', 'one thousand one hundred am')]","[('relation', 'mom'), ('event_name', ""hairdresser's""), ('date', 'thursday'), ('time', 'one thousand one hundred am')]",slot
+7843,Slot-Train-OOV,let me know in two hours that i have to leave for my violin lesson that's at four p. m. at musicworkz,calendar_set,calendar_set,"[('time', 'two hours'), ('event_name', 'violin lesson'), ('time', 'four p . m .'), ('place_name', 'musicworkz')]","[('event_name', 'violin lesson'), ('time', 'four p . m .'), ('place_name', 'musicworkz')]",slot
+7847,Slot-Train-OOV,alert me when registration opens,calendar_set,calendar_set,"[('event_name', 'registration')]",[],slot
+7851,No-Train-OOV,i have a meeting at noon today,calendar_set,calendar_query,"[('event_name', 'meeting'), ('timeofday', 'noon'), ('date', 'today')]","[('event_name', 'meeting'), ('timeofday', 'noon'), ('date', 'today')]",intent
+7863,Slot-Train-OOV,remind me to start supper this afternoon at five,calendar_set,calendar_set,"[('event_name', 'supper'), ('time', 'afternoon at five')]","[('timeofday', 'this afternoon'), ('time', 'five')]",slot
+7876,No-Train-OOV,what's been happening for the last two months,news_query,news_query,"[('date', 'last two months')]","[('time', 'last two months')]",slot
+7894,No-Train-OOV,give me an update on the election in one hour,calendar_set,news_query,"[('event_name', 'election'), ('time', 'one hour')]","[('news_topic', 'election'), ('time', 'one hour')]",intent+slot
+7916,No-Train-OOV,remind me to take out the garbage at six p. m.,calendar_set,calendar_set,"[('time', 'six p . m .')]","[('event_name', 'garbage'), ('time', 'six p . m .')]",slot
+7918,Slot-Train-OOV,calendar event send invite bill malinda,calendar_set,calendar_set,"[('person', 'bill malinda')]","[('event_name', 'bill malinda')]",slot
+7919,Slot-Train-OOV,new meeting add bill and malinda as attendees,calendar_set,calendar_set,"[('event_name', 'meeting'), ('person', 'bill and malinda')]","[('event_name', 'meeting'), ('person', 'bill'), ('person', 'malinda')]",slot
+7946,No-Train-OOV,what are the upcoming concerts in dallas,calendar_query,recommendation_events,"[('place_name', 'dallas')]","[('event_name', 'concerts'), ('place_name', 'dallas')]",intent+slot
+7953,No-Train-OOV,remove my appointment with my doctor on saturday please,calendar_remove,calendar_remove,"[('event_name', 'appointment'), ('relation', 'my doctor'), ('date', 'saturday')]","[('event_name', 'appointment'), ('relation', 'doctor'), ('date', 'saturday')]",slot
+7955,No-Train-OOV,put this event in a repeating pattern on my calendar,calendar_set,calendar_set,[],"[('event_name', 'repeating pattern')]",slot
+7956,No-Train-OOV,can you make this event repetitive,calendar_set,calendar_set,[],"[('event_name', 'repetitive')]",slot
+7966,No-Train-OOV,did i tell you to remind me something,calendar_query,general_quirky,[],[],intent
+7975,Slot-Train-OOV,is there valet service at the event,calendar_query,recommendation_events,"[('relation', 'valet service')]",[],intent+slot
+7978,No-Train-OOV,what reminders do i have scheduled before noon tomorrow,calendar_query,calendar_query,"[('timeofday', 'noon'), ('date', 'tomorrow')]","[('time', 'before noon'), ('date', 'tomorrow')]",slot
+8004,Slot-Train-OOV,dorothy needs to talk to me about our divorce can you please set up a meeting as soon as i am available,calendar_set,calendar_set,"[('person', 'dorothy'), ('event_name', 'divorce'), ('event_name', 'meeting')]",[],slot
+8005,No-Train-OOV,on monday the twentieth i need to have a conversation with greg about our weekend trip,calendar_set,calendar_set,"[('date', 'monday the twentieth'), ('event_name', 'conversation'), ('person', 'greg'), ('event_name', 'our weekend trip')]","[('date', 'monday the twentieth')]",slot
+8033,No-Train-OOV,what day does easter fall on,datetime_query,datetime_query,"[('event_name', 'easter')]","[('date', 'easter')]",slot
+8079,No-Train-OOV,set a reminder in one hour for my bread to bake,calendar_set,calendar_set,"[('time', 'one hour'), ('event_name', 'bread to bake')]","[('time', 'one hour')]",slot
+8140,No-Train-OOV,set a reminder for the thirteenth that i have a lunch with dale,calendar_set,calendar_set,"[('date', 'thirteenth'), ('meal_type', 'lunch')]","[('date', 'thirteenth'), ('meal_type', 'lunch'), ('person', 'dale')]",slot
+8188,No-Train-OOV,what date is it,calendar_query,datetime_query,[],[],intent
+8204,No-Train-OOV,please remind me to go to the post office,calendar_set,calendar_set,[],"[('place_name', 'office')]",slot
+8260,No-Train-OOV,please alert me a day before jeff's birthday,calendar_set,calendar_set,"[('date', 'a day before'), ('person', ""jeff's""), ('event_name', 'birthday')]","[('person', ""jeff's""), ('event_name', 'birthday')]",slot
+8261,No-Train-OOV,send me an alert and hour before my next appointment,calendar_set,calendar_set,"[('time', 'hour before'), ('event_name', 'appointment')]","[('event_name', 'appointment')]",slot
+8269,No-Train-OOV,thirty minute reminder on meeting for tuesday,calendar_set,calendar_set,"[('time', 'thirty minute'), ('date', 'tuesday')]","[('event_name', 'meeting'), ('date', 'tuesday')]",slot
+8290,No-Train-OOV,open a reminder about next weeks managers meeting on tuesday,calendar_set,calendar_set,"[('date', 'next weeks'), ('event_name', 'managers meeting'), ('date', 'tuesday')]","[('event_name', 'managers meeting'), ('date', 'tuesday')]",slot
+8300,No-Train-OOV,save event for five p. m. to six p. m. on march eighteenth,calendar_set,calendar_set,"[('time', 'five p . m . to six p . m .'), ('date', 'march eighteenth')]","[('time', 'five p . m .'), ('time', 'six p . m .'), ('date', 'march eighteenth')]",slot
+8302,No-Train-OOV,remove next monday's meeting,calendar_remove,calendar_remove,"[('date', ""next monday's""), ('event_name', 'meeting')]","[('date', ""monday's""), ('event_name', 'meeting')]",slot
+8308,No-Train-OOV,yesterday at noontime in times square what was the protest about,news_query,news_query,"[('date', 'yesterday'), ('time', 'noontime'), ('place_name', 'times square')]","[('date', 'yesterday'), ('time', 'noontime')]",slot
+8320,Slot-Train-OOV,i need to know more about the parade this weekend,general_quirky,calendar_query,"[('event_name', 'parade'), ('date', 'this weekend')]","[('event_name', 'parade'), ('date', 'this weekend')]",intent
+8322,No-Train-OOV,i want to know more about the fair this weekend,general_quirky,calendar_query,"[('date', 'this weekend')]","[('event_name', 'fair'), ('date', 'this weekend')]",intent+slot
+8345,No-Train-OOV,let me know when the meeting is gonna happen,calendar_set,calendar_query,"[('event_name', 'meeting')]","[('event_name', 'meeting')]",intent
+8366,Slot-Train-OOV,make march eighteen a repeating appointment for pearl's birthday,calendar_set,calendar_set,"[('date', 'march eighteen'), ('event_name', ""appointment for pearl's birthday"")]","[('date', 'march eighteen'), ('event_name', 'repeating appointment'), ('person', ""pearl's""), ('event_name', 'birthday')]",slot
+8387,No-Train-OOV,create reminder for laundry at eight p. m.,calendar_set,calendar_set,"[('time', 'eight p . m .')]","[('event_name', 'laundry'), ('time', 'eight p . m .')]",slot
+8394,No-Train-OOV,set a reminder every day at noon to take medication,calendar_set,calendar_set,"[('general_frequency', 'every day'), ('timeofday', 'noon')]","[('general_frequency', 'every day'), ('timeofday', 'noon'), ('event_name', 'take medication')]",slot
+8402,No-Train-OOV,tell me more about my events,general_quirky,calendar_query,[],[],intent
+8449,No-Train-OOV,set a reminder for my daughters birthday,calendar_set,calendar_set,"[('relation', 'daughters'), ('event_name', 'birthday')]","[('event_name', 'daughters birthday')]",slot
+8461,No-Train-OOV,what are my plans for the month of may,calendar_query,calendar_query,"[('date', 'month of may')]","[('date', 'may')]",slot
+8474,No-Train-OOV,add jane's birthday party for tomorrow two p. m. at one hundred and twenty three main on my calendar,calendar_set,calendar_set,"[('person', ""jane's""), ('event_name', 'birthday party'), ('date', 'tomorrow'), ('time', 'two p . m .'), ('place_name', 'one hundred and twenty three main')]","[('person', ""jane's""), ('event_name', 'birthday party'), ('date', 'tomorrow'), ('time', 'two p . m .'), ('time', 'one hundred'), ('time', 'twenty three main')]",slot
+8498,No-Train-OOV,let's go through all pending reminders,calendar_query,calendar_remove,[],[],intent
+8516,No-Train-OOV,delete calendar item,calendar_remove,lists_remove,[],[],intent
+8525,No-Train-OOV,meeting reminders from three to five,calendar_query,calendar_query,"[('event_name', 'meeting'), ('time', 'three to five')]","[('event_name', 'meeting'), ('time', 'three'), ('time', 'five')]",slot
+8562,No-Train-OOV,delete my meeting for two o'clock p. m. today,calendar_remove,calendar_remove,"[('event_name', 'meeting'), ('time', ""two o'clock p . m ."")]","[('event_name', 'meeting'), ('time', ""two o'clock p . m .""), ('date', 'today')]",slot
+8568,No-Train-OOV,will you send a calendar invite out to james and alice for brunch at eleven am on tuesday,calendar_set,calendar_set,"[('person', 'james and alice'), ('event_name', 'brunch'), ('time', 'eleven am'), ('date', 'tuesday')]","[('person', 'james'), ('person', 'alice'), ('event_name', 'brunch'), ('time', 'eleven am'), ('date', 'tuesday')]",slot
+8618,Slot-Train-OOV,remind me to water my plants every tuesday thursday and saturday,calendar_set,calendar_set,"[('event_name', 'water my plants'), ('general_frequency', 'every tuesday thursday and saturday')]","[('event_name', 'water my plants'), ('general_frequency', 'every tuesday thursday'), ('date', 'saturday')]",slot
+8635,No-Train-OOV,can you remind me to order the turkey three weeks before thanksgiving,calendar_set,calendar_set,"[('event_name', 'order the turkey')]","[('business_name', 'thanksgiving')]",slot
+8640,No-Train-OOV,i want to make a note on my calendar for the event tomorrow at the library,calendar_set,calendar_set,"[('date', 'tomorrow'), ('place_name', 'the library')]","[('date', 'tomorrow'), ('place_name', 'library')]",slot
+8667,No-Train-OOV,within the past three months how many meetings did i have with mr. richards,calendar_query,calendar_query,"[('time', 'past three months'), ('event_name', 'meetings'), ('person', 'mr . richards')]","[('event_name', 'meetings'), ('person', 'mr . richards')]",slot
+8679,Slot-Train-OOV,is today saint patricks day,calendar_query,general_quirky,"[('date', 'today'), ('event_name', 'saint patricks day')]","[('date', 'today')]",intent+slot
+8694,Slot-Train-OOV,the event will include walter and gemma,calendar_set,calendar_set,"[('person', 'walter'), ('person', 'gemma')]","[('place_name', 'gemma')]",slot
+8731,No-Train-OOV,set a repeating reminder alarm for the facebook event i have to attend on seventh april,alarm_set,calendar_set,"[('media_type', 'facebook'), ('date', 'seventh april')]","[('date', 'seventh april')]",intent+slot
+8767,Slot-Train-OOV,is jessica's birthday on april twelfth,calendar_query,calendar_query,"[('person', ""jessica's""), ('date', 'april twelfth')]","[('person', ""jessica's""), ('event_name', 'birthday'), ('date', 'april twelfth')]",slot
+8822,No-Train-OOV,info of the upcoming events,recommendation_events,calendar_query,[],[],intent
+8824,No-Train-OOV,what do i have scheduled for the nineteenth at two p. m.,calendar_query,calendar_query,"[('date', 'the nineteenth'), ('time', 'two p . m .')]","[('date', 'nineteenth'), ('time', 'two p . m .')]",slot
+8846,No-Train-OOV,do i have anything set for the fourth of july this year,calendar_query,calendar_query,"[('date', 'the fourth of july this year')]","[('date', 'fourth of july this year')]",slot
+8868,No-Train-OOV,remind me to call mom every tuesday at ten am,calendar_set,calendar_set,"[('event_name', 'call mom'), ('general_frequency', 'every tuesday'), ('time', 'ten am')]","[('relation', 'mom'), ('general_frequency', 'every tuesday'), ('time', 'ten am')]",slot
+8900,No-Train-OOV,set repeating reminder for every sunday,calendar_set,calendar_set,"[('general_frequency', 'every sunday')]","[('general_frequency', 'repeating'), ('general_frequency', 'every sunday')]",slot
+8916,No-Train-OOV,what is my schedule for the day,calendar_query,calendar_query,"[('date', 'the day')]","[('time', 'day')]",slot
+8939,Slot-Train-OOV,hayathis daughter baby shower,calendar_set,weather_query,"[('person', 'hayathis'), ('event_name', 'daughter baby shower')]",[],intent+slot
+8958,No-Train-OOV,open meeting time,calendar_query,calendar_set,"[('event_name', 'meeting')]","[('event_name', 'meeting')]",intent
+8967,No-Train-OOV,remind me two days before my wife birthday,calendar_set,calendar_set,"[('relation', 'wife'), ('event_name', 'birthday')]","[('date', 'two days'), ('event_name', 'wife birthday')]",slot
+8977,No-Train-OOV,just set me reminders about pending bill payments,calendar_set,calendar_query,"[('event_name', 'pending bill payments')]","[('event_name', 'bill payments')]",intent+slot
+8978,No-Train-OOV,just let me know the important meetings with my boss over the week,calendar_set,calendar_set,"[('event_name', 'important meetings with my boss'), ('time', 'over the week')]","[('event_name', 'meetings'), ('relation', 'boss'), ('date', 'the week')]",slot
+8992,No-Train-OOV,show meetings,calendar_set,calendar_query,"[('event_name', 'meetings')]","[('event_name', 'meetings')]",intent
+9019,No-Train-OOV,meetings from twenty to twenty five june,calendar_query,calendar_set,"[('event_name', 'meetings'), ('time', 'twenty to twenty five june')]","[('event_name', 'meetings'), ('date', 'twenty'), ('time', 'twenty five june')]",intent+slot
+9043,No-Train-OOV,upcoming events in calendar,calendar_set,calendar_query,"[('event_name', 'upcoming events')]",[],intent+slot
+9054,No-Train-OOV,event reminder mona tuesday,calendar_set,calendar_set,"[('event_name', 'mona'), ('date', 'tuesday')]","[('person', 'mona'), ('date', 'tuesday')]",slot
+9095,Slot-Train-OOV,remove tonights dinner with shelly,calendar_remove,calendar_remove,"[('event_name', 'tonights dinner with shelly')]","[('meal_type', 'dinner'), ('person', 'shelly')]",slot
+9110,NonSlot-Train-OOV,exhibition two thousand and seventeen mass on mar twenty five make a note of it on the corresponding date,calendar_set,calendar_set,"[('event_name', 'exhibition two thousand and seventeen mass'), ('date', 'mar twenty five')]","[('date', 'mar twenty five')]",slot
+9116,No-Train-OOV,could you reschedule my meeting,calendar_query,calendar_set,"[('event_name', 'meeting')]","[('event_name', 'meeting')]",intent
+9124,No-Train-OOV,show me the events in my work calendar for next week,calendar_set,calendar_query,"[('event_name', 'work'), ('date', 'next week')]","[('date', 'next week')]",intent+slot
+9137,NonSlot-Train-OOV,at what time is the italian cafe closed between lunch and dinner,calendar_query,calendar_query,"[('business_name', 'italian cafe')]","[('event_name', 'italian cafe closed'), ('meal_type', 'lunch'), ('meal_type', 'dinner')]",slot
+9138,No-Train-OOV,when does the super bowl officially start,qa_factoid,general_quirky,"[('event_name', 'super bowl')]",[],intent+slot
+9149,Slot-Train-OOV,what time is the black tie gala dinner supposed to begin,calendar_query,calendar_query,"[('event_name', 'black tie gala dinner')]","[('event_name', 'gala dinner')]",slot
+9153,No-Train-OOV,please add dinner with mary to my calendar on saturday,calendar_set,calendar_set,"[('event_name', 'dinner with mary'), ('date', 'saturday')]","[('meal_type', 'dinner'), ('person', 'mary'), ('date', 'saturday')]",slot
+9182,Slot-Train-OOV,cancel my plans to pick up my parents from the airport,calendar_remove,calendar_remove,"[('event_name', 'pick up my parents'), ('place_name', 'airport')]",[],slot
+9187,NonSlot-Train-OOV,research the clients that will attend the meeting,calendar_set,calendar_query,"[('event_name', 'the meeting')]","[('event_name', 'meeting')]",intent+slot
+9254,NonSlot-Train-OOV,please tune nine hundred and thirty eight f. m. radio mirchi,play_radio,play_radio,"[('radio_name', 'nine hundred and thirty eight f . m .')]",[],slot
+9284,No-Train-OOV,play f. m.,play_radio,play_radio,[],"[('radio_name', 'f . m .')]",slot
+9301,No-Train-OOV,play an f. m.,play_radio,play_radio,[],"[('radio_name', 'f . m .')]",slot
+9305,No-Train-OOV,tune to classic hits,play_radio,play_music,"[('radio_name', 'classic hits')]","[('music_genre', 'classic')]",intent+slot
+9326,No-Train-OOV,please play radio station one right now,play_radio,play_radio,"[('radio_name', 'radio station one')]",[],slot
+9327,No-Train-OOV,please scan the am dial on the radio right now,play_radio,play_radio,"[('date', 'right now')]",[],slot
+9330,No-Train-OOV,play,play_radio,play_music,[],[],intent
+9364,No-Train-OOV,let's play music hits,play_radio,play_music,[],[],intent
+9384,No-Train-OOV,play c. n. n. radio,play_radio,play_radio,"[('radio_name', 'c . n . n . radio')]","[('radio_name', 'c . n . n .')]",slot
+9406,No-Train-OOV,start sirius xm radio channel,play_radio,play_radio,"[('radio_name', 'sirius xm radio channel')]","[('app_name', 'sirius')]",slot
+9426,No-Train-OOV,i want to hear a station that plays r. & b.,play_radio,play_radio,"[('radio_name', 'station that plays r . & b .')]","[('radio_name', 'r . & b .')]",slot
+9457,No-Train-OOV,play the song let it go,play_music,play_music,"[('song_name', 'let it go')]",[],slot
+9471,No-Train-OOV,turn on a country music station,play_radio,play_radio,"[('music_genre', 'country')]","[('radio_name', 'country music station')]",slot
+9494,No-Train-OOV,could you please play the f. m. station which plays pop songs,play_radio,play_radio,"[('radio_name', 'f . m .'), ('music_genre', 'pop')]","[('radio_name', 'f . m . station'), ('music_genre', 'pop')]",slot
+9506,Slot-Train-OOV,olly let's hear wgrr one hundred and three point five,play_radio,play_radio,"[('radio_name', 'wgrr one hundred and three point five')]","[('radio_name', 'one hundred and three point five')]",slot
+9519,No-Train-OOV,play any pop f. m. channel,play_radio,play_radio,"[('music_genre', 'pop'), ('radio_name', 'f . m .')]","[('radio_name', 'pop f . m .')]",slot
+9520,No-Train-OOV,play the last doctor who radio broadcast,play_radio,play_radio,"[('media_type', 'radio broadcast')]",[],slot
+9528,No-Train-OOV,turn on some n. p. r. and play them out of my speakers,play_radio,play_music,"[('radio_name', 'n . p . r .'), ('device_type', 'speakers')]","[('device_type', 'n . p . r .')]",intent+slot
+9554,Slot-Train-OOV,play romantic music in nash f. m. ninety two point seven,play_radio,play_radio,"[('music_genre', 'romantic'), ('media_type', 'music'), ('radio_name', 'nash f . m . ninety two point seven')]","[('radio_name', 'nash f . m . ninety two point seven')]",slot
+9561,Slot-Train-OOV,play station gx in the radio,play_radio,play_radio,"[('radio_name', 'station gx')]",[],slot
+9568,No-Train-OOV,play britney spears live concert series,play_radio,play_music,[],"[('artist_name', 'britney spears')]",intent+slot
+9592,NonSlot-Train-OOV,search for podcasts that cover men's issues,play_podcasts,play_podcasts,"[('media_type', 'podcasts'), ('podcast_descriptor', ""men's issues"")]",[],slot
+9594,No-Train-OOV,f. m. ninety three point five radio songs,play_radio,play_radio,"[('radio_name', 'f . m . ninety three point five radio'), ('media_type', 'songs')]","[('radio_name', 'f . m . ninety three point five')]",slot
+9619,NonSlot-Train-OOV,play prairie home companion on the car radio,play_radio,play_radio,"[('device_type', 'car radio')]",[],slot
+9637,No-Train-OOV,start my playlist on i heart radio,play_radio,play_radio,"[('radio_name', 'i heart radio')]",[],slot
+9640,No-Train-OOV,open spotify and open workout,play_radio,play_radio,[],"[('app_name', 'spotify')]",slot
+9669,Slot-Train-OOV,i want to listen to be more chill by ned vizzini,play_audiobook,play_music,"[('audiobook_name', 'be more chill'), ('audiobook_author', 'ned vizzini')]","[('song_name', 'more chill'), ('artist_name', 'ned vizzini')]",intent+slot
+9674,Slot-Train-OOV,can you play my favorite audio book of tarzan,play_audiobook,play_audiobook,"[('audiobook_name', 'tarzan')]","[('media_type', 'tarzan')]",slot
+9678,Slot-Train-OOV,can you put on the giver,play_audiobook,iot_cleaning,"[('player_setting', 'put on'), ('audiobook_name', 'the giver')]","[('device_type', 'giver')]",intent+slot
+9700,Slot-Train-OOV,play biography of jackie kennedy,play_audiobook,qa_factoid,"[('audiobook_name', 'biography of jackie kennedy')]",[],intent+slot
+9760,No-Train-OOV,stop play,play_audiobook,audio_volume_mute,"[('player_setting', 'stop play')]",[],intent+slot
+9761,No-Train-OOV,hold,play_audiobook,audio_volume_mute,"[('player_setting', 'hold')]",[],intent+slot
+9767,No-Train-OOV,play audiobook of planets,play_audiobook,play_audiobook,"[('media_type', 'audiobook'), ('audiobook_name', 'planets')]","[('media_type', 'audiobook')]",slot
+9768,No-Train-OOV,keep reading the audiobook to me,play_audiobook,play_audiobook,"[('player_setting', 'keep reading'), ('media_type', 'audiobook')]","[('player_setting', 'reading'), ('media_type', 'audiobook')]",slot
+9772,No-Train-OOV,please continue reading audiobook,play_audiobook,play_audiobook,"[('player_setting', 'continue reading'), ('media_type', 'audiobook')]","[('player_setting', 'continue'), ('media_type', 'audiobook')]",slot
+9812,Slot-Train-OOV,open harrypotter audiobook and play from last played,play_audiobook,play_audiobook,"[('audiobook_name', 'harrypotter'), ('media_type', 'audiobook')]","[('media_type', 'audiobook')]",slot
+9844,NonSlot-Train-OOV,continue the last chapter of the audio book i was listening to,play_audiobook,play_audiobook,"[('player_setting', 'continue'), ('media_type', 'audio book')]","[('player_setting', 'continue')]",slot
+9855,No-Train-OOV,start audio playback of twilight again,play_audiobook,play_audiobook,"[('player_setting', 'start'), ('audiobook_name', 'twilight')]","[('media_type', 'audio'), ('audiobook_name', 'twilight')]",slot
+9856,No-Train-OOV,play the twilight book,play_audiobook,play_audiobook,"[('audiobook_name', 'twilight')]","[('audiobook_name', 'the twilight book')]",slot
+9857,No-Train-OOV,my choice to play an audio from first,play_audiobook,play_audiobook,[],"[('media_type', 'audio')]",slot
+9875,Slot-Train-OOV,read some more of the daisy goodwin book for me,play_audiobook,play_audiobook,"[('player_setting', 'read'), ('audiobook_author', 'daisy goodwin'), ('media_type', 'book')]",[],slot
+9885,Slot-Train-OOV,please play the notebook audio,play_audiobook,play_audiobook,"[('audiobook_name', 'the notebook')]","[('media_type', 'notebook audio')]",slot
+9895,Slot-Train-OOV,keep playing secret garden,play_audiobook,takeaway_order,"[('player_setting', 'keep playing'), ('audiobook_name', 'secret garden')]","[('business_name', 'secret garden')]",intent+slot
+9896,Slot-Train-OOV,start chapter five of physics for future presidents,play_audiobook,play_audiobook,"[('player_setting', 'start chapter five'), ('audiobook_name', 'physics for future presidents')]","[('player_setting', 'start'), ('audiobook_name', 'chapter five')]",slot
+9897,Slot-Train-OOV,playback tom clancy splinter cell,play_audiobook,play_audiobook,"[('player_setting', 'playback'), ('audiobook_author', 'tom clancy'), ('audiobook_name', 'splinter cell')]","[('person', 'tom clancy')]",slot
+9902,No-Train-OOV,play me a random audio book that has to do with love,play_audiobook,play_audiobook,"[('media_type', 'audio book')]",[],slot
+9940,No-Train-OOV,find me a chocolate cake recipe,cooking_recipe,cooking_recipe,"[('food_type', 'chocolate cake')]","[('food_type', 'cake')]",slot
+9941,No-Train-OOV,how do i cook butter chicken,cooking_recipe,cooking_recipe,"[('cooking_type', 'cook'), ('food_type', 'butter chicken')]","[('food_type', 'butter chicken')]",slot
+9955,No-Train-OOV,show me a video on cooking fried chicken,cooking_recipe,cooking_recipe,"[('media_type', 'video'), ('food_type', 'fried chicken')]","[('food_type', 'fried chicken')]",slot
+9956,No-Train-OOV,what can i substitute butter with,cooking_recipe,cooking_recipe,"[('ingredient', 'butter')]","[('food_type', 'butter')]",slot
+9961,No-Train-OOV,what is the best oven temperature to roast potatoes,cooking_recipe,cooking_recipe,"[('cooking_type', 'roast'), ('ingredient', 'potatoes')]","[('food_type', 'roast potatoes')]",slot
+9962,Slot-Train-OOV,what is the best way to cook pasta al dente,cooking_recipe,cooking_recipe,"[('food_type', 'pasta al dente')]","[('food_type', 'pasta al')]",slot
+9969,Slot-Train-OOV,what ingredient can be used instead of saffron,cooking_recipe,general_quirky,"[('ingredient', 'saffron')]",[],intent+slot
+9971,NonSlot-Train-OOV,what conducts heat better copper bottomed pots or cast iron,cooking_recipe,qa_factoid,[],[],intent
+9977,No-Train-OOV,please search the internet and display the suitable youtube videos for cooking italian foods,cooking_recipe,qa_factoid,"[('media_type', 'youtube videos'), ('food_type', 'italian')]",[],intent+slot
+9979,Slot-Train-OOV,cook me some oats,cooking_recipe,iot_coffee,"[('ingredient', 'oats')]",[],intent+slot
+9980,No-Train-OOV,what is the menu today add some boiled vegetables also to it,cooking_recipe,cooking_recipe,"[('date', 'today'), ('food_type', 'boiled vegetables')]","[('date', 'today'), ('food_type', 'vegetables')]",slot
+9986,No-Train-OOV,boiling,cooking_recipe,qa_factoid,"[('cooking_type', 'boiling')]",[],intent+slot
+10016,No-Train-OOV,thanksgiving turkey cooking procedure in five sentences is what,cooking_recipe,cooking_recipe,"[('food_type', 'thanksgiving turkey')]",[],slot
+10019,Slot-Train-OOV,please tell me how to i bake twelve oatmeal cookies,cooking_recipe,cooking_recipe,"[('food_type', 'oatmeal cookies')]","[('food_type', 'twelve oatmeal cookies')]",slot
+10045,Slot-Train-OOV,can you give me a recipe for homemade chicken noodle soup,cooking_recipe,cooking_recipe,"[('food_type', 'chicken noodle soup')]","[('food_type', 'homemade chicken noodle soup')]",slot
+10049,No-Train-OOV,tell me how to make a poor boy sandwich,cooking_recipe,cooking_recipe,"[('food_type', 'poor boy sandwich')]","[('food_type', 'boy sandwich')]",slot
+10061,No-Train-OOV,what should i make for dinner,cooking_recipe,general_quirky,"[('meal_type', 'dinner')]","[('meal_type', 'dinner')]",intent
+10072,No-Train-OOV,baking times for chicken in the oven,cooking_recipe,cooking_recipe,"[('food_type', 'chicken'), ('device_type', 'oven')]","[('food_type', 'chicken')]",slot
+10076,Slot-Train-OOV,can you substitute baking soda for baking powder,cooking_recipe,cooking_recipe,"[('ingredient', 'baking soda for baking powder')]","[('food_type', 'baking soda')]",slot
+10078,Slot-Train-OOV,what should i cook for supper,cooking_recipe,cooking_recipe,"[('event_name', 'supper')]","[('food_type', 'supper')]",slot
+10093,Slot-Train-OOV,how is lasagne made,cooking_recipe,qa_factoid,"[('food_type', 'lasagne')]",[],intent+slot
+10097,No-Train-OOV,i would like a cheeseburger,cooking_recipe,cooking_recipe,"[('food_type', 'cheeseburger')]",[],slot
+10119,No-Train-OOV,how long do you cook a fifteen pound turkey,cooking_recipe,cooking_recipe,"[('food_type', 'turkey')]",[],slot
+10125,NonSlot-Train-OOV,what is the difference between bake and broil,cooking_recipe,general_quirky,[],[],intent
+10156,Slot-Train-OOV,i need to know how to make stuffed peppers,cooking_recipe,cooking_recipe,"[('food_type', 'stuffed peppers')]",[],slot
+10164,NonSlot-Train-OOV,how long do i cook maccoroni,cooking_recipe,cooking_recipe,[],"[('food_type', 'maccoroni')]",slot
+10206,NonSlot-Train-OOV,how is rice prepared,cooking_recipe,cooking_recipe,"[('food_type', 'rice')]","[('ingredient', 'rice')]",slot
+10214,No-Train-OOV,recipes that can be cooked in an hour,cooking_recipe,cooking_recipe,[],"[('time', 'in an hour')]",slot
+10217,Slot-Train-OOV,find the recipe for sambar in cookingforu application,cooking_recipe,cooking_recipe,"[('food_type', 'sambar'), ('app_name', 'cookingforu')]","[('food_type', 'sambar')]",slot
+10220,No-Train-OOV,what ingredients do i need to bake a large cake,cooking_recipe,cooking_recipe,"[('cooking_type', 'bake'), ('food_type', 'cake')]","[('food_type', 'cake')]",slot
+10226,No-Train-OOV,let me know the recipe for preparing pasta,cooking_recipe,cooking_recipe,"[('food_type', 'pasta')]","[('food_type', 'preparing pasta')]",slot
+10256,No-Train-OOV,launch super mario,play_game,play_game,"[('game_name', 'super mario')]","[('game_name', 'launch super mario')]",slot
+10285,Slot-Train-OOV,please play clash of clans,play_game,play_music,"[('game_name', 'clash of clans')]",[],intent+slot
+10286,Slot-Train-OOV,please begin clash of clans,play_game,play_music,"[('game_name', 'clash of clans')]",[],intent+slot
+10333,Slot-Train-OOV,open saga,play_game,play_radio,"[('game_name', 'saga')]","[('app_name', 'saga')]",intent+slot
+10338,Slot-Train-OOV,play for me the game harry potter and the chamber of secrets,play_game,play_game,"[('game_name', 'harry potter and the chamber of secrets')]","[('audiobook_name', 'harry potter')]",slot
+10350,No-Train-OOV,play racing,play_game,play_music,"[('game_name', 'racing')]",[],intent+slot
+10352,Slot-Train-OOV,play papa pear saga,play_game,play_music,"[('game_name', 'papa pear saga')]","[('song_name', 'papa pear saga')]",intent+slot
+10353,Slot-Train-OOV,bring up papa pear saga,play_game,play_music,"[('game_name', 'papa pear saga')]","[('food_type', 'papa pear saga')]",intent+slot
+10365,Slot-Train-OOV,play a game of contra as a second player,play_game,play_music,"[('game_name', 'contra')]",[],intent+slot
+10366,Slot-Train-OOV,we should play nfs at high speed,play_game,general_quirky,"[('game_name', 'nfs')]",[],intent+slot
+10381,Slot-Train-OOV,start a competitive crossword for us,play_game,play_game,"[('game_name', 'competitive crossword')]",[],slot
+10406,Slot-Train-OOV,open parcheese game for you and i,play_game,play_game,"[('game_name', 'parcheese game')]","[('game_name', 'parcheese')]",slot
+10426,NonSlot-Train-OOV,what else is missing in the diary,lists_query,qa_factoid,[],[],intent
+10433,No-Train-OOV,remove my task list,lists_remove,lists_remove,"[('list_name', 'task')]",[],slot
+10451,No-Train-OOV,what i am going to do today,lists_query,general_quirky,"[('date', 'today')]","[('date', 'today')]",intent
+10494,Slot-Train-OOV,remove pencil from stationary,lists_remove,lists_remove,"[('list_name', 'stationary')]",[],slot
+10497,No-Train-OOV,may i have a list of five star hotels in paris,qa_factoid,lists_query,"[('list_name', 'five star hotels'), ('place_name', 'paris')]","[('event_name', 'five star hotels'), ('place_name', 'paris')]",intent+slot
+10503,Slot-Train-OOV,add the post office to my list of errands for saturday,lists_createoradd,lists_createoradd,"[('list_name', 'errands'), ('date', 'saturday')]","[('date', 'saturday')]",slot
+10513,No-Train-OOV,i want to make this week's shopping list,lists_createoradd,lists_createoradd,"[('time', ""week's""), ('list_name', 'shopping')]","[('list_name', 'shopping')]",slot
+10525,No-Train-OOV,remove my car payment on my calendar,lists_remove,calendar_remove,[],"[('event_name', 'car payment')]",intent+slot
+10534,No-Train-OOV,how the to do list for today,lists_query,lists_query,"[('date', 'today')]","[('list_name', 'to do'), ('date', 'today')]",slot
+10568,No-Train-OOV,remove the old music list,lists_remove,lists_remove,"[('list_name', 'old music')]",[],slot
+10571,No-Train-OOV,android,lists_query,play_game,[],[],intent
+10579,No-Train-OOV,reset my locations list,lists_remove,lists_remove,"[('list_name', 'locations')]",[],slot
+10608,No-Train-OOV,search the item,lists_createoradd,lists_remove,[],[],intent
+10621,NonSlot-Train-OOV,add paav bhaji in menu card,lists_createoradd,play_music,[],"[('song_name', 'paav bhaji')]",intent+slot
+10645,No-Train-OOV,add red wine to my shopping list,lists_createoradd,lists_createoradd,"[('list_name', 'shopping list')]","[('list_name', 'shopping')]",slot
+10655,No-Train-OOV,remove the list called party time,lists_remove,lists_remove,"[('list_name', 'party time')]","[('list_name', 'party')]",slot
+10667,NonSlot-Train-OOV,recite the schedules of the list,lists_query,lists_query,"[('list_name', 'schedules')]",[],slot
+10678,NonSlot-Train-OOV,add spent five dollars in my expenses list,lists_createoradd,lists_createoradd,"[('list_name', 'expenses')]","[('list_name', 'expenses list')]",slot
+10687,No-Train-OOV,if there is event of show then remove it,lists_remove,calendar_remove,[],[],intent
+10696,No-Train-OOV,replace,lists_remove,iot_hue_lightchange,[],[],intent
+10753,No-Train-OOV,what did i put down already on the walmart list,lists_query,lists_query,"[('list_name', 'walmart list')]","[('list_name', 'walmart')]",slot
+10755,NonSlot-Train-OOV,throw away my to do list please,lists_remove,lists_query,"[('list_name', 'to do')]",[],intent+slot
+10760,No-Train-OOV,tell me that list i wrote two days ago,lists_query,lists_query,"[('date', 'two days')]",[],slot
+10786,No-Train-OOV,clear my activities list for today,lists_remove,lists_remove,"[('list_name', 'activities'), ('date', 'today')]","[('date', 'today')]",slot
+10828,No-Train-OOV,erase all,lists_remove,calendar_remove,[],[],intent
+10846,NonSlot-Train-OOV,i don't have enough money to buy the nintendo switch right now can you please remove it on my amazon wishlist,lists_remove,lists_remove,[],"[('list_name', 'amazon wishlist')]",slot
+10898,No-Train-OOV,please add list of things to buy for party,lists_createoradd,lists_createoradd,"[('event_name', 'party')]","[('list_name', 'things to buy for party')]",slot
+10931,No-Train-OOV,what is on my playlist,lists_query,music_query,[],[],intent
+10936,No-Train-OOV,please remove my list of favorite albums,lists_remove,lists_remove,"[('list_name', 'favorite albums')]",[],slot
+10956,NonSlot-Train-OOV,what groups are listed in my contacts,lists_query,email_querycontact,[],"[('person', 'groups')]",intent+slot
+10985,Slot-Train-OOV,delete my to do's for this week,lists_remove,calendar_remove,"[('list_name', ""to do's""), ('date', 'this week')]","[('date', 'this week')]",intent+slot
+10990,Slot-Train-OOV,on my to dos remove mop kitchen,lists_remove,lists_remove,"[('list_name', 'to dos')]",[],slot
+10996,No-Train-OOV,add bob to my list of contacts,lists_createoradd,email_addcontact,"[('person', 'bob'), ('list_name', 'list of contacts')]","[('person', 'bob')]",intent+slot
+11098,Slot-Train-OOV,get rid of tax list from nineteen ninety,lists_remove,lists_remove,"[('list_name', 'tax'), ('date', 'nineteen ninety')]","[('list_name', 'tax'), ('person', 'nineteen ninety')]",slot
+11107,No-Train-OOV,what are my current list,lists_query,lists_query,"[('list_name', 'current')]",[],slot
+11125,No-Train-OOV,give me the details on purchase order,lists_query,takeaway_query,[],[],intent
+11146,No-Train-OOV,add business contacts to contact list,lists_createoradd,email_addcontact,"[('list_name', 'contact list')]",[],intent+slot
+11166,No-Train-OOV,open google keep,lists_query,news_query,"[('app_name', 'google keep')]",[],intent+slot
+11177,NonSlot-Train-OOV,add a wrist watch to the shopping list,lists_createoradd,lists_createoradd,"[('list_name', 'shopping list')]","[('list_name', 'shopping')]",slot
+11204,No-Train-OOV,important house information,lists_query,general_quirky,[],[],intent
+11259,No-Train-OOV,jump to next podcast,play_podcasts,play_podcasts,"[('player_setting', 'jump'), ('podcast_descriptor', 'next podcast')]",[],slot
+11266,No-Train-OOV,play a podcast from my library,play_podcasts,play_podcasts,"[('podcast_name', 'library')]",[],slot
+11267,Slot-Train-OOV,find an interesting podcast about last pritzker price winners,play_podcasts,play_podcasts,"[('podcast_descriptor', 'pritzker price winners')]",[],slot
+11270,No-Train-OOV,play next podcast,play_podcasts,play_podcasts,"[('podcast_descriptor', 'next podcast')]",[],slot
+11273,Slot-Train-OOV,play next episode of harry potter by j. k. rowling,play_audiobook,play_podcasts,"[('audiobook_name', 'harry potter'), ('audiobook_author', 'j . k . rowling')]","[('podcast_name', 'harry potter'), ('podcast_name', 'j . k .')]",intent+slot
+11303,No-Train-OOV,play next reason podcast,play_podcasts,play_podcasts,"[('podcast_name', 'reason')]","[('podcast_descriptor', 'next reason')]",slot
+11306,No-Train-OOV,play that podcast i was listening to yesterday,play_podcasts,play_podcasts,"[('podcast_descriptor', 'listening to yesterday')]","[('date', 'yesterday')]",slot
+11328,Slot-Train-OOV,play podcast for the philadelphia eagles content,play_podcasts,play_podcasts,"[('podcast_name', 'philadelphia eagles content')]",[],slot
+11331,No-Train-OOV,show me the best podcast of rock songs having good rating,play_podcasts,play_podcasts,"[('podcast_descriptor', 'rock songs having good rating')]",[],slot
+11335,No-Train-OOV,play and shuffle all slow music songs,play_music,play_music,"[('player_setting', 'play and shuffle')]","[('player_setting', 'shuffle'), ('music_genre', 'slow')]",slot
+11339,No-Train-OOV,play my most watched podcast,play_podcasts,play_podcasts,"[('podcast_descriptor', 'most watched')]",[],slot
+11340,Slot-Train-OOV,does allearsnet have a new podcast,play_podcasts,play_podcasts,"[('person', 'allearsnet')]",[],slot
+11341,No-Train-OOV,find the latest disney podcast,play_podcasts,play_podcasts,"[('podcast_name', 'disney')]","[('person', 'disney')]",slot
+11345,No-Train-OOV,play next episode of podcast,play_podcasts,play_podcasts,"[('podcast_descriptor', 'next episode')]",[],slot
+11349,No-Train-OOV,olly start the podcast over that i started last night,play_podcasts,play_podcasts,"[('podcast_descriptor', 'started last night')]",[],slot
+11361,Slot-Train-OOV,shadi special podcast play it,play_podcasts,play_podcasts,"[('podcast_name', 'shadi special')]",[],slot
+11368,No-Train-OOV,play me john's podcast,play_podcasts,play_podcasts,"[('person', ""john's"")]","[('podcast_name', ""john's"")]",slot
+11409,No-Train-OOV,please skip to the next podcast episode,play_podcasts,play_podcasts,"[('podcast_descriptor', 'next podcast episode')]","[('player_setting', 'skip'), ('podcast_descriptor', 'next podcast episode')]",slot
+11418,Slot-Train-OOV,play duncan trussel's latest podcast,play_podcasts,play_podcasts,"[('person', ""duncan trussel's"")]","[('podcast_name', ""duncan trussel's"")]",slot
+11423,No-Train-OOV,go backward thirty seconds,play_podcasts,play_audiobook,"[('player_setting', 'go backward'), ('time', 'thirty seconds')]","[('player_setting', 'backward thirty seconds')]",intent+slot
+11424,Slot-Train-OOV,vitaly channel,play_podcasts,play_radio,"[('radio_name', 'vitaly channel')]",[],intent+slot
+11442,Slot-Train-OOV,please play the latest bill simmons podcast,play_podcasts,play_podcasts,"[('person', 'bill simmons')]","[('podcast_name', 'bill simmons')]",slot
+11451,No-Train-OOV,i want to listen to the latest mike and mike podcast,play_podcasts,play_podcasts,"[('podcast_name', 'mike and mike')]",[],slot
+11453,No-Train-OOV,start podcasts on n. f. l.,play_podcasts,play_podcasts,"[('podcast_name', 'n . f . l .')]","[('radio_name', 'n . f . l .')]",slot
+11458,No-Train-OOV,move on to the next podcast episode,play_podcasts,play_podcasts,"[('player_setting', 'move on'), ('podcast_descriptor', 'next podcast episode')]","[('podcast_descriptor', 'next podcast episode')]",slot
+11459,No-Train-OOV,go back to the last episode in this podcast,play_podcasts,play_podcasts,"[('player_setting', 'go back'), ('podcast_descriptor', 'last episode')]",[],slot
+11460,No-Train-OOV,i want to listen to a sports podcast,play_podcasts,play_podcasts,"[('podcast_name', 'sports podcast')]",[],slot
+11467,No-Train-OOV,play the most recent podcast for this american life,play_podcasts,play_podcasts,"[('podcast_descriptor', 'most recent podcast'), ('podcast_name', 'american life')]",[],slot
+11474,No-Train-OOV,resume series podcast,play_podcasts,play_podcasts,"[('podcast_descriptor', 'series podcast')]","[('player_setting', 'resume')]",slot
+11476,No-Train-OOV,play the previous podcast,play_podcasts,play_podcasts,"[('podcast_descriptor', 'previous podcast')]",[],slot
+11505,No-Train-OOV,replay my last played podcast,play_podcasts,play_podcasts,"[('player_setting', 'replay')]",[],slot
+11529,No-Train-OOV,hey play my favorite podcast from list,play_podcasts,play_podcasts,"[('podcast_descriptor', 'favorite')]",[],slot
+11536,No-Train-OOV,add podcast favorites to playlist and start,play_podcasts,play_podcasts,"[('player_setting', 'start')]",[],slot
+11539,No-Train-OOV,start next podcast,play_podcasts,play_podcasts,"[('player_setting', 'start')]",[],slot
+11546,No-Train-OOV,play all order of the green hand from previous week,play_podcasts,play_music,"[('podcast_name', 'order of the green hand')]","[('date', 'previous week')]",intent+slot
+11563,No-Train-OOV,what can i do in berlin,recommendation_events,general_quirky,"[('place_name', 'berlin')]","[('place_name', 'berlin')]",intent
+11570,No-Train-OOV,what's happening around my town,recommendation_events,recommendation_events,"[('place_name', 'town')]",[],slot
+11582,Slot-Train-OOV,is there anything happening on jazz scene around edinburgh,recommendation_events,recommendation_events,"[('movie_type', 'jazz scene'), ('place_name', 'edinburgh')]","[('place_name', 'edinburgh')]",slot
+11600,No-Train-OOV,what movie can i watch tonight on the theater here in boston,recommendation_events,recommendation_movies,"[('business_type', 'movie'), ('timeofday', 'tonight'), ('place_name', 'boston')]","[('timeofday', 'tonight'), ('place_name', 'theater'), ('place_name', 'boston')]",intent+slot
+11607,No-Train-OOV,give the list of theaters in the vicinity,recommendation_locations,recommendation_events,"[('business_type', 'theaters'), ('place_name', 'vicinity')]","[('event_name', 'theaters')]",intent+slot
+11610,Slot-Train-OOV,give me the list of circus shows going on in the city right now,recommendation_events,news_query,"[('event_name', 'circus'), ('place_name', 'city')]","[('place_name', 'city')]",intent+slot
+11612,Slot-Train-OOV,what gun shows are in tulsa,recommendation_events,recommendation_events,"[('event_name', 'gun shows'), ('place_name', 'tulsa')]","[('place_name', 'tulsa')]",slot
+11633,No-Train-OOV,what movies are showing in cinema today,recommendation_movies,recommendation_movies,"[('business_type', 'cinema'), ('date', 'today')]","[('place_name', 'cinema'), ('date', 'today')]",slot
+11643,No-Train-OOV,what events are happening soon,recommendation_events,recommendation_events,"[('time', 'soon')]",[],slot
+11650,NonSlot-Train-OOV,both young drivers and provisional drivers crash more often than other drivers because they have not yet had the wide range of experiences they need to drive safely by themselves research has shown that driving experience is a major factor in reducing road crashes and that the safest time for young drivers is when they are driving under supervision while learning,recommendation_events,general_quirky,[],[],intent
+11665,No-Train-OOV,olly i'm looking for some dress shows can you find clothing stores within one mile,recommendation_locations,recommendation_locations,"[('business_type', 'dress shows'), ('place_name', 'within one mile')]","[('business_type', 'clothing stores')]",slot
+11678,No-Train-OOV,i would like to know the best rating pubs in the local area,recommendation_locations,recommendation_locations,"[('business_type', 'pubs')]","[('food_type', 'rating'), ('business_type', 'pubs')]",slot
+11681,No-Train-OOV,please show me marathon nearby me,recommendation_events,general_quirky,"[('event_name', 'marathon')]",[],intent+slot
+11695,NonSlot-Train-OOV,do you have any suggestion action movies,recommendation_movies,general_quirky,"[('movie_type', 'action')]","[('movie_name', 'action')]",intent+slot
+11700,Slot-Train-OOV,show me reviews of my nearest location food court,recommendation_locations,recommendation_locations,"[('place_name', 'nearest location'), ('business_type', 'food court')]",[],slot
+11705,No-Train-OOV,show me painting exhibition in bay area,recommendation_events,recommendation_events,"[('event_name', 'painting exhibition'), ('place_name', 'bay area')]","[('place_name', 'bay area')]",slot
+11706,No-Train-OOV,what shops are round here,recommendation_locations,recommendation_locations,"[('place_name', 'round here')]",[],slot
+11720,No-Train-OOV,swimming,recommendation_events,weather_query,"[('event_name', 'swimming')]",[],intent+slot
+11744,No-Train-OOV,olly what are new drama movies opening this weekend,recommendation_movies,recommendation_events,"[('movie_type', 'drama'), ('time', 'weekend')]","[('date', 'this weekend')]",intent+slot
+11751,No-Train-OOV,what shops are within ten miles,recommendation_locations,recommendation_locations,"[('business_type', 'shops'), ('place_name', 'within ten miles')]","[('business_type', 'shops')]",slot
+11764,NonSlot-Train-OOV,cisco system,recommendation_movies,general_quirky,[],[],intent
+11796,No-Train-OOV,which bar has the most affordable drinks near sixth street,recommendation_locations,recommendation_locations,"[('place_name', 'sixth street')]","[('business_type', 'bar')]",slot
+11802,No-Train-OOV,are there any good pizza places around here,recommendation_locations,recommendation_locations,"[('business_type', 'pizza places')]","[('food_type', 'pizza'), ('business_type', 'places')]",slot
+11825,No-Train-OOV,look for shopping mall in sacramento for women's clothes,recommendation_locations,recommendation_locations,"[('business_type', 'shopping mall'), ('place_name', 'sacramento')]","[('business_type', 'shopping mall')]",slot
+11858,No-Train-OOV,movies with good reviews,recommendation_movies,general_quirky,[],[],intent
+11867,Slot-Train-OOV,is there a sporting event tomorrow in chicago,recommendation_events,recommendation_events,"[('event_name', 'sporting event'), ('date', 'tomorrow'), ('place_name', 'chicago')]","[('date', 'tomorrow'), ('place_name', 'chicago')]",slot
+11875,No-Train-OOV,is there a food festival in the area,recommendation_events,recommendation_events,"[('event_name', 'food festival')]","[('event_name', 'festival')]",slot
+11914,No-Train-OOV,olly i need a drink,iot_coffee,iot_coffee,[],"[('business_type', 'drink')]",slot
+11915,No-Train-OOV,i need a drink,iot_coffee,iot_coffee,[],"[('business_type', 'drink')]",slot
+11916,Slot-Train-OOV,what are some theme parks nearby,recommendation_events,recommendation_locations,"[('event_name', 'theme parks')]",[],intent+slot
+11932,No-Train-OOV,what should i watch today,recommendation_movies,general_quirky,"[('date', 'today')]","[('date', 'today')]",intent
+11953,No-Train-OOV,where is the nearest walmart,recommendation_locations,transport_query,"[('business_name', 'walmart')]","[('business_name', 'walmart')]",intent
+11987,No-Train-OOV,look up movies near me,recommendation_movies,general_quirky,[],[],intent
+11990,NonSlot-Train-OOV,what's a movie in theaters that doesn't suck,recommendation_movies,recommendation_movies,"[('place_name', 'theaters')]",[],slot
+11999,No-Train-OOV,tell me all events for today in my city,recommendation_events,calendar_query,"[('date', 'today')]","[('date', 'today')]",intent
+12019,Slot-Train-OOV,find gluten free bakery near me,recommendation_locations,recommendation_events,"[('business_type', 'gluten free bakery')]","[('business_type', 'gluten free bakery')]",intent
+12051,No-Train-OOV,i need to find a gift what stores are within a one mile radius,recommendation_locations,recommendation_locations,"[('business_type', 'a gift'), ('business_type', 'stores'), ('place_name', 'within a one mile radius')]",[],slot
+12054,No-Train-OOV,what's happening around town,recommendation_events,recommendation_events,"[('place_name', 'around town')]","[('place_name', 'town')]",slot
+12070,Slot-Train-OOV,when does panama city mall open,recommendation_events,qa_factoid,"[('business_name', 'panama city mall')]","[('place_name', 'panama city mall')]",intent+slot
+12073,No-Train-OOV,refer local current events,recommendation_events,recommendation_events,"[('event_name', 'local current events')]",[],slot
+12098,No-Train-OOV,show me nearby musical events,recommendation_events,recommendation_events,"[('event_name', 'musical events')]",[],slot
+12104,Slot-Train-OOV,kung fu panda three,recommendation_movies,takeaway_order,"[('movie_name', 'kung fu panda three')]",[],intent+slot
+12127,Slot-Train-OOV,i need to go to dundee at five am on sunday by train,transport_ticket,alarm_set,"[('place_name', 'dundee'), ('time', 'five am'), ('date', 'sunday'), ('transport_type', 'train')]","[('time', 'five am'), ('date', 'sunday')]",intent+slot
+12161,No-Train-OOV,can you book an uber after i left for office,transport_taxi,transport_taxi,"[('transport_agency', 'uber')]","[('transport_agency', 'uber'), ('place_name', 'office')]",slot
+12233,No-Train-OOV,google train tickets to washington d. c.,transport_ticket,transport_query,"[('transport_type', 'train'), ('place_name', 'washington d . c .')]","[('transport_type', 'train'), ('place_name', 'washington d . c .')]",intent
+12235,No-Train-OOV,please purchase a train ticket for this weekend,transport_ticket,transport_ticket,"[('transport_type', 'train'), ('time', 'weekend')]","[('transport_type', 'train'), ('date', 'this weekend')]",slot
+12240,No-Train-OOV,what is the traffic like on my commute home at five,transport_query,transport_traffic,"[('place_name', 'home'), ('time', 'five')]",[],intent+slot
+12244,No-Train-OOV,book a taxi to go to the movies at one,transport_taxi,transport_taxi,"[('transport_type', 'taxi'), ('place_name', 'movies'), ('time', 'one')]","[('transport_type', 'taxi')]",slot
+12251,Slot-Train-OOV,get me the local train timing to destination cstm,transport_query,transport_query,"[('transport_type', 'train'), ('place_name', 'cstm')]","[('transport_type', 'train'), ('place_name', 'destination cstm')]",slot
+12252,No-Train-OOV,what time are the trains going to chennai leaving,transport_query,transport_query,"[('place_name', 'chennai')]","[('transport_type', 'trains'), ('place_name', 'chennai')]",slot
+12254,No-Train-OOV,tell me about city traffic,transport_traffic,transport_traffic,"[('place_name', 'city')]",[],slot
+12263,No-Train-OOV,california,transport_query,qa_factoid,"[('place_name', 'california')]","[('place_name', 'california')]",intent
+12264,No-Train-OOV,new york,transport_query,news_query,"[('place_name', 'new york')]","[('place_name', 'new york')]",intent
+12306,No-Train-OOV,book a first class ticket in the next train to miami,transport_ticket,transport_ticket,"[('transport_descriptor', 'first class'), ('transport_type', 'train'), ('place_name', 'miami')]","[('transport_type', 'train'), ('place_name', 'miami')]",slot
+12329,No-Train-OOV,call yellow cab,transport_taxi,transport_taxi,"[('transport_type', 'yellow cab')]","[('transport_type', 'cab')]",slot
+12339,No-Train-OOV,book a train ticket for one one way for this tuesday at nine am,transport_ticket,transport_ticket,"[('transport_type', 'train'), ('transport_descriptor', 'one way'), ('date', 'tuesday'), ('time', 'nine am')]","[('transport_type', 'train'), ('time', 'one one way'), ('date', 'tuesday'), ('time', 'nine am')]",slot
+12367,Slot-Train-OOV,what's the best way to sheffield,transport_query,general_quirky,"[('place_name', 'sheffield')]",[],intent+slot
+12437,No-Train-OOV,what is the commute time to the theater,transport_query,transport_traffic,"[('place_name', 'theater')]","[('place_name', 'theater')]",intent
+12468,No-Train-OOV,find a train ticket to philadelphia,transport_ticket,transport_query,"[('transport_type', 'train'), ('place_name', 'philadelphia')]","[('transport_type', 'train'), ('place_name', 'philadelphia')]",intent
+12548,No-Train-OOV,i need a ride home,transport_taxi,transport_taxi,"[('place_name', 'home')]",[],slot
+12581,No-Train-OOV,when does the f. train run today,transport_query,transport_query,"[('transport_type', 'train'), ('date', 'today')]","[('transport_name', 'f .'), ('transport_type', 'train'), ('date', 'today')]",slot
+12582,Slot-Train-OOV,what time does the first metrolink arrive in the morning,transport_query,datetime_query,"[('transport_type', 'metrolink'), ('timeofday', 'morning')]","[('date', 'first metrolink'), ('timeofday', 'morning')]",intent+slot
+12604,No-Train-OOV,how do i book a train ticket online,transport_query,transport_ticket,"[('transport_type', 'train')]","[('transport_type', 'train')]",intent
+12606,No-Train-OOV,i need to get a ticket via train to orlando from hwood,transport_ticket,transport_ticket,"[('transport_type', 'train'), ('place_name', 'orlando from hwood')]","[('transport_type', 'train'), ('place_name', 'orlando'), ('place_name', 'hwood')]",slot
+12607,No-Train-OOV,i need to get a ticket via train to orlando from hwood,transport_ticket,transport_ticket,"[('transport_type', 'train'), ('place_name', 'orlando from hwood')]","[('transport_type', 'train'), ('place_name', 'orlando'), ('place_name', 'hwood')]",slot
+12672,No-Train-OOV,how is traffic in city,transport_traffic,transport_traffic,[],"[('place_name', 'city')]",slot
+12707,NonSlot-Train-OOV,navigation search,transport_query,qa_factoid,[],[],intent
+12716,Slot-Train-OOV,call an uberpool to get me at long island bar,transport_taxi,transport_taxi,"[('transport_type', 'uberpool'), ('place_name', 'long island bar')]","[('place_name', 'long island bar')]",slot
+12759,No-Train-OOV,driving time to los angeles,transport_query,datetime_convert,"[('place_name', 'los angeles')]","[('place_name', 'los angeles')]",intent
+12797,No-Train-OOV,train times from near me to location,transport_query,transport_query,"[('place_name', 'location')]","[('transport_type', 'train')]",slot
+12800,No-Train-OOV,where is the public library,transport_query,qa_factoid,"[('business_type', 'public library')]",[],intent+slot
+12813,No-Train-OOV,please book a ticket of rajdhani express train from jaipur,transport_ticket,transport_ticket,"[('transport_name', 'rajdhani express'), ('transport_type', 'train'), ('place_name', 'jaipur')]","[('transport_type', 'train'), ('place_name', 'jaipur')]",slot
+12817,No-Train-OOV,how do i get to the mall,transport_query,transport_query,"[('place_name', 'the mall')]","[('place_name', 'mall')]",slot
+12838,No-Train-OOV,how is the traffic at the moment,transport_traffic,transport_traffic,"[('time', 'the moment')]",[],slot
+12839,Slot-Train-OOV,take me to layfayette saint and canal,transport_query,general_quirky,"[('place_name', 'layfayette saint and canal')]",[],intent+slot
+12883,No-Train-OOV,book a train ticket weekend of the twenty sixth phoenix to los angeles,transport_ticket,transport_ticket,"[('transport_type', 'train'), ('date', 'weekend of the twenty sixth'), ('place_name', 'phoenix'), ('place_name', 'los angeles')]","[('transport_type', 'train'), ('date', 'weekend of the twenty sixth phoenix'), ('place_name', 'los angeles')]",slot
+12930,No-Train-OOV,look up the map to stores near me,transport_query,recommendation_locations,"[('business_type', 'stores')]",[],intent+slot
+12987,NonSlot-Train-OOV,can you track my emotions based on the way i speak,general_quirky,play_music,[],[],intent
+13031,No-Train-OOV,what is the nearest pizza shop,recommendation_locations,recommendation_locations,"[('business_type', 'pizza shop')]","[('food_type', 'pizza'), ('business_type', 'shop')]",slot
+13043,NonSlot-Train-OOV,i want sweet potato pie from a local bakery,lists_createoradd,cooking_recipe,[],"[('food_type', 'potato pie')]",intent+slot
+13044,No-Train-OOV,i want tickets to the sold out concert on saturday night,general_quirky,calendar_set,"[('date', 'saturday'), ('timeofday', 'night')]","[('event_name', 'sold out concert'), ('date', 'saturday'), ('time', 'night')]",intent+slot
+13067,No-Train-OOV,can you create a sugar free diet for me and create a shopping list for the ingredients,general_quirky,cooking_recipe,[],[],intent
+13074,Slot-Train-OOV,why isn't adam sandler funny,qa_factoid,general_quirky,"[('person', 'adam sandler')]",[],intent+slot
+13078,Slot-Train-OOV,tell me billy crytals address,qa_factoid,email_querycontact,"[('person', 'billy crytals')]","[('person', 'billy crytals')]",intent
+13083,No-Train-OOV,drive the car and bring my friends over,general_quirky,social_post,[],"[('relation', 'friends')]",intent+slot
+13135,Slot-Train-OOV,when is the birth date of taylor lautner,qa_factoid,qa_factoid,"[('person', 'taylor lautner')]",[],slot
+13140,No-Train-OOV,tell me all about hurricane,qa_definition,news_query,"[('definition_word', 'hurricane')]","[('person', 'hurricane')]",intent+slot
+13154,Slot-Train-OOV,do you know jessica snout's phone number,qa_factoid,email_querycontact,"[('person', ""jessica snout's"")]","[('person', ""jessica snout's""), ('personal_info', 'phone number')]",intent+slot
+13177,No-Train-OOV,remind me to move so there is no weight gain,calendar_set,qa_factoid,[],[],intent
+13178,No-Train-OOV,remind me to contact old friends that i have not talked with in six months before they pass,calendar_set,calendar_set,[],"[('relation', 'friends')]",slot
+13188,NonSlot-Train-OOV,tell me how are the results of assembly elections in delhi going to come out,news_query,news_query,"[('place_name', 'delhi')]","[('news_topic', 'assembly elections'), ('place_name', 'delhi')]",slot
+13199,No-Train-OOV,do you know math,qa_maths,general_quirky,[],[],intent
+13206,No-Train-OOV,location,qa_definition,transport_query,[],[],intent
+13215,NonSlot-Train-OOV,what is the quickest way to my work downtown without hitting any traffic,transport_query,transport_traffic,"[('place_name', 'downtown')]","[('place_name', 'downtown')]",intent
+13221,Slot-Train-OOV,what does priyanka chopra do to look beautiful,general_quirky,qa_factoid,"[('person', 'priyanka chopra')]","[('person', 'priyanka chopra')]",intent
+13223,Slot-Train-OOV,why does sofia vergara look so young,general_quirky,qa_factoid,"[('person', 'sofia vergara')]","[('person', 'sofia vergara')]",intent
+13252,Slot-Train-OOV,what was george eliot's first november el,qa_factoid,qa_factoid,"[('person', ""george eliot's"")]","[('person', ""george eliot's""), ('date', 'first november')]",slot
+13297,No-Train-OOV,who is celebrity,qa_factoid,general_quirky,[],[],intent
+13298,No-Train-OOV,what does celebrity do,qa_factoid,general_quirky,[],[],intent
+13303,No-Train-OOV,can you make dinner for me,general_quirky,calendar_set,[],"[('meal_type', 'dinner')]",intent+slot
+13318,Slot-Train-OOV,i want to know what supermarket near me has the best price on gluten free bread,recommendation_locations,recommendation_locations,"[('business_type', 'supermarket'), ('food_type', 'gluten free bread')]",[],slot
+13341,No-Train-OOV,i want it to remember my preferences and recommend me things based on them when i ask,general_quirky,calendar_set,[],[],intent
+13346,NonSlot-Train-OOV,just idle chit chat,general_quirky,general_quirky,[],"[('event_name', 'chat')]",slot
+13348,NonSlot-Train-OOV,i need to ask you how many angels can dance on a pinhead,general_quirky,qa_factoid,[],[],intent
+13363,No-Train-OOV,when will the world end,general_quirky,qa_factoid,[],"[('place_name', 'world end')]",intent+slot
+13372,No-Train-OOV,what time are the hockey games tonight,general_quirky,recommendation_events,"[('timeofday', 'tonight')]","[('event_name', 'hockey games'), ('timeofday', 'tonight')]",intent+slot
+13400,No-Train-OOV,send a funny message to all of my friends,social_post,email_sendemail,[],"[('relation', 'friends')]",intent+slot
+13404,No-Train-OOV,what store is having sales tomorrow,general_quirky,recommendation_events,"[('date', 'tomorrow')]","[('date', 'tomorrow')]",intent
+13407,NonSlot-Train-OOV,what causes osteoperosis,general_quirky,qa_factoid,[],[],intent
+13411,No-Train-OOV,show me the answer for this problem two hundred and forty six plus six hundred and fifty four,qa_maths,general_quirky,[],[],intent
+13439,Slot-Train-OOV,how old is j. k. rowling,qa_factoid,email_querycontact,"[('person', 'j . k . rowling')]","[('personal_info', 'old'), ('person', 'j . k .')]",intent+slot
+13473,No-Train-OOV,when was the us got freedom,qa_factoid,email_querycontact,"[('place_name', 'us')]",[],intent+slot
+13486,NonSlot-Train-OOV,can you show me a list of all my recent commands,general_quirky,lists_query,[],[],intent
+13491,No-Train-OOV,please give me the winning lottery numbers for this weekend,general_quirky,recommendation_events,"[('date', 'this weekend')]","[('event_name', 'winning lottery numbers'), ('date', 'this weekend')]",intent+slot
+13516,NonSlot-Train-OOV,why are whales big,qa_factoid,general_quirky,[],[],intent
+13521,No-Train-OOV,why is the earth round,general_quirky,qa_factoid,[],"[('place_name', 'earth round')]",intent+slot
+13536,No-Train-OOV,wanna netflix and chill,general_quirky,cooking_recipe,[],[],intent
+13546,No-Train-OOV,what was the last movie will smith was in,qa_factoid,qa_factoid,"[('person', 'will smith')]","[('person', 'smith')]",slot
+13547,Slot-Train-OOV,where was will ferrell seen last night,general_quirky,qa_factoid,"[('person', 'will ferrell'), ('date', 'last night')]",[],intent+slot
+13548,No-Train-OOV,i'd like you to turn turn on the t. v.,iot_wemo_on,play_music,[],"[('device_type', 't . v .')]",intent+slot
+13575,NonSlot-Train-OOV,when was last academy award winning movie,qa_factoid,general_quirky,[],[],intent
+13580,No-Train-OOV,how tall is mount everest,qa_factoid,qa_factoid,"[('place_name', 'everest')]","[('place_name', 'mount everest')]",slot
+13592,Slot-Train-OOV,where is new zealand located on a map,qa_factoid,qa_factoid,"[('place_name', 'new zealand')]",[],slot
+13604,No-Train-OOV,tell me where steve jobs was born,qa_factoid,qa_factoid,"[('person', 'steve jobs')]","[('person', 'steve')]",slot
+13625,No-Train-OOV,what is the largest desk,qa_definition,qa_factoid,"[('definition_word', 'largest desk')]",[],intent+slot
+13636,Slot-Train-OOV,what is arnold schwarzenegger's birthday,qa_factoid,qa_factoid,"[('person', ""arnold schwarzenegger's"")]","[('person', ""arnold schwarzenegger's""), ('event_name', 'birthday')]",slot
+13639,No-Train-OOV,what is the increase in stock value over the past week of disney,qa_stock,qa_stock,"[('business_name', 'disney')]","[('place_name', 'disney')]",slot
+13685,No-Train-OOV,has the dollar rate increased,qa_currency,qa_currency,[],"[('currency_name', 'dollar')]",slot
+13688,No-Train-OOV,what is the most current exchange rate in china,qa_currency,qa_currency,"[('place_name', 'china')]","[('currency_name', 'china')]",slot
+13690,NonSlot-Train-OOV,what color are chairs,qa_factoid,general_quirky,[],[],intent
+13705,Slot-Train-OOV,what is an electronic emissions system,qa_definition,qa_definition,"[('definition_word', 'electronic emissions system')]",[],slot
+13714,No-Train-OOV,what is a mango,qa_definition,qa_definition,"[('definition_word', 'mango')]",[],slot
+13717,No-Train-OOV,can you really see russia from alaska,qa_factoid,qa_factoid,"[('place_name', 'russia'), ('place_name', 'alaska')]","[('place_name', 'alaska')]",slot
+13738,No-Train-OOV,what's the exchange rates between u. s. a. and china,qa_currency,qa_currency,"[('place_name', 'u . s . a .'), ('place_name', 'china')]","[('currency_name', 'u . s . a .'), ('currency_name', 'china')]",slot
+13740,No-Train-OOV,what's the currency exchange rate for china,qa_currency,qa_currency,"[('place_name', 'china')]","[('currency_name', 'china')]",slot
+13741,No-Train-OOV,what's the currency exchange rate for china,qa_currency,qa_currency,"[('place_name', 'china')]","[('currency_name', 'china')]",slot
+13744,NonSlot-Train-OOV,please pull up the wikipedia article on glass blowing,general_quirky,news_query,[],"[('news_topic', 'glass blowing')]",intent+slot
+13754,Slot-Train-OOV,tell me the current price of exxon mobil stock,qa_stock,qa_stock,"[('business_name', 'exxon mobil')]","[('business_name', 'exxon')]",slot
+13761,NonSlot-Train-OOV,what's a parsec,qa_factoid,qa_definition,[],"[('definition_word', 'parsec')]",intent+slot
+13780,Slot-Train-OOV,is steph curry married,qa_factoid,qa_factoid,"[('person', 'steph curry')]","[('business_name', 'steph curry')]",slot
+13796,Slot-Train-OOV,what is the exchange rate between us and mexico,qa_currency,qa_currency,"[('currency_name', 'us'), ('currency_name', 'mexico')]","[('currency_name', 'mexico')]",slot
+13847,Slot-Train-OOV,what is the exchange rate for mexico money,qa_currency,qa_currency,"[('currency_name', 'mexico')]",[],slot
+13855,Slot-Train-OOV,what are lady gagas most popular songs,music_query,music_query,"[('artist_name', 'lady gagas')]",[],slot
+13888,No-Train-OOV,what is the temperature in indianapolis indiana,qa_factoid,weather_query,"[('place_name', 'indianapolis indiana')]","[('weather_descriptor', 'temperature'), ('place_name', 'indianapolis indiana')]",intent+slot
+13900,No-Train-OOV,the definition of life,qa_definition,general_quirky,"[('definition_word', 'life')]",[],intent+slot
+13926,Slot-Train-OOV,what is the birthday of hemingway,qa_factoid,calendar_query,"[('person', 'hemingway')]","[('event_name', 'birthday')]",intent+slot
+13929,No-Train-OOV,tell me a place that has snow now,general_quirky,weather_query,[],"[('weather_descriptor', 'snow')]",intent+slot
+13934,No-Train-OOV,how is the stock going in general,qa_stock,qa_stock,[],"[('business_name', 'general')]",slot
+13982,No-Train-OOV,dollar rate at present,qa_currency,qa_currency,"[('currency_name', 'dollar')]","[('currency_name', 'dollar'), ('currency_name', 'present')]",slot
+13983,NonSlot-Train-OOV,suffering consequences,qa_definition,general_quirky,[],[],intent
+13984,NonSlot-Train-OOV,consequences to actions,qa_definition,email_sendemail,[],[],intent
+14001,NonSlot-Train-OOV,tell me everything you know about sloths,qa_factoid,general_quirky,[],[],intent
+14015,Slot-Train-OOV,what are the coordinates of the equator,qa_factoid,qa_factoid,"[('place_name', 'the equator')]",[],slot
+14026,No-Train-OOV,if a pencil cost four dollars and a book ten dollars cost how much i should pay if i buy two pencil and three book,qa_maths,qa_currency,[],[],intent
+14038,NonSlot-Train-OOV,what is the location of moldova,qa_factoid,qa_factoid,[],"[('place_name', 'moldova')]",slot
+14040,NonSlot-Train-OOV,how tall is hulk hogan,qa_factoid,qa_factoid,[],"[('person', 'hulk hogan')]",slot
+14090,No-Train-OOV,facebook current stock rate,qa_stock,qa_stock,"[('business_name', 'facebook')]","[('media_type', 'facebook')]",slot
+14096,No-Train-OOV,where are the rocky mountains,qa_factoid,qa_factoid,[],"[('place_name', 'the rocky mountains')]",slot
+14117,Slot-Train-OOV,where are pyramids located,qa_factoid,qa_factoid,"[('place_name', 'pyramids')]",[],slot
+14150,No-Train-OOV,what are converse shoes,qa_definition,general_quirky,"[('definition_word', 'converse shoes')]",[],intent+slot
+14169,Slot-Train-OOV,where did amal clooney go to college,qa_factoid,qa_factoid,"[('person', 'amal clooney')]","[('person', 'amal clooney'), ('place_name', 'college')]",slot
+14179,No-Train-OOV,how far is canada from my current location,qa_factoid,transport_query,"[('place_name', 'canada')]","[('place_name', 'canada')]",intent
+14214,No-Train-OOV,find the ways of travel for the same,transport_query,general_quirky,[],[],intent
+14243,No-Train-OOV,details on person,qa_factoid,general_quirky,[],[],intent
+14272,No-Train-OOV,hey what's a book,qa_definition,play_audiobook,"[('definition_word', 'book')]",[],intent+slot
+14308,NonSlot-Train-OOV,what is leonardo dicaprio's networth,qa_factoid,qa_factoid,[],"[('person', ""leonardo dicaprio's"")]",slot
+14317,No-Train-OOV,what is the size of the united states,qa_factoid,qa_factoid,[],"[('place_name', 'the united states')]",slot
+14330,No-Train-OOV,where was steve jobs born,qa_factoid,qa_factoid,"[('person', 'steve jobs')]","[('person', 'steve')]",slot
+14339,No-Train-OOV,tell me about economy and g. d. p. about india versus china,general_quirky,qa_factoid,"[('place_name', 'india'), ('place_name', 'china')]","[('place_name', 'india'), ('place_name', 'china')]",intent
+14348,NonSlot-Train-OOV,google what are the basic things humans need,general_quirky,qa_factoid,[],[],intent
+14367,No-Train-OOV,will there be a world war four,general_quirky,qa_factoid,[],[],intent
+14368,No-Train-OOV,how much will be the world population after twenty years,general_quirky,qa_factoid,[],[],intent
+14370,NonSlot-Train-OOV,tell me the profession of celebrity,qa_factoid,general_quirky,[],[],intent
+14395,No-Train-OOV,what is the deepest point on earth,qa_factoid,qa_factoid,[],"[('place_name', 'earth')]",slot
+14412,NonSlot-Train-OOV,describe the new football game rules,general_quirky,play_game,[],[],intent
+14414,Slot-Train-OOV,describe about the computer hard disk,qa_definition,qa_definition,"[('definition_word', 'computer hard disk')]","[('definition_word', 'the computer hard disk')]",slot
+14419,Slot-Train-OOV,is angeline having a new movie this year,qa_factoid,general_quirky,"[('person', 'angeline')]",[],intent+slot
+14449,No-Train-OOV,does pink have a new baby,qa_factoid,qa_factoid,"[('person', 'pink')]","[('artist_name', 'pink')]",slot
+14457,No-Train-OOV,find route,qa_factoid,transport_query,[],[],intent
+14481,No-Train-OOV,can we go to sun,general_quirky,weather_query,[],"[('weather_descriptor', 'sun')]",intent+slot
+14508,NonSlot-Train-OOV,please summarize the latest george r. r. martin ice and fire book,qa_factoid,play_music,[],"[('person', 'george r . r . martin')]",intent+slot
+14526,No-Train-OOV,what is price of dollar,qa_currency,qa_stock,"[('currency_name', 'dollar')]","[('currency_name', 'dollar')]",intent
+14549,No-Train-OOV,make a list about selena gomez concert schedule,lists_createoradd,qa_factoid,"[('person', 'selena gomez')]","[('person', 'selena gomez'), ('event_name', 'concert')]",intent+slot
+14553,No-Train-OOV,tell me if global warming is true,general_quirky,weather_query,[],[],intent
+14564,No-Train-OOV,explain how is u. s. a. better than other countries,general_quirky,qa_factoid,"[('place_name', 'u . s . a .')]","[('place_name', 'u . s .')]",intent+slot
+14585,No-Train-OOV,how long will it take to travel to japan from south korea,qa_factoid,transport_query,"[('place_name', 'japan'), ('place_name', 'south korea')]","[('place_name', 'japan'), ('place_name', 'south korea')]",intent
+14601,No-Train-OOV,for how many years was abraham lincoln president of united states,qa_factoid,qa_factoid,[],"[('person', 'abraham lincoln'), ('place_name', 'united states')]",slot
+14646,NonSlot-Train-OOV,tell me about the cheapest flight fares to nj today,transport_ticket,transport_query,"[('place_name', 'nj'), ('date', 'today')]","[('place_name', 'nj'), ('date', 'today')]",intent
+14673,NonSlot-Train-OOV,can you tell me about animal kingdom in amazon forest,general_quirky,qa_factoid,"[('place_name', 'amazon forest')]","[('place_name', 'amazon forest')]",intent
+14683,Slot-Train-OOV,what is the hobby of ajay devgn,qa_factoid,qa_factoid,"[('person', 'ajay devgn')]",[],slot
+14700,Slot-Train-OOV,what exactly is a resin tooth filling,qa_definition,qa_factoid,"[('definition_word', 'resin tooth filling')]",[],intent+slot
+14701,No-Train-OOV,describe the heart stone card game,qa_definition,general_quirky,"[('definition_word', 'heart stone card game')]",[],intent+slot
+14787,NonSlot-Train-OOV,what is the difference between roman and grigorean calendar,qa_factoid,datetime_convert,[],"[('place_name', 'roman'), ('place_name', 'grigorean')]",intent+slot
+14791,No-Train-OOV,what is the make up of the chair,qa_factoid,qa_definition,[],"[('definition_word', 'the chair')]",intent+slot
+14817,NonSlot-Train-OOV,his hardword is properly quead,general_quirky,qa_factoid,[],[],intent
+14822,No-Train-OOV,to compare in people,qa_factoid,general_quirky,[],[],intent
+14838,NonSlot-Train-OOV,what is a neutral density filter and would i want a gradient one or a solid one also which would be better in style between the screw on one and the square ones,qa_factoid,general_quirky,[],[],intent
+14874,Slot-Train-OOV,check stock price for dinky donuts,qa_stock,qa_stock,"[('business_name', 'dinky donuts')]","[('business_name', 'dinky')]",slot
+14877,NonSlot-Train-OOV,what are the climatic conditions in that area,qa_factoid,recommendation_locations,[],[],intent
+14884,NonSlot-Train-OOV,what is the least tornado prone state in the entire us,qa_factoid,qa_factoid,"[('place_name', 'us')]",[],slot
+14912,No-Train-OOV,where was president madison born,qa_factoid,qa_factoid,"[('person', 'madison')]",[],slot
+14917,Slot-Train-OOV,when's mark lanegan's next album out,qa_factoid,music_query,"[('person', ""mark lanegan's"")]","[('person', ""mark lanegan's"")]",intent
+14919,Slot-Train-OOV,how have megatel shares done last week,qa_stock,qa_stock,"[('business_name', 'megatel'), ('date', 'last week')]","[('date', 'last week')]",slot
+14933,No-Train-OOV,tell me the info about india's geography,qa_factoid,qa_factoid,"[('place_name', ""india's"")]",[],slot
+14958,No-Train-OOV,look up,general_quirky,qa_definition,[],[],intent
+14963,No-Train-OOV,internet please,general_quirky,qa_factoid,[],[],intent
+14973,NonSlot-Train-OOV,what is the prevailing exchange rate us versus indian rupees,qa_currency,qa_currency,"[('currency_name', 'us'), ('currency_name', 'indian rupees')]","[('currency_name', 'indian rupees')]",slot
+14981,No-Train-OOV,iphone seven description,qa_definition,qa_definition,"[('definition_word', 'iphone seven')]",[],slot
+15010,No-Train-OOV,how much is one american dollars worth in england,qa_currency,qa_currency,"[('currency_name', 'american dollars'), ('currency_name', 'england')]","[('currency_name', 'england')]",slot
+15113,NonSlot-Train-OOV,what is the geology of this location,general_quirky,transport_query,[],[],intent
+15137,NonSlot-Train-OOV,become a helicopter,general_quirky,news_query,[],[],intent
+15138,Slot-Train-OOV,check my social networks,social_query,calendar_query,"[('media_type', 'social networks')]",[],intent+slot
+15155,No-Train-OOV,can you upload my latest selfie in my facebook account,social_post,social_post,"[('media_type', 'facebook account')]","[('media_type', 'facebook')]",slot
+15181,No-Train-OOV,do i have any new friend requests,social_query,email_query,[],[],intent
+15185,No-Train-OOV,birthday wishes,social_post,calendar_set,"[('event_name', 'birthday')]","[('event_name', 'birthday')]",intent
+15186,No-Train-OOV,wedding wishes,social_post,general_quirky,"[('event_name', 'wedding')]","[('event_name', 'wedding')]",intent
+15199,No-Train-OOV,what going on,social_query,recommendation_events,[],[],intent
+15203,No-Train-OOV,new updates,social_query,news_query,[],[],intent
+15205,No-Train-OOV,give me my facebook update every three hours,social_query,social_query,"[('media_type', 'facebook'), ('general_frequency', 'every three hours')]","[('media_type', 'facebook'), ('time', 'three hours')]",slot
+15225,No-Train-OOV,show me latest notifications,social_query,news_query,[],[],intent
+15229,No-Train-OOV,is there any post from my friend mike in facebook,social_query,social_query,"[('relation', 'friend'), ('person', 'mike'), ('media_type', 'facebook')]","[('relation', 'friend'), ('media_type', 'facebook')]",slot
+15271,No-Train-OOV,post this to my facebook l. o. l.,social_post,social_post,"[('media_type', 'facebook')]","[('media_type', 'facebook'), ('business_name', 'l . o . l .')]",slot
+15276,No-Train-OOV,post a new status on facebook saying that i am enjoying the nice weather,social_post,social_post,"[('media_type', 'facebook'), ('weather_descriptor', 'nice weather')]","[('media_type', 'facebook')]",slot
+15304,No-Train-OOV,has anyone follow me today on twitter today,social_query,social_query,"[('media_type', 'twitter'), ('date', 'today')]","[('date', 'today'), ('media_type', 'twitter'), ('date', 'today')]",slot
+15305,No-Train-OOV,do i have any notifications from social media,calendar_query,social_query,[],[],intent
+15318,No-Train-OOV,i want to thank everyone for the birthday wishes,social_post,calendar_query,"[('event_name', 'birthday')]","[('event_name', 'birthday')]",intent
+15333,Slot-Train-OOV,anything new on insta,social_query,social_query,"[('media_type', 'insta')]",[],slot
+15348,No-Train-OOV,who is doing facebook live right now,social_query,social_query,"[('media_type', 'facebook live')]",[],slot
+15350,NonSlot-Train-OOV,i'm unhappy with tesco please help me,social_post,general_quirky,"[('business_name', 'tesco')]","[('business_name', 'tesco')]",intent
+15382,No-Train-OOV,can you contact samsung and say my washer is on fire,social_post,social_post,"[('business_name', 'samsung')]",[],slot
+15401,No-Train-OOV,open twitter send message,social_post,social_post,"[('business_name', 'twitter')]","[('media_type', 'twitter')]",slot
+15413,No-Train-OOV,get me a person a. s. a. p.,social_post,general_quirky,[],[],intent
+15444,No-Train-OOV,two thumbs down at companyname,social_post,qa_stock,"[('business_name', 'at companyname')]","[('business_name', 'companyname')]",intent+slot
+15448,Slot-Train-OOV,send a tweet about sonys volume issues,social_post,social_post,"[('media_type', 'tweet'), ('business_name', 'sonys')]","[('media_type', 'tweet')]",slot
+15454,Slot-Train-OOV,tweet at united airlines i'm angry you lost my bags,social_post,social_post,"[('media_type', 'tweet'), ('business_name', 'united airlines')]","[('media_type', 'tweet'), ('business_name', 'at united airlines')]",slot
+15457,Slot-Train-OOV,i had a problem with my burger can you tweet bk,social_post,social_post,"[('media_type', 'tweet'), ('business_name', 'bk')]","[('media_type', 'tweet')]",slot
+15472,No-Train-OOV,tweet a complaint for the online bookstore,social_post,social_post,"[('media_type', 'tweet'), ('business_name', 'online bookstore')]","[('media_type', 'tweet')]",slot
+15508,NonSlot-Train-OOV,siri open twitter tweet at potus sucks,social_post,social_post,"[('media_type', 'twitter')]","[('media_type', 'twitter'), ('business_name', 'potus')]",slot
+15546,No-Train-OOV,tweet about cold pizza to papa johns,social_post,social_post,"[('media_type', 'tweet'), ('business_name', 'papa johns')]","[('media_type', 'tweet'), ('business_name', 'cold pizza'), ('business_name', 'papa johns')]",slot
+15548,No-Train-OOV,tweet mobile complaint to samsung,social_post,social_post,"[('media_type', 'tweet'), ('business_name', 'samsung')]","[('media_type', 'tweet'), ('business_name', 'mobile'), ('business_name', 'samsung')]",slot
+15563,No-Train-OOV,clear out the problem,general_quirky,calendar_remove,[],[],intent
+15587,Slot-Train-OOV,open gallery post picture name,social_post,social_post,"[('media_type', 'gallery')]",[],slot
+15592,No-Train-OOV,tweet complain at comcast,social_post,social_post,"[('media_type', 'tweet'), ('business_name', 'at comcast')]","[('media_type', 'tweet'), ('business_name', 'comcast')]",slot
+15593,No-Train-OOV,tweet complain at comcast,social_post,social_post,"[('media_type', 'tweet'), ('business_name', 'at comcast')]","[('media_type', 'tweet'), ('business_name', 'comcast')]",slot
+15598,No-Train-OOV,open company name and find complaints,social_post,social_post,"[('business_name', 'company name')]",[],slot
+15655,NonSlot-Train-OOV,tweet to google costumer service my new nexus phone stop working help please,social_post,social_post,"[('media_type', 'tweet')]","[('media_type', 'tweet'), ('business_name', 'google costumer service')]",slot
+15661,No-Train-OOV,post my latest entry to twitter at n.s.a.,social_post,social_post,"[('media_type', 'twitter'), ('business_name', 'at n . s . a .')]","[('media_type', 'twitter'), ('business_name', 'n . s . a .')]",slot
+15686,No-Train-OOV,hello my item which i bought from some one has gone out of order,social_post,takeaway_query,[],[],intent
+15731,No-Train-OOV,olly tweet a message to a. t. & t. and tell them my service is bad,social_post,social_post,"[('media_type', 'tweet'), ('business_name', 'a . t . & t .')]","[('media_type', 'tweet')]",slot
+15747,NonSlot-Train-OOV,add this person's email,email_addcontact,email_addcontact,"[('personal_info', 'email')]",[],slot
+15785,No-Train-OOV,is there anything new in my mailbox,email_query,email_query,[],"[('email_folder', 'mailbox')]",slot
+15794,Slot-Train-OOV,where seth lives,email_querycontact,general_quirky,"[('person', 'seth'), ('personal_info', 'lives')]",[],intent+slot
+15828,No-Train-OOV,here is a new email address to be added to the contacts,email_sendemail,email_addcontact,[],[],intent
+15839,No-Train-OOV,topic,email_query,news_query,[],[],intent
+15847,No-Train-OOV,how we can get credit,email_sendemail,general_quirky,[],[],intent
+15966,No-Train-OOV,send a reply if it is very important,email_query,email_sendemail,[],[],intent
+15968,No-Train-OOV,if it is from a very familiar place mark it as important,email_query,general_quirky,[],[],intent
+15995,Slot-Train-OOV,email karen about the budget meeting,email_sendemail,email_sendemail,"[('person', 'karen'), ('event_name', 'budget meeting')]","[('person', 'karen')]",slot
+16024,No-Train-OOV,send an email to rohit saying i am busy tomorrow,email_sendemail,email_sendemail,"[('person', 'rohit')]","[('person', 'rohit'), ('date', 'tomorrow')]",slot
+16045,Slot-Train-OOV,send mail to ismail for office opening time table,email_sendemail,email_sendemail,"[('person', 'ismail')]",[],slot
+16072,NonSlot-Train-OOV,email my boss that i will be late today because of an emergency and apologize to him for missing the meeting,email_sendemail,email_sendemail,"[('relation', 'boss'), ('date', 'today'), ('event_name', 'meeting')]","[('relation', 'boss'), ('event_name', 'meeting')]",slot
+16131,No-Train-OOV,this new email should be added to my contact,email_sendemail,email_addcontact,[],[],intent
+16151,No-Train-OOV,check meeting schedule in todays mail,email_query,calendar_query,"[('event_name', 'meeting'), ('date', 'todays')]","[('event_name', 'meeting'), ('date', 'todays')]",intent
+16158,No-Train-OOV,remember this email,email_addcontact,email_sendemail,[],[],intent
+16163,NonSlot-Train-OOV,who mailed me yesterday,email_query,calendar_query,"[('date', 'yesterday')]","[('date', 'yesterday')]",intent
+16165,No-Train-OOV,did charlotte responded,email_query,social_query,"[('person', 'charlotte')]","[('person', 'charlotte')]",intent
+16168,NonSlot-Train-OOV,have any emails arrived in the last fifteen minutes,email_query,email_query,"[('time', 'fifteen minutes')]","[('time', 'last fifteen minutes')]",slot
+16178,No-Train-OOV,any mail from amazon today,email_query,email_query,"[('person', 'amazon'), ('date', 'today')]","[('business_name', 'amazon'), ('date', 'today')]",slot
+16225,No-Train-OOV,open contacts,email_addcontact,email_querycontact,[],[],intent
+16228,No-Train-OOV,is it anyone i knows birthday this month,email_querycontact,calendar_query,"[('event_name', 'birthday'), ('date', 'this month')]","[('event_name', 'knows birthday'), ('date', 'this month')]",intent+slot
+16229,No-Train-OOV,which contact haven't i called in twelve months,email_querycontact,email_query,"[('time', 'twelve months')]",[],intent+slot
+16273,No-Train-OOV,how do i reach sarah,email_querycontact,email_querycontact,"[('personal_info', 'reach'), ('person', 'sarah')]","[('person', 'sarah')]",slot
+16275,No-Train-OOV,initiate polling for new email,email_query,email_sendemail,[],[],intent
+16280,No-Train-OOV,please send an email to cassy who is there on my family and friend list,email_sendemail,email_sendemail,"[('person', 'cassy'), ('relation', 'family'), ('relation', 'friend')]","[('person', 'cassy')]",slot
+16282,Slot-Train-OOV,send an email to my assistant clara to cancel all appointments for tomorrow,email_sendemail,email_sendemail,"[('relation', 'assistant'), ('person', 'clara'), ('event_name', 'appointments'), ('date', 'tomorrow')]","[('event_name', 'appointments'), ('date', 'tomorrow')]",slot
+16354,Slot-Train-OOV,check for emails from my employer,email_query,email_query,"[('relation', 'employer')]",[],slot
+16438,No-Train-OOV,i need this email sent now,email_sendemail,email_query,[],[],intent
+16467,NonSlot-Train-OOV,do i have any new emails from my contact q.,email_query,email_query,[],"[('person', 'q .')]",slot
+16501,Slot-Train-OOV,please send a mail to my friend divya how are you,email_sendemail,email_sendemail,"[('relation', 'friend'), ('person', 'divya')]","[('relation', 'friend divya')]",slot
+16518,No-Train-OOV,add a new email for julie smith,email_sendemail,email_addcontact,"[('person', 'julie smith')]","[('person', 'julie smith')]",intent
+16519,No-Train-OOV,i need to add a new email to my contacts,email_sendemail,email_addcontact,[],[],intent
+16523,No-Train-OOV,can you tell me the contact information of jo,email_querycontact,email_querycontact,[],"[('personal_info', 'contact information'), ('person', 'jo')]",slot
+16529,No-Train-OOV,check mom's number,email_querycontact,email_querycontact,"[('relation', ""mom's"")]","[('relation', ""mom's""), ('personal_info', 'number')]",slot
+16532,No-Train-OOV,make a call to,email_querycontact,social_post,[],[],intent
+16559,No-Train-OOV,send a reply to mike with the answer four hundred and thirty from his email he sent this morning,email_sendemail,email_sendemail,"[('person', 'mike'), ('timeofday', 'morning')]","[('person', 'mike'), ('time', 'answer four hundred and thirty'), ('timeofday', 'morning')]",slot
+16560,Slot-Train-OOV,respond to my bosses email with the word that i will be in at four in the evening,email_sendemail,email_sendemail,"[('relation', 'bosses')]","[('timeofday', 'evening')]",slot
+16583,No-Train-OOV,does my company worker have a home phone number,email_querycontact,email_querycontact,"[('relation', 'company worker'), ('personal_info', 'home phone number')]","[('relation', 'company worker')]",slot
+16591,No-Train-OOV,i just got an email from bill i need to answer it right now,email_sendemail,email_sendemail,[],"[('person', 'bill')]",slot
+16603,No-Train-OOV,what does the email say that was sent thirty minutes ago from mom,email_query,email_query,"[('time', 'thirty minutes'), ('relation', 'mom')]","[('relation', 'mom')]",slot
+16693,No-Train-OOV,add lowes hardware to my contact emails located in cleveland ohio,email_addcontact,email_addcontact,"[('place_name', 'cleveland ohio')]","[('person', 'lowes hardware'), ('place_name', 'cleveland ohio')]",slot
+16694,Slot-Train-OOV,locate the email to giant eagle and put it into my contact list,email_addcontact,email_sendemail,"[('business_name', 'giant eagle'), ('list_name', 'contact list')]","[('person', 'giant eagle')]",intent+slot
+16710,No-Train-OOV,how many of my contacts live or work in detroit,email_querycontact,email_querycontact,"[('place_name', 'detroit')]",[],slot
+16765,No-Train-OOV,what is the interview time from yesterday's email,email_query,calendar_query,"[('date', ""yesterday's"")]","[('event_name', 'interview'), ('date', ""yesterday's"")]",intent+slot
+16781,No-Train-OOV,add this email address to my contacts and send an email to,email_addcontact,email_sendemail,[],[],intent
+16797,Slot-Train-OOV,what is mr. taxi's phone number it is in my contacts,email_querycontact,email_querycontact,"[('business_name', ""mr . taxi's""), ('personal_info', 'phone number')]","[('person', ""mr . taxi's""), ('personal_info', 'phone number')]",slot
+16874,Slot-Train-OOV,how many phone numbers do i have for brenden,email_querycontact,calendar_query,"[('personal_info', 'phone numbers'), ('person', 'brenden')]",[],intent+slot
+16974,Slot-Train-OOV,please check all new email of income tax department,email_query,email_query,"[('business_name', 'income tax department')]",[],slot
+17075,No-Train-OOV,are there any new emails received after four o'clock today,email_query,email_query,"[('time', 'after four'), ('date', 'today')]","[('date', 'today')]",slot
+17095,Slot-Train-OOV,what's leon's email,email_querycontact,email_query,"[('person', ""leon's""), ('personal_info', 'email')]","[('person', ""leon's"")]",intent+slot
+17111,No-Train-OOV,contact detail of paul,email_querycontact,email_querycontact,"[('personal_info', 'contact detail'), ('person', 'paul')]","[('person', 'paul')]",slot
+17119,No-Train-OOV,check any mail from amazon,email_query,email_query,"[('person', 'amazon')]","[('business_name', 'amazon')]",slot
+17123,Slot-Train-OOV,email form for regional v. p.,email_sendemail,email_sendemail,"[('relation', 'regional v . p .')]",[],slot

@@ -1,0 +1,6 @@
+key,dev_seen,dev_seen_pct,majority_acc_on_seen,S1_on_seen,A1_on_seen,linear_on_seen,S1_on_unseen,train_groups_n>=2,train_rows_in_them,pair_disagree_pct,ci_low,ci_high
+exact casefold,11,0.5,90.91,90.91,90.91,90.91,82.79,46,92,8.7,2.17,17.39
+"no wake word, no punctuation",72,3.5,97.22,97.22,98.61,98.61,82.3,223,451,2.22,0.44,4.42
+"content words, order free",292,14.4,97.26,98.29,97.95,98.63,80.24,608,1540,4.74,3.35,6.29
+template,258,12.7,93.02,89.92,91.86,93.8,81.8,517,1510,7.65,5.55,10.03
+template keeping device_type value,246,12.1,96.34,89.43,91.46,93.5,81.93,490,1423,4.92,3.31,6.8

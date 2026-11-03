@@ -1,0 +1,5 @@
+min_train_count,blocked_with_gold_intent,pct,blocked_with_S1_pred_intent,pct_pred
+1,16,0.8,72,3.58
+2,35,1.74,96,4.77
+3,48,2.39,112,5.57
+5,71,3.53,150,7.46

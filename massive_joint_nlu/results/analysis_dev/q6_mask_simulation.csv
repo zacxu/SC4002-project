@@ -1,0 +1,15 @@
+model,mask,k,tp,fp,fn,f1,gain
+Stage 1,none,0,1334,691,678,66.09,0.0
+Stage 1,gold intent (oracle),1,1328,621,684,67.05,0.97
+Stage 1,gold intent (oracle),2,1325,605,687,67.22,1.14
+Stage 1,gold intent (oracle),3,1322,599,690,67.23,1.14
+Stage 1,predicted intent,1,1325,658,687,66.33,0.24
+Stage 1,predicted intent,2,1323,646,689,66.47,0.38
+Stage 1,predicted intent,3,1319,642,693,66.4,0.31
+A1_ft_recipe,none,0,1444,534,568,72.38,0.0
+A1_ft_recipe,gold intent (oracle),1,1438,475,574,73.27,0.89
+A1_ft_recipe,gold intent (oracle),2,1432,466,580,73.25,0.87
+A1_ft_recipe,gold intent (oracle),3,1429,462,583,73.23,0.84
+A1_ft_recipe,predicted intent,1,1434,513,578,72.44,0.06
+A1_ft_recipe,predicted intent,2,1431,508,581,72.44,0.06
+A1_ft_recipe,predicted intent,3,1427,504,585,72.38,0.0

@@ -1,0 +1,3 @@
+holding off idle sleep while training logs are active
+no log activity for 30 minutes, releasing
+released

@@ -1,0 +1,58 @@
+{
+ "dup": {
+  "train duplicates": {
+   "groups": 46,
+   "instances": 92,
+   "R_NN_pct": 8.695652173913048,
+   "R_NN_ci": [
+    2.1739130434782594,
+    17.391304347826086
+   ],
+   "bayes_acc_low_from_RNN": 91.30434782608695,
+   "bayes_acc_high_from_RNN": 95.55155352646071,
+   "resub_acc_pct(optimistic)": 95.65217391304348,
+   "loo_acc_pct(pessimistic)": 91.30434782608695
+  },
+  "train+dev duplicates": {
+   "groups": 59,
+   "instances": 118,
+   "R_NN_pct": 8.47457627118644,
+   "R_NN_ci": [
+    1.6949152542372836,
+    15.296610169491299
+   ],
+   "bayes_acc_low_from_RNN": 91.52542372881356,
+   "bayes_acc_high_from_RNN": 95.66725768135717,
+   "resub_acc_pct(optimistic)": 95.76271186440678,
+   "loo_acc_pct(pessimistic)": 91.52542372881356
+  },
+  "groups containing a dev row": {
+   "groups": 11,
+   "instances": 22,
+   "R_NN_pct": 9.090909090909093,
+   "R_NN_ci": [
+    0.0,
+    27.27272727272727
+   ],
+   "bayes_acc_low_from_RNN": 90.9090909090909,
+   "bayes_acc_high_from_RNN": 95.34433236401979,
+   "resub_acc_pct(optimistic)": 95.45454545454545,
+   "loo_acc_pct(pessimistic)": 90.9090909090909
+  }
+ },
+ "templates": {
+  "train templates": {
+   "groups": 517,
+   "instances": 1510,
+   "R_NN_pct": 7.646397752358025,
+   "R_NN_ci": [
+    5.647996757558507,
+    9.871700989024863
+   ],
+   "bayes_acc_low_from_RNN": 92.35360224764197,
+   "bayes_acc_high_from_RNN": 96.09943992607366,
+   "resub_acc_pct(optimistic)": 95.89403973509934,
+   "loo_acc_pct(pessimistic)": 92.68211920529801
+  }
+ }
+}

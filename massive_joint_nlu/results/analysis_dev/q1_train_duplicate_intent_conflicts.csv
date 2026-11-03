@@ -1,0 +1,5 @@
+utt,n,intents
+good night,2,"{'audio_volume_mute': 1, 'iot_hue_lightoff': 1}"
+olly what movies are playing at carmike cinemas,2,"{'takeaway_order': 1, 'recommendation_movies': 1}"
+olly play be warned by tech nine,2,"{'play_music': 1, 'calendar_set': 1}"
+olly book me a taxi to leith in half an hour,2,"{'calendar_remove': 1, 'transport_taxi': 1}"

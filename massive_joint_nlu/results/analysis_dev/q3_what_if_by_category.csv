@@ -1,0 +1,6 @@
+repair,gold_side,pred_side,F1,gain
+wrong_type_same_span,84,84,70.25,4.16
+boundary_same_type,232,282,78.56,12.47
+overlap_other,73,133,70.76,4.67
+spurious removed,0,192,69.39,3.3
+missed found,289,0,75.03,8.95

@@ -1,0 +1,4 @@
+system,split,matched_no_oov_f1,slot_oov_f1,gap,avg_tokens,avg_slots,matched_avg_tokens,matched_avg_slots
+Stage1,test,70.04,29.9,40.15,7.77,1.51,7.77,1.5
+strict_single,test,84.09,62.99,21.1,7.77,1.51,7.77,1.5
+flagged_single,test,84.29,64.59,19.69,7.77,1.51,7.77,1.5

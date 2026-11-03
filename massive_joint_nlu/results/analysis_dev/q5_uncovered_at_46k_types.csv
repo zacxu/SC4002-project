@@ -1,0 +1,107 @@
+tok,n,n_slot,rank,in_keys,shape,base_known,near,dist,near_in_train,slot_types
+broiler,2,1,98636,True,alpha,,boiler,1.0,False,{'definition_word': 1}
+wakey,2,0,1000000000,False,alpha,,wake,1.0,True,{}
+z,2,2,1000000000,False,alpha,,,,,"{'artist_name': 1, 'person': 1}"
+aaronson,1,1,106020,True,alpha,,bronson,2.0,False,{'person': 1}
+afi's,1,1,1000000000,False,apostrophe,True,,,,{'artist_name': 1}
+alzacz,1,1,1000000000,False,alpha,,,,,{'business_name': 1}
+arcata,1,1,66632,True,alpha,,,,,{'place_name': 1}
+arrahman,1,1,1000000000,False,alpha,,rahman,2.0,True,{'artist_name': 1}
+ashmit,1,1,1000000000,False,alpha,,,,,{'person': 1}
+aud,1,1,76799,True,alpha,,,,,{'currency_name': 1}
+aww,1,0,1000000000,False,alpha,,,,,{}
+bakey,1,0,1000000000,False,alpha,,bake,1.0,True,{}
+bedtime,1,0,52822,True,alpha,,bedside,2.0,True,{}
+beyonce,1,1,69408,True,alpha,,beyoncé,1.0,False,{'person': 1}
+bistro,1,1,47296,True,alpha,,,,,{'place_name': 1}
+both,1,0,1000000000,False,alpha,,beth,1.0,True,{}
+buble,1,1,229514,True,alpha,,bible,1.0,True,{'artist_name': 1}
+bur,1,1,79983,True,alpha,,,,,{'person': 1}
+capricorns,1,0,1000000000,False,alpha,,,,,{}
+cheteshwar,1,1,1000000000,False,alpha,,,,,{'person': 1}
+coc,1,1,72135,True,alpha,,,,,{'game_name': 1}
+crispy,1,1,69996,True,alpha,,crisp,1.0,False,{'cooking_type': 1}
+crockpot,1,0,1000000000,False,alpha,,cockpit,2.0,False,{}
+culotte,1,0,1000000000,False,alpha,,,,,{}
+defrosting,1,1,1000000000,False,alpha,,frosting,2.0,True,{'food_type': 1}
+demonetisation,1,1,1000000000,False,alpha,,,,,{'definition_word': 1}
+dooa,1,1,1000000000,False,alpha,,door,1.0,True,{'place_name': 1}
+downpour,1,1,62496,True,alpha,,,,,{'app_name': 1}
+drenched,1,0,56284,True,alpha,,branched,2.0,False,{}
+eggroll,1,1,1000000000,False,alpha,,enroll,2.0,False,{'food_type': 1}
+enalen,1,1,1000000000,False,alpha,,,,,{'person': 1}
+eric's,1,1,1000000000,False,apostrophe,True,,,,{'event_name': 1}
+erosser,1,1,1000000000,False,alpha,,browser,2.0,False,{'email_address': 1}
+evening's,1,1,1000000000,False,apostrophe,True,evenings,1.0,False,{'timeofday': 1}
+famosa,1,1,230389,True,alpha,,,,,{'radio_name': 1}
+finlee's,1,1,1000000000,False,apostrophe,False,,,,{'person': 1}
+franklin's,1,1,1000000000,False,apostrophe,True,franklin,2.0,True,{'artist_name': 1}
+fransisco,1,1,1000000000,False,alpha,,francisco,1.0,True,{'place_name': 1}
+gandhiji,1,1,78177,True,alpha,,gandhi,2.0,True,{'person': 1}
+gavenda,1,1,1000000000,False,alpha,,agenda,2.0,True,{'artist_name': 1}
+gbaby,1,1,1000000000,False,alpha,,baby,1.0,True,{'person': 1}
+gonbad,1,1,84782,True,alpha,,,,,{'place_name': 1}
+gossiping,1,0,88918,True,alpha,,,,,{}
+groomer,1,1,238201,True,alpha,,grommet,2.0,True,{'place_name': 1}
+haggis,1,1,72786,True,alpha,,,,,{'definition_word': 1}
+harrypotter,1,1,1000000000,False,alpha,,,,,{'audiobook_name': 1}
+hotdog,1,1,211624,True,alpha,,,,,{'food_type': 1}
+hypertrophy,1,1,48318,True,alpha,,,,,{'definition_word': 1}
+hypoallergenic,1,0,138133,True,alpha,,,,,{}
+icebox,1,0,222907,True,alpha,,icebo,1.0,True,{}
+iheartradio,1,1,57715,True,alpha,,,,,{'app_name': 1}
+iliza,1,1,1000000000,False,alpha,,eliza,1.0,False,{'person': 1}
+inchoate,1,1,138880,True,alpha,,,,,{'definition_word': 1}
+intellicast,1,0,1000000000,False,alpha,,,,,{}
+jack's,1,1,1000000000,False,apostrophe,True,,,,{'place_name': 1}
+jean's,1,1,1000000000,False,apostrophe,True,jeans,1.0,True,{'person': 1}
+jello,1,0,66912,True,alpha,,hello,1.0,True,{}
+kamp,1,1,46365,True,alpha,,lamp,1.0,True,{'radio_name': 1}
+kenny's,1,1,1000000000,False,apostrophe,True,danny's,2.0,True,{'person': 1}
+king's,1,1,1000000000,False,apostrophe,True,bing's,1.0,True,{'place_name': 1}
+lamp's,1,1,1000000000,False,apostrophe,True,lamps,1.0,False,{'device_type': 1}
+levis,1,1,72599,True,alpha,,elvis,1.0,True,{'business_name': 1}
+lfi,1,1,231229,True,alpha,,,,,{'business_name': 1}
+loudest,1,1,52530,True,alpha,,coldest,2.0,True,{'change_amount': 1}
+manger,1,0,71834,True,alpha,,manager,1.0,True,{}
+marinara,1,1,1000000000,False,alpha,,mariana,2.0,False,{'definition_word': 1}
+mark's,1,1,1000000000,False,apostrophe,True,mary's,1.0,True,{'person': 1}
+matin,1,1,69390,True,alpha,,latin,1.0,True,{'artist_name': 1}
+metion,1,1,1000000000,False,alpha,,mention,1.0,True,{'person': 1}
+nerd,1,1,52078,True,alpha,,need,1.0,True,{'joke_type': 1}
+netbooks,1,0,87567,True,alpha,,networks,2.0,False,{}
+newspaper's,1,1,1000000000,False,apostrophe,True,newspapers,1.0,False,{'media_type': 1}
+opacity,1,0,57534,True,alpha,,capacity,2.0,True,{}
+orevena,1,0,1000000000,False,alpha,,reveca,2.0,True,{}
+osteen's,1,0,1000000000,False,apostrophe,True,osteen,2.0,True,{}
+palhunik,1,1,1000000000,False,alpha,,,,,{'audiobook_name': 1}
+phillyx,1,1,1000000000,False,alpha,,hilly,2.0,True,{'place_name': 1}
+pon,1,0,66573,True,alpha,,,,,{}
+predication,1,0,162422,True,alpha,,prediction,1.0,False,{}
+pujara,1,1,243643,True,alpha,,,,,{'person': 1}
+queen's,1,1,1000000000,False,apostrophe,True,queens,1.0,False,{'artist_name': 1}
+rearrange,1,0,53407,True,alpha,,rearranged,1.0,False,{}
+repurchase,1,0,63187,True,alpha,,purchase,2.0,True,{}
+restaurant's,1,1,1000000000,False,apostrophe,True,restaurants,1.0,True,{'business_type': 1}
+romero's,1,1,1000000000,False,apostrophe,True,robert's,2.0,True,{'business_name': 1}
+rosser,1,1,53378,True,alpha,,roster,1.0,False,{'person': 1}
+rov,1,0,69735,True,alpha,,,,,{}
+schleshinger,1,1,1000000000,False,alpha,,schlesinger,1.0,False,{'person': 1}
+shoutcast,1,1,226325,True,alpha,,,,,{'radio_name': 1}
+shuffling,1,1,48658,True,alpha,,,,,{'player_setting': 1}
+swatishs,1,1,1000000000,False,alpha,,,,,{'person': 1}
+swerving,1,1,112175,True,alpha,,serving,1.0,False,{'definition_word': 1}
+t'so,1,1,1000000000,False,apostrophe,True,,,,{'food_type': 1}
+terry's,1,1,1000000000,False,apostrophe,True,larry's,2.0,True,{'person': 1}
+thesaurus,1,0,66270,True,alpha,,,,,{}
+thursday's,1,1,1000000000,False,apostrophe,True,thursdays,1.0,True,{'date': 1}
+tiangle,1,0,1000000000,False,alpha,,triangle,1.0,True,{}
+tinder,1,0,104801,True,alpha,,hinder,1.0,False,{}
+toggle,1,0,56864,True,alpha,,,,,{}
+tomo,1,1,57172,True,alpha,,tom,1.0,True,{'place_name': 1}
+trussel's,1,1,1000000000,False,apostrophe,False,brussels,2.0,False,{'person': 1}
+udrive,1,1,1000000000,False,alpha,,drive,1.0,True,{'business_name': 1}
+washingdon,1,1,1000000000,False,alpha,,washington,1.0,True,{'place_name': 1}
+weathercom,1,0,1000000000,False,alpha,,,,,{}
+weatherit,1,0,1000000000,False,alpha,,weather,2.0,True,{}
+zaalima,1,1,1000000000,False,alpha,,,,,{'artist_name': 1}

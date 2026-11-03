@@ -1,0 +1,9 @@
+utt,gold_intent,nn_utt,nn_intent,nn_sim
+good assistants,news_query,good,calendar_query,1.0
+i like r. & b.,music_likeness,play r. & b.,play_music,0.8314004
+audio on,audio_volume_up,audio,play_audiobook,0.90733486
+how is the day today,general_quirky,what is the day today,datetime_query,0.81977737
+what's up,general_quirky,what's up,general_greet,1.0
+entertainment news,news_query,entertainment,general_quirky,0.88765794
+do i have any new tinder matches,calendar_query,do i have any new email,email_query,0.8816081
+search email for contact,email_query,new email for contact,email_sendemail,0.8170982

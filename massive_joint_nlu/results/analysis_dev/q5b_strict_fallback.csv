@@ -1,0 +1,5 @@
+rule,tokens,types,in_slot,token_pct,slot_token_pct
+none,306,292,183,65.9,72.0
+edit distance 1,80,73,42,17.2,16.5
+suffix strip,64,60,16,13.8,6.3
+possessive or clitic -> base,14,14,13,3.0,5.1

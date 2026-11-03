@@ -1,0 +1,17 @@
+id,intent,type,value,utt
+1179,music_dislikeness,music_genre,country,never ever play me any country
+4033,datetime_query,food_type,pizza,what's the best day next week to go out for pizza
+4971,alarm_remove,person,finlee's,remove finlee's bedtime alarm
+5638,weather_query,food_type,defrosting salt,should i pick up some defrosting salt at the store
+5638,weather_query,business_type,store,should i pick up some defrosting salt at the store
+7086,calendar_remove,timeofday,evening,remove today's meeting at evening
+8047,calendar_set,business_type,restaurant,on february fourteenth make dinner reservations at the restaurant
+8287,calendar_remove,timeofday,tonight,please delete the meeting i have with john tonight
+9978,cooking_recipe,media_type,videos,could you please display the videos for cooking italian food
+10058,cooking_recipe,time,quart,how many cups are in a quart
+10775,lists_query,event_name,party,do i have a list of contacts for the party i'm planning
+10924,calendar_remove,timeofday,morning,remove meeting for wednesday morning
+11178,lists_createoradd,general_frequency,monthly,create a list of monthly groceries to be bought
+13319,qa_factoid,music_genre,hip hop,who are the greatest hip hop artists
+15097,qa_currency,business_name,samsung,what's the exchange rate for samsung
+16588,email_querycontact,date,three of months,please delete the contacts that i haven't spoken to in three of months

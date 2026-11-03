@@ -1,0 +1,61 @@
+id,gold_intent,pred_intent,lin_pred,annot_utt,audit
+4619,iot_wemo_on,iot_wemo_off,iot_wemo_on,start new [device_type : smart socket],M
+6381,general_quirky,recommendation_movies,general_quirky,hey what are some good movies coming out soon,L
+13185,qa_factoid,transport_query,qa_factoid,calculate distance from [place_name : boston] to [place_name : new york],L
+10412,play_game,play_music,play_game,let us play [game_name : millionaires],M
+9831,play_audiobook,music_settings,play_audiobook,[player_setting : start reading] [audiobook_name : fifty shades of grey] from chapter four,M
+14212,recommendation_locations,email_querycontact,qa_factoid,find the exact location of the places,M
+12260,transport_query,transport_ticket,transport_ticket,get me an amtrak ticket to [place_name : boston] for next [date : thursday] the later the better,L
+4674,news_query,qa_factoid,qa_factoid,when is trumps [news_topic : next press conference],L
+13106,music_query,music_likeness,play_music,do you hear songs of [artist_name : arrahman] music,L
+1678,music_query,play_radio,music_query,nine hundred and ninety nine f. m. is currently playing what music,M
+9999,cooking_recipe,recommendation_locations,cooking_recipe,for how much time should i oven [food_type : pizza] to make it perfect [cooking_type : crispy],M
+10196,cooking_recipe,general_quirky,takeaway_order,i need some ideas for dinner that are [food_type : mexican],L
+13919,qa_definition,qa_factoid,qa_factoid,tell me about the [definition_word : solar powered garden stakes],L
+1357,iot_hue_lightchange,iot_hue_lightup,iot_hue_lightchange,switch to night light setting,M
+11732,recommendation_events,news_query,news_query,what's going on around me,L
+16769,email_query,email_querycontact,email_sendemail,search email for contact,L
+4551,news_query,calendar_set,news_query,update on [date : april] the [news_topic : giraffe],M
+7968,calendar_query,recommendation_events,calendar_query,what do i need to know about the show,L
+6422,general_quirky,qa_factoid,news_query,wikipedia topics,L
+13063,general_quirky,alarm_set,calendar_set,set up a date for just you and me,L
+7229,calendar_set,qa_factoid,calendar_set,please mark my calendar for a [event_name : holiday] in [place_name : cuba] on [date : april two],M
+4681,weather_query,play_game,weather_query,is my golf game going to get [weather_descriptor : rained] out,M
+15207,social_query,social_post,social_query,my [media_type : facebook] update in [general_frequency : every three hour] should be available,L
+14195,qa_stock,general_quirky,qa_stock,ask my adviser,L
+9432,play_radio,play_podcasts,play_podcasts,how many of my sports podcasts have new episodes i have not listened to yet,L
+682,news_query,email_query,news_query,follow news about [news_topic : hilary email issue] in [time : future],M
+7945,calendar_query,datetime_query,datetime_query,what is on [date : november twenty],M
+1272,datetime_query,news_query,datetime_query,what day is it on [date : fifth december],M
+13846,qa_factoid,general_quirky,qa_factoid,has [person : sally fields] ever won an academy award,M
+9783,play_audiobook,general_quirky,play_audiobook,lets have a [player_setting : break] for [time : five minutes],L
+2553,datetime_query,calendar_query,datetime_query,what day of the week is [event_name : valentine's] on,M
+11212,lists_createoradd,lists_remove,lists_remove,delete the [list_name : old playlist] and create new,L
+13316,qa_factoid,general_quirky,general_quirky,the following question asks you to analyze teacher goals and actions intended,L
+10388,play_game,play_radio,general_quirky,can you do [game_name : name that tune],M
+8089,calendar_set,calendar_query,calendar_query,when is my [event_name : meeting],L
+10327,play_game,general_quirky,general_quirky,lets solve [game_name : the puzzle],M
+9725,play_audiobook,audio_volume_mute,play_audiobook,[player_setting : pause] the [media_type : audiobook],M
+6404,general_quirky,audio_volume_down,calendar_set,when i want it to take down notes,U
+7676,calendar_set,calendar_query,calendar_query,list out the upcoming [event_name : meeting],L
+476,general_quirky,music_query,general_quirky,what things can't you do,M
+15545,calendar_set,social_post,social_post,remind me to [media_type : tweet] at this company,L
+2470,iot_hue_lighton,iot_hue_lightup,iot_hue_lighton,switch on the lights,M
+8425,calendar_query,news_query,news_query,what's the news for [time : six hundred and forty five am] [date : today],L
+708,news_query,general_quirky,qa_factoid,who is leading the [news_topic : formula one] race right now,M
+16770,email_query,email_querycontact,email_querycontact,find contact,L
+15466,social_post,general_quirky,general_quirky,tell [business_name : comcast] i am still on hold,L
+9310,play_radio,play_music,play_music,play [media_type : tunes],L
+2687,takeaway_order,takeaway_query,takeaway_order,confirm the order,M
+11631,recommendation_locations,cooking_recipe,recommendation_locations,i need some [food_type : sushi] what's closest,M
+3464,iot_hue_lighton,iot_hue_lightchange,iot_hue_lighton,please turn on all the outdoor lights,M
+6595,general_quirky,news_query,datetime_query,what i did at [time : this time],U
+14230,qa_factoid,recommendation_movies,qa_factoid,list top five movies of [person : emma watson],L
+5744,datetime_query,calendar_query,datetime_query,what day does [event_name : my birthday] fall on [date : next year],M
+8047,calendar_set,recommendation_locations,recommendation_locations,on [date : february fourteenth] make [meal_type : dinner] reservations at the [business_type : restaurant],L
+11785,recommendation_movies,play_music,recommendation_movies,[movie_name : logan],L
+8808,calendar_set,calendar_query,calendar_set,do i need to be reminded of any [event_name : meetings] on [date : monday],L
+6571,recommendation_events,news_query,news_query,what's happening in [place_name : ny],L
+5546,general_quirky,qa_factoid,email_sendemail,thanks to ally for the photos,M
+8132,calendar_query,transport_query,transport_query,when are the trains running [date : tomorrow],L
+5408,music_query,music_likeness,music_query,please give me detail of [artist_name : o. zaalima] song,M

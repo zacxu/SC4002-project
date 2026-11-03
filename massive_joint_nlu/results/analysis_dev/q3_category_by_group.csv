@@ -1,0 +1,11 @@
+side,cat,n,No-Train-OOV,NonSlot-Train-OOV,Slot-Train-OOV
+gold,exact,1334,89.3,3.7,7.0
+gold,wrong_type_same_span,84,72.6,6.0,21.4
+gold,boundary_same_type,232,75.4,3.4,21.1
+gold,overlap_other,73,67.1,2.7,30.1
+gold,missed,289,48.1,3.8,48.1
+pred,exact,1334,89.3,3.7,7.0
+pred,wrong_type_same_span,84,72.6,6.0,21.4
+pred,boundary_same_type,282,76.2,3.5,20.2
+pred,overlap_other,133,75.2,1.5,23.3
+pred,spurious,192,77.6,12.5,9.9

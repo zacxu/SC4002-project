@@ -1,0 +1,5 @@
+group,n,S1,A1,linear,lin_fixes_S1,lin_breaks_S1,lin_fixes_A1,lin_breaks_A1
+No-Train-OOV,1669,86.1,87.84,88.8,102,57,68,52
+NonSlot-Train-OOV,149,55.7,60.4,57.05,19,17,12,17
+Slot-Train-OOV,215,76.28,79.07,85.12,24,5,17,4
+Overall,2033,82.83,84.9,86.08,145,79,97,73

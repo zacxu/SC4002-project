@@ -1,0 +1,25 @@
+﻿spurious spans in utterances with no gold slot: 67
+report chars: 30349 | lines: 447
+                         pair           gold           pred                                                                                   annotated utterance audit
+  general_quirky | qa_factoid general_quirky     qa_factoid                                                        tell me something about [place_name : america]     L
+  general_quirky | qa_factoid general_quirky     qa_factoid                explain to me about what different countries are represented in the book of revelation     L
+  general_quirky | qa_factoid general_quirky     qa_factoid                                                                                      wikipedia topics     L
+      news_query | qa_factoid     qa_factoid     news_query                                                                 tell me about [place_name : new york]     L
+      news_query | qa_factoid     news_query     qa_factoid                              how many runs did [person : cheteshwar pujara] scored [date : yesterday]     L
+      news_query | qa_factoid     news_query     qa_factoid               what is the [place_name : seattle] [news_topic : city council doing about homelessness]     L
+calendar_query | calendar_set   calendar_set calendar_query let me know the [timeofday : morning] of my [event_name : doctor appointment] on the [date : twelfth]     L
+calendar_query | calendar_set   calendar_set calendar_query                                          notification of [event_name : meeting] on [date : wednesday]     M
+calendar_query | calendar_set calendar_query   calendar_set                                                                                              schedule     L
+  general_quirky | news_query general_quirky     news_query                                                                                  what's been going on     L
+  general_quirky | news_query general_quirky     news_query                                                                      tell me what happens when we die     M
+  general_quirky | news_query     news_query general_quirky                                          who is leading the [news_topic : formula one] race right now     M
+      play_music | play_radio     play_music     play_radio                                                                             load [app_name : spotify]     L
+      play_music | play_radio     play_radio     play_music                                                      play [radio_name : nine hundred and seventy one]     L
+      play_music | play_radio     play_music     play_radio                                                         i want to listen to [music_genre : soft rock]     L
+                         pair  M  L  U
+  general_quirky | qa_factoid  6 17  0
+      news_query | qa_factoid  2  8  0
+calendar_query | calendar_set  2  6  0
+  general_quirky | news_query  3  3  1
+      play_music | play_radio  3  4  0
+[mem end] wset 73 MB | peak wset 73 MB | private 83 MB | peak private 83 MB

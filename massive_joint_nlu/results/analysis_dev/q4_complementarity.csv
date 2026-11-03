@@ -1,0 +1,3 @@
+model,acc,linear_acc,model_errors,linear_fixes,linear_breaks,both_wrong,both_wrong_same_label,both_wrong_diff_label,oracle_union_acc,mcnemar_p,agreement_pct,acc_when_agree
+Stage 1,82.83,86.08,349,145,79,204,107,97,89.97,0.0,84.2,93.75
+A1_ft_recipe,84.9,86.08,307,97,73,210,125,85,89.67,0.0774,87.5,92.97

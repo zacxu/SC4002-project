@@ -1,0 +1,21 @@
+pair,n,share_pct,cum_pct,a_to_b,b_to_a,same_scenario,train_a,train_b,dev_a,dev_b,tmpl_shared_train,a1_also_wrong,a1_same_label,no_oov,nonslot_oov,slot_oov
+general_quirky | qa_factoid,23,6.6,6.6,12,11,False,555,544,105,90,1,21,16,8,12,3
+news_query | qa_factoid,10,2.9,9.5,6,4,False,503,544,82,90,0,10,7,4,2,4
+calendar_query | calendar_set,8,2.3,11.7,2,6,True,566,810,102,131,1,5,5,8,0,0
+general_quirky | news_query,7,2.0,13.8,5,2,False,555,503,105,82,0,6,4,6,1,0
+play_music | play_radio,7,2.0,15.8,3,4,True,639,283,123,46,1,6,6,5,1,1
+music_likeness | music_query,7,2.0,17.8,2,5,True,113,154,16,30,0,5,2,4,1,2
+qa_definition | qa_factoid,7,2.0,19.8,5,2,True,267,544,55,90,0,7,7,3,2,2
+general_quirky | social_post,6,1.7,21.5,4,2,False,555,283,105,50,0,5,2,4,2,0
+calendar_query | general_quirky,6,1.7,23.2,4,2,False,566,555,102,105,0,4,1,4,1,1
+news_query | recommendation_events,6,1.7,24.9,0,6,False,503,190,82,26,1,6,5,6,0,0
+cooking_recipe | general_quirky,5,1.4,26.4,1,4,False,207,555,41,105,0,5,3,3,1,1
+general_quirky | music_query,4,1.1,27.5,2,2,False,555,154,105,30,0,2,2,3,1,0
+general_quirky | weather_query,4,1.1,28.7,3,1,False,555,573,105,126,0,4,4,1,3,0
+calendar_query | datetime_query,4,1.1,29.8,1,3,False,566,350,102,64,5,2,2,4,0,0
+iot_hue_lightchange | iot_hue_lightup,4,1.1,30.9,4,0,True,125,76,22,12,1,1,0,4,0,0
+alarm_query | alarm_set,4,1.1,32.1,4,0,True,130,182,19,31,0,2,1,4,0,0
+takeaway_order | takeaway_query,4,1.1,33.2,4,0,True,135,122,20,24,0,3,3,3,0,1
+email_querycontact | general_quirky,4,1.1,34.4,0,4,False,127,555,16,105,0,4,3,2,2,0
+calendar_query | recommendation_events,4,1.1,35.5,2,2,False,566,190,102,26,0,3,3,4,0,0
+transport_query | transport_ticket,4,1.1,36.7,1,3,True,227,127,36,25,0,1,1,4,0,0

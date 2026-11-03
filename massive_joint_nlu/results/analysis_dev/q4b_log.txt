@@ -1,0 +1,5 @@
+﻿{'C': 3.0, 'max_iter': 300, 'tol': 0.001, 'iters': 28, 'dev_acc': 85.59, 'No-Trai': 87.9, 'NonSlot': 61.07, 'Slot-Tr': 84.65, 'fixes_S1': 146, 'breaks_S1': 90, 'sec': 6}
+{'C': 30.0, 'max_iter': 300, 'tol': 0.001, 'iters': 103, 'dev_acc': 86.18, 'No-Trai': 88.86, 'NonSlot': 57.72, 'Slot-Tr': 85.12, 'fixes_S1': 143, 'breaks_S1': 75, 'sec': 23}
+{'C': 100.0, 'max_iter': 1000, 'tol': 0.0001, 'iters': 1000, 'dev_acc': 86.28, 'No-Trai': 89.04, 'NonSlot': 56.38, 'Slot-Tr': 85.58, 'fixes_S1': 146, 'breaks_S1': 76, 'sec': 214}
+{'C': 300.0, 'max_iter': 1000, 'tol': 0.001, 'iters': 1000, 'dev_acc': 86.13, 'No-Trai': 88.86, 'NonSlot': 55.7, 'Slot-Tr': 86.05, 'fixes_S1': 146, 'breaks_S1': 79, 'sec': 205}
+[mem end] wset 170 MB | peak wset 227 MB | private 199 MB | peak private 257 MB

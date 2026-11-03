@@ -1,0 +1,8 @@
+system,members,params,dev_intent,dev_slot_f1,dev_joint,f1_slot_oov,decode,mc,flagged,run_list
+strict_single,1,5837366,88.15,82.87,85.51,68.98,"Decode(method='span', tau=0.6, gm=0.2, eta=0.0, gamma=0.1, wide_mix=0.65, avg='prob', mask_beta=0.0, top_k=1, lam=0.0)",0,False,R1_sam.2__s7
+strict_single_mc8,1,5837366,87.8,82.57,85.18,67.8,"Decode(method='span', tau=0.6, gm=0.2, eta=0.0, gamma=0.1, wide_mix=0.65, avg='prob', mask_beta=0.0, top_k=1, lam=0.0)",8,False,R1_sam.2__s7
+strict_single_mc32,1,5837366,87.85,82.4,85.13,67.78,"Decode(method='span', tau=0.6, gm=0.2, eta=0.0, gamma=0.1, wide_mix=0.65, avg='prob', mask_beta=0.0, top_k=1, lam=0.0)",32,False,R1_sam.2__s7
+strict_ensemble,3,17708702,88.74,83.99,86.36,71.8,"Decode(method='span', tau=0.45, gm=0.2, eta=0.0, gamma=0.1, wide_mix=0.5, avg='log', mask_beta=0.0, top_k=1, lam=0.0)",0,False,R1_sam.2__s7+C1_tasktop+R1_sam.05
+flagged_single,1,19340486,88.59,82.68,85.63,70.07,"Decode(method='span', tau=0.35, gm=0.6, eta=0.0, gamma=0.0, wide_mix=0.5, avg='prob', mask_beta=0.0, top_k=1, lam=0.0)",0,True,D2f_flagged__s7
+flagged_single_mc8,1,19340486,88.69,82.11,85.4,68.38,"Decode(method='span', tau=0.35, gm=0.6, eta=0.0, gamma=0.0, wide_mix=0.5, avg='prob', mask_beta=0.0, top_k=1, lam=0.0)",8,True,D2f_flagged__s7
+flagged_single_mc32,1,19340486,88.59,82.41,85.5,69.76,"Decode(method='span', tau=0.35, gm=0.6, eta=0.0, gamma=0.0, wide_mix=0.5, avg='prob', mask_beta=0.0, top_k=1, lam=0.0)",32,True,D2f_flagged__s7
