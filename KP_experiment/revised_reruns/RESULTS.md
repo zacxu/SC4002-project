@@ -93,6 +93,23 @@ This is where the runs differ most, but read it with care:
 - **The new vectors do not reach the unseen words.** Every unseen word still maps to `<UNK>`, and that row is never trained: its norm is 0.89 from start to end in every run.
 - **The cause is not established.** One difference to test: with fastText and GloVe the UNK row is 5 to 8 times smaller than a real word's vector (norm 0.89 against 4.1 and 6.8), while with Word2Vec it is about the same size (0.87).
 
+## How these numbers relate to the KP write-up and the plots
+
+Some numbers here differ from the `KP_experiment` summary (`NLPL_Word2Vec_model_6_Optimize.md`) or from each other. None is an error; each pair measures something different.
+
+| Number here | Compared with | Why they differ |
+|---|---|---|
+| SAM gain, Stage 2 Word2Vec: +1.22 dev joint | +1.00 against the notebook's recorded run | Different baselines. +1.22 is against r0, run on this machine (82.80 − 81.58), so only SAM differs. +1.00 is against the recorded run on an RTX 3060 Ti (82.80 − 81.80). |
+| Notebook Stage 1: 76.86 dev joint recorded, 77.04 for r0 | KP Stage 1: 74.46 dev, test 81.57 / 63.23 | Two different Stage 1 models. The notebook's has 4,345,243 parameters and trains 20 epochs. The KP Stage 1 retrains the hand-off model: 4,344,472 parameters, 12 epochs. |
+| SAM gain: +1.22 | +0.59 in the KP ladder, rung R | Different models. The ladder's gain is a 3-seed mean on the BiLSTM after rungs A to D (84.92 against 84.33). Here it is one seed on the notebook's Transformer. |
+| KP strict single: 85.49 dev joint | 84.92 for `R1_sam.2` in the ladder table | Both are in the KP summary. 84.92 is the 3-seed mean of the training runs. 85.49 is the final system: seed 7 with rung E's span decoding. |
+| KP test joint: 82.72 strict, 82.98 flagged | No test joint in the KP summary | The summary lists test intent and slot F1 separately. The joint here is their mean, the summary's own definition. |
+| SAM gain: +1.22 joint, +14.71 slot F1 on unseen words | `logs/analysis.txt`: +1.23 and +14.77 | The log prints the mean of the 5,000 bootstrap draws. This file gives the observed difference between the two runs. Both use the same interval. |
+
+- In `plots/systems_dev_test.png`, circles are dev and diamonds are test.
+- Gaps between KP systems and the notebook are approximate, because the ladder scores exact token spans and the notebook exact character spans.
+- "Needs lecturer approval", drawn hollow in the plots, marks what the assignment rules don't clearly allow. fastText and GloVe are outside them, because NLPL Word2Vec model 6 is the only pretrained resource allowed. The KP flagged single uses only Word2Vec, but adds frozen rows for words that never occur in training, and the rules don't clearly cover that.
+
 ## Limits of these results
 
 - **fastText and GloVe are outside the assignment rules.** Only NLPL Word2Vec model 6 is allowed without lecturer approval, so r2 to r5 cannot be the primary result.
