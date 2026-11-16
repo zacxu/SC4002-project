@@ -45,7 +45,7 @@ dist/
 .idea/
 
 # Generated archives and OS files
-*.zip
+
 *.tar
 *.tar.gz
 *.tgz
