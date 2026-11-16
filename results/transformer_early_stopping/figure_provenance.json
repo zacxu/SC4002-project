@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "scope": "Audited development trajectories only; no inference",
+  "results_sha256": "9129ace0274f9001d75eadcea5637c31bfb9bbc742d3385c56f325b09f710b5f",
+  "history_sha256": {
+    "artifacts\\transformer_early_stopping\\seed_42\\full_notebook\\transformer_run_artifacts\\stage2\\history.jsonl": "0304eeb6322f350847010725f7f16dd610602212ebc1a05006c86f8dc579a988"
+  },
+  "figure_sha256": "ba6a113f77d66c824853431ff18dcb2828b43994612d377017bc026080bfebfb"
+}

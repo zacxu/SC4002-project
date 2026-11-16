@@ -1,0 +1,52 @@
+{
+  "status": "complete",
+  "seeds": [
+    17,
+    42,
+    101
+  ],
+  "scope": "Measured development results only",
+  "aggregate_task_metrics": {
+    "intent_accuracy": {
+      "baseline": {
+        "mean_percent": 85.60419740941138,
+        "sample_sd_percentage_points": 0.485281147301164
+      },
+      "word_dropout": {
+        "mean_percent": 86.94868011149367,
+        "sample_sd_percentage_points": 0.24264057365057792
+      },
+      "label_smoothing": {
+        "mean_percent": 85.68617806197737,
+        "sample_sd_percentage_points": 0.1475651746187907
+      },
+      "combined": {
+        "mean_percent": 86.6699458927693,
+        "sample_sd_percentage_points": 0.6654082271750424
+      }
+    },
+    "slot_micro_f1": {
+      "baseline": {
+        "mean_percent": 77.882738341787,
+        "sample_sd_percentage_points": 0.6364919846722995
+      },
+      "word_dropout": {
+        "mean_percent": 79.5302343725141,
+        "sample_sd_percentage_points": 0.27326150101027097
+      },
+      "label_smoothing": {
+        "mean_percent": 78.28979234765963,
+        "sample_sd_percentage_points": 0.7753411499333434
+      },
+      "combined": {
+        "mean_percent": 80.27044194314334,
+        "sample_sd_percentage_points": 0.5076296738337415
+      }
+    }
+  },
+  "source_sha256": {
+    "results\\transformer_regularization\\results.json": "48e5d28f6aa5f4dd5d01ca2df5543970132a432cd2ff40d410e06400cecbe6dc",
+    "results\\transformer_regularization\\confidence.json": "9ee85d13eb3058662f70fa997659400c1d47348ed26be5dbb623291b6625e50e"
+  },
+  "figure_sha256": "70e720e4cb7fd71d5592166566f149b74448921dd16faa253d50f4270d057aec"
+}

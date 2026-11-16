@@ -1,0 +1,4032 @@
+{
+  "assessment_date_sgt": "2026-11-11",
+  "scope": "Read-only assessment of the existing selected revised Transformer; recommendations are untested.",
+  "training_performed": false,
+  "optimizer_updates": 0,
+  "model_changes": false,
+  "new_test_forward_passes": 0,
+  "dataset_sha256": "c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e",
+  "evaluator": "exact_character_span_v2",
+  "split_counts": {
+    "train": 11514,
+    "dev": 2033,
+    "test": 2974
+  },
+  "checkpoint_sha256": "2bbcebad84b3df6671afa84997259f158903360743ea8b1795cec808381843aa",
+  "state_sha256_before": "468b4c88e3d79852bde0e180db3c0222ebfbfebc20837a1e059428d622f98fb0",
+  "state_sha256_after": "468b4c88e3d79852bde0e180db3c0222ebfbfebc20837a1e059428d622f98fb0",
+  "protected_files_unchanged": true,
+  "protected_file_hashes": {
+    "NLP_Final_project.ipynb": "d64228204d1d8a130dafa45929efb78fd61a174deb26d2547fc796a61435e56f",
+    "NLP_Final_project_revised.ipynb": "7f76093e9d4be928e3065e5e40ae6bb8b77f1bd09857d2f9a92ecd19f310c269",
+    "main.ipynb": "618821ea7fe841312c1ecc3f4693388143ffc1f9eb711e3fff6dedaf840ab456",
+    "src/revised_transformer_model.py": "55da4edaea8607c45867eb14ebf10620cba17a0e4e5981b96a4e8313a568a667",
+    "src/revised_transformer_training.py": "bc7429e8de4c499185f846b1ece73c899ce5893a68a3c86f8a406cad89ea30b5",
+    "src/revised_transformer_data.py": "50484170a7408ca072151ef9ed9ef2830a5af09a924c3f52ee549ca4a4826530",
+    "src/stage2_model.py": "4b0fd0290b0789b8d234e0b2c812a49f0d80a24773e2d35677280e48f3fea8aa",
+    "src/comparison_contract.py": "c57d46c76642edf0a1e5b283c52d153631b2b4c30b639166c3761fd8ade4a37c",
+    "artifacts/revised_transformer/normalized_qualification/transformer_run_artifacts/stage2/best.pt": "2bbcebad84b3df6671afa84997259f158903360743ea8b1795cec808381843aa",
+    "artifacts/notebook_comparison_review/final_test/freeze_manifest.json": "e9f3159a29e623896a553b369cb59af1ffcbafee04ae26267f22da6b1947c885",
+    "artifacts/notebook_comparison_review/final_test/results.json": "ac35e8b14bdac927806a8bb0753a9f508a5049e3df1a0cf4220b2b768751ba26"
+  },
+  "total_parameters": 19748595,
+  "parameter_headroom": 251405,
+  "parameter_components": {
+    "embedding": 1590000,
+    "char_encoder": 25856,
+    "word_norm": 600,
+    "char_norm": 384,
+    "proj": 252416,
+    "input_norm": 1024,
+    "encoder": 17340928,
+    "attention_pool": 65793,
+    "intent_head": 277820,
+    "intent_embeddings": 3840,
+    "slot_norm": 1152,
+    "slot_head": 176239,
+    "crf": 12543
+  },
+  "metrics": {
+    "train": {
+      "intent_accuracy": 0.9982629841931562,
+      "slot_micro_f1": 0.9561422841274739,
+      "slot_tp": 10846,
+      "slot_fp": 497,
+      "slot_fn": 498,
+      "num_examples": 11514,
+      "correct_intents": 11494,
+      "slot_precision": 0.9561844309265627,
+      "slot_recall": 0.9561001410437235
+    },
+    "dev": {
+      "intent_accuracy": 0.8583374323659616,
+      "slot_micro_f1": 0.7776065742167437,
+      "slot_tp": 1514,
+      "slot_fp": 368,
+      "slot_fn": 498,
+      "num_examples": 2033,
+      "correct_intents": 1745,
+      "slot_precision": 0.8044633368756642,
+      "slot_recall": 0.7524850894632207
+    },
+    "test_previously_evaluated_frozen_reference": {
+      "intent_accuracy": 0.8507061197041023,
+      "slot_micro_f1": 0.7512483817273904,
+      "slot_tp": 2031,
+      "slot_fp": 561,
+      "slot_fn": 784,
+      "num_examples": 2974,
+      "correct_intents": 2530,
+      "slot_precision": 0.7835648148148148,
+      "slot_recall": 0.7214920071047958
+    }
+  },
+  "dev_fully_correct_utterances": {
+    "count": 1318,
+    "total": 2033,
+    "fraction": 0.6483030004918839
+  },
+  "dev_intent_calibration": {
+    "num_examples": 2033,
+    "intent_accuracy": 0.8583374323659616,
+    "intent_nll": 1.1023880149028886,
+    "multiclass_brier_sum_over_classes": 0.2464119898286555,
+    "expected_calibration_error_15_equal_width_bins": 0.10707368170790946,
+    "confidence_bins": [
+      {
+        "confidence_lower_inclusive": 0.2,
+        "confidence_upper": 0.26666666666666666,
+        "num_examples": 1,
+        "accuracy": 0.0,
+        "mean_confidence": 0.25884616423106865,
+        "num_errors": 1
+      },
+      {
+        "confidence_lower_inclusive": 0.26666666666666666,
+        "confidence_upper": 0.3333333333333333,
+        "num_examples": 2,
+        "accuracy": 0.0,
+        "mean_confidence": 0.309142632693192,
+        "num_errors": 2
+      },
+      {
+        "confidence_lower_inclusive": 0.3333333333333333,
+        "confidence_upper": 0.4,
+        "num_examples": 1,
+        "accuracy": 1.0,
+        "mean_confidence": 0.35177856099177385,
+        "num_errors": 0
+      },
+      {
+        "confidence_lower_inclusive": 0.4,
+        "confidence_upper": 0.4666666666666667,
+        "num_examples": 14,
+        "accuracy": 0.07142857142857142,
+        "mean_confidence": 0.4345483851958269,
+        "num_errors": 13
+      },
+      {
+        "confidence_lower_inclusive": 0.4666666666666667,
+        "confidence_upper": 0.5333333333333333,
+        "num_examples": 25,
+        "accuracy": 0.4,
+        "mean_confidence": 0.5053202464728337,
+        "num_errors": 15
+      },
+      {
+        "confidence_lower_inclusive": 0.5333333333333333,
+        "confidence_upper": 0.6,
+        "num_examples": 26,
+        "accuracy": 0.3076923076923077,
+        "mean_confidence": 0.5682931954321215,
+        "num_errors": 18
+      },
+      {
+        "confidence_lower_inclusive": 0.6,
+        "confidence_upper": 0.6666666666666666,
+        "num_examples": 22,
+        "accuracy": 0.4090909090909091,
+        "mean_confidence": 0.6325784795524195,
+        "num_errors": 13
+      },
+      {
+        "confidence_lower_inclusive": 0.6666666666666666,
+        "confidence_upper": 0.7333333333333333,
+        "num_examples": 36,
+        "accuracy": 0.4166666666666667,
+        "mean_confidence": 0.7020292530380043,
+        "num_errors": 21
+      },
+      {
+        "confidence_lower_inclusive": 0.7333333333333333,
+        "confidence_upper": 0.8,
+        "num_examples": 18,
+        "accuracy": 0.5,
+        "mean_confidence": 0.7634868025008289,
+        "num_errors": 9
+      },
+      {
+        "confidence_lower_inclusive": 0.8,
+        "confidence_upper": 0.8666666666666667,
+        "num_examples": 26,
+        "accuracy": 0.2692307692307692,
+        "mean_confidence": 0.8353453420641288,
+        "num_errors": 19
+      },
+      {
+        "confidence_lower_inclusive": 0.8666666666666667,
+        "confidence_upper": 0.9333333333333333,
+        "num_examples": 56,
+        "accuracy": 0.5714285714285714,
+        "mean_confidence": 0.9042096720882761,
+        "num_errors": 24
+      },
+      {
+        "confidence_lower_inclusive": 0.9333333333333333,
+        "confidence_upper": 1.0,
+        "num_examples": 1806,
+        "accuracy": 0.915282392026578,
+        "mean_confidence": 0.997439575178632,
+        "num_errors": 153
+      }
+    ],
+    "mean_max_probability": 0.9647734146749452,
+    "mean_confidence_correct": 0.984782493637027,
+    "mean_confidence_errors": 0.8435378494359428,
+    "errors_with_confidence_at_least_90": 165,
+    "errors_with_confidence_at_least_99": 111,
+    "top_k_accuracy": {
+      "1": 0.8583374323659616,
+      "2": 0.9134284308903099,
+      "3": 0.9331037875061485,
+      "5": 0.9616330545991146
+    },
+    "error_gold_in_top_2": 112,
+    "error_gold_in_top_3": 152,
+    "median_top1_minus_top2_probability": 0.9999557308857677
+  },
+  "dev_macro_intent_recall": 0.8691308618141163,
+  "dev_slot_gold_profiles": {
+    "typed_value_seen": {
+      "gold_support": 1489,
+      "correct": 1363,
+      "recall": 0.9153794492948287
+    },
+    "gold_span_tokens_1": {
+      "gold_support": 1253,
+      "correct": 1044,
+      "recall": 0.8332003192338387
+    },
+    "slot_train_support_50-199": {
+      "gold_support": 395,
+      "correct": 242,
+      "recall": 0.6126582278481013
+    },
+    "other_value_status": {
+      "gold_support": 1972,
+      "correct": 1495,
+      "recall": 0.7581135902636917
+    },
+    "typed_value_unseen_known_words": {
+      "gold_support": 298,
+      "correct": 115,
+      "recall": 0.3859060402684564
+    },
+    "slot_train_support_200-499": {
+      "gold_support": 579,
+      "correct": 470,
+      "recall": 0.8117443868739206
+    },
+    "slot_train_support_500+": {
+      "gold_support": 977,
+      "correct": 774,
+      "recall": 0.7922210849539406
+    },
+    "typed_value_unseen_oov_words": {
+      "gold_support": 225,
+      "correct": 36,
+      "recall": 0.16
+    },
+    "value_seen_other_type_only": {
+      "gold_support": 40,
+      "correct": 19,
+      "recall": 0.475
+    },
+    "gold_span_tokens_3-4": {
+      "gold_support": 144,
+      "correct": 68,
+      "recall": 0.4722222222222222
+    },
+    "gold_span_tokens_2": {
+      "gold_support": 508,
+      "correct": 330,
+      "recall": 0.6496062992125984
+    },
+    "slot_train_support_<50": {
+      "gold_support": 61,
+      "correct": 28,
+      "recall": 0.45901639344262296
+    },
+    "gold_span_tokens_5+": {
+      "gold_support": 107,
+      "correct": 72,
+      "recall": 0.6728971962616822
+    }
+  },
+  "dev_slot_predicted_profiles": {
+    "predicted_typed_value_seen": {
+      "predicted_support": 1556,
+      "correct": 1363,
+      "precision": 0.8759640102827764
+    },
+    "predicted_typed_value_unseen": {
+      "predicted_support": 326,
+      "correct": 151,
+      "precision": 0.46319018404907975
+    }
+  },
+  "dev_missed_gold_categories": {
+    "no_overlapping_prediction": 257,
+    "overlap_wrong_boundary": 188,
+    "wrong_type_exact_boundary": 53
+  },
+  "dev_false_positive_categories": {
+    "overlap_wrong_boundary": 185,
+    "wrong_type_exact_boundary": 53,
+    "no_overlapping_gold": 130
+  },
+  "dev_slot_errors_by_intent_status": {
+    "intent_correct": {
+      "tp": 1394,
+      "fn": 409,
+      "overlap_wrong_boundary": 168,
+      "fp": 296,
+      "wrong_type_exact_boundary": 44,
+      "no_overlapping_prediction": 197
+    },
+    "intent_wrong": {
+      "fn": 89,
+      "no_overlapping_prediction": 60,
+      "tp": 120,
+      "overlap_wrong_boundary": 20,
+      "fp": 72,
+      "wrong_type_exact_boundary": 9
+    }
+  },
+  "dev_adjacent_gold_slots": {
+    "gold_adjacent_pairs": 172,
+    "both_exact": 119,
+    "merged_into_one_predicted_span": 7
+  },
+  "dev_boundary_diagnostics_not_the_official_metric": {
+    "whole_span_ignoring_type": {
+      "tp": 1567,
+      "fp": 315,
+      "fn": 445,
+      "precision": 0.832624867162593,
+      "recall": 0.7788270377733598,
+      "micro_f1": 0.8048279404211608
+    },
+    "start_position": {
+      "tp": 1650,
+      "fp": 232,
+      "fn": 362,
+      "precision": 0.8767268862911796,
+      "recall": 0.820079522862823,
+      "micro_f1": 0.847457627118644
+    },
+    "end_position": {
+      "tp": 1675,
+      "fp": 207,
+      "fn": 337,
+      "precision": 0.8900106269925611,
+      "recall": 0.8325049701789264,
+      "micro_f1": 0.8602978941961993
+    }
+  },
+  "dev_group_metrics": {
+    "intent_correct": {
+      "intent_accuracy": 1.0,
+      "slot_micro_f1": 0.7981677640996279,
+      "slot_tp": 1394,
+      "slot_fp": 296,
+      "slot_fn": 409,
+      "num_examples": 1745,
+      "correct_intents": 1745,
+      "slot_exact_utterances": 1318,
+      "fully_correct_utterances": 1318
+    },
+    "gold_slots_0": {
+      "intent_accuracy": 0.7879256965944272,
+      "slot_micro_f1": 0.0,
+      "slot_tp": 0,
+      "slot_fp": 59,
+      "slot_fn": 0,
+      "num_examples": 646,
+      "correct_intents": 509,
+      "slot_exact_utterances": 594,
+      "fully_correct_utterances": 481
+    },
+    "utterance_tokens_1-5": {
+      "intent_accuracy": 0.8217687074829932,
+      "slot_micro_f1": 0.7878048780487805,
+      "slot_tp": 323,
+      "slot_fp": 69,
+      "slot_fn": 105,
+      "num_examples": 735,
+      "correct_intents": 604,
+      "slot_exact_utterances": 603,
+      "fully_correct_utterances": 509
+    },
+    "intent_train_support_100-199": {
+      "intent_accuracy": 0.8711180124223602,
+      "slot_micro_f1": 0.7894273127753304,
+      "slot_tp": 448,
+      "slot_fp": 95,
+      "slot_fn": 144,
+      "num_examples": 644,
+      "correct_intents": 561,
+      "slot_exact_utterances": 487,
+      "fully_correct_utterances": 436
+    },
+    "exact_training_utterance_unseen": {
+      "intent_accuracy": 0.8580613254203758,
+      "slot_micro_f1": 0.7767741935483871,
+      "slot_tp": 1505,
+      "slot_fp": 367,
+      "slot_fn": 498,
+      "num_examples": 2022,
+      "correct_intents": 1735,
+      "slot_exact_utterances": 1486,
+      "fully_correct_utterances": 1309
+    },
+    "all_gold_typed_values_seen": {
+      "intent_accuracy": 0.8646034816247582,
+      "slot_micro_f1": 0.9029089535323007,
+      "slot_tp": 1195,
+      "slot_fp": 158,
+      "slot_fn": 99,
+      "num_examples": 1551,
+      "correct_intents": 1341,
+      "slot_exact_utterances": 1371,
+      "fully_correct_utterances": 1202
+    },
+    "gold_slots_1": {
+      "intent_accuracy": 0.8850828729281768,
+      "slot_micro_f1": 0.756601607347876,
+      "slot_tp": 659,
+      "slot_fp": 178,
+      "slot_fn": 246,
+      "num_examples": 905,
+      "correct_intents": 801,
+      "slot_exact_utterances": 625,
+      "fully_correct_utterances": 579
+    },
+    "utterance_tokens_6-10": {
+      "intent_accuracy": 0.8958742632612967,
+      "slot_micro_f1": 0.7849765258215963,
+      "slot_tp": 836,
+      "slot_fp": 190,
+      "slot_fn": 268,
+      "num_examples": 1018,
+      "correct_intents": 912,
+      "slot_exact_utterances": 735,
+      "fully_correct_utterances": 677
+    },
+    "intent_train_support_50-99": {
+      "intent_accuracy": 0.9051094890510949,
+      "slot_micro_f1": 0.826530612244898,
+      "slot_tp": 81,
+      "slot_fp": 13,
+      "slot_fn": 21,
+      "num_examples": 137,
+      "correct_intents": 124,
+      "slot_exact_utterances": 112,
+      "fully_correct_utterances": 101
+    },
+    "intent_wrong": {
+      "intent_accuracy": 0.0,
+      "slot_micro_f1": 0.5985037406483791,
+      "slot_tp": 120,
+      "slot_fp": 72,
+      "slot_fn": 89,
+      "num_examples": 288,
+      "correct_intents": 0,
+      "slot_exact_utterances": 178,
+      "fully_correct_utterances": 0
+    },
+    "utterance_tokens_11-15": {
+      "intent_accuracy": 0.8137651821862348,
+      "slot_micro_f1": 0.7534076827757125,
+      "slot_tp": 304,
+      "slot_fp": 90,
+      "slot_fn": 109,
+      "num_examples": 247,
+      "correct_intents": 201,
+      "slot_exact_utterances": 143,
+      "fully_correct_utterances": 120
+    },
+    "some_gold_typed_value_unseen": {
+      "intent_accuracy": 0.8381742738589212,
+      "slot_micro_f1": 0.5116279069767442,
+      "slot_tp": 319,
+      "slot_fp": 210,
+      "slot_fn": 399,
+      "num_examples": 482,
+      "correct_intents": 404,
+      "slot_exact_utterances": 125,
+      "fully_correct_utterances": 116
+    },
+    "intent_train_support_200+": {
+      "intent_accuracy": 0.8460291734197731,
+      "slot_micro_f1": 0.7683837986629964,
+      "slot_tp": 977,
+      "slot_fp": 258,
+      "slot_fn": 331,
+      "num_examples": 1234,
+      "correct_intents": 1044,
+      "slot_exact_utterances": 881,
+      "fully_correct_utterances": 767
+    },
+    "gold_slots_2": {
+      "intent_accuracy": 0.8913043478260869,
+      "slot_micro_f1": 0.7906976744186046,
+      "slot_tp": 544,
+      "slot_fp": 96,
+      "slot_fn": 192,
+      "num_examples": 368,
+      "correct_intents": 328,
+      "slot_exact_utterances": 207,
+      "fully_correct_utterances": 191
+    },
+    "gold_slots_3+": {
+      "intent_accuracy": 0.9385964912280702,
+      "slot_micro_f1": 0.8675034867503487,
+      "slot_tp": 311,
+      "slot_fp": 35,
+      "slot_fn": 60,
+      "num_examples": 114,
+      "correct_intents": 107,
+      "slot_exact_utterances": 70,
+      "fully_correct_utterances": 67
+    },
+    "exact_training_utterance_seen": {
+      "intent_accuracy": 0.9090909090909091,
+      "slot_micro_f1": 0.9473684210526315,
+      "slot_tp": 9,
+      "slot_fp": 1,
+      "slot_fn": 0,
+      "num_examples": 11,
+      "correct_intents": 10,
+      "slot_exact_utterances": 10,
+      "fully_correct_utterances": 9
+    },
+    "intent_train_support_<50": {
+      "intent_accuracy": 0.8888888888888888,
+      "slot_micro_f1": 0.8,
+      "slot_tp": 8,
+      "slot_fp": 2,
+      "slot_fn": 2,
+      "num_examples": 18,
+      "correct_intents": 16,
+      "slot_exact_utterances": 16,
+      "fully_correct_utterances": 14
+    },
+    "utterance_tokens_16+": {
+      "intent_accuracy": 0.8484848484848485,
+      "slot_micro_f1": 0.7445255474452555,
+      "slot_tp": 51,
+      "slot_fp": 19,
+      "slot_fn": 16,
+      "num_examples": 33,
+      "correct_intents": 28,
+      "slot_exact_utterances": 15,
+      "fully_correct_utterances": 12
+    }
+  },
+  "dev_intent_errors_by_class": [
+    {
+      "intent": "general_quirky",
+      "train_support": 555,
+      "predicted": 74,
+      "dev_support": 105,
+      "correct": 47,
+      "errors": 58,
+      "recall": 0.44761904761904764,
+      "precision": 0.6351351351351351
+    },
+    {
+      "intent": "qa_factoid",
+      "train_support": 544,
+      "predicted": 106,
+      "dev_support": 90,
+      "correct": 68,
+      "errors": 22,
+      "recall": 0.7555555555555555,
+      "precision": 0.6415094339622641
+    },
+    {
+      "intent": "calendar_query",
+      "train_support": 566,
+      "predicted": 104,
+      "dev_support": 102,
+      "correct": 84,
+      "errors": 18,
+      "recall": 0.8235294117647058,
+      "precision": 0.8076923076923077
+    },
+    {
+      "intent": "calendar_set",
+      "train_support": 810,
+      "predicted": 124,
+      "dev_support": 131,
+      "correct": 117,
+      "errors": 14,
+      "recall": 0.8931297709923665,
+      "precision": 0.9435483870967742
+    },
+    {
+      "intent": "news_query",
+      "train_support": 503,
+      "dev_support": 82,
+      "correct": 71,
+      "predicted": 92,
+      "errors": 11,
+      "recall": 0.8658536585365854,
+      "precision": 0.7717391304347826
+    },
+    {
+      "intent": "play_music",
+      "train_support": 639,
+      "dev_support": 123,
+      "correct": 113,
+      "predicted": 129,
+      "errors": 10,
+      "recall": 0.9186991869918699,
+      "precision": 0.875968992248062
+    },
+    {
+      "intent": "qa_definition",
+      "train_support": 267,
+      "predicted": 54,
+      "dev_support": 55,
+      "correct": 46,
+      "errors": 9,
+      "recall": 0.8363636363636363,
+      "precision": 0.8518518518518519
+    },
+    {
+      "intent": "email_sendemail",
+      "train_support": 354,
+      "dev_support": 63,
+      "correct": 56,
+      "predicted": 59,
+      "errors": 7,
+      "recall": 0.8888888888888888,
+      "precision": 0.9491525423728814
+    },
+    {
+      "intent": "lists_query",
+      "train_support": 198,
+      "predicted": 50,
+      "dev_support": 50,
+      "correct": 43,
+      "errors": 7,
+      "recall": 0.86,
+      "precision": 0.86
+    },
+    {
+      "intent": "play_radio",
+      "train_support": 283,
+      "predicted": 44,
+      "dev_support": 46,
+      "correct": 39,
+      "errors": 7,
+      "recall": 0.8478260869565217,
+      "precision": 0.8863636363636364
+    },
+    {
+      "intent": "email_query",
+      "train_support": 418,
+      "predicted": 71,
+      "dev_support": 73,
+      "correct": 67,
+      "errors": 6,
+      "recall": 0.9178082191780822,
+      "precision": 0.9436619718309859
+    },
+    {
+      "intent": "lists_remove",
+      "train_support": 164,
+      "dev_support": 37,
+      "correct": 31,
+      "predicted": 33,
+      "errors": 6,
+      "recall": 0.8378378378378378,
+      "precision": 0.9393939393939394
+    },
+    {
+      "intent": "music_query",
+      "train_support": 154,
+      "dev_support": 30,
+      "correct": 24,
+      "predicted": 31,
+      "errors": 6,
+      "recall": 0.8,
+      "precision": 0.7741935483870968
+    },
+    {
+      "intent": "play_audiobook",
+      "train_support": 150,
+      "predicted": 36,
+      "dev_support": 35,
+      "correct": 29,
+      "errors": 6,
+      "recall": 0.8285714285714286,
+      "precision": 0.8055555555555556
+    },
+    {
+      "intent": "recommendation_events",
+      "train_support": 190,
+      "predicted": 25,
+      "dev_support": 26,
+      "correct": 20,
+      "errors": 6,
+      "recall": 0.7692307692307693,
+      "precision": 0.8
+    },
+    {
+      "intent": "social_post",
+      "train_support": 283,
+      "predicted": 52,
+      "dev_support": 50,
+      "correct": 44,
+      "errors": 6,
+      "recall": 0.88,
+      "precision": 0.8461538461538461
+    },
+    {
+      "intent": "transport_query",
+      "train_support": 227,
+      "predicted": 32,
+      "dev_support": 36,
+      "correct": 30,
+      "errors": 6,
+      "recall": 0.8333333333333334,
+      "precision": 0.9375
+    },
+    {
+      "intent": "weather_query",
+      "train_support": 573,
+      "dev_support": 126,
+      "correct": 120,
+      "predicted": 126,
+      "errors": 6,
+      "recall": 0.9523809523809523,
+      "precision": 0.9523809523809523
+    },
+    {
+      "intent": "alarm_query",
+      "train_support": 130,
+      "dev_support": 19,
+      "correct": 14,
+      "predicted": 15,
+      "errors": 5,
+      "recall": 0.7368421052631579,
+      "precision": 0.9333333333333333
+    },
+    {
+      "intent": "datetime_query",
+      "train_support": 350,
+      "dev_support": 64,
+      "correct": 59,
+      "predicted": 65,
+      "errors": 5,
+      "recall": 0.921875,
+      "precision": 0.9076923076923077
+    },
+    {
+      "intent": "music_likeness",
+      "train_support": 113,
+      "predicted": 12,
+      "dev_support": 16,
+      "correct": 11,
+      "errors": 5,
+      "recall": 0.6875,
+      "precision": 0.9166666666666666
+    },
+    {
+      "intent": "play_game",
+      "train_support": 112,
+      "predicted": 19,
+      "dev_support": 22,
+      "correct": 17,
+      "errors": 5,
+      "recall": 0.7727272727272727,
+      "precision": 0.8947368421052632
+    },
+    {
+      "intent": "qa_maths",
+      "train_support": 78,
+      "predicted": 11,
+      "dev_support": 13,
+      "correct": 8,
+      "errors": 5,
+      "recall": 0.6153846153846154,
+      "precision": 0.7272727272727273
+    },
+    {
+      "intent": "recommendation_locations",
+      "train_support": 173,
+      "predicted": 32,
+      "dev_support": 31,
+      "correct": 26,
+      "errors": 5,
+      "recall": 0.8387096774193549,
+      "precision": 0.8125
+    },
+    {
+      "intent": "cooking_recipe",
+      "train_support": 207,
+      "dev_support": 41,
+      "correct": 37,
+      "predicted": 42,
+      "errors": 4,
+      "recall": 0.9024390243902439,
+      "precision": 0.8809523809523809
+    },
+    {
+      "intent": "iot_hue_lightchange",
+      "train_support": 125,
+      "dev_support": 22,
+      "correct": 18,
+      "predicted": 18,
+      "errors": 4,
+      "recall": 0.8181818181818182,
+      "precision": 1.0
+    },
+    {
+      "intent": "play_podcasts",
+      "train_support": 193,
+      "predicted": 35,
+      "dev_support": 34,
+      "correct": 30,
+      "errors": 4,
+      "recall": 0.8823529411764706,
+      "precision": 0.8571428571428571
+    },
+    {
+      "intent": "social_query",
+      "train_support": 108,
+      "predicted": 20,
+      "dev_support": 18,
+      "correct": 14,
+      "errors": 4,
+      "recall": 0.7777777777777778,
+      "precision": 0.7
+    },
+    {
+      "intent": "takeaway_order",
+      "train_support": 135,
+      "dev_support": 20,
+      "correct": 16,
+      "predicted": 25,
+      "errors": 4,
+      "recall": 0.8,
+      "precision": 0.64
+    },
+    {
+      "intent": "takeaway_query",
+      "train_support": 122,
+      "dev_support": 24,
+      "correct": 21,
+      "predicted": 24,
+      "errors": 3,
+      "recall": 0.875,
+      "precision": 0.875
+    },
+    {
+      "intent": "alarm_set",
+      "train_support": 182,
+      "dev_support": 31,
+      "correct": 29,
+      "predicted": 32,
+      "errors": 2,
+      "recall": 0.9354838709677419,
+      "precision": 0.90625
+    },
+    {
+      "intent": "email_querycontact",
+      "train_support": 127,
+      "predicted": 20,
+      "dev_support": 16,
+      "correct": 14,
+      "errors": 2,
+      "recall": 0.875,
+      "precision": 0.7
+    },
+    {
+      "intent": "iot_cleaning",
+      "train_support": 93,
+      "dev_support": 19,
+      "correct": 17,
+      "predicted": 17,
+      "errors": 2,
+      "recall": 0.8947368421052632,
+      "precision": 1.0
+    },
+    {
+      "intent": "lists_createoradd",
+      "train_support": 177,
+      "predicted": 26,
+      "dev_support": 25,
+      "correct": 23,
+      "errors": 2,
+      "recall": 0.92,
+      "precision": 0.8846153846153846
+    },
+    {
+      "intent": "qa_stock",
+      "train_support": 152,
+      "dev_support": 24,
+      "correct": 22,
+      "predicted": 24,
+      "errors": 2,
+      "recall": 0.9166666666666666,
+      "precision": 0.9166666666666666
+    },
+    {
+      "intent": "recommendation_movies",
+      "train_support": 70,
+      "predicted": 11,
+      "dev_support": 12,
+      "correct": 10,
+      "errors": 2,
+      "recall": 0.8333333333333334,
+      "precision": 0.9090909090909091
+    },
+    {
+      "intent": "alarm_remove",
+      "train_support": 78,
+      "dev_support": 14,
+      "correct": 13,
+      "predicted": 14,
+      "errors": 1,
+      "recall": 0.9285714285714286,
+      "precision": 0.9285714285714286
+    },
+    {
+      "intent": "audio_volume_down",
+      "train_support": 52,
+      "dev_support": 8,
+      "correct": 7,
+      "predicted": 8,
+      "errors": 1,
+      "recall": 0.875,
+      "precision": 0.875
+    },
+    {
+      "intent": "audio_volume_mute",
+      "train_support": 110,
+      "dev_support": 15,
+      "correct": 14,
+      "predicted": 17,
+      "errors": 1,
+      "recall": 0.9333333333333333,
+      "precision": 0.8235294117647058
+    },
+    {
+      "intent": "audio_volume_up",
+      "train_support": 110,
+      "dev_support": 12,
+      "correct": 11,
+      "predicted": 15,
+      "errors": 1,
+      "recall": 0.9166666666666666,
+      "precision": 0.7333333333333333
+    },
+    {
+      "intent": "calendar_remove",
+      "train_support": 312,
+      "dev_support": 47,
+      "correct": 46,
+      "predicted": 49,
+      "errors": 1,
+      "recall": 0.9787234042553191,
+      "precision": 0.9387755102040817
+    },
+    {
+      "intent": "cooking_query",
+      "train_support": 4,
+      "dev_support": 2,
+      "correct": 1,
+      "predicted": 2,
+      "errors": 1,
+      "recall": 0.5,
+      "precision": 0.5
+    },
+    {
+      "intent": "datetime_convert",
+      "train_support": 52,
+      "dev_support": 9,
+      "correct": 8,
+      "predicted": 9,
+      "errors": 1,
+      "recall": 0.8888888888888888,
+      "precision": 0.8888888888888888
+    },
+    {
+      "intent": "iot_hue_lightdim",
+      "train_support": 76,
+      "dev_support": 17,
+      "correct": 16,
+      "predicted": 16,
+      "errors": 1,
+      "recall": 0.9411764705882353,
+      "precision": 1.0
+    },
+    {
+      "intent": "iot_hue_lightoff",
+      "train_support": 153,
+      "dev_support": 17,
+      "correct": 16,
+      "predicted": 18,
+      "errors": 1,
+      "recall": 0.9411764705882353,
+      "precision": 0.8888888888888888
+    },
+    {
+      "intent": "music_dislikeness",
+      "train_support": 14,
+      "dev_support": 2,
+      "correct": 1,
+      "predicted": 1,
+      "errors": 1,
+      "recall": 0.5,
+      "precision": 1.0
+    },
+    {
+      "intent": "transport_ticket",
+      "train_support": 127,
+      "dev_support": 25,
+      "correct": 24,
+      "predicted": 25,
+      "errors": 1,
+      "recall": 0.96,
+      "precision": 0.96
+    },
+    {
+      "intent": "transport_traffic",
+      "train_support": 117,
+      "dev_support": 22,
+      "correct": 21,
+      "predicted": 23,
+      "errors": 1,
+      "recall": 0.9545454545454546,
+      "precision": 0.9130434782608695
+    },
+    {
+      "intent": "email_addcontact",
+      "train_support": 54,
+      "dev_support": 5,
+      "correct": 5,
+      "predicted": 7,
+      "errors": 0,
+      "recall": 1.0,
+      "precision": 0.7142857142857143
+    },
+    {
+      "intent": "general_greet",
+      "train_support": 25,
+      "dev_support": 2,
+      "correct": 2,
+      "predicted": 3,
+      "errors": 0,
+      "recall": 1.0,
+      "precision": 0.6666666666666666
+    },
+    {
+      "intent": "general_joke",
+      "train_support": 72,
+      "dev_support": 15,
+      "correct": 15,
+      "predicted": 15,
+      "errors": 0,
+      "recall": 1.0,
+      "precision": 1.0
+    },
+    {
+      "intent": "iot_coffee",
+      "train_support": 124,
+      "dev_support": 14,
+      "correct": 14,
+      "predicted": 15,
+      "errors": 0,
+      "recall": 1.0,
+      "precision": 0.9333333333333333
+    },
+    {
+      "intent": "iot_hue_lighton",
+      "train_support": 22,
+      "dev_support": 5,
+      "correct": 5,
+      "predicted": 7,
+      "errors": 0,
+      "recall": 1.0,
+      "precision": 0.7142857142857143
+    },
+    {
+      "intent": "iot_hue_lightup",
+      "train_support": 76,
+      "predicted": 13,
+      "dev_support": 12,
+      "correct": 12,
+      "errors": 0,
+      "recall": 1.0,
+      "precision": 0.9230769230769231
+    },
+    {
+      "intent": "iot_wemo_off",
+      "train_support": 52,
+      "dev_support": 5,
+      "correct": 5,
+      "predicted": 6,
+      "errors": 0,
+      "recall": 1.0,
+      "precision": 0.8333333333333334
+    },
+    {
+      "intent": "iot_wemo_on",
+      "train_support": 48,
+      "dev_support": 7,
+      "correct": 7,
+      "predicted": 7,
+      "errors": 0,
+      "recall": 1.0,
+      "precision": 1.0
+    },
+    {
+      "intent": "music_settings",
+      "train_support": 51,
+      "dev_support": 8,
+      "correct": 8,
+      "predicted": 10,
+      "errors": 0,
+      "recall": 1.0,
+      "precision": 0.8
+    },
+    {
+      "intent": "qa_currency",
+      "train_support": 142,
+      "predicted": 35,
+      "dev_support": 32,
+      "correct": 32,
+      "errors": 0,
+      "recall": 1.0,
+      "precision": 0.9142857142857143
+    },
+    {
+      "intent": "transport_taxi",
+      "train_support": 100,
+      "dev_support": 27,
+      "correct": 27,
+      "predicted": 28,
+      "errors": 0,
+      "recall": 1.0,
+      "precision": 0.9642857142857143
+    }
+  ],
+  "dev_intent_confusions": [
+    {
+      "gold": "general_quirky",
+      "predicted": "qa_factoid",
+      "count": 10,
+      "gold_train_support": 555,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "news_query",
+      "count": 8,
+      "gold_train_support": 555,
+      "predicted_train_support": 503
+    },
+    {
+      "gold": "calendar_set",
+      "predicted": "calendar_query",
+      "count": 6,
+      "gold_train_support": 810,
+      "predicted_train_support": 566
+    },
+    {
+      "gold": "qa_factoid",
+      "predicted": "general_quirky",
+      "count": 6,
+      "gold_train_support": 544,
+      "predicted_train_support": 555
+    },
+    {
+      "gold": "news_query",
+      "predicted": "qa_factoid",
+      "count": 4,
+      "gold_train_support": 503,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "qa_factoid",
+      "predicted": "qa_definition",
+      "count": 4,
+      "gold_train_support": 544,
+      "predicted_train_support": 267
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "qa_definition",
+      "count": 4,
+      "gold_train_support": 555,
+      "predicted_train_support": 267
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "weather_query",
+      "count": 4,
+      "gold_train_support": 555,
+      "predicted_train_support": 573
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "calendar_query",
+      "count": 4,
+      "gold_train_support": 555,
+      "predicted_train_support": 566
+    },
+    {
+      "gold": "qa_factoid",
+      "predicted": "news_query",
+      "count": 4,
+      "gold_train_support": 544,
+      "predicted_train_support": 503
+    },
+    {
+      "gold": "qa_definition",
+      "predicted": "general_quirky",
+      "count": 4,
+      "gold_train_support": 267,
+      "predicted_train_support": 555
+    },
+    {
+      "gold": "calendar_set",
+      "predicted": "general_quirky",
+      "count": 3,
+      "gold_train_support": 810,
+      "predicted_train_support": 555
+    },
+    {
+      "gold": "calendar_query",
+      "predicted": "recommendation_events",
+      "count": 3,
+      "gold_train_support": 566,
+      "predicted_train_support": 190
+    },
+    {
+      "gold": "calendar_query",
+      "predicted": "news_query",
+      "count": 3,
+      "gold_train_support": 566,
+      "predicted_train_support": 503
+    },
+    {
+      "gold": "play_radio",
+      "predicted": "play_music",
+      "count": 3,
+      "gold_train_support": 283,
+      "predicted_train_support": 639
+    },
+    {
+      "gold": "play_audiobook",
+      "predicted": "play_music",
+      "count": 3,
+      "gold_train_support": 150,
+      "predicted_train_support": 639
+    },
+    {
+      "gold": "recommendation_locations",
+      "predicted": "takeaway_order",
+      "count": 3,
+      "gold_train_support": 173,
+      "predicted_train_support": 135
+    },
+    {
+      "gold": "qa_definition",
+      "predicted": "qa_factoid",
+      "count": 3,
+      "gold_train_support": 267,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "qa_maths",
+      "predicted": "qa_factoid",
+      "count": 3,
+      "gold_train_support": 78,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "social_post",
+      "predicted": "social_query",
+      "count": 3,
+      "gold_train_support": 283,
+      "predicted_train_support": 108
+    },
+    {
+      "gold": "email_sendemail",
+      "predicted": "email_query",
+      "count": 3,
+      "gold_train_support": 354,
+      "predicted_train_support": 418
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "social_post",
+      "count": 2,
+      "gold_train_support": 555,
+      "predicted_train_support": 283
+    },
+    {
+      "gold": "weather_query",
+      "predicted": "general_quirky",
+      "count": 2,
+      "gold_train_support": 573,
+      "predicted_train_support": 555
+    },
+    {
+      "gold": "datetime_query",
+      "predicted": "calendar_query",
+      "count": 2,
+      "gold_train_support": 350,
+      "predicted_train_support": 566
+    },
+    {
+      "gold": "play_music",
+      "predicted": "play_radio",
+      "count": 2,
+      "gold_train_support": 639,
+      "predicted_train_support": 283
+    },
+    {
+      "gold": "alarm_query",
+      "predicted": "alarm_set",
+      "count": 2,
+      "gold_train_support": 130,
+      "predicted_train_support": 182
+    },
+    {
+      "gold": "music_likeness",
+      "predicted": "play_music",
+      "count": 2,
+      "gold_train_support": 113,
+      "predicted_train_support": 639
+    },
+    {
+      "gold": "music_likeness",
+      "predicted": "music_query",
+      "count": 2,
+      "gold_train_support": 113,
+      "predicted_train_support": 154
+    },
+    {
+      "gold": "takeaway_order",
+      "predicted": "takeaway_query",
+      "count": 2,
+      "gold_train_support": 135,
+      "predicted_train_support": 122
+    },
+    {
+      "gold": "music_query",
+      "predicted": "play_music",
+      "count": 2,
+      "gold_train_support": 154,
+      "predicted_train_support": 639
+    },
+    {
+      "gold": "play_music",
+      "predicted": "music_query",
+      "count": 2,
+      "gold_train_support": 639,
+      "predicted_train_support": 154
+    },
+    {
+      "gold": "takeaway_query",
+      "predicted": "qa_factoid",
+      "count": 2,
+      "gold_train_support": 122,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "recommendation_locations",
+      "count": 2,
+      "gold_train_support": 555,
+      "predicted_train_support": 173
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "datetime_query",
+      "count": 2,
+      "gold_train_support": 555,
+      "predicted_train_support": 350
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "cooking_recipe",
+      "count": 2,
+      "gold_train_support": 555,
+      "predicted_train_support": 207
+    },
+    {
+      "gold": "calendar_query",
+      "predicted": "calendar_set",
+      "count": 2,
+      "gold_train_support": 566,
+      "predicted_train_support": 810
+    },
+    {
+      "gold": "calendar_query",
+      "predicted": "qa_factoid",
+      "count": 2,
+      "gold_train_support": 566,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "calendar_query",
+      "predicted": "general_quirky",
+      "count": 2,
+      "gold_train_support": 566,
+      "predicted_train_support": 555
+    },
+    {
+      "gold": "calendar_query",
+      "predicted": "datetime_query",
+      "count": 2,
+      "gold_train_support": 566,
+      "predicted_train_support": 350
+    },
+    {
+      "gold": "recommendation_events",
+      "predicted": "general_quirky",
+      "count": 2,
+      "gold_train_support": 190,
+      "predicted_train_support": 555
+    },
+    {
+      "gold": "calendar_set",
+      "predicted": "weather_query",
+      "count": 2,
+      "gold_train_support": 810,
+      "predicted_train_support": 573
+    },
+    {
+      "gold": "play_radio",
+      "predicted": "play_podcasts",
+      "count": 2,
+      "gold_train_support": 283,
+      "predicted_train_support": 193
+    },
+    {
+      "gold": "cooking_recipe",
+      "predicted": "takeaway_order",
+      "count": 2,
+      "gold_train_support": 207,
+      "predicted_train_support": 135
+    },
+    {
+      "gold": "play_game",
+      "predicted": "play_music",
+      "count": 2,
+      "gold_train_support": 112,
+      "predicted_train_support": 639
+    },
+    {
+      "gold": "lists_remove",
+      "predicted": "calendar_remove",
+      "count": 2,
+      "gold_train_support": 164,
+      "predicted_train_support": 312
+    },
+    {
+      "gold": "lists_query",
+      "predicted": "lists_createoradd",
+      "count": 2,
+      "gold_train_support": 198,
+      "predicted_train_support": 177
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "lists_query",
+      "count": 2,
+      "gold_train_support": 555,
+      "predicted_train_support": 198
+    },
+    {
+      "gold": "qa_factoid",
+      "predicted": "music_query",
+      "count": 2,
+      "gold_train_support": 544,
+      "predicted_train_support": 154
+    },
+    {
+      "gold": "social_query",
+      "predicted": "social_post",
+      "count": 2,
+      "gold_train_support": 108,
+      "predicted_train_support": 283
+    },
+    {
+      "gold": "email_query",
+      "predicted": "qa_factoid",
+      "count": 2,
+      "gold_train_support": 418,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "email_sendemail",
+      "predicted": "email_addcontact",
+      "count": 2,
+      "gold_train_support": 354,
+      "predicted_train_support": 54
+    },
+    {
+      "gold": "email_query",
+      "predicted": "email_sendemail",
+      "count": 2,
+      "gold_train_support": 418,
+      "predicted_train_support": 354
+    },
+    {
+      "gold": "iot_cleaning",
+      "predicted": "general_quirky",
+      "count": 1,
+      "gold_train_support": 93,
+      "predicted_train_support": 555
+    },
+    {
+      "gold": "iot_hue_lightchange",
+      "predicted": "iot_hue_lightup",
+      "count": 1,
+      "gold_train_support": 125,
+      "predicted_train_support": 76
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "iot_hue_lighton",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 22
+    },
+    {
+      "gold": "weather_query",
+      "predicted": "qa_maths",
+      "count": 1,
+      "gold_train_support": 573,
+      "predicted_train_support": 78
+    },
+    {
+      "gold": "music_query",
+      "predicted": "music_likeness",
+      "count": 1,
+      "gold_train_support": 154,
+      "predicted_train_support": 113
+    },
+    {
+      "gold": "play_music",
+      "predicted": "play_audiobook",
+      "count": 1,
+      "gold_train_support": 639,
+      "predicted_train_support": 150
+    },
+    {
+      "gold": "alarm_remove",
+      "predicted": "play_radio",
+      "count": 1,
+      "gold_train_support": 78,
+      "predicted_train_support": 283
+    },
+    {
+      "gold": "news_query",
+      "predicted": "social_post",
+      "count": 1,
+      "gold_train_support": 503,
+      "predicted_train_support": 283
+    },
+    {
+      "gold": "music_dislikeness",
+      "predicted": "play_music",
+      "count": 1,
+      "gold_train_support": 14,
+      "predicted_train_support": 639
+    },
+    {
+      "gold": "datetime_convert",
+      "predicted": "datetime_query",
+      "count": 1,
+      "gold_train_support": 52,
+      "predicted_train_support": 350
+    },
+    {
+      "gold": "iot_hue_lightchange",
+      "predicted": "iot_hue_lighton",
+      "count": 1,
+      "gold_train_support": 125,
+      "predicted_train_support": 22
+    },
+    {
+      "gold": "play_music",
+      "predicted": "audio_volume_up",
+      "count": 1,
+      "gold_train_support": 639,
+      "predicted_train_support": 110
+    },
+    {
+      "gold": "alarm_query",
+      "predicted": "calendar_query",
+      "count": 1,
+      "gold_train_support": 130,
+      "predicted_train_support": 566
+    },
+    {
+      "gold": "takeaway_query",
+      "predicted": "takeaway_order",
+      "count": 1,
+      "gold_train_support": 122,
+      "predicted_train_support": 135
+    },
+    {
+      "gold": "iot_cleaning",
+      "predicted": "play_audiobook",
+      "count": 1,
+      "gold_train_support": 93,
+      "predicted_train_support": 150
+    },
+    {
+      "gold": "play_music",
+      "predicted": "play_game",
+      "count": 1,
+      "gold_train_support": 639,
+      "predicted_train_support": 112
+    },
+    {
+      "gold": "iot_hue_lightchange",
+      "predicted": "play_music",
+      "count": 1,
+      "gold_train_support": 125,
+      "predicted_train_support": 639
+    },
+    {
+      "gold": "datetime_query",
+      "predicted": "general_quirky",
+      "count": 1,
+      "gold_train_support": 350,
+      "predicted_train_support": 555
+    },
+    {
+      "gold": "news_query",
+      "predicted": "recommendation_events",
+      "count": 1,
+      "gold_train_support": 503,
+      "predicted_train_support": 190
+    },
+    {
+      "gold": "iot_hue_lightoff",
+      "predicted": "iot_wemo_off",
+      "count": 1,
+      "gold_train_support": 153,
+      "predicted_train_support": 52
+    },
+    {
+      "gold": "news_query",
+      "predicted": "social_query",
+      "count": 1,
+      "gold_train_support": 503,
+      "predicted_train_support": 108
+    },
+    {
+      "gold": "iot_hue_lightdim",
+      "predicted": "play_music",
+      "count": 1,
+      "gold_train_support": 76,
+      "predicted_train_support": 639
+    },
+    {
+      "gold": "music_likeness",
+      "predicted": "lists_query",
+      "count": 1,
+      "gold_train_support": 113,
+      "predicted_train_support": 198
+    },
+    {
+      "gold": "music_query",
+      "predicted": "music_settings",
+      "count": 1,
+      "gold_train_support": 154,
+      "predicted_train_support": 51
+    },
+    {
+      "gold": "audio_volume_mute",
+      "predicted": "iot_hue_lightoff",
+      "count": 1,
+      "gold_train_support": 110,
+      "predicted_train_support": 153
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "iot_hue_lightoff",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 153
+    },
+    {
+      "gold": "audio_volume_down",
+      "predicted": "audio_volume_up",
+      "count": 1,
+      "gold_train_support": 52,
+      "predicted_train_support": 110
+    },
+    {
+      "gold": "news_query",
+      "predicted": "calendar_query",
+      "count": 1,
+      "gold_train_support": 503,
+      "predicted_train_support": 566
+    },
+    {
+      "gold": "alarm_set",
+      "predicted": "calendar_set",
+      "count": 1,
+      "gold_train_support": 182,
+      "predicted_train_support": 810
+    },
+    {
+      "gold": "datetime_query",
+      "predicted": "cooking_recipe",
+      "count": 1,
+      "gold_train_support": 350,
+      "predicted_train_support": 207
+    },
+    {
+      "gold": "takeaway_order",
+      "predicted": "qa_factoid",
+      "count": 1,
+      "gold_train_support": 135,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "weather_query",
+      "predicted": "calendar_query",
+      "count": 1,
+      "gold_train_support": 573,
+      "predicted_train_support": 566
+    },
+    {
+      "gold": "weather_query",
+      "predicted": "qa_factoid",
+      "count": 1,
+      "gold_train_support": 573,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "iot_hue_lightchange",
+      "predicted": "qa_factoid",
+      "count": 1,
+      "gold_train_support": 125,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "news_query",
+      "predicted": "qa_currency",
+      "count": 1,
+      "gold_train_support": 503,
+      "predicted_train_support": 142
+    },
+    {
+      "gold": "play_music",
+      "predicted": "play_podcasts",
+      "count": 1,
+      "gold_train_support": 639,
+      "predicted_train_support": 193
+    },
+    {
+      "gold": "music_query",
+      "predicted": "news_query",
+      "count": 1,
+      "gold_train_support": 154,
+      "predicted_train_support": 503
+    },
+    {
+      "gold": "news_query",
+      "predicted": "email_query",
+      "count": 1,
+      "gold_train_support": 503,
+      "predicted_train_support": 418
+    },
+    {
+      "gold": "play_music",
+      "predicted": "music_settings",
+      "count": 1,
+      "gold_train_support": 639,
+      "predicted_train_support": 51
+    },
+    {
+      "gold": "takeaway_order",
+      "predicted": "social_post",
+      "count": 1,
+      "gold_train_support": 135,
+      "predicted_train_support": 283
+    },
+    {
+      "gold": "alarm_query",
+      "predicted": "alarm_remove",
+      "count": 1,
+      "gold_train_support": 130,
+      "predicted_train_support": 78
+    },
+    {
+      "gold": "weather_query",
+      "predicted": "recommendation_locations",
+      "count": 1,
+      "gold_train_support": 573,
+      "predicted_train_support": 173
+    },
+    {
+      "gold": "alarm_query",
+      "predicted": "play_audiobook",
+      "count": 1,
+      "gold_train_support": 130,
+      "predicted_train_support": 150
+    },
+    {
+      "gold": "play_music",
+      "predicted": "email_querycontact",
+      "count": 1,
+      "gold_train_support": 639,
+      "predicted_train_support": 127
+    },
+    {
+      "gold": "audio_volume_up",
+      "predicted": "play_audiobook",
+      "count": 1,
+      "gold_train_support": 110,
+      "predicted_train_support": 150
+    },
+    {
+      "gold": "datetime_query",
+      "predicted": "alarm_set",
+      "count": 1,
+      "gold_train_support": 350,
+      "predicted_train_support": 182
+    },
+    {
+      "gold": "news_query",
+      "predicted": "recommendation_locations",
+      "count": 1,
+      "gold_train_support": 503,
+      "predicted_train_support": 173
+    },
+    {
+      "gold": "alarm_set",
+      "predicted": "datetime_query",
+      "count": 1,
+      "gold_train_support": 182,
+      "predicted_train_support": 350
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "audio_volume_up",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 110
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "qa_currency",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 142
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "recommendation_movies",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 70
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "audio_volume_down",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 52
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "general_greet",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 25
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "play_game",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 112
+    },
+    {
+      "gold": "cooking_query",
+      "predicted": "cooking_recipe",
+      "count": 1,
+      "gold_train_support": 4,
+      "predicted_train_support": 207
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "play_audiobook",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 150
+    },
+    {
+      "gold": "calendar_query",
+      "predicted": "alarm_query",
+      "count": 1,
+      "gold_train_support": 566,
+      "predicted_train_support": 130
+    },
+    {
+      "gold": "calendar_set",
+      "predicted": "qa_factoid",
+      "count": 1,
+      "gold_train_support": 810,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "calendar_query",
+      "predicted": "takeaway_query",
+      "count": 1,
+      "gold_train_support": 566,
+      "predicted_train_support": 122
+    },
+    {
+      "gold": "calendar_query",
+      "predicted": "transport_query",
+      "count": 1,
+      "gold_train_support": 566,
+      "predicted_train_support": 227
+    },
+    {
+      "gold": "recommendation_events",
+      "predicted": "calendar_query",
+      "count": 1,
+      "gold_train_support": 190,
+      "predicted_train_support": 566
+    },
+    {
+      "gold": "calendar_set",
+      "predicted": "calendar_remove",
+      "count": 1,
+      "gold_train_support": 810,
+      "predicted_train_support": 312
+    },
+    {
+      "gold": "recommendation_events",
+      "predicted": "calendar_set",
+      "count": 1,
+      "gold_train_support": 190,
+      "predicted_train_support": 810
+    },
+    {
+      "gold": "calendar_remove",
+      "predicted": "calendar_set",
+      "count": 1,
+      "gold_train_support": 312,
+      "predicted_train_support": 810
+    },
+    {
+      "gold": "play_radio",
+      "predicted": "news_query",
+      "count": 1,
+      "gold_train_support": 283,
+      "predicted_train_support": 503
+    },
+    {
+      "gold": "play_radio",
+      "predicted": "music_query",
+      "count": 1,
+      "gold_train_support": 283,
+      "predicted_train_support": 154
+    },
+    {
+      "gold": "play_audiobook",
+      "predicted": "audio_volume_mute",
+      "count": 1,
+      "gold_train_support": 150,
+      "predicted_train_support": 110
+    },
+    {
+      "gold": "play_audiobook",
+      "predicted": "takeaway_order",
+      "count": 1,
+      "gold_train_support": 150,
+      "predicted_train_support": 135
+    },
+    {
+      "gold": "play_audiobook",
+      "predicted": "play_podcasts",
+      "count": 1,
+      "gold_train_support": 150,
+      "predicted_train_support": 193
+    },
+    {
+      "gold": "cooking_recipe",
+      "predicted": "qa_factoid",
+      "count": 1,
+      "gold_train_support": 207,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "cooking_recipe",
+      "predicted": "audio_volume_mute",
+      "count": 1,
+      "gold_train_support": 207,
+      "predicted_train_support": 110
+    },
+    {
+      "gold": "play_game",
+      "predicted": "general_quirky",
+      "count": 1,
+      "gold_train_support": 112,
+      "predicted_train_support": 555
+    },
+    {
+      "gold": "play_game",
+      "predicted": "qa_factoid",
+      "count": 1,
+      "gold_train_support": 112,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "play_game",
+      "predicted": "audio_volume_up",
+      "count": 1,
+      "gold_train_support": 112,
+      "predicted_train_support": 110
+    },
+    {
+      "gold": "lists_remove",
+      "predicted": "lists_query",
+      "count": 1,
+      "gold_train_support": 164,
+      "predicted_train_support": 198
+    },
+    {
+      "gold": "lists_remove",
+      "predicted": "email_querycontact",
+      "count": 1,
+      "gold_train_support": 164,
+      "predicted_train_support": 127
+    },
+    {
+      "gold": "lists_query",
+      "predicted": "recommendation_locations",
+      "count": 1,
+      "gold_train_support": 198,
+      "predicted_train_support": 173
+    },
+    {
+      "gold": "lists_query",
+      "predicted": "social_query",
+      "count": 1,
+      "gold_train_support": 198,
+      "predicted_train_support": 108
+    },
+    {
+      "gold": "music_query",
+      "predicted": "lists_query",
+      "count": 1,
+      "gold_train_support": 154,
+      "predicted_train_support": 198
+    },
+    {
+      "gold": "lists_query",
+      "predicted": "qa_factoid",
+      "count": 1,
+      "gold_train_support": 198,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "lists_query",
+      "predicted": "calendar_query",
+      "count": 1,
+      "gold_train_support": 198,
+      "predicted_train_support": 566
+    },
+    {
+      "gold": "lists_remove",
+      "predicted": "general_quirky",
+      "count": 1,
+      "gold_train_support": 164,
+      "predicted_train_support": 555
+    },
+    {
+      "gold": "lists_createoradd",
+      "predicted": "calendar_set",
+      "count": 1,
+      "gold_train_support": 177,
+      "predicted_train_support": 810
+    },
+    {
+      "gold": "lists_remove",
+      "predicted": "cooking_recipe",
+      "count": 1,
+      "gold_train_support": 164,
+      "predicted_train_support": 207
+    },
+    {
+      "gold": "lists_query",
+      "predicted": "iot_coffee",
+      "count": 1,
+      "gold_train_support": 198,
+      "predicted_train_support": 124
+    },
+    {
+      "gold": "lists_createoradd",
+      "predicted": "lists_remove",
+      "count": 1,
+      "gold_train_support": 177,
+      "predicted_train_support": 164
+    },
+    {
+      "gold": "play_podcasts",
+      "predicted": "play_music",
+      "count": 1,
+      "gold_train_support": 193,
+      "predicted_train_support": 639
+    },
+    {
+      "gold": "play_podcasts",
+      "predicted": "play_audiobook",
+      "count": 1,
+      "gold_train_support": 193,
+      "predicted_train_support": 150
+    },
+    {
+      "gold": "play_podcasts",
+      "predicted": "news_query",
+      "count": 1,
+      "gold_train_support": 193,
+      "predicted_train_support": 503
+    },
+    {
+      "gold": "play_podcasts",
+      "predicted": "qa_maths",
+      "count": 1,
+      "gold_train_support": 193,
+      "predicted_train_support": 78
+    },
+    {
+      "gold": "recommendation_locations",
+      "predicted": "transport_query",
+      "count": 1,
+      "gold_train_support": 173,
+      "predicted_train_support": 227
+    },
+    {
+      "gold": "recommendation_events",
+      "predicted": "lists_createoradd",
+      "count": 1,
+      "gold_train_support": 190,
+      "predicted_train_support": 177
+    },
+    {
+      "gold": "recommendation_events",
+      "predicted": "qa_factoid",
+      "count": 1,
+      "gold_train_support": 190,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "recommendation_movies",
+      "predicted": "takeaway_order",
+      "count": 1,
+      "gold_train_support": 70,
+      "predicted_train_support": 135
+    },
+    {
+      "gold": "recommendation_movies",
+      "predicted": "general_quirky",
+      "count": 1,
+      "gold_train_support": 70,
+      "predicted_train_support": 555
+    },
+    {
+      "gold": "transport_query",
+      "predicted": "general_quirky",
+      "count": 1,
+      "gold_train_support": 227,
+      "predicted_train_support": 555
+    },
+    {
+      "gold": "transport_query",
+      "predicted": "transport_ticket",
+      "count": 1,
+      "gold_train_support": 227,
+      "predicted_train_support": 127
+    },
+    {
+      "gold": "transport_query",
+      "predicted": "play_radio",
+      "count": 1,
+      "gold_train_support": 227,
+      "predicted_train_support": 283
+    },
+    {
+      "gold": "transport_ticket",
+      "predicted": "transport_taxi",
+      "count": 1,
+      "gold_train_support": 127,
+      "predicted_train_support": 100
+    },
+    {
+      "gold": "transport_query",
+      "predicted": "calendar_query",
+      "count": 1,
+      "gold_train_support": 227,
+      "predicted_train_support": 566
+    },
+    {
+      "gold": "transport_traffic",
+      "predicted": "qa_factoid",
+      "count": 1,
+      "gold_train_support": 117,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "transport_query",
+      "predicted": "play_podcasts",
+      "count": 1,
+      "gold_train_support": 227,
+      "predicted_train_support": 193
+    },
+    {
+      "gold": "qa_maths",
+      "predicted": "news_query",
+      "count": 1,
+      "gold_train_support": 78,
+      "predicted_train_support": 503
+    },
+    {
+      "gold": "qa_maths",
+      "predicted": "recommendation_locations",
+      "count": 1,
+      "gold_train_support": 78,
+      "predicted_train_support": 173
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "cooking_query",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 4
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "calendar_set",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 810
+    },
+    {
+      "gold": "qa_factoid",
+      "predicted": "email_querycontact",
+      "count": 1,
+      "gold_train_support": 544,
+      "predicted_train_support": 127
+    },
+    {
+      "gold": "qa_definition",
+      "predicted": "news_query",
+      "count": 1,
+      "gold_train_support": 267,
+      "predicted_train_support": 503
+    },
+    {
+      "gold": "qa_factoid",
+      "predicted": "transport_traffic",
+      "count": 1,
+      "gold_train_support": 544,
+      "predicted_train_support": 117
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "email_querycontact",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 127
+    },
+    {
+      "gold": "qa_factoid",
+      "predicted": "play_audiobook",
+      "count": 1,
+      "gold_train_support": 544,
+      "predicted_train_support": 150
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "email_sendemail",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 354
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "datetime_convert",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 52
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "qa_maths",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 78
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "qa_stock",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 152
+    },
+    {
+      "gold": "qa_factoid",
+      "predicted": "takeaway_order",
+      "count": 1,
+      "gold_train_support": 544,
+      "predicted_train_support": 135
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "recommendation_events",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 190
+    },
+    {
+      "gold": "qa_factoid",
+      "predicted": "qa_currency",
+      "count": 1,
+      "gold_train_support": 544,
+      "predicted_train_support": 142
+    },
+    {
+      "gold": "calendar_query",
+      "predicted": "social_query",
+      "count": 1,
+      "gold_train_support": 566,
+      "predicted_train_support": 108
+    },
+    {
+      "gold": "qa_stock",
+      "predicted": "social_post",
+      "count": 1,
+      "gold_train_support": 152,
+      "predicted_train_support": 283
+    },
+    {
+      "gold": "recommendation_locations",
+      "predicted": "lists_query",
+      "count": 1,
+      "gold_train_support": 173,
+      "predicted_train_support": 198
+    },
+    {
+      "gold": "transport_query",
+      "predicted": "qa_factoid",
+      "count": 1,
+      "gold_train_support": 227,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "qa_stock",
+      "predicted": "qa_factoid",
+      "count": 1,
+      "gold_train_support": 152,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "qa_factoid",
+      "predicted": "calendar_query",
+      "count": 1,
+      "gold_train_support": 544,
+      "predicted_train_support": 566
+    },
+    {
+      "gold": "qa_definition",
+      "predicted": "calendar_query",
+      "count": 1,
+      "gold_train_support": 267,
+      "predicted_train_support": 566
+    },
+    {
+      "gold": "social_query",
+      "predicted": "general_quirky",
+      "count": 1,
+      "gold_train_support": 108,
+      "predicted_train_support": 555
+    },
+    {
+      "gold": "social_post",
+      "predicted": "play_radio",
+      "count": 1,
+      "gold_train_support": 283,
+      "predicted_train_support": 283
+    },
+    {
+      "gold": "social_query",
+      "predicted": "lists_query",
+      "count": 1,
+      "gold_train_support": 108,
+      "predicted_train_support": 198
+    },
+    {
+      "gold": "social_post",
+      "predicted": "transport_traffic",
+      "count": 1,
+      "gold_train_support": 283,
+      "predicted_train_support": 117
+    },
+    {
+      "gold": "social_post",
+      "predicted": "qa_stock",
+      "count": 1,
+      "gold_train_support": 283,
+      "predicted_train_support": 152
+    },
+    {
+      "gold": "calendar_set",
+      "predicted": "social_post",
+      "count": 1,
+      "gold_train_support": 810,
+      "predicted_train_support": 283
+    },
+    {
+      "gold": "general_quirky",
+      "predicted": "audio_volume_mute",
+      "count": 1,
+      "gold_train_support": 555,
+      "predicted_train_support": 110
+    },
+    {
+      "gold": "email_sendemail",
+      "predicted": "news_query",
+      "count": 1,
+      "gold_train_support": 354,
+      "predicted_train_support": 503
+    },
+    {
+      "gold": "email_querycontact",
+      "predicted": "qa_factoid",
+      "count": 1,
+      "gold_train_support": 127,
+      "predicted_train_support": 544
+    },
+    {
+      "gold": "email_sendemail",
+      "predicted": "email_querycontact",
+      "count": 1,
+      "gold_train_support": 354,
+      "predicted_train_support": 127
+    },
+    {
+      "gold": "email_querycontact",
+      "predicted": "lists_remove",
+      "count": 1,
+      "gold_train_support": 127,
+      "predicted_train_support": 164
+    },
+    {
+      "gold": "email_query",
+      "predicted": "email_querycontact",
+      "count": 1,
+      "gold_train_support": 418,
+      "predicted_train_support": 127
+    },
+    {
+      "gold": "email_query",
+      "predicted": "general_quirky",
+      "count": 1,
+      "gold_train_support": 418,
+      "predicted_train_support": 555
+    }
+  ],
+  "dev_slot_errors_by_type": [
+    {
+      "slot_type": "place_name",
+      "train_support": 1086,
+      "gold_support": 209,
+      "tp": 153,
+      "fp": 42,
+      "fn": 56,
+      "f1": 0.7574257425742574,
+      "precision": 0.7846153846153846,
+      "recall": 0.7320574162679426,
+      "total_error_occurrences": 98
+    },
+    {
+      "slot_type": "person",
+      "train_support": 864,
+      "fp": 36,
+      "gold_support": 132,
+      "fn": 44,
+      "tp": 88,
+      "f1": 0.6875,
+      "precision": 0.7096774193548387,
+      "recall": 0.6666666666666666,
+      "total_error_occurrences": 80
+    },
+    {
+      "slot_type": "event_name",
+      "train_support": 998,
+      "fp": 34,
+      "gold_support": 160,
+      "tp": 119,
+      "fn": 41,
+      "f1": 0.7603833865814696,
+      "precision": 0.7777777777777778,
+      "recall": 0.74375,
+      "total_error_occurrences": 75
+    },
+    {
+      "slot_type": "date",
+      "train_support": 1816,
+      "gold_support": 339,
+      "tp": 310,
+      "fn": 29,
+      "fp": 29,
+      "f1": 0.9144542772861357,
+      "precision": 0.9144542772861357,
+      "recall": 0.9144542772861357,
+      "total_error_occurrences": 58
+    },
+    {
+      "slot_type": "time",
+      "train_support": 797,
+      "gold_support": 137,
+      "fn": 33,
+      "tp": 104,
+      "fp": 23,
+      "f1": 0.7878787878787878,
+      "precision": 0.8188976377952756,
+      "recall": 0.7591240875912408,
+      "total_error_occurrences": 56
+    },
+    {
+      "slot_type": "news_topic",
+      "train_support": 183,
+      "gold_support": 40,
+      "tp": 17,
+      "fn": 23,
+      "fp": 16,
+      "f1": 0.4657534246575342,
+      "precision": 0.5151515151515151,
+      "recall": 0.425,
+      "total_error_occurrences": 39
+    },
+    {
+      "slot_type": "media_type",
+      "train_support": 477,
+      "gold_support": 98,
+      "fn": 16,
+      "tp": 82,
+      "fp": 18,
+      "f1": 0.8282828282828283,
+      "precision": 0.82,
+      "recall": 0.8367346938775511,
+      "total_error_occurrences": 34
+    },
+    {
+      "slot_type": "food_type",
+      "train_support": 295,
+      "gold_support": 51,
+      "tp": 36,
+      "fn": 15,
+      "fp": 17,
+      "f1": 0.6923076923076923,
+      "precision": 0.6792452830188679,
+      "recall": 0.7058823529411765,
+      "total_error_occurrences": 32
+    },
+    {
+      "slot_type": "business_name",
+      "train_support": 383,
+      "gold_support": 58,
+      "tp": 42,
+      "fp": 10,
+      "fn": 16,
+      "f1": 0.7636363636363637,
+      "precision": 0.8076923076923077,
+      "recall": 0.7241379310344828,
+      "total_error_occurrences": 26
+    },
+    {
+      "slot_type": "weather_descriptor",
+      "train_support": 320,
+      "gold_support": 59,
+      "tp": 49,
+      "fn": 10,
+      "fp": 15,
+      "f1": 0.7967479674796748,
+      "precision": 0.765625,
+      "recall": 0.8305084745762712,
+      "total_error_occurrences": 25
+    },
+    {
+      "slot_type": "artist_name",
+      "train_support": 232,
+      "gold_support": 45,
+      "fn": 16,
+      "fp": 8,
+      "tp": 29,
+      "f1": 0.7073170731707317,
+      "precision": 0.7837837837837838,
+      "recall": 0.6444444444444445,
+      "total_error_occurrences": 24
+    },
+    {
+      "slot_type": "song_name",
+      "train_support": 128,
+      "gold_support": 23,
+      "fn": 17,
+      "fp": 6,
+      "tp": 6,
+      "f1": 0.34285714285714286,
+      "precision": 0.5,
+      "recall": 0.2608695652173913,
+      "total_error_occurrences": 23
+    },
+    {
+      "slot_type": "list_name",
+      "train_support": 191,
+      "gold_support": 37,
+      "tp": 25,
+      "fn": 12,
+      "fp": 10,
+      "f1": 0.6944444444444444,
+      "precision": 0.7142857142857143,
+      "recall": 0.6756756756756757,
+      "total_error_occurrences": 22
+    },
+    {
+      "slot_type": "radio_name",
+      "train_support": 131,
+      "gold_support": 21,
+      "fn": 15,
+      "tp": 6,
+      "fp": 6,
+      "f1": 0.36363636363636365,
+      "precision": 0.5,
+      "recall": 0.2857142857142857,
+      "total_error_occurrences": 21
+    },
+    {
+      "slot_type": "player_setting",
+      "train_support": 160,
+      "gold_support": 36,
+      "fn": 12,
+      "fp": 8,
+      "tp": 24,
+      "f1": 0.7058823529411765,
+      "precision": 0.75,
+      "recall": 0.6666666666666666,
+      "total_error_occurrences": 20
+    },
+    {
+      "slot_type": "definition_word",
+      "train_support": 225,
+      "gold_support": 43,
+      "fn": 15,
+      "tp": 28,
+      "fp": 4,
+      "f1": 0.7466666666666667,
+      "precision": 0.875,
+      "recall": 0.6511627906976745,
+      "total_error_occurrences": 19
+    },
+    {
+      "slot_type": "music_genre",
+      "train_support": 181,
+      "gold_support": 37,
+      "tp": 27,
+      "fp": 8,
+      "fn": 10,
+      "f1": 0.75,
+      "precision": 0.7714285714285715,
+      "recall": 0.7297297297297297,
+      "total_error_occurrences": 18
+    },
+    {
+      "slot_type": "business_type",
+      "train_support": 189,
+      "gold_support": 33,
+      "tp": 26,
+      "fn": 7,
+      "fp": 10,
+      "f1": 0.7536231884057971,
+      "precision": 0.7222222222222222,
+      "recall": 0.7878787878787878,
+      "total_error_occurrences": 17
+    },
+    {
+      "slot_type": "relation",
+      "train_support": 251,
+      "gold_support": 42,
+      "fn": 8,
+      "tp": 34,
+      "fp": 6,
+      "f1": 0.8292682926829268,
+      "precision": 0.85,
+      "recall": 0.8095238095238095,
+      "total_error_occurrences": 14
+    },
+    {
+      "slot_type": "audiobook_name",
+      "train_support": 73,
+      "fp": 3,
+      "gold_support": 16,
+      "tp": 6,
+      "fn": 10,
+      "f1": 0.48,
+      "precision": 0.6666666666666666,
+      "recall": 0.375,
+      "total_error_occurrences": 13
+    },
+    {
+      "slot_type": "general_frequency",
+      "train_support": 84,
+      "gold_support": 15,
+      "tp": 9,
+      "fn": 6,
+      "fp": 6,
+      "f1": 0.6,
+      "precision": 0.6,
+      "recall": 0.6,
+      "total_error_occurrences": 12
+    },
+    {
+      "slot_type": "timeofday",
+      "train_support": 239,
+      "gold_support": 49,
+      "tp": 45,
+      "fn": 4,
+      "fp": 8,
+      "f1": 0.8823529411764706,
+      "precision": 0.8490566037735849,
+      "recall": 0.9183673469387755,
+      "total_error_occurrences": 12
+    },
+    {
+      "slot_type": "currency_name",
+      "train_support": 217,
+      "fp": 7,
+      "gold_support": 45,
+      "tp": 41,
+      "fn": 4,
+      "f1": 0.8817204301075269,
+      "precision": 0.8541666666666666,
+      "recall": 0.9111111111111111,
+      "total_error_occurrences": 11
+    },
+    {
+      "slot_type": "game_name",
+      "train_support": 87,
+      "fp": 3,
+      "gold_support": 18,
+      "tp": 10,
+      "fn": 8,
+      "f1": 0.6451612903225806,
+      "precision": 0.7692307692307693,
+      "recall": 0.5555555555555556,
+      "total_error_occurrences": 11
+    },
+    {
+      "slot_type": "house_place",
+      "train_support": 198,
+      "gold_support": 25,
+      "tp": 19,
+      "fn": 6,
+      "fp": 5,
+      "f1": 0.7755102040816326,
+      "precision": 0.7916666666666666,
+      "recall": 0.76,
+      "total_error_occurrences": 11
+    },
+    {
+      "slot_type": "playlist_name",
+      "train_support": 62,
+      "fp": 6,
+      "gold_support": 7,
+      "fn": 3,
+      "tp": 4,
+      "f1": 0.47058823529411764,
+      "precision": 0.4,
+      "recall": 0.5714285714285714,
+      "total_error_occurrences": 9
+    },
+    {
+      "slot_type": "music_descriptor",
+      "train_support": 45,
+      "gold_support": 8,
+      "fn": 8,
+      "f1": 0.0,
+      "precision": 0,
+      "recall": 0.0,
+      "total_error_occurrences": 8
+    },
+    {
+      "slot_type": "podcast_name",
+      "train_support": 56,
+      "gold_support": 8,
+      "tp": 3,
+      "fn": 5,
+      "fp": 3,
+      "f1": 0.42857142857142855,
+      "precision": 0.5,
+      "recall": 0.375,
+      "total_error_occurrences": 8
+    },
+    {
+      "slot_type": "device_type",
+      "train_support": 226,
+      "gold_support": 35,
+      "tp": 30,
+      "fn": 5,
+      "fp": 2,
+      "f1": 0.8955223880597015,
+      "precision": 0.9375,
+      "recall": 0.8571428571428571,
+      "total_error_occurrences": 7
+    },
+    {
+      "slot_type": "joke_type",
+      "train_support": 35,
+      "gold_support": 8,
+      "tp": 3,
+      "fn": 5,
+      "fp": 2,
+      "f1": 0.46153846153846156,
+      "precision": 0.6,
+      "recall": 0.375,
+      "total_error_occurrences": 7
+    },
+    {
+      "slot_type": "meal_type",
+      "train_support": 63,
+      "fp": 5,
+      "gold_support": 12,
+      "tp": 10,
+      "fn": 2,
+      "f1": 0.7407407407407407,
+      "precision": 0.6666666666666666,
+      "recall": 0.8333333333333334,
+      "total_error_occurrences": 7
+    },
+    {
+      "slot_type": "personal_info",
+      "train_support": 75,
+      "gold_support": 9,
+      "fn": 5,
+      "tp": 4,
+      "fp": 2,
+      "f1": 0.5333333333333333,
+      "precision": 0.6666666666666666,
+      "recall": 0.4444444444444444,
+      "total_error_occurrences": 7
+    },
+    {
+      "slot_type": "podcast_descriptor",
+      "train_support": 68,
+      "gold_support": 10,
+      "tp": 5,
+      "fn": 5,
+      "f1": 0.6666666666666666,
+      "precision": 1.0,
+      "recall": 0.5,
+      "total_error_occurrences": 5
+    },
+    {
+      "slot_type": "cooking_type",
+      "train_support": 17,
+      "gold_support": 2,
+      "fn": 2,
+      "fp": 2,
+      "f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "total_error_occurrences": 4
+    },
+    {
+      "slot_type": "ingredient",
+      "train_support": 20,
+      "gold_support": 4,
+      "fn": 4,
+      "f1": 0.0,
+      "precision": 0,
+      "recall": 0.0,
+      "total_error_occurrences": 4
+    },
+    {
+      "slot_type": "alarm_type",
+      "train_support": 9,
+      "gold_support": 2,
+      "fn": 2,
+      "fp": 1,
+      "f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "total_error_occurrences": 3
+    },
+    {
+      "slot_type": "change_amount",
+      "train_support": 49,
+      "gold_support": 6,
+      "fn": 2,
+      "tp": 4,
+      "fp": 1,
+      "f1": 0.7272727272727273,
+      "precision": 0.8,
+      "recall": 0.6666666666666666,
+      "total_error_occurrences": 3
+    },
+    {
+      "slot_type": "color_type",
+      "train_support": 100,
+      "gold_support": 16,
+      "fn": 3,
+      "tp": 13,
+      "f1": 0.896551724137931,
+      "precision": 1.0,
+      "recall": 0.8125,
+      "total_error_occurrences": 3
+    },
+    {
+      "slot_type": "drink_type",
+      "train_support": 9,
+      "gold_support": 3,
+      "fn": 2,
+      "fp": 1,
+      "tp": 1,
+      "f1": 0.4,
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "total_error_occurrences": 3
+    },
+    {
+      "slot_type": "order_type",
+      "train_support": 107,
+      "gold_support": 19,
+      "tp": 17,
+      "fn": 2,
+      "fp": 1,
+      "f1": 0.918918918918919,
+      "precision": 0.9444444444444444,
+      "recall": 0.8947368421052632,
+      "total_error_occurrences": 3
+    },
+    {
+      "slot_type": "app_name",
+      "train_support": 51,
+      "gold_support": 8,
+      "tp": 6,
+      "fn": 2,
+      "f1": 0.8571428571428571,
+      "precision": 1.0,
+      "recall": 0.75,
+      "total_error_occurrences": 2
+    },
+    {
+      "slot_type": "email_address",
+      "train_support": 32,
+      "gold_support": 3,
+      "tp": 2,
+      "fn": 1,
+      "fp": 1,
+      "f1": 0.6666666666666666,
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666,
+      "total_error_occurrences": 2
+    },
+    {
+      "slot_type": "transport_agency",
+      "train_support": 31,
+      "gold_support": 9,
+      "tp": 8,
+      "fn": 1,
+      "fp": 1,
+      "f1": 0.8888888888888888,
+      "precision": 0.8888888888888888,
+      "recall": 0.8888888888888888,
+      "total_error_occurrences": 2
+    },
+    {
+      "slot_type": "transport_type",
+      "train_support": 318,
+      "fp": 2,
+      "gold_support": 54,
+      "tp": 54,
+      "f1": 0.9818181818181818,
+      "precision": 0.9642857142857143,
+      "recall": 1.0,
+      "total_error_occurrences": 2
+    },
+    {
+      "slot_type": "audiobook_author",
+      "train_support": 6,
+      "gold_support": 1,
+      "fn": 1,
+      "f1": 0.0,
+      "precision": 0,
+      "recall": 0.0,
+      "total_error_occurrences": 1
+    },
+    {
+      "slot_type": "coffee_type",
+      "train_support": 22,
+      "gold_support": 2,
+      "tp": 1,
+      "fn": 1,
+      "f1": 0.6666666666666666,
+      "precision": 1.0,
+      "recall": 0.5,
+      "total_error_occurrences": 1
+    },
+    {
+      "slot_type": "game_type",
+      "train_support": 1,
+      "gold_support": 1,
+      "fn": 1,
+      "f1": 0.0,
+      "precision": 0,
+      "recall": 0.0,
+      "total_error_occurrences": 1
+    },
+    {
+      "slot_type": "movie_name",
+      "train_support": 16,
+      "gold_support": 2,
+      "fn": 1,
+      "tp": 1,
+      "f1": 0.6666666666666666,
+      "precision": 1.0,
+      "recall": 0.5,
+      "total_error_occurrences": 1
+    },
+    {
+      "slot_type": "sport_type",
+      "train_support": 5,
+      "gold_support": 1,
+      "fn": 1,
+      "f1": 0.0,
+      "precision": 0,
+      "recall": 0.0,
+      "total_error_occurrences": 1
+    },
+    {
+      "slot_type": "transport_name",
+      "train_support": 9,
+      "gold_support": 2,
+      "tp": 1,
+      "fn": 1,
+      "f1": 0.6666666666666666,
+      "precision": 1.0,
+      "recall": 0.5,
+      "total_error_occurrences": 1
+    },
+    {
+      "slot_type": "email_folder",
+      "train_support": 32,
+      "gold_support": 6,
+      "tp": 6,
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "total_error_occurrences": 0
+    },
+    {
+      "slot_type": "movie_type",
+      "train_support": 10,
+      "gold_support": 1,
+      "tp": 1,
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "total_error_occurrences": 0
+    },
+    {
+      "slot_type": "time_zone",
+      "train_support": 56,
+      "gold_support": 5,
+      "tp": 5,
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "total_error_occurrences": 0
+    }
+  ],
+  "dev_slot_type_confusions_exact_boundary": [
+    {
+      "gold": "radio_name",
+      "predicted": "media_type",
+      "count": 4
+    },
+    {
+      "gold": "time",
+      "predicted": "date",
+      "count": 3
+    },
+    {
+      "gold": "date",
+      "predicted": "general_frequency",
+      "count": 3
+    },
+    {
+      "gold": "business_name",
+      "predicted": "person",
+      "count": 3
+    },
+    {
+      "gold": "song_name",
+      "predicted": "artist_name",
+      "count": 2
+    },
+    {
+      "gold": "place_name",
+      "predicted": "business_type",
+      "count": 2
+    },
+    {
+      "gold": "place_name",
+      "predicted": "person",
+      "count": 2
+    },
+    {
+      "gold": "place_name",
+      "predicted": "currency_name",
+      "count": 2
+    },
+    {
+      "gold": "song_name",
+      "predicted": "place_name",
+      "count": 1
+    },
+    {
+      "gold": "artist_name",
+      "predicted": "music_genre",
+      "count": 1
+    },
+    {
+      "gold": "news_topic",
+      "predicted": "person",
+      "count": 1
+    },
+    {
+      "gold": "place_name",
+      "predicted": "weather_descriptor",
+      "count": 1
+    },
+    {
+      "gold": "music_genre",
+      "predicted": "artist_name",
+      "count": 1
+    },
+    {
+      "gold": "date",
+      "predicted": "song_name",
+      "count": 1
+    },
+    {
+      "gold": "news_topic",
+      "predicted": "media_type",
+      "count": 1
+    },
+    {
+      "gold": "business_name",
+      "predicted": "food_type",
+      "count": 1
+    },
+    {
+      "gold": "event_name",
+      "predicted": "transport_type",
+      "count": 1
+    },
+    {
+      "gold": "place_name",
+      "predicted": "business_name",
+      "count": 1
+    },
+    {
+      "gold": "date",
+      "predicted": "time",
+      "count": 1
+    },
+    {
+      "gold": "person",
+      "predicted": "event_name",
+      "count": 1
+    },
+    {
+      "gold": "person",
+      "predicted": "media_type",
+      "count": 1
+    },
+    {
+      "gold": "date",
+      "predicted": "person",
+      "count": 1
+    },
+    {
+      "gold": "event_name",
+      "predicted": "relation",
+      "count": 1
+    },
+    {
+      "gold": "time",
+      "predicted": "radio_name",
+      "count": 1
+    },
+    {
+      "gold": "audiobook_author",
+      "predicted": "person",
+      "count": 1
+    },
+    {
+      "gold": "food_type",
+      "predicted": "business_name",
+      "count": 1
+    },
+    {
+      "gold": "ingredient",
+      "predicted": "drink_type",
+      "count": 1
+    },
+    {
+      "gold": "game_type",
+      "predicted": "game_name",
+      "count": 1
+    },
+    {
+      "gold": "list_name",
+      "predicted": "business_type",
+      "count": 1
+    },
+    {
+      "gold": "list_name",
+      "predicted": "event_name",
+      "count": 1
+    },
+    {
+      "gold": "person",
+      "predicted": "podcast_name",
+      "count": 1
+    },
+    {
+      "gold": "podcast_name",
+      "predicted": "person",
+      "count": 1
+    },
+    {
+      "gold": "business_name",
+      "predicted": "place_name",
+      "count": 1
+    },
+    {
+      "gold": "definition_word",
+      "predicted": "news_topic",
+      "count": 1
+    },
+    {
+      "gold": "person",
+      "predicted": "news_topic",
+      "count": 1
+    },
+    {
+      "gold": "currency_name",
+      "predicted": "place_name",
+      "count": 1
+    },
+    {
+      "gold": "artist_name",
+      "predicted": "person",
+      "count": 1
+    },
+    {
+      "gold": "general_frequency",
+      "predicted": "time",
+      "count": 1
+    },
+    {
+      "gold": "person",
+      "predicted": "date",
+      "count": 1
+    },
+    {
+      "gold": "relation",
+      "predicted": "person",
+      "count": 1
+    }
+  ],
+  "train_distribution": {
+    "intent": {
+      "alarm_set": 182,
+      "audio_volume_mute": 110,
+      "iot_hue_lightchange": 125,
+      "iot_hue_lightoff": 153,
+      "iot_hue_lightdim": 76,
+      "iot_cleaning": 93,
+      "calendar_query": 566,
+      "play_music": 639,
+      "general_quirky": 555,
+      "general_greet": 25,
+      "datetime_query": 350,
+      "datetime_convert": 52,
+      "takeaway_query": 122,
+      "alarm_remove": 78,
+      "alarm_query": 130,
+      "news_query": 503,
+      "music_likeness": 113,
+      "music_query": 154,
+      "iot_hue_lightup": 76,
+      "takeaway_order": 135,
+      "weather_query": 573,
+      "music_settings": 51,
+      "general_joke": 72,
+      "music_dislikeness": 14,
+      "audio_volume_other": 18,
+      "iot_coffee": 124,
+      "audio_volume_up": 110,
+      "iot_wemo_on": 48,
+      "iot_hue_lighton": 22,
+      "iot_wemo_off": 52,
+      "audio_volume_down": 52,
+      "qa_stock": 152,
+      "play_radio": 283,
+      "recommendation_locations": 173,
+      "qa_factoid": 544,
+      "calendar_set": 810,
+      "play_audiobook": 150,
+      "play_podcasts": 193,
+      "social_query": 108,
+      "transport_query": 227,
+      "email_sendemail": 354,
+      "recommendation_movies": 70,
+      "lists_query": 198,
+      "play_game": 112,
+      "transport_ticket": 127,
+      "recommendation_events": 190,
+      "email_query": 418,
+      "transport_traffic": 117,
+      "cooking_query": 4,
+      "qa_definition": 267,
+      "calendar_remove": 312,
+      "lists_remove": 164,
+      "cooking_recipe": 207,
+      "email_querycontact": 127,
+      "lists_createoradd": 177,
+      "transport_taxi": 100,
+      "qa_maths": 78,
+      "social_post": 283,
+      "qa_currency": 142,
+      "email_addcontact": 54
+    },
+    "slot_occurrences": {
+      "time": 797,
+      "date": 1816,
+      "color_type": 100,
+      "house_place": 198,
+      "change_amount": 49,
+      "artist_name": 232,
+      "media_type": 477,
+      "place_name": 1086,
+      "time_zone": 56,
+      "order_type": 107,
+      "food_type": 295,
+      "news_topic": 183,
+      "song_name": 128,
+      "music_genre": 181,
+      "device_type": 226,
+      "meal_type": 63,
+      "business_name": 383,
+      "general_frequency": 84,
+      "weather_descriptor": 320,
+      "player_setting": 160,
+      "joke_type": 35,
+      "timeofday": 239,
+      "event_name": 998,
+      "business_type": 189,
+      "playlist_name": 62,
+      "music_descriptor": 45,
+      "person": 864,
+      "alarm_type": 9,
+      "app_name": 51,
+      "coffee_type": 22,
+      "relation": 251,
+      "movie_name": 16,
+      "drink_type": 9,
+      "transport_type": 318,
+      "music_album": 1,
+      "personal_info": 75,
+      "list_name": 191,
+      "sport_type": 5,
+      "radio_name": 131,
+      "podcast_name": 56,
+      "audiobook_name": 73,
+      "audiobook_author": 6,
+      "cooking_type": 17,
+      "ingredient": 20,
+      "game_name": 87,
+      "podcast_descriptor": 68,
+      "movie_type": 10,
+      "transport_agency": 31,
+      "transport_descriptor": 8,
+      "transport_name": 9,
+      "currency_name": 217,
+      "definition_word": 225,
+      "email_folder": 32,
+      "game_type": 1,
+      "email_address": 32
+    },
+    "bio_tags": {
+      "O": 61864,
+      "B-time": 797,
+      "I-time": 1754,
+      "B-date": 1816,
+      "B-color_type": 100,
+      "I-color_type": 8,
+      "B-house_place": 198,
+      "B-change_amount": 49,
+      "I-change_amount": 70,
+      "B-artist_name": 232,
+      "I-artist_name": 149,
+      "B-media_type": 477,
+      "B-place_name": 1086,
+      "B-time_zone": 56,
+      "I-time_zone": 46,
+      "B-order_type": 107,
+      "B-food_type": 295,
+      "B-news_topic": 183,
+      "B-song_name": 128,
+      "B-music_genre": 181,
+      "B-device_type": 226,
+      "I-device_type": 213,
+      "B-meal_type": 63,
+      "B-business_name": 383,
+      "B-general_frequency": 84,
+      "I-general_frequency": 68,
+      "B-weather_descriptor": 320,
+      "I-date": 817,
+      "I-media_type": 402,
+      "B-player_setting": 160,
+      "B-joke_type": 35,
+      "I-song_name": 179,
+      "B-timeofday": 239,
+      "B-event_name": 998,
+      "I-news_topic": 150,
+      "I-business_name": 299,
+      "I-place_name": 642,
+      "B-business_type": 189,
+      "I-order_type": 18,
+      "B-playlist_name": 62,
+      "I-playlist_name": 73,
+      "B-music_descriptor": 45,
+      "I-music_descriptor": 41,
+      "I-house_place": 60,
+      "I-timeofday": 23,
+      "B-person": 864,
+      "I-person": 347,
+      "I-weather_descriptor": 91,
+      "I-player_setting": 43,
+      "B-alarm_type": 9,
+      "I-alarm_type": 9,
+      "B-app_name": 51,
+      "B-coffee_type": 22,
+      "I-food_type": 149,
+      "I-music_genre": 42,
+      "I-joke_type": 3,
+      "I-coffee_type": 14,
+      "I-business_type": 52,
+      "I-event_name": 533,
+      "B-relation": 251,
+      "B-movie_name": 16,
+      "I-movie_name": 23,
+      "B-drink_type": 9,
+      "I-drink_type": 3,
+      "B-transport_type": 318,
+      "B-music_album": 1,
+      "I-music_album": 3,
+      "I-app_name": 10,
+      "I-relation": 39,
+      "B-personal_info": 75,
+      "B-list_name": 191,
+      "I-list_name": 126,
+      "B-sport_type": 5,
+      "I-sport_type": 6,
+      "B-radio_name": 131,
+      "I-radio_name": 409,
+      "B-podcast_name": 56,
+      "B-audiobook_name": 73,
+      "I-audiobook_name": 126,
+      "B-audiobook_author": 6,
+      "I-audiobook_author": 7,
+      "B-cooking_type": 17,
+      "B-ingredient": 20,
+      "I-ingredient": 7,
+      "I-meal_type": 3,
+      "B-game_name": 87,
+      "I-game_name": 69,
+      "B-podcast_descriptor": 68,
+      "I-podcast_descriptor": 81,
+      "I-podcast_name": 65,
+      "B-movie_type": 10,
+      "I-movie_type": 15,
+      "B-transport_agency": 31,
+      "B-transport_descriptor": 8,
+      "B-transport_name": 9,
+      "I-transport_descriptor": 8,
+      "I-transport_name": 17,
+      "I-transport_agency": 1,
+      "B-currency_name": 217,
+      "B-definition_word": 225,
+      "I-definition_word": 88,
+      "B-email_folder": 32,
+      "I-currency_name": 248,
+      "B-game_type": 1,
+      "I-personal_info": 49,
+      "B-email_address": 32,
+      "I-email_address": 144
+    },
+    "total_tokens": 81050,
+    "outside_tokens": 61864,
+    "outside_fraction": 0.7632819247378162,
+    "distinct_word_tokens": 5298,
+    "distinct_typed_casefold_slot_values": 4162
+  },
+  "unknown_embedding": {
+    "train_occurrences": 0,
+    "dev_occurrences": 464,
+    "initial_l2": 0.8917098641395569,
+    "current_l2": 0.8882320523262024,
+    "initial_current_cosine": 1.0,
+    "observed_scalar_multiplier": 0.9960998892784119,
+    "expected_adamw_decay_multiplier_float64": 0.9961203118862947,
+    "residual_l2_after_fitting_scalar": 4.0677565266378224e-05,
+    "float32_decay_simulation_max_absolute_difference": 0.0,
+    "optimizer_first_moment_row_exactly_zero": true,
+    "optimizer_second_moment_row_exactly_zero": true,
+    "conclusion": "UNK has zero training input occurrences. Its direction is unchanged to floating-point precision; its norm change matches ordinary AdamW decay. No task-supervised UNK adaptation is evidenced."
+  },
+  "ordinary_word_frequency_buckets": {
+    "1": {
+      "ordinary_vocabulary_rows": 2535,
+      "train_token_occurrences": 2535,
+      "median_initial_final_cosine": 0.9926033616065979,
+      "median_relative_l2_update": 0.12163226306438446
+    },
+    "2-5": {
+      "ordinary_vocabulary_rows": 1640,
+      "train_token_occurrences": 4648,
+      "median_initial_final_cosine": 0.990224301815033,
+      "median_relative_l2_update": 0.1398545801639557
+    },
+    "6-20": {
+      "ordinary_vocabulary_rows": 683,
+      "train_token_occurrences": 6948,
+      "median_initial_final_cosine": 0.987777590751648,
+      "median_relative_l2_update": 0.1564418524503708
+    },
+    "21-100": {
+      "ordinary_vocabulary_rows": 316,
+      "train_token_occurrences": 14265,
+      "median_initial_final_cosine": 0.9869056940078735,
+      "median_relative_l2_update": 0.16195401549339294
+    },
+    "101+": {
+      "ordinary_vocabulary_rows": 124,
+      "train_token_occurrences": 52654,
+      "median_initial_final_cosine": 0.9883229732513428,
+      "median_relative_l2_update": 0.15321505069732666
+    }
+  },
+  "hypothetical_word_dropout_rates_not_experiment_results": {
+    "0.1": {
+      "expected_token_mask_fraction": 0.006165871757090732,
+      "singleton_mask_probability": 0.09090909090909091,
+      "frequency_10_mask_probability": 0.009900990099009901
+    },
+    "0.25": {
+      "expected_token_mask_fraction": 0.014265610911869973,
+      "singleton_mask_probability": 0.2,
+      "frequency_10_mask_probability": 0.024390243902439025
+    },
+    "0.5": {
+      "expected_token_mask_fraction": 0.025583421116904453,
+      "singleton_mask_probability": 0.3333333333333333,
+      "frequency_10_mask_probability": 0.047619047619047616
+    },
+    "1.0": {
+      "expected_token_mask_fraction": 0.043186284908292696,
+      "singleton_mask_probability": 0.5,
+      "frequency_10_mask_probability": 0.09090909090909091
+    }
+  },
+  "embedding_movement": {
+    "initial_matrix_sha256": "8607fc1f115fb5cf8d2c129d40d2aa949119f14bbfd27b0266ae9280432c28f1",
+    "median_initial_row_l2": 0.8702203631401062,
+    "median_update_row_l2": 0.11644767224788666,
+    "median_relative_row_update_l2": 0.13500440120697021,
+    "median_initial_final_row_cosine": 0.990902304649353,
+    "rows_cosine_below_0_9": 0,
+    "caution": "All ordinary task rows combined; no claim that representation movement is harmful."
+  },
+  "optimization_history": {
+    "selected_epoch": 19,
+    "selected_epoch_train_mode_logged_losses": {
+      "train_loss": 0.07919354859673332,
+      "train_intent_loss": 0.024302591641589,
+      "train_slot_loss": 0.054890956955144315
+    },
+    "minimum_development_loss_epoch": 5,
+    "minimum_development_loss": 0.9909712831541468,
+    "minimum_dev_loss_epoch_intent": 0.8327594687653713,
+    "minimum_dev_loss_epoch_slot_f1": 0.7010090281465746,
+    "late_epochs": [
+      {
+        "epoch": 15,
+        "intent_accuracy": 0.8568617806197737,
+        "slot_f1": 0.7728325186519166,
+        "mean_score": 0.8148471496358451,
+        "dev_loss": 1.260785093158142,
+        "train_loss": 0.13476548244050496
+      },
+      {
+        "epoch": 16,
+        "intent_accuracy": 0.8509591736350222,
+        "slot_f1": 0.7720644666155027,
+        "mean_score": 0.8115118201252625,
+        "dev_loss": 1.3037138506468466,
+        "train_loss": 0.11219017248040797
+      },
+      {
+        "epoch": 17,
+        "intent_accuracy": 0.8573536645351697,
+        "slot_f1": 0.7749680715197956,
+        "mean_score": 0.8161608680274827,
+        "dev_loss": 1.3366396264114397,
+        "train_loss": 0.09758973683013716
+      },
+      {
+        "epoch": 18,
+        "intent_accuracy": 0.8553861288735858,
+        "slot_f1": 0.7790998448008277,
+        "mean_score": 0.8172429868372068,
+        "dev_loss": 1.3714953205809155,
+        "train_loss": 0.0865066461349297
+      },
+      {
+        "epoch": 19,
+        "intent_accuracy": 0.8583374323659616,
+        "slot_f1": 0.7776065742167437,
+        "mean_score": 0.8179720032913527,
+        "dev_loss": 1.3750735920009876,
+        "train_loss": 0.07919354859673332
+      },
+      {
+        "epoch": 20,
+        "intent_accuracy": 0.8548942449581899,
+        "slot_f1": 0.7733470542835091,
+        "mean_score": 0.8141206496208495,
+        "dev_loss": 1.4180475686832583,
+        "train_loss": 0.06723662213204665
+      }
+    ],
+    "weight_decay_applied_to_all_parameters_including_norm_bias": true,
+    "intent_label_smoothing": 0,
+    "slot_objective": "Sequence CRF NLL summed then divided by real-token count",
+    "task_loss_weights": {
+      "intent": 1,
+      "slot": 1
+    }
+  },
+  "late_checkpoint_gradient_probe": {
+    "sample": "512 original train records without replacement; seed 20261111; 16 batches of32",
+    "mode": "selected checkpoint, eval mode, autograd.grad only, no optimizer or weight update",
+    "caution": "Late-checkpoint local gradients with dropout disabled do not establish gradient behavior throughout training or prove benefit from any loss weighting.",
+    "summary": {
+      "embedding": {
+        "median_intent_gradient_l2": 0.01968795794059558,
+        "median_slot_gradient_l2": 0.30552172114114867,
+        "mean_cosine": -0.039690839690963,
+        "median_cosine": -0.0020589149597090226,
+        "negative_cosine_batches": 10,
+        "num_valid_cosine_batches": 16,
+        "median_slot_over_intent_norm": 13.803857000489643
+      },
+      "char_encoder": {
+        "median_intent_gradient_l2": 0.009019721266936141,
+        "median_slot_gradient_l2": 0.13408959871014797,
+        "mean_cosine": -0.0492878002170906,
+        "median_cosine": -0.029359777939403867,
+        "negative_cosine_batches": 12,
+        "num_valid_cosine_batches": 16,
+        "median_slot_over_intent_norm": 13.47955971536753
+      },
+      "word_norm": {
+        "median_intent_gradient_l2": 0.0017170069632050596,
+        "median_slot_gradient_l2": 0.021762757434377812,
+        "mean_cosine": -0.09410678902352873,
+        "median_cosine": -0.1348331941506562,
+        "negative_cosine_batches": 11,
+        "num_valid_cosine_batches": 16,
+        "median_slot_over_intent_norm": 12.773528899950868
+      },
+      "char_norm": {
+        "median_intent_gradient_l2": 0.0007380143075155382,
+        "median_slot_gradient_l2": 0.009183625145550493,
+        "mean_cosine": -0.04225993959473327,
+        "median_cosine": -0.058493311763875386,
+        "negative_cosine_batches": 11,
+        "num_valid_cosine_batches": 16,
+        "median_slot_over_intent_norm": 14.165960995787188
+      },
+      "proj": {
+        "median_intent_gradient_l2": 0.011048757043791942,
+        "median_slot_gradient_l2": 0.15785534046456234,
+        "mean_cosine": -0.04415930420284289,
+        "median_cosine": -0.01491673095003505,
+        "negative_cosine_batches": 12,
+        "num_valid_cosine_batches": 16,
+        "median_slot_over_intent_norm": 13.400681286826373
+      },
+      "input_norm": {
+        "median_intent_gradient_l2": 0.0008888073914150535,
+        "median_slot_gradient_l2": 0.011159766500645943,
+        "mean_cosine": -0.05926561020024537,
+        "median_cosine": -0.06280440119171063,
+        "negative_cosine_batches": 12,
+        "num_valid_cosine_batches": 16,
+        "median_slot_over_intent_norm": 13.793065631683874
+      },
+      "encoder": {
+        "median_intent_gradient_l2": 0.010147477935496321,
+        "median_slot_gradient_l2": 0.17946721717583286,
+        "mean_cosine": -0.02432908813774033,
+        "median_cosine": -0.007558585483182797,
+        "negative_cosine_batches": 11,
+        "num_valid_cosine_batches": 16,
+        "median_slot_over_intent_norm": 15.958138330710577
+      },
+      "attention_pool": {
+        "median_intent_gradient_l2": 0.0008950858671685968,
+        "median_slot_gradient_l2": 1.996824568239127e-05,
+        "mean_cosine": -0.036526313102070745,
+        "median_cosine": 0.01957563464854698,
+        "negative_cosine_batches": 7,
+        "num_valid_cosine_batches": 16,
+        "median_slot_over_intent_norm": 0.021571745658136354
+      },
+      "intent_head": {
+        "median_intent_gradient_l2": 0.017824076281094052,
+        "median_slot_gradient_l2": 0.0001643110515018732,
+        "mean_cosine": -0.19767375818144237,
+        "median_cosine": -0.2900927798773466,
+        "negative_cosine_batches": 11,
+        "num_valid_cosine_batches": 16,
+        "median_slot_over_intent_norm": 0.013690298417392735
+      },
+      "intent_embeddings": {
+        "median_intent_gradient_l2": 0.0,
+        "median_slot_gradient_l2": 0.004156944981247232,
+        "mean_cosine": null,
+        "median_cosine": null,
+        "negative_cosine_batches": 0,
+        "num_valid_cosine_batches": 0,
+        "median_slot_over_intent_norm": null
+      },
+      "slot_norm": {
+        "median_intent_gradient_l2": 0.0,
+        "median_slot_gradient_l2": 0.011233634611249542,
+        "mean_cosine": null,
+        "median_cosine": null,
+        "negative_cosine_batches": 0,
+        "num_valid_cosine_batches": 0,
+        "median_slot_over_intent_norm": null
+      },
+      "slot_head": {
+        "median_intent_gradient_l2": 0.0,
+        "median_slot_gradient_l2": 0.2962538068306432,
+        "mean_cosine": null,
+        "median_cosine": null,
+        "negative_cosine_batches": 0,
+        "num_valid_cosine_batches": 0,
+        "median_slot_over_intent_norm": null
+      },
+      "crf": {
+        "median_intent_gradient_l2": 0.0,
+        "median_slot_gradient_l2": 0.013046461709300104,
+        "mean_cosine": null,
+        "median_cosine": null,
+        "negative_cosine_batches": 0,
+        "num_valid_cosine_batches": 0,
+        "median_slot_over_intent_norm": null
+      },
+      "shared_representation": {
+        "median_intent_gradient_l2": 0.026418115941644046,
+        "median_slot_gradient_l2": 0.4079291885273094,
+        "mean_cosine": -0.03956696690473623,
+        "median_cosine": -0.007042486561082724,
+        "negative_cosine_batches": 11,
+        "num_valid_cosine_batches": 16,
+        "median_slot_over_intent_norm": 14.03240124264503
+      }
+    }
+  },
+  "frozen_comparison": {
+    "original_baseline": {
+      "display_name": "Original word-only",
+      "parameter_counts": {
+        "total": 4345243,
+        "trainable": 4345243
+      },
+      "epochs_trained": 20,
+      "selected_epoch": 20,
+      "development_selection_score": 0.7686114480220343,
+      "metrics": {
+        "dev": {
+          "intent_accuracy": 0.8416133792424988,
+          "slot_micro_f1": 0.6956095168015698,
+          "slot_tp": 1418,
+          "slot_fp": 647,
+          "slot_fn": 594,
+          "num_examples": 2033,
+          "correct_intents": 1711,
+          "slot_precision": 0.6866828087167071,
+          "slot_recall": 0.7047713717693836
+        },
+        "test": {
+          "intent_accuracy": 0.8291862811028917,
+          "slot_micro_f1": 0.6677271120537293,
+          "slot_tp": 1889,
+          "slot_fp": 954,
+          "slot_fn": 926,
+          "num_examples": 2974,
+          "correct_intents": 2466,
+          "slot_precision": 0.6644389729159339,
+          "slot_recall": 0.6710479573712256
+        }
+      },
+      "checkpoint_sha256": "3fffdfbcf16af3c1958792bce3c731f4f0f24b5be98028117bf8a236f50a8d65",
+      "history_sha256": "c6be04a76fee6fd5875e78e7f178fccf33352d248079de6311cc69a6ad2ab73d",
+      "measured_epoch_train_dev_seconds": 218.7200870000015,
+      "training_workflow_seconds": 222.14224280000053,
+      "peak_allocated_cuda_bytes": 207506432,
+      "test_model_evaluations": 1,
+      "test_predictions_sha256": "ae951305e6b4614a5ab87f09856bf42cbe34fcaf22111847a1438b8fd97107e5"
+    },
+    "original_character": {
+      "display_name": "Original CharCNN",
+      "parameter_counts": {
+        "total": 4379947,
+        "trainable": 4379947
+      },
+      "epochs_trained": 20,
+      "selected_epoch": 20,
+      "development_selection_score": 0.781595409758095,
+      "metrics": {
+        "dev": {
+          "intent_accuracy": 0.853418593212002,
+          "slot_micro_f1": 0.7097722263041881,
+          "slot_tp": 1449,
+          "slot_fp": 622,
+          "slot_fn": 563,
+          "num_examples": 2033,
+          "correct_intents": 1735,
+          "slot_precision": 0.6996619990342829,
+          "slot_recall": 0.7201789264413518
+        },
+        "test": {
+          "intent_accuracy": 0.8386012104909213,
+          "slot_micro_f1": 0.6910511363636364,
+          "slot_tp": 1946,
+          "slot_fp": 871,
+          "slot_fn": 869,
+          "num_examples": 2974,
+          "correct_intents": 2494,
+          "slot_precision": 0.6908058217962372,
+          "slot_recall": 0.6912966252220248
+        }
+      },
+      "checkpoint_sha256": "e54d4c047bb1bcbeda9b059526b0f823c22238a3e9f4e4cb6c3d8c67f130e18d",
+      "history_sha256": "12f38b5c2e05c7cecab7dffd7b8f9cb619a868647b342ac9a84bfcb6da3f4ecd",
+      "measured_epoch_train_dev_seconds": 244.5714444999976,
+      "training_workflow_seconds": null,
+      "peak_allocated_cuda_bytes": null,
+      "test_model_evaluations": 1,
+      "test_predictions_sha256": "70ebf2dd42320c7ec2d9ae9d9622b18b483fefa594e27d74b1f679a4b870d004",
+      "postprocessing_recovery": {
+        "reason": "Default Tk backend failed to locate init.tcl after all 20 completed epochs and saved selected checkpoint.",
+        "action": "Rendered retained genuine history with Agg and reproduced every development prediction in a fresh process. No training repeated; selected checkpoint unchanged.",
+        "recovery_script_sha256": "c2ec7871f120fad516a177390c49393f0efc58f33330857ac85981156842b79b"
+      }
+    },
+    "revised": {
+      "display_name": "Revised Transformer",
+      "parameter_counts": {
+        "total": 19748595,
+        "trainable": 19748595
+      },
+      "epochs_trained": 20,
+      "selected_epoch": 19,
+      "development_selection_score": 0.8179720032913527,
+      "metrics": {
+        "dev": {
+          "intent_accuracy": 0.8583374323659616,
+          "slot_micro_f1": 0.7776065742167437,
+          "slot_tp": 1514,
+          "slot_fp": 368,
+          "slot_fn": 498,
+          "num_examples": 2033,
+          "correct_intents": 1745,
+          "slot_precision": 0.8044633368756642,
+          "slot_recall": 0.7524850894632207
+        },
+        "test": {
+          "intent_accuracy": 0.8507061197041023,
+          "slot_micro_f1": 0.7512483817273904,
+          "slot_tp": 2031,
+          "slot_fp": 561,
+          "slot_fn": 784,
+          "num_examples": 2974,
+          "correct_intents": 2530,
+          "slot_precision": 0.7835648148148148,
+          "slot_recall": 0.7214920071047958
+        }
+      },
+      "checkpoint_sha256": "2bbcebad84b3df6671afa84997259f158903360743ea8b1795cec808381843aa",
+      "history_sha256": "65c7e2cf7d3a62d75073ec469a764e709614d627e9189c1c56b74794e324805f",
+      "measured_epoch_train_dev_seconds": 603.6409363000002,
+      "training_workflow_seconds": 616.4374326999996,
+      "peak_allocated_cuda_bytes": 668684800,
+      "test_model_evaluations": 1,
+      "test_predictions_sha256": "d02eabcb9ce44c6d29202671dfcfd43c9dd55e5c7698cb45d5948ea9a66e8a19"
+    }
+  },
+  "existing_test_paired_bootstrap": {
+    "settings": {
+      "bootstrap_replicates": 20000,
+      "bootstrap_seed": 20261111,
+      "sampling_unit": "paired whole original test utterances",
+      "comparisons": [
+        "revised minus original_baseline",
+        "revised minus original_character"
+      ],
+      "metrics": [
+        "intent_accuracy",
+        "slot_micro_f1",
+        "fully_correct_utterance_rate"
+      ]
+    },
+    "comparisons": {
+      "revised_minus_original_baseline": {
+        "intent_accuracy": {
+          "difference_percentage_points": 2.151983860121054,
+          "percentile_95_interval_percentage_points": [
+            1.109616677874914,
+            3.194351042367183
+          ]
+        },
+        "slot_micro_f1": {
+          "difference_percentage_points": 8.352126967366114,
+          "percentile_95_interval_percentage_points": [
+            6.996633844357232,
+            9.711691352945504
+          ]
+        },
+        "fully_correct_utterance_rate": {
+          "difference_percentage_points": 5.682582380632151,
+          "percentile_95_interval_percentage_points": [
+            4.371217215870882,
+            6.993947545393409
+          ]
+        }
+      },
+      "revised_minus_original_character": {
+        "intent_accuracy": {
+          "difference_percentage_points": 1.210490921318097,
+          "percentile_95_interval_percentage_points": [
+            0.235373234700742,
+            2.185608607935441
+          ]
+        },
+        "slot_micro_f1": {
+          "difference_percentage_points": 6.019724536375404,
+          "percentile_95_interval_percentage_points": [
+            4.673375441280019,
+            7.348008742783518
+          ]
+        },
+        "fully_correct_utterance_rate": {
+          "difference_percentage_points": 4.472091459314054,
+          "percentile_95_interval_percentage_points": [
+            3.127101546738398,
+            5.783456624075322
+          ]
+        }
+      }
+    },
+    "limitations": "Paired utterance bootstrap conditional on these frozen seed-42 checkpoints. Intervals reflect finite test-utterance sampling, not training-seed variation, and have no multiplicity adjustment. The target system was chosen on development before test; no test-driven retuning is permitted."
+  },
+  "parameter_arithmetic_not_implemented": {
+    "extra_encoder_layer": 22638579,
+    "alternate_300d_word_table": 19748595,
+    "auxiliary_two_boundary_logits": 19749621,
+    "bioes": 19813605,
+    "replace_charcnn_with_char_bilstm_h96": 19823667,
+    "residual_word_bilstm_h64_ffn_1792": 20110579,
+    "residual_word_bilstm_h64_ffn_1664": 19323379,
+    "two_complete_model_ensemble": 39497190
+  },
+  "recommendation_order_not_measured_probability": [
+    "Rare-word to UNK feature dropout retaining characters",
+    "Mild intent label smoothing",
+    "Intent R-Drop consistency",
+    "Nearby checkpoint averaging from one run",
+    "Alternative permitted static 300d word-vector initialization",
+    "Task-loss weighting in both directions",
+    "Exploratory auxiliary start/end boundary supervision",
+    "Exploratory FFN-budgeted residual BiLSTM"
+  ],
+  "limitations": [
+    "One selected training seed; no seed-variance measurement or new candidate training.",
+    "Subgroup and gradient diagnostics are descriptive, not causal ablations.",
+    "Confidence calibration is not equivalent to classification accuracy.",
+    "Parameter sketches must be audited on instantiated models if later authorized.",
+    "Test scores are from the previous authorized frozen comparison; no new test-error mining or forward passes.",
+    "Future development-tuned models evaluated on this test must disclose its prior exposure."
+  ],
+  "source_hashes": {
+    "artifacts/revised_transformer_assessment/error_diagnostics.json": "3f62e3c42cc2d34a17136730ecfc8c4026e1df92db788a048d666a0100695161",
+    "artifacts/revised_transformer_assessment/optimization_diagnostics.json": "fcb34bdc84f49a70fb837362eaeca5d60b954e9354c0ae01543a746bfe99d4b4",
+    "artifacts/revised_transformer_assessment/optimization_diagnostics.embedding_detail.json": "731531717452003a30c8fc59943d2d8e12704e161b11cd66bdf2d6abd111e1bc",
+    "artifacts/revised_transformer_assessment/input_hashes.json": "6ce2fc072472ff44639dd0c69aa10de299f62d18c0486024b225847d9a56e660",
+    "results/notebook_comparison_review/review_evidence.json": "1a8ab43da589de8ef08079d24d029fc561895a49c01d3b5f454e51457632effb",
+    "artifacts/notebook_comparison_review/final_test/results.json": "ac35e8b14bdac927806a8bb0753a9f508a5049e3df1a0cf4220b2b768751ba26",
+    "artifacts/revised_transformer/normalized_qualification/transformer_run_artifacts/stage2/dev_predictions.jsonl": "9f1257d89e6155381fed94f97a3497daa9df7f841e735b78c2c8597841d1d124"
+  }
+}

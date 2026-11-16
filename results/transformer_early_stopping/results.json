@@ -1,0 +1,567 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "scope": "Fresh longer combined runs versus their preserved 20-epoch references; CPU evidence audit only, no inference",
+  "protocol": {
+    "registered_at_utc": "2026-11-11T03:54:59.288971+00:00",
+    "protocol": {
+      "schema_version": 1,
+      "dataset_sha256": "c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e",
+      "evaluator_version": "exact_character_span_v2",
+      "registered_seeds": [
+        42,
+        17,
+        101
+      ],
+      "stage2_policy": {
+        "max_epochs": 60,
+        "schedule_epochs": 20,
+        "early_stopping_min_epochs": 20,
+        "early_stopping_patience": 8,
+        "early_stopping_min_delta": 0.0005,
+        "word_dropout_alpha": 0.25,
+        "intent_label_smoothing": 0.05
+      },
+      "reference_root": "artifacts/transformer_regularization",
+      "reference_arm": "combined",
+      "selection": "earliest maximum unrounded mean of dev intent accuracy and exact slot micro-F1",
+      "test_evaluation": false,
+      "parameter_cap": 20000000,
+      "dataset_path": "C:\\Users\\Admin\\Desktop\\SC4002\\data\\1.0\\data\\en-US.jsonl",
+      "embedding_archive_sha256": "6d97295d630f7e50d6f2ab2242926f0b962087054ee3b96be2b44a0a2ce1ae19",
+      "source_sha256": {
+        "src/comparison_contract.py": "c57d46c76642edf0a1e5b283c52d153631b2b4c30b639166c3761fd8ade4a37c",
+        "src/revised_transformer_data.py": "50484170a7408ca072151ef9ed9ef2830a5af09a924c3f52ee549ca4a4826530",
+        "src/stage2_model.py": "4b0fd0290b0789b8d234e0b2c812a49f0d80a24773e2d35677280e48f3fea8aa",
+        "src/revised_transformer_model.py": "625641753d2655119eaffd5bea0805908873e14f618ae315ec658433691f8747",
+        "src/revised_transformer_training.py": "a10629c81eba1461f2cbe685f6867a2402801af322a7a183c216e558f6a7cea0",
+        "scripts/build_revised_transformer_notebook.py": "6bd472353ad27736648fd3983525363d5e909cfb858e85d2a2f30515acefb69e",
+        "scripts/execute_revised_transformer.py": "9b80aeb6ce657279a4649600074455557949490b80dd55b1c7dbfc25229295af",
+        "scripts/run_transformer_regularization.py": "b6e5f98cfc7877cf94672440c92f8441328c524cbf0252989af5ebd1bbc69019",
+        "scripts/run_transformer_early_stopping.py": "8cbe448ecff0780d58f48cc76efe9cc3bbd974cd376b63deea26965ee0138074"
+      },
+      "confirmation_policy": "Run seed42 first; if its selected joint development score exceeds its own first20 maximum, run both registered confirmation seeds17 and101 regardless of their results.",
+      "schedule": "Same first20 epochs as reference: 10% warmup then cosine to10% peak; hold floor afterward."
+    }
+  },
+  "dataset": {
+    "dataset_sha256": "c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e",
+    "evaluator_version": "exact_character_span_v2",
+    "source_url": "https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.0.tar.gz",
+    "counts": {
+      "test": 2974,
+      "train": 11514,
+      "dev": 2033
+    },
+    "train_dev_ordered_id_sha256": {
+      "train": "b8165414cd52ae41e997e053252c4467deb4bed4a062600a25b4efb1b8516b18",
+      "dev": "c639005344d7d0a2d93b919a2f17e4e3e8ba1e0fe1cd4a8462ea85b7762e6170"
+    },
+    "train_dev_accounting": {
+      "train": {
+        "num_examples": 11514,
+        "num_tokens": 81050,
+        "record_ids_sha256": "54b58469fc3dffe8e9ab866b79f174b48bd5e6d35e7304c28d356de30123e473"
+      },
+      "dev": {
+        "num_examples": 2033,
+        "num_tokens": 14172,
+        "record_ids_sha256": "c639005344d7d0a2d93b919a2f17e4e3e8ba1e0fe1cd4a8462ea85b7762e6170"
+      }
+    },
+    "train_intent_count": 60,
+    "label_scope": "Only training/development labels parsed; test labels and predictions are not analyzed"
+  },
+  "source_resolution": {
+    "src/comparison_contract.py": {
+      "logical_path": "src/comparison_contract.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\src\\comparison_contract.py",
+      "sha256": "c57d46c76642edf0a1e5b283c52d153631b2b4c30b639166c3761fd8ade4a37c"
+    },
+    "src/revised_transformer_data.py": {
+      "logical_path": "src/revised_transformer_data.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\src\\revised_transformer_data.py",
+      "sha256": "50484170a7408ca072151ef9ed9ef2830a5af09a924c3f52ee549ca4a4826530"
+    },
+    "src/stage2_model.py": {
+      "logical_path": "src/stage2_model.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\src\\stage2_model.py",
+      "sha256": "4b0fd0290b0789b8d234e0b2c812a49f0d80a24773e2d35677280e48f3fea8aa"
+    },
+    "src/revised_transformer_model.py": {
+      "logical_path": "src/revised_transformer_model.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\src\\revised_transformer_model.py",
+      "sha256": "625641753d2655119eaffd5bea0805908873e14f618ae315ec658433691f8747"
+    },
+    "src/revised_transformer_training.py": {
+      "logical_path": "src/revised_transformer_training.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\src\\revised_transformer_training.py",
+      "sha256": "a10629c81eba1461f2cbe685f6867a2402801af322a7a183c216e558f6a7cea0"
+    },
+    "scripts/build_revised_transformer_notebook.py": {
+      "logical_path": "scripts/build_revised_transformer_notebook.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\scripts\\build_revised_transformer_notebook.py",
+      "sha256": "6bd472353ad27736648fd3983525363d5e909cfb858e85d2a2f30515acefb69e"
+    },
+    "scripts/execute_revised_transformer.py": {
+      "logical_path": "scripts/execute_revised_transformer.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\scripts\\execute_revised_transformer.py",
+      "sha256": "9b80aeb6ce657279a4649600074455557949490b80dd55b1c7dbfc25229295af"
+    },
+    "scripts/run_transformer_regularization.py": {
+      "logical_path": "scripts/run_transformer_regularization.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\scripts\\run_transformer_regularization.py",
+      "sha256": "b6e5f98cfc7877cf94672440c92f8441328c524cbf0252989af5ebd1bbc69019"
+    },
+    "scripts/run_transformer_early_stopping.py": {
+      "logical_path": "scripts/run_transformer_early_stopping.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\scripts\\run_transformer_early_stopping.py",
+      "sha256": "8cbe448ecff0780d58f48cc76efe9cc3bbd974cd376b63deea26965ee0138074"
+    }
+  },
+  "historical_source_resolution": {
+    "src/comparison_contract.py": {
+      "logical_path": "src/comparison_contract.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\src\\comparison_contract.py",
+      "sha256": "c57d46c76642edf0a1e5b283c52d153631b2b4c30b639166c3761fd8ade4a37c"
+    },
+    "src/revised_transformer_data.py": {
+      "logical_path": "src/revised_transformer_data.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\src\\revised_transformer_data.py",
+      "sha256": "50484170a7408ca072151ef9ed9ef2830a5af09a924c3f52ee549ca4a4826530"
+    },
+    "src/stage2_model.py": {
+      "logical_path": "src/stage2_model.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\src\\stage2_model.py",
+      "sha256": "4b0fd0290b0789b8d234e0b2c812a49f0d80a24773e2d35677280e48f3fea8aa"
+    },
+    "src/revised_transformer_model.py": {
+      "logical_path": "src/revised_transformer_model.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\src\\revised_transformer_model.py",
+      "sha256": "625641753d2655119eaffd5bea0805908873e14f618ae315ec658433691f8747"
+    },
+    "src/revised_transformer_training.py": {
+      "logical_path": "src/revised_transformer_training.py",
+      "location": "archive",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\artifacts\\transformer_regularization\\registered_sources\\src\\revised_transformer_training.py",
+      "sha256": "0ae53329912e06a48d4c83353f3223b2a3286c0c3063666f06624ebf38ea0789",
+      "archive_manifest_sha256": "e08f9fccb7dc533fe94fdfba14bc000fe36436ea7e56fa6c582373450ae960d6",
+      "archive_protocol_sha256": "23216d209505ffc3fa7271d7ed8da44c3a3e186084d4a6e52960d4c93560f0cf"
+    },
+    "scripts/build_revised_transformer_notebook.py": {
+      "logical_path": "scripts/build_revised_transformer_notebook.py",
+      "location": "archive",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\artifacts\\transformer_regularization\\registered_sources\\scripts\\build_revised_transformer_notebook.py",
+      "sha256": "1140a54574ae0ed296089662b83b653c825c819122958171e3c30c8d3a861017",
+      "archive_manifest_sha256": "e08f9fccb7dc533fe94fdfba14bc000fe36436ea7e56fa6c582373450ae960d6",
+      "archive_protocol_sha256": "23216d209505ffc3fa7271d7ed8da44c3a3e186084d4a6e52960d4c93560f0cf"
+    },
+    "scripts/execute_revised_transformer.py": {
+      "logical_path": "scripts/execute_revised_transformer.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\scripts\\execute_revised_transformer.py",
+      "sha256": "9b80aeb6ce657279a4649600074455557949490b80dd55b1c7dbfc25229295af"
+    },
+    "scripts/run_transformer_regularization.py": {
+      "logical_path": "scripts/run_transformer_regularization.py",
+      "location": "current",
+      "resolved_path": "C:\\Users\\Admin\\Desktop\\SC4002\\scripts\\run_transformer_regularization.py",
+      "sha256": "b6e5f98cfc7877cf94672440c92f8441328c524cbf0252989af5ebd1bbc69019"
+    }
+  },
+  "runs": [
+    {
+      "seed": 42,
+      "run_path": "C:\\Users\\Admin\\Desktop\\SC4002\\artifacts\\transformer_early_stopping\\seed_42\\full_notebook\\transformer_run_artifacts\\stage2",
+      "reference_path": "C:\\Users\\Admin\\Desktop\\SC4002\\artifacts\\transformer_regularization\\seed_42\\combined\\transformer_run_artifacts\\stage2",
+      "metrics": {
+        "intent_accuracy": 0.8662075750122971,
+        "slot_micro_f1": 0.8084135833755702,
+        "slot_tp": 1595,
+        "slot_fp": 339,
+        "slot_fn": 417,
+        "num_examples": 2033,
+        "correct_intents": 1761,
+        "slot_precision": 0.8247156153050672,
+        "slot_recall": 0.7927435387673957,
+        "intent_errors": 272,
+        "fully_correct_utterances": 1392,
+        "fully_correct_utterance_rate": 0.6847024102311854
+      },
+      "gold_typed_value_recall": {
+        "seen_typed_value": {
+          "gold_support": 1489,
+          "correct": 1366,
+          "recall": 0.9173942243116185
+        },
+        "unseen_value_known_words": {
+          "gold_support": 298,
+          "correct": 124,
+          "recall": 0.4161073825503356
+        },
+        "unseen_value_oov_words": {
+          "gold_support": 225,
+          "correct": 105,
+          "recall": 0.4666666666666667
+        }
+      },
+      "predicted_typed_value_precision": {
+        "seen_typed_value": {
+          "predicted_support": 1516,
+          "correct": 1366,
+          "precision": 0.9010554089709762
+        },
+        "unseen_typed_value": {
+          "predicted_support": 418,
+          "correct": 229,
+          "precision": 0.5478468899521531
+        }
+      },
+      "utterance_groups": {
+        "no_train_oov": {
+          "intent_accuracy": 0.8951467944877172,
+          "slot_micro_f1": 0.8462017434620175,
+          "slot_tp": 1359,
+          "slot_fp": 238,
+          "slot_fn": 256,
+          "num_examples": 1669,
+          "correct_intents": 1494,
+          "utterances_with_any_predicted_slot": 1094
+        },
+        "non_slot_train_oov": {
+          "intent_accuracy": 0.6040268456375839,
+          "slot_micro_f1": 0.7100591715976331,
+          "slot_tp": 60,
+          "slot_fp": 33,
+          "slot_fn": 16,
+          "num_examples": 149,
+          "correct_intents": 90,
+          "utterances_with_any_predicted_slot": 73
+        },
+        "slot_train_oov": {
+          "intent_accuracy": 0.8232558139534883,
+          "slot_micro_f1": 0.6230088495575221,
+          "slot_tp": 176,
+          "slot_fp": 68,
+          "slot_fn": 145,
+          "num_examples": 215,
+          "correct_intents": 177,
+          "utterances_with_any_predicted_slot": 172
+        },
+        "no_gold_slots": {
+          "intent_accuracy": 0.7894736842105263,
+          "slot_micro_f1": 0.0,
+          "slot_tp": 0,
+          "slot_fp": 60,
+          "slot_fn": 0,
+          "num_examples": 646,
+          "correct_intents": 510,
+          "utterances_with_any_predicted_slot": 55
+        }
+      },
+      "epochs_trained": 28,
+      "selected_epoch": 20,
+      "selection_score": 0.8373105791939337,
+      "parameter_counts": {
+        "total": 19748595,
+        "trainable": 19748595
+      },
+      "checkpoint_sha256": "113c27160c0edbdbd804e9500b72a3142cc4c252c36c656622e558fcb581b391",
+      "model_state_sha256": "9da4177bd12d0f0f5c063b57d41d9408b37f39c3b95971af6eeeac239e75e3e3",
+      "prediction_sha256": "2669f6eaa0a2e4d712ad81989e0e06caacd6954647a86ad0acc743fb9f5c7240",
+      "ordered_dev_predictions_sha256": "bf637cea7d336c57c3b367003a160e35ed26a2bde0d9cad6d94188753bdcd83b",
+      "stopping": {
+        "policy": {
+          "enabled": true,
+          "max_epochs": 60,
+          "min_epochs": 20,
+          "patience": 8,
+          "min_delta": 0.0005,
+          "monitor": "mean_dev_intent_accuracy_and_slot_micro_f1",
+          "comparison": "score > anchor and score >= anchor + min_delta",
+          "counter_scope": "all epochs; stopping allowed once min_epochs reached",
+          "schedule_epochs": 20,
+          "schedule_after_horizon": "hold_min_lr_ratio"
+        },
+        "termination": {
+          "reason": "patience",
+          "epochs_trained": 28,
+          "max_epochs": 60,
+          "optimizer_steps": 10080,
+          "maximum_optimizer_steps": 21600,
+          "schedule_epochs": 20,
+          "schedule_steps": 7200,
+          "last_meaningful_improvement_epoch": 20,
+          "meaningful_improvement_anchor_score": 0.8373105791939337,
+          "non_improving_epochs": 8,
+          "stopped_early": true
+        },
+        "evidence": "independently_reconstructed"
+      },
+      "horizon_audit": {
+        "required": true,
+        "status": "passed",
+        "evidence": {
+          "schema_version": 1,
+          "stage": "stage2",
+          "epoch": 20,
+          "schedule_epochs": 20,
+          "maximum_epochs": 60,
+          "code_sha256": "7128609f95d525b1ff4f0956e0e4f2ecc273f4798c435037e93150eadfcd03c0",
+          "dataset_sha256": "c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e",
+          "evaluator_version": "exact_character_span_v2",
+          "initial_model_state_sha256": "0e70955f1f7bb6477687c216f573539c44123a5801c2282bf44cf3dca7af7310",
+          "optimizer_step": 7200,
+          "current_model_state_sha256": "9da4177bd12d0f0f5c063b57d41d9408b37f39c3b95971af6eeeac239e75e3e3",
+          "current_dev_metrics": {
+            "intent_accuracy": 0.8662075750122971,
+            "slot_micro_f1": 0.8084135833755702,
+            "slot_tp": 1595,
+            "slot_fp": 339,
+            "slot_fn": 417,
+            "num_examples": 2033,
+            "correct_intents": 1761
+          },
+          "current_dev_predictions_sha256": "bf637cea7d336c57c3b367003a160e35ed26a2bde0d9cad6d94188753bdcd83b",
+          "prefix_best_epoch": 20,
+          "prefix_best_selection_score": 0.8373105791939337,
+          "prefix_best_model_state_sha256": "9da4177bd12d0f0f5c063b57d41d9408b37f39c3b95971af6eeeac239e75e3e3",
+          "prefix_best_dev_metrics": {
+            "intent_accuracy": 0.8662075750122971,
+            "slot_micro_f1": 0.8084135833755702,
+            "slot_tp": 1595,
+            "slot_fp": 339,
+            "slot_fn": 417,
+            "num_examples": 2033,
+            "correct_intents": 1761
+          },
+          "prefix_best_dev_predictions_sha256": "bf637cea7d336c57c3b367003a160e35ed26a2bde0d9cad6d94188753bdcd83b",
+          "prefix_best_checkpoint_sha256": "113c27160c0edbdbd804e9500b72a3142cc4c252c36c656622e558fcb581b391",
+          "prefix_history_sha256": "961892da3943f439bf54cb3ac51f66683efedad52b4f43afdd7e4bf0b6f3b587",
+          "training_record_order_sha256": "1a9f7414c268af068b20cd03db6707cde31044a5291eb762c1bfb545d6ad2cc9"
+        },
+        "evidence_sha256": "fbdf50c073b709da6cf392f6484fee425f0910d34f15047e6b4476daacd5f8d5",
+        "prefix_best_bound_to_final_checkpoint": true
+      },
+      "prefix_parity": {
+        "status": "passed",
+        "epochs": 20,
+        "exact_history_fields": [
+          "dev_intent_accuracy",
+          "dev_intent_loss",
+          "dev_loss",
+          "dev_num_batches",
+          "dev_num_examples",
+          "dev_num_tokens",
+          "dev_record_ids_sha256",
+          "dev_record_order_sha256",
+          "dev_slot_loss",
+          "dev_slot_micro_f1",
+          "epoch",
+          "learning_rates",
+          "optimizer_step",
+          "selected",
+          "selection_score",
+          "train_intent_label_smoothing",
+          "train_intent_loss",
+          "train_loss",
+          "train_maximum_gradient_norm",
+          "train_num_batches",
+          "train_num_examples",
+          "train_num_tokens",
+          "train_record_ids_sha256",
+          "train_record_order_sha256",
+          "train_slot_loss",
+          "train_word_dropout_alpha",
+          "train_word_dropout_eligible_tokens",
+          "train_word_dropout_masked_tokens",
+          "train_word_dropout_rng_state_sha256"
+        ],
+        "ignored_history_fields": [
+          "train_seconds",
+          "dev_seconds"
+        ],
+        "prefix_best_epoch": 20,
+        "prefix_best_model_state_identical": true,
+        "prefix_best_ordered_predictions_identical": true,
+        "epoch20_current_state_comparable_to_preserved_checkpoint": true,
+        "scope": "Every original first20 history value except timing matches exactly; selected first20 learned state/predictions match. An old epoch20 learned state is available only when the historical selected checkpoint was epoch20."
+      },
+      "notebook_source_audit": {
+        "path": "C:\\Users\\Admin\\Desktop\\SC4002\\artifacts\\transformer_early_stopping\\notebook_sources\\seed_42\\NLP_Final_project_revised_early_stopping.ipynb",
+        "code_sha256": "7128609f95d525b1ff4f0956e0e4f2ecc273f4798c435037e93150eadfcd03c0",
+        "current_file_sha256": "1759a39e2f014619e4992bdcf049d8eae6556a6494ae87b31cc2885b0644cc0f",
+        "protected_cells_verified": true,
+        "source_provenance_verified": true,
+        "registered_original_bytes_verified": false
+      },
+      "training_workflow_seconds": 847.9966050000003,
+      "epoch_train_dev_seconds": 832.7430088999972,
+      "reference": {
+        "metrics": {
+          "intent_accuracy": 0.8662075750122971,
+          "slot_micro_f1": 0.8084135833755702,
+          "slot_tp": 1595,
+          "slot_fp": 339,
+          "slot_fn": 417,
+          "num_examples": 2033,
+          "correct_intents": 1761,
+          "slot_precision": 0.8247156153050672,
+          "slot_recall": 0.7927435387673957,
+          "intent_errors": 272,
+          "fully_correct_utterances": 1392,
+          "fully_correct_utterance_rate": 0.6847024102311854
+        },
+        "selected_epoch": 20,
+        "selection_score": 0.8373105791939337,
+        "epochs_trained": 20,
+        "checkpoint_sha256": "13224fbcbb3924c775c6bf75a3130f0c2b6e4b06965190aa161774a7fbcf4acc",
+        "model_state_sha256": "9da4177bd12d0f0f5c063b57d41d9408b37f39c3b95971af6eeeac239e75e3e3"
+      },
+      "selection_score_gain_pp": 0.0,
+      "evidence_sha256": {
+        "run.json": "582841238ba9170c48fd45bd7bbb178f1508ea50e1481dadb21edd011516a0a3",
+        "final_summary.json": "ca7edf14ac155f12c5cf22261d0dbded87eba2f73447f3e6bb8b86a04425b964",
+        "history.jsonl": "0304eeb6322f350847010725f7f16dd610602212ebc1a05006c86f8dc579a988",
+        "history.csv": "71d37791f8399721ff98d626a31ed8b57e39fa08b470b16242e9f057b98fd51d",
+        "training_summary.json": "71960b8feb83f3d2311c88dbd66b6fcc8b71ec57008f66e95197223124930cfe",
+        "fresh_reload.json": "3c4ba73228788ba17f98ba8e2b9a0d975ac7598cb3c9b2f2f3d2b19cb5d7b5d3",
+        "dev_evaluation.json": "56afc476a1db1e8a68ae2ad23120a04bcf1c5ab6351a48399ec97fe9db0c4013",
+        "dev_predictions.jsonl": "2669f6eaa0a2e4d712ad81989e0e06caacd6954647a86ad0acc743fb9f5c7240",
+        "schedule_horizon_evidence.json": "fbdf50c073b709da6cf392f6484fee425f0910d34f15047e6b4476daacd5f8d5"
+      },
+      "test_model_evaluations": 0,
+      "paired_development_comparison": {
+        "differences": {
+          "intent_accuracy": {
+            "percentage_points": 0.0,
+            "nominal_95_percentile_interval_pp": [
+              0.0,
+              0.0
+            ]
+          },
+          "slot_micro_f1": {
+            "percentage_points": 0.0,
+            "nominal_95_percentile_interval_pp": [
+              0.0,
+              0.0
+            ]
+          },
+          "fully_correct_utterance_rate": {
+            "percentage_points": 0.0,
+            "nominal_95_percentile_interval_pp": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "intent_errors_corrected": 0,
+        "intent_errors_introduced": 0,
+        "gold_slot_occurrences_recovered": 0,
+        "gold_slot_occurrences_lost": 0,
+        "both_required_metrics_improved": false,
+        "bootstrap": {
+          "replicates": 10000,
+          "seed": 20261153,
+          "unit": "paired whole development utterances",
+          "caution": "Conditional on selected checkpoints on their selection split; excludes seed variation, selection bias and multiplicity adjustment"
+        }
+      }
+    }
+  ],
+  "missing_seeds": [
+    17,
+    101
+  ],
+  "confirmation": {
+    "policy": "Run seed42 first; if its selected joint development score exceeds its own first20 maximum, run both registered confirmation seeds17 and101 regardless of their results.",
+    "required": false,
+    "required_seeds": [
+      42
+    ],
+    "completed_seeds": [
+      42
+    ],
+    "complete": true
+  },
+  "across_seed_summary": {
+    "intent_accuracy": {
+      "candidate": {
+        "n": 1,
+        "mean": 0.8662075750122971,
+        "sample_standard_deviation": null
+      },
+      "reference": {
+        "n": 1,
+        "mean": 0.8662075750122971,
+        "sample_standard_deviation": null
+      },
+      "paired_difference_pp": {
+        "n": 1,
+        "mean": 0.0,
+        "sample_standard_deviation": null
+      }
+    },
+    "slot_micro_f1": {
+      "candidate": {
+        "n": 1,
+        "mean": 0.8084135833755702,
+        "sample_standard_deviation": null
+      },
+      "reference": {
+        "n": 1,
+        "mean": 0.8084135833755702,
+        "sample_standard_deviation": null
+      },
+      "paired_difference_pp": {
+        "n": 1,
+        "mean": 0.0,
+        "sample_standard_deviation": null
+      }
+    },
+    "fully_correct_utterance_rate": {
+      "candidate": {
+        "n": 1,
+        "mean": 0.6847024102311854,
+        "sample_standard_deviation": null
+      },
+      "reference": {
+        "n": 1,
+        "mean": 0.6847024102311854,
+        "sample_standard_deviation": null
+      },
+      "paired_difference_pp": {
+        "n": 1,
+        "mean": 0.0,
+        "sample_standard_deviation": null
+      }
+    }
+  },
+  "bootstrap_replicates": 10000,
+  "analysis_sources_sha256": {
+    "scripts/analyze_transformer_early_stopping.py": "0c8710c0d55e473a1a69bda394054ff4763cb34430e62fbe6b791968be50257a",
+    "scripts/analyze_transformer_regularization.py": "91c6133b17a9e03d3cd448602d3265887a2272da36928d441f90d9e986566c0d",
+    "scripts/validate_revised_transformer.py": "4cb24c21c740ac244f5485f5d0dcca5afded0de783abfb129bdbcb0e760ca362"
+  },
+  "test_evaluation_performed": false,
+  "limitations": [
+    "Development chooses checkpoints, triggers confirmation and measures the resulting gains.",
+    "Paired bootstrap conditions on selected checkpoints and omits checkpoint-selection and multiple-comparison effects.",
+    "Only seeds actually completed enter paired means; a partial report is not the final registered comparison.",
+    "More checkpoints provide additional chances to improve on the selection split; no new held-out/test claim is made.",
+    "Runtime measures are descriptive and may reflect different concurrent GPU workloads."
+  ]
+}

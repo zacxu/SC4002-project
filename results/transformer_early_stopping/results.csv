@@ -1,0 +1,2 @@
+seed,epochs_trained,selected_epoch,stop_reason,intent_accuracy_percent,slot_micro_f1_percent,fully_correct_utterance_rate_percent,selection_score_gain_pp
+42,28,20,patience,86.6208,80.8414,68.4702,0.000000

@@ -1,0 +1,87 @@
+{
+  "status": "passed_with_user_requested_exclusions",
+  "completed_at_utc": "2026-11-11T05:39:48.121053+00:00",
+  "notebook": "NLP_Final_project_revised_early_stopping.ipynb",
+  "notebook_sha256": "b835d30b2c88b18a20082f210efdcd3f7bb80051ea28f8f6e17f54f155d416bc",
+  "notebook_code_sha256": "653daf909a5f2ecf3d363a0fad504013a4ed24fe036023b8540f2b761d579a84",
+  "notebook_acceptance": "artifacts/final_submission/full_notebook/acceptance.json",
+  "mode": "final",
+  "code_cells_executed": 35,
+  "frozen_models_reproduced": true,
+  "test_model_evaluations_in_this_workflow": {
+    "stage1": 1,
+    "stage2": 1
+  },
+  "test_previously_exposed": true,
+  "final_rows": [
+    {
+      "model_version": "stage1",
+      "split": "dev",
+      "total_parameters": 4345243,
+      "trainable_parameters": 4345243,
+      "intent_accuracy_percent": "84.16",
+      "slot_micro_f1_percent": "69.56",
+      "epochs_trained": 20,
+      "selected_epoch": 20
+    },
+    {
+      "model_version": "stage1",
+      "split": "test",
+      "total_parameters": 4345243,
+      "trainable_parameters": 4345243,
+      "intent_accuracy_percent": "82.92",
+      "slot_micro_f1_percent": "66.77",
+      "epochs_trained": 20,
+      "selected_epoch": 20
+    },
+    {
+      "model_version": "stage2",
+      "split": "dev",
+      "total_parameters": 19748595,
+      "trainable_parameters": 19748595,
+      "intent_accuracy_percent": "86.62",
+      "slot_micro_f1_percent": "80.84",
+      "epochs_trained": 28,
+      "selected_epoch": 20
+    },
+    {
+      "model_version": "stage2",
+      "split": "test",
+      "total_parameters": 19748595,
+      "trainable_parameters": 19748595,
+      "intent_accuracy_percent": "85.44",
+      "slot_micro_f1_percent": "77.79",
+      "epochs_trained": 28,
+      "selected_epoch": 20
+    }
+  ],
+  "report_docx": "SC4002 Project Report.docx",
+  "report_docx_sha256": "ce525000de4df7b57b64e7ebd56c4008f15393aa7f7f0e642122b3aed2e674c5",
+  "report_pdf": "report.pdf",
+  "report_pdf_sha256": "b9a8f68f951ce3089a8b8834cdfa69f487343ebe4c99887f94e2a7da098a2107",
+  "pages_total": 3,
+  "body_pages": 2,
+  "cover_pixels_and_xml_unchanged": true,
+  "other_docx_package_parts_unchanged": true,
+  "all_pages_visually_reviewed": true,
+  "archive": "Group_71.zip",
+  "archive_sha256": "27d8fd2c04b47100fc9a99531526cbac27c74b46e569ce40af100d9ad08d49a9",
+  "archive_members": [
+    "main.ipynb",
+    "ai_collaboration.md",
+    "report.pdf"
+  ],
+  "submission_filename_smoke": "passed",
+  "portable_caches_none": true,
+  "ai_history_verified_messages": 278,
+  "ai_transcript_sha256": "952b8e1cd2ccae72ab7bd3902bee6ca32521499ea8f8ed6c826e6190e72a0f5d",
+  "prior_ai_notes_preserved": true,
+  "prior_ai_notes_sha256": "f6cb1d0cf42ccd949e1f1b7f5caed035c23d77b19b816c2512e383317c4127f6",
+  "lecturer_ai_exception": "User confirmed approval for Stage 1 AI assistance",
+  "excluded_checks": [
+    "Group-size requirement, at user request",
+    "Cover individual-contribution requirement, at user request"
+  ],
+  "external_submission_performed": false,
+  "all_model_parameters_included": true
+}

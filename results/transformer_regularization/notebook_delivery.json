@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "notebook": "NLP_Final_project_revised_regularized.ipynb",
+  "sha256": "3f343ddca775eaac736f97c6020a11080a4c26dbfda00036cdd32600badea42b",
+  "source": "artifacts\\transformer_regularization\\seed_42\\combined\\NLP_Final_project_revised_regularized.ipynb",
+  "acceptance": "artifacts\\transformer_regularization\\seed_42\\combined\\acceptance.json",
+  "code_cells_executed": 13,
+  "mode": "development_only",
+  "stage2_parameters": 19748595,
+  "model_changed_during_publication": false
+}

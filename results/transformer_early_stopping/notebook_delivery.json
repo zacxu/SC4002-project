@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "notebook": "NLP_Final_project_revised_early_stopping.ipynb",
+  "sha256": "1759a39e2f014619e4992bdcf049d8eae6556a6494ae87b31cc2885b0644cc0f",
+  "source": "artifacts/transformer_early_stopping/seed_42/full_notebook/NLP_Final_project_revised_early_stopping.ipynb",
+  "acceptance": "artifacts/transformer_early_stopping/seed_42/full_notebook/acceptance.json",
+  "mode": "development_only",
+  "code_cells_executed": 13,
+  "stage2_parameters": 19748595,
+  "stage2_max_epochs": 60,
+  "stage2_epochs_trained": 28,
+  "stage2_selected_epoch": 20,
+  "stage2_stop_reason": "patience"
+}

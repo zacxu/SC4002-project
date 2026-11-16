@@ -40,7 +40,7 @@ def main():
             cell.outputs = []
             cell.execution_count = None
     directory.mkdir(parents=True)
-    target = directory / 'NLP_Final_project_revised.ipynb'
+    target = directory / source.name
     target.write_text(nbformat.writes(document), encoding='utf-8', newline='\n')
     environment = dict(os.environ, PYTHONHASHSEED='42', CUBLAS_WORKSPACE_CONFIG=':4096:8',
         PYTHONIOENCODING='utf-8', PYTHONDONTWRITEBYTECODE='1',

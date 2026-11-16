@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "completed_at_utc": "2026-11-10T19:30:59.841532+00:00",
+  "completed_stage2_runs": 12,
+  "epochs_per_run": 20,
+  "seeds": [
+    17,
+    42,
+    101
+  ],
+  "whole_model_parameters": 19748595,
+  "new_test_model_evaluations": 0,
+  "protected_input_hashes_unchanged": {
+    "NLP_Final_project.ipynb": "d64228204d1d8a130dafa45929efb78fd61a174deb26d2547fc796a61435e56f",
+    "NLP_Final_project_revised.ipynb": "7f76093e9d4be928e3065e5e40ae6bb8b77f1bd09857d2f9a92ecd19f310c269",
+    "main.ipynb": "618821ea7fe841312c1ecc3f4693388143ffc1f9eb711e3fff6dedaf840ab456",
+    "src/comparison_contract.py": "c57d46c76642edf0a1e5b283c52d153631b2b4c30b639166c3761fd8ade4a37c",
+    "data/1.0/data/en-US.jsonl": "c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e",
+    "artifacts/revised_transformer/normalized_qualification/transformer_run_artifacts/stage2/best.pt": "2bbcebad84b3df6671afa84997259f158903360743ea8b1795cec808381843aa",
+    "artifacts/notebook_comparison_review/final_test/results.json": "ac35e8b14bdac927806a8bb0753a9f508a5049e3df1a0cf4220b2b768751ba26"
+  },
+  "frozen_source_hashes_unchanged": {
+    "src/comparison_contract.py": "c57d46c76642edf0a1e5b283c52d153631b2b4c30b639166c3761fd8ade4a37c",
+    "src/revised_transformer_data.py": "50484170a7408ca072151ef9ed9ef2830a5af09a924c3f52ee549ca4a4826530",
+    "src/stage2_model.py": "4b0fd0290b0789b8d234e0b2c812a49f0d80a24773e2d35677280e48f3fea8aa",
+    "src/revised_transformer_model.py": "625641753d2655119eaffd5bea0805908873e14f618ae315ec658433691f8747",
+    "src/revised_transformer_training.py": "0ae53329912e06a48d4c83353f3223b2a3286c0c3063666f06624ebf38ea0789",
+    "scripts/build_revised_transformer_notebook.py": "1140a54574ae0ed296089662b83b653c825c819122958171e3c30c8d3a861017",
+    "scripts/execute_revised_transformer.py": "9b80aeb6ce657279a4649600074455557949490b80dd55b1c7dbfc25229295af",
+    "scripts/run_transformer_regularization.py": "b6e5f98cfc7877cf94672440c92f8441328c524cbf0252989af5ebd1bbc69019"
+  },
+  "confidence_sources_unchanged": true,
+  "all_seed_pairing_audits_passed": true,
+  "notebook_delivery_sha256": "3f343ddca775eaac736f97c6020a11080a4c26dbfda00036cdd32600badea42b",
+  "notebook_independent_acceptance": "passed",
+  "plot_visually_reviewed": true,
+  "plot_and_source_hashes_verified": true,
+  "new_guide_and_report_local_links_resolve": true,
+  "targeted_tests": {
+    "total": 103,
+    "revised_transformer_suite": 75,
+    "analysis_and_confidence_suite_after_last_fix": 28,
+    "full_workspace_suite_rerun": false
+  },
+  "ai_collaboration_original_prefix_sha256": "862c064421ed9d10f9ef0ac8f150dc826017decd4f25b4b89c883cca7972d087",
+  "ai_collaboration_original_prefix_bytes": 6714,
+  "ai_collaboration_original_prefix_preserved": true,
+  "scope": "Completed registered development-only comparison; original test evidence preserved, no new test gain claim"
+}

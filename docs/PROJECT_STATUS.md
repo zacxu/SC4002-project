@@ -1,5 +1,84 @@
 # Project status and implementation history
 
+**Final report and submission preparation, 11 November 2026:** the selected
+[Transformer notebook](../NLP_Final_project_revised_early_stopping.ipynb) completed
+all 35 code cells in final mode. Its unchanged frozen models achieved Stage 1
+test **82.92% intent / 66.77% slot F1** and Stage 2 **85.44% / 77.79%**. The required
+four-row table, selected checkpoint paths/scores and actual times are visible;
+independent final-mode acceptance passed. Portable cache settings and a tested
+`main.ipynb` filename fallback support standalone submission.
+
+The supplied [Word report](../SC4002%20Project%20Report.docx) now has exactly two
+body pages after its original cover. Native Word/PDF comparison verified cover
+pixels, cover XML and all other package parts unchanged. The AI record contains
+278 verified public messages plus preserved project notes. [Group_71.zip](../Group_71.zip)
+contains exactly `main.ipynb`, `ai_collaboration.md` and `report.pdf`.
+
+The group confirmed a lecturer-approved Stage 1 AI exception. Group-size and
+cover-contribution checks were excluded at the user's explicit request; they are
+not certified against the original brief. No external submission was performed.
+See the [final check](FINAL_SUBMISSION_CHECK.md) and
+[machine-readable verification](../results/final_submission/verification.json).
+
+**Notebook readability refactor, 11 November 2026:** refactored the existing
+[NLP_Final_project_revised_early_stopping.ipynb](../NLP_Final_project_revised_early_stopping.ipynb)
+into labelled sections with formatted multiline code and collapsed support
+utilities. Removed eight unused CRF import bindings, redundant module prose and
+verbose printed JSON dumps; results and genuine development errors now appear
+as tables. Markdown decreased from 1,313 to 981 words, and code lines exceeding
+140 characters fell from 74 to 3.
+
+All 54 function/class definitions, configurations and training calls are
+preserved. A fresh full execution of **35 code cells** and independent acceptance
+passed. Both stages reproduced their previous complete trajectories, learned
+states and ordered predictions exactly: Stage 1 trained 20 epochs; Stage 2
+stopped at 28 and selected 20, retaining **86.62% intent / 80.84% slot F1**.
+**159 targeted tests** pass, with no new test model evaluation. The original
+executed notebook and prior results are preserved. See the
+[current verification records](../results/notebook_readability_refactor/) and
+[run/rebuild guide](TRANSFORMER_EARLY_STOPPING.md).
+
+**Patience-based Stage 2 training, 11 November 2026:** the latest standalone
+[NLP_Final_project_revised_early_stopping.ipynb](../NLP_Final_project_revised_early_stopping.ipynb)
+implements maximum 60 epochs, minimum 20, patience 8 and a 0.0005 joint-score
+threshold, while saving every actual best checkpoint. The original two-epoch
+warmup and 20-epoch cosine schedule are retained, followed by the low-rate floor.
+The fresh seed-42 run stopped at **epoch 28**, selected **epoch 20**, and retained
+**86.62% intent / 80.84% slot F1**. Its complete first-20 trajectory and selected
+weights/predictions match the preserved reference exactly. No later checkpoint
+improved the joint score, so the predeclared two-seed confirmation was not
+triggered. This is one longer-training result, not a three-seed extension study.
+
+Both notebook stages completed with genuine outputs and passed independent
+acceptance; **138 targeted tests** pass. The architecture remains **19,748,595
+parameters**, the original notebooks and comparison evidence are preserved, and
+no new test model evaluation was performed. See the
+[run guide](TRANSFORMER_EARLY_STOPPING.md),
+[measured results](TRANSFORMER_EARLY_STOPPING_RESULTS.md) and
+[training trajectories](assets/transformer_early_stopping.png).
+
+**Stage 2 Transformer regularization, 11 November 2026:** implemented the first two
+assessment proposals in the separate
+[NLP_Final_project_revised_regularized.ipynb](../NLP_Final_project_revised_regularized.ipynb):
+frequency-dependent word-to-UNK dropout (alpha 0.25, real characters retained) and
+training-only intent label smoothing (0.05). The whole model remains **19,748,595
+parameters**. All four experimental settings completed 20 epochs at matched seeds
+42, 17 and 101. Both additions average **86.67% intent / 80.27% slot F1**, compared
+with **85.60% / 77.88%** for the same Stage 2 architecture without them. Word
+dropout alone has higher mean intent accuracy (**86.95%**) but lower slot F1
+(**79.53%**). Both additions beat the control on both metrics in every seed.
+
+The delivered notebook contains genuine full seed-42 execution outputs and
+passed independent acceptance. The prior notebooks, historical checkpoint,
+dataset, scorer and previous test results were preserved. This experiment uses
+development data only and makes no new test-gain claim; seed 42 triggered the
+predeclared two-seed confirmation. See the
+[measured comparison](TRANSFORMER_REGULARIZATION_RESULTS.md) and
+[Jupyter/terminal run guide](TRANSFORMER_REGULARIZATION.md).
+
+The dated sections below retain earlier project snapshots; their pending-work
+statements describe those dates rather than superseding this update.
+
 **Transformer revision, 2 November 2026:** the separate
 [NLP_Final_project_revised.ipynb](../NLP_Final_project_revised.ipynb) now contains
 genuine 20-epoch baseline and revised-model development runs. The selected

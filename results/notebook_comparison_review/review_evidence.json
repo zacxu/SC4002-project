@@ -1,0 +1,375 @@
+{
+  "review_date_sgt": "2026-11-11",
+  "status": "complete",
+  "scope": "Requirements/code audit, matched development qualification, and authorized one-pass frozen final-test comparison",
+  "authoritative_brief": {
+    "path": "docs/SC4002 Project Instructions.pdf",
+    "sha256": "10ad1f7b9ebf130af7851c4015f19f3e68eac6245aebb4233663d85e545b6970",
+    "deadline_sgt": "2026-11-13 23:59"
+  },
+  "dataset_sha256": "c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e",
+  "evaluator_version": "exact_character_span_v2",
+  "original_counts": {
+    "train": 11514,
+    "dev": 2033,
+    "test": 2974
+  },
+  "comparison_protocol": {
+    "seed": 42,
+    "precision": "float32",
+    "epochs": 20,
+    "batch_size": 32,
+    "optimizer": "AdamW",
+    "base_learning_rate": 0.0005,
+    "embedding_learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "gradient_clip_norm": 1.0,
+    "warmup_fraction": 0.1,
+    "minimum_lr_ratio": 0.1,
+    "selection": "Earliest maximum of unrounded mean dev intent accuracy and slot micro-F1",
+    "caution": "Original notebook architecture comparison under a common protocol; not its original 12-epoch training recipe."
+  },
+  "models": {
+    "original_baseline": {
+      "display_name": "Original word-only",
+      "parameter_counts": {
+        "total": 4345243,
+        "trainable": 4345243
+      },
+      "epochs_trained": 20,
+      "selected_epoch": 20,
+      "development_selection_score": 0.7686114480220343,
+      "metrics": {
+        "dev": {
+          "intent_accuracy": 0.8416133792424988,
+          "slot_micro_f1": 0.6956095168015698,
+          "slot_tp": 1418,
+          "slot_fp": 647,
+          "slot_fn": 594,
+          "num_examples": 2033,
+          "correct_intents": 1711,
+          "slot_precision": 0.6866828087167071,
+          "slot_recall": 0.7047713717693836
+        },
+        "test": {
+          "intent_accuracy": 0.8291862811028917,
+          "slot_micro_f1": 0.6677271120537293,
+          "slot_tp": 1889,
+          "slot_fp": 954,
+          "slot_fn": 926,
+          "num_examples": 2974,
+          "correct_intents": 2466,
+          "slot_precision": 0.6644389729159339,
+          "slot_recall": 0.6710479573712256
+        }
+      },
+      "checkpoint_sha256": "3fffdfbcf16af3c1958792bce3c731f4f0f24b5be98028117bf8a236f50a8d65",
+      "history_sha256": "c6be04a76fee6fd5875e78e7f178fccf33352d248079de6311cc69a6ad2ab73d",
+      "measured_epoch_train_dev_seconds": 218.7200870000015,
+      "training_workflow_seconds": 222.14224280000053,
+      "peak_allocated_cuda_bytes": 207506432,
+      "test_model_evaluations": 1,
+      "test_predictions_sha256": "ae951305e6b4614a5ab87f09856bf42cbe34fcaf22111847a1438b8fd97107e5"
+    },
+    "original_character": {
+      "display_name": "Original CharCNN",
+      "parameter_counts": {
+        "total": 4379947,
+        "trainable": 4379947
+      },
+      "epochs_trained": 20,
+      "selected_epoch": 20,
+      "development_selection_score": 0.781595409758095,
+      "metrics": {
+        "dev": {
+          "intent_accuracy": 0.853418593212002,
+          "slot_micro_f1": 0.7097722263041881,
+          "slot_tp": 1449,
+          "slot_fp": 622,
+          "slot_fn": 563,
+          "num_examples": 2033,
+          "correct_intents": 1735,
+          "slot_precision": 0.6996619990342829,
+          "slot_recall": 0.7201789264413518
+        },
+        "test": {
+          "intent_accuracy": 0.8386012104909213,
+          "slot_micro_f1": 0.6910511363636364,
+          "slot_tp": 1946,
+          "slot_fp": 871,
+          "slot_fn": 869,
+          "num_examples": 2974,
+          "correct_intents": 2494,
+          "slot_precision": 0.6908058217962372,
+          "slot_recall": 0.6912966252220248
+        }
+      },
+      "checkpoint_sha256": "e54d4c047bb1bcbeda9b059526b0f823c22238a3e9f4e4cb6c3d8c67f130e18d",
+      "history_sha256": "12f38b5c2e05c7cecab7dffd7b8f9cb619a868647b342ac9a84bfcb6da3f4ecd",
+      "measured_epoch_train_dev_seconds": 244.5714444999976,
+      "training_workflow_seconds": null,
+      "peak_allocated_cuda_bytes": null,
+      "test_model_evaluations": 1,
+      "test_predictions_sha256": "70ebf2dd42320c7ec2d9ae9d9622b18b483fefa594e27d74b1f679a4b870d004",
+      "postprocessing_recovery": {
+        "reason": "Default Tk backend failed to locate init.tcl after all 20 completed epochs and saved selected checkpoint.",
+        "action": "Rendered retained genuine history with Agg and reproduced every development prediction in a fresh process. No training repeated; selected checkpoint unchanged.",
+        "recovery_script_sha256": "c2ec7871f120fad516a177390c49393f0efc58f33330857ac85981156842b79b"
+      }
+    },
+    "revised": {
+      "display_name": "Revised Transformer",
+      "parameter_counts": {
+        "total": 19748595,
+        "trainable": 19748595
+      },
+      "epochs_trained": 20,
+      "selected_epoch": 19,
+      "development_selection_score": 0.8179720032913527,
+      "metrics": {
+        "dev": {
+          "intent_accuracy": 0.8583374323659616,
+          "slot_micro_f1": 0.7776065742167437,
+          "slot_tp": 1514,
+          "slot_fp": 368,
+          "slot_fn": 498,
+          "num_examples": 2033,
+          "correct_intents": 1745,
+          "slot_precision": 0.8044633368756642,
+          "slot_recall": 0.7524850894632207
+        },
+        "test": {
+          "intent_accuracy": 0.8507061197041023,
+          "slot_micro_f1": 0.7512483817273904,
+          "slot_tp": 2031,
+          "slot_fp": 561,
+          "slot_fn": 784,
+          "num_examples": 2974,
+          "correct_intents": 2530,
+          "slot_precision": 0.7835648148148148,
+          "slot_recall": 0.7214920071047958
+        }
+      },
+      "checkpoint_sha256": "2bbcebad84b3df6671afa84997259f158903360743ea8b1795cec808381843aa",
+      "history_sha256": "65c7e2cf7d3a62d75073ec469a764e709614d627e9189c1c56b74794e324805f",
+      "measured_epoch_train_dev_seconds": 603.6409363000002,
+      "training_workflow_seconds": 616.4374326999996,
+      "peak_allocated_cuda_bytes": 668684800,
+      "test_model_evaluations": 1,
+      "test_predictions_sha256": "d02eabcb9ce44c6d29202671dfcfd43c9dd55e5c7698cb45d5948ea9a66e8a19"
+    }
+  },
+  "frozen_target_system": "revised",
+  "target_chosen_before_test": true,
+  "test_freeze_manifest_sha256": "e9f3159a29e623896a553b369cb59af1ffcbafee04ae26267f22da6b1947c885",
+  "frozen_at_utc": "2026-11-10T16:31:01.066952+00:00",
+  "test_results": {
+    "status": "passed",
+    "scope": "Independent rescoring of saved final-test predictions; no model forward pass",
+    "frozen_target_system": "revised",
+    "freeze_sha256": "e9f3159a29e623896a553b369cb59af1ffcbafee04ae26267f22da6b1947c885",
+    "dataset_sha256": "c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e",
+    "evaluator_version": "exact_character_span_v2",
+    "rows": [
+      {
+        "model": "original_baseline",
+        "split": "test",
+        "total_parameters": 4345243,
+        "epochs_trained": 20,
+        "selected_epoch": 20,
+        "intent_accuracy_percent": "82.92",
+        "slot_micro_f1_percent": "66.77",
+        "correct_intents": 2466,
+        "num_examples": 2974,
+        "slot_tp": 1889,
+        "slot_fp": 954,
+        "slot_fn": 926,
+        "test_evaluation_seconds": 0.8170731999998679
+      },
+      {
+        "model": "original_character",
+        "split": "test",
+        "total_parameters": 4379947,
+        "epochs_trained": 20,
+        "selected_epoch": 20,
+        "intent_accuracy_percent": "83.86",
+        "slot_micro_f1_percent": "69.11",
+        "correct_intents": 2494,
+        "num_examples": 2974,
+        "slot_tp": 1946,
+        "slot_fp": 871,
+        "slot_fn": 869,
+        "test_evaluation_seconds": 0.6061909999998534
+      },
+      {
+        "model": "revised",
+        "split": "test",
+        "total_parameters": 19748595,
+        "epochs_trained": 20,
+        "selected_epoch": 19,
+        "intent_accuracy_percent": "85.07",
+        "slot_micro_f1_percent": "75.12",
+        "correct_intents": 2530,
+        "num_examples": 2974,
+        "slot_tp": 2031,
+        "slot_fp": 561,
+        "slot_fn": 784,
+        "test_evaluation_seconds": 2.2178235999999742
+      }
+    ],
+    "full_precision": {
+      "original_baseline": {
+        "intent_accuracy": 0.8291862811028917,
+        "slot_micro_f1": 0.6677271120537293,
+        "slot_tp": 1889,
+        "slot_fp": 954,
+        "slot_fn": 926,
+        "num_examples": 2974,
+        "correct_intents": 2466,
+        "slot_precision": 0.6644389729159339,
+        "slot_recall": 0.6710479573712256
+      },
+      "original_character": {
+        "intent_accuracy": 0.8386012104909213,
+        "slot_micro_f1": 0.6910511363636364,
+        "slot_tp": 1946,
+        "slot_fp": 871,
+        "slot_fn": 869,
+        "num_examples": 2974,
+        "correct_intents": 2494,
+        "slot_precision": 0.6908058217962372,
+        "slot_recall": 0.6912966252220248
+      },
+      "revised": {
+        "intent_accuracy": 0.8507061197041023,
+        "slot_micro_f1": 0.7512483817273904,
+        "slot_tp": 2031,
+        "slot_fp": 561,
+        "slot_fn": 784,
+        "num_examples": 2974,
+        "correct_intents": 2530,
+        "slot_precision": 0.7835648148148148,
+        "slot_recall": 0.7214920071047958
+      }
+    },
+    "paired_bootstrap": {
+      "settings": {
+        "bootstrap_replicates": 20000,
+        "bootstrap_seed": 20261111,
+        "sampling_unit": "paired whole original test utterances",
+        "comparisons": [
+          "revised minus original_baseline",
+          "revised minus original_character"
+        ],
+        "metrics": [
+          "intent_accuracy",
+          "slot_micro_f1",
+          "fully_correct_utterance_rate"
+        ]
+      },
+      "comparisons": {
+        "revised_minus_original_baseline": {
+          "intent_accuracy": {
+            "difference_percentage_points": 2.151983860121054,
+            "percentile_95_interval_percentage_points": [
+              1.109616677874914,
+              3.194351042367183
+            ]
+          },
+          "slot_micro_f1": {
+            "difference_percentage_points": 8.352126967366114,
+            "percentile_95_interval_percentage_points": [
+              6.996633844357232,
+              9.711691352945504
+            ]
+          },
+          "fully_correct_utterance_rate": {
+            "difference_percentage_points": 5.682582380632151,
+            "percentile_95_interval_percentage_points": [
+              4.371217215870882,
+              6.993947545393409
+            ]
+          }
+        },
+        "revised_minus_original_character": {
+          "intent_accuracy": {
+            "difference_percentage_points": 1.210490921318097,
+            "percentile_95_interval_percentage_points": [
+              0.235373234700742,
+              2.185608607935441
+            ]
+          },
+          "slot_micro_f1": {
+            "difference_percentage_points": 6.019724536375404,
+            "percentile_95_interval_percentage_points": [
+              4.673375441280019,
+              7.348008742783518
+            ]
+          },
+          "fully_correct_utterance_rate": {
+            "difference_percentage_points": 4.472091459314054,
+            "percentile_95_interval_percentage_points": [
+              3.127101546738398,
+              5.783456624075322
+            ]
+          }
+        }
+      },
+      "limitations": "Paired utterance bootstrap conditional on these frozen seed-42 checkpoints. Intervals reflect finite test-utterance sampling, not training-seed variation, and have no multiplicity adjustment. The target system was chosen on development before test; no test-driven retuning is permitted."
+    },
+    "notebooks_unchanged_and_still_development_only": true,
+    "test_model_evaluations": {
+      "original_baseline": 1,
+      "original_character": 1,
+      "revised": 1
+    },
+    "audited_at_utc": "2026-11-10T16:31:45.867635+00:00"
+  },
+  "fresh_current_notebook_acceptance": "passed",
+  "verification": {
+    "dedicated_transformer_tests": {
+      "run": 59,
+      "passed": 59
+    },
+    "full_workspace_tests": {
+      "run": 258,
+      "passed": 247,
+      "failed": 1,
+      "errors": 10,
+      "issue_scope": "Existing BiLSTM main.ipynb source and inline-contract manifest checks"
+    },
+    "protected_inputs": {
+      "status": "passed",
+      "protected_input_sha256": {
+        "NLP_Final_project.ipynb": "d64228204d1d8a130dafa45929efb78fd61a174deb26d2547fc796a61435e56f",
+        "NLP_Final_project_revised.ipynb": "7f76093e9d4be928e3065e5e40ae6bb8b77f1bd09857d2f9a92ecd19f310c269",
+        "main.ipynb": "618821ea7fe841312c1ecc3f4693388143ffc1f9eb711e3fff6dedaf840ab456",
+        "run_artifacts/completion.json": "3ea1bab681b7ad1534a56fa0f31289c74cfdb6b28d1d036b0fb782df80d08f3d",
+        "run_artifacts/results.json": "7bb509a5cb27866213115e8b96233d886683b7718133de00bf527687b0ca87c2"
+      },
+      "all_protected_inputs_unchanged": {
+        "NLP_Final_project.ipynb": true,
+        "NLP_Final_project_revised.ipynb": true,
+        "main.ipynb": true,
+        "run_artifacts/completion.json": true,
+        "run_artifacts/results.json": true
+      },
+      "checked_after_test_completion": true
+    },
+    "notebooks_modified": false,
+    "retrained_original_character_model": true,
+    "test_inference_passes_per_model": {
+      "original_baseline": 1,
+      "original_character": 1,
+      "revised": 1
+    }
+  },
+  "notebook_status": "Original remains unexecuted; revised retained run remains development-only. Final test is a separate audited supplement.",
+  "limitations": [
+    "One training seed per model; no component ablations or seed-variance estimate.",
+    "Test bootstrap conditions on frozen checkpoints and has no multiplicity adjustment.",
+    "Elapsed times are observations on one GPU, not repeated latency benchmarks.",
+    "Original character workflow duration/peak CUDA unavailable after a post-training plotting failure; epoch timings remain valid.",
+    "Final submission notebook, report, collaboration record and provenance requirements remain outstanding."
+  ]
+}

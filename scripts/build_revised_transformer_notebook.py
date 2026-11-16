@@ -5,6 +5,7 @@ import argparse
 import ast
 import hashlib
 import json
+import math
 from pathlib import Path
 import pprint
 
@@ -25,8 +26,17 @@ def inline_module(path, names=None):
     return 'from __future__ import annotations\n\n' + ast.unparse(ast.fix_missing_locations(tree)) + '\n'
 
 
-def build(root=ROOT, output=None):
+def build(root=ROOT, output=None, *, word_dropout_alpha=0., intent_label_smoothing=0., early_stopping=False):
     from src.revised_transformer_model import RevisedTransformerConfig
+    for name, value in (('word_dropout_alpha', word_dropout_alpha),
+                        ('intent_label_smoothing', intent_label_smoothing)):
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
+            raise ValueError(name + ' must be a finite nonnegative number')
+    if intent_label_smoothing >= 1:
+        raise ValueError('intent_label_smoothing must be less than 1')
+    if type(early_stopping) is not bool:
+        raise ValueError('early_stopping must be a boolean')
+    regularized = bool(word_dropout_alpha or intent_label_smoothing)
     output = Path(output or root / 'NLP_Final_project_revised.ipynb')
     if output.exists():
         previous = nbformat.read(output, as_version=4)
@@ -50,12 +60,12 @@ Run status and actual metrics come from the genuine outputs and final completion
 
 ## Run instructions
 
-Use the repository's pinned Python 3.12/CUDA environment and **SC4002 (.venv)** kernel. Launch Jupyter with `PYTHONHASHSEED=42` and `CUBLAS_WORKSPACE_CONFIG=:4096:8`. Copy this file into a fresh folder, keep its name **NLP_Final_project_revised.ipynb**, save edits to the labelled configuration cell, and Restart Kernel and Run All. The notebook embeds all implementation code and needs no repository modules at runtime. It downloads original English data and allowed Word2Vec initialization if verified caches are not supplied.
+Use the repository's pinned Python 3.12/CUDA environment and **SC4002 (.venv)** kernel. Launch Jupyter with `PYTHONHASHSEED=42` and `CUBLAS_WORKSPACE_CONFIG=:4096:8`. Copy this file into a fresh folder, keep its name **__NOTEBOOK_NAME__**, save edits to the labelled configuration cell, and Restart Kernel and Run All. The notebook embeds all implementation code and needs no repository modules at runtime. It downloads original English data and allowed Word2Vec initialization if verified caches are not supplied.
 
 The default is **development-only**: no learned model is evaluated on test. After choosing settings, set `evaluate_test=True` and perform a new full run for the final four-row table. Never select settings using test scores. Each run exclusively creates `transformer_run_artifacts/` and never resumes/overwrites a completed run.
 
 **AI history:** the brief requires Stage 1 without generative AI; assistance occurred at the user's request and no lecturer exception is claimed. This revision's analysis, implementation and verification used Codex. Group information and verified human contributions remain pending; do not invent them.
-''')
+'''.replace('__NOTEBOOK_NAME__', output.name))
     code('''import os
 from pathlib import Path
 if os.environ.get('PYTHONHASHSEED') != '42':
@@ -63,16 +73,16 @@ if os.environ.get('PYTHONHASHSEED') != '42':
 os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
 if os.environ['CUBLAS_WORKSPACE_CONFIG'] != ':4096:8':
     raise RuntimeError('Restart with CUBLAS_WORKSPACE_CONFIG=:4096:8')
-NOTEBOOK_PATH = Path.cwd() / 'NLP_Final_project_revised.ipynb'
+NOTEBOOK_PATH = Path.cwd() / __NOTEBOOK_FILENAME_LITERAL__
 if not NOTEBOOK_PATH.is_file():
     raise FileNotFoundError('Keep the revised filename and kernel working directory together')
 RUN_ROOT = Path.cwd() / 'transformer_run_artifacts'
 RUN_ROOT.mkdir(exist_ok=False)
 os.environ['MPLCONFIGDIR'] = str(RUN_ROOT / 'matplotlib_cache')
-''', ('bootstrap',))
+'''.replace('__NOTEBOOK_FILENAME_LITERAL__', repr(output.name)), ('bootstrap',))
     md('''## Editable configuration
 
-Only this cell accepts ordinary literal dictionary edits without rebuilding or changing hashes. Save before running. Both models use the same initialization matrix, data, scorer and development selection rule. The new common training protocol uses complete budgets, two AdamW learning rates, warmup/cosine decay, gradient clipping and globally normalized losses. It is not an exact reproduction of the original 12-epoch training procedure.
+Only this cell accepts ordinary literal dictionary edits without rebuilding or changing hashes. Save before running. Both models use the same initialization matrix, data, scorer and development selection rule. The training protocol uses declared completion rules, two AdamW learning rates, warmup/cosine decay, gradient clipping and globally normalized losses. It is not an exact reproduction of the original 12-epoch training procedure.
 
 Use `embedding_source='word2vec'` to retain the original allowed initialization; missing assets raise rather than silently switching to random. `random` is an explicit alternative experiment. No full pretrained vocabulary enters prediction: only the train-fitted 5,300-by-300 table is retained and counted. Set cache paths if desired, or use the terminal executor's cache flags. Each run archives an exact copy of original English data.
 ''')
@@ -83,6 +93,32 @@ Use `embedding_source='word2vec'` to retain the original allowed initialization;
         'STAGE2_CONFIG': {'model': RevisedTransformerConfig().to_dict(), 'training': dict(training)},
         'RUN_OPTIONS': {'evaluate_test': False, 'device': 'cuda', 'dataset_path': None,
             'embedding_source': 'word2vec', 'embedding_archive': None, 'verification_timeout_seconds': 600}}
+    if regularized:
+        config['STAGE2_CONFIG']['training'].update(word_dropout_alpha=float(word_dropout_alpha),
+            intent_label_smoothing=float(intent_label_smoothing))
+        cells[-1].source += (
+            '\n\nThis separate regularized revision preserves the previous revised notebook and its results. '
+            'Only Stage 2 enables the two training regularizers: rare-word IDs are replaced by UNK with '
+            '`p = alpha / (training_count + alpha)` while original character IDs, masks and targets remain intact; '
+            'intent cross-entropy uses label smoothing during training only. The defaults here are '
+            f'`word_dropout_alpha={word_dropout_alpha:g}` and `intent_label_smoothing={intent_label_smoothing:g}`. '
+            'Development/test inputs are never masked and their intent CE remains unsmoothed. '
+            'Frequency counts fit the original training split only; zero disables either option. '
+            'The original-size Stage 1 configuration, model architecture, parameter count, CRF objective and '
+            'development selection rule remain unchanged. These changes are hypotheses until measured.')
+    if early_stopping:
+        config['STAGE2_CONFIG']['training'].update(max_epochs=60, schedule_epochs=20,
+            early_stopping_min_epochs=20, early_stopping_patience=8, early_stopping_min_delta=.0005)
+        cells[-1].source += (
+            '\n\nStage 2 now allows up to 60 epochs and stops after eight consecutive development '
+            'evaluations without a joint-score gain of at least 0.0005 (0.05 percentage points), '
+            'with stopping permitted from epoch 20. The unrounded joint score is '
+            '`(intent_accuracy + slot_micro_f1) / 2`. Its patience anchor is separate from '
+            'checkpoint selection: every actual new maximum is saved, including smaller gains. '
+            'The first 20 epochs retain the historical two-epoch warmup and cosine decay; '
+            'later epochs hold the final low learning rates. The best checkpoint is restored '
+            'and independently verified after stopping. Stage 1 retains its complete 20-epoch budget. '
+            'This is fresh training, with termination and effective policy recorded in the outputs.')
     code('\n\n'.join(name + ' = ' + pprint.pformat(value, sort_dicts=False) for name, value in config.items()), ('configuration',))
     definitions('src/comparison_contract.py', exact=True)
     definitions('src/revised_transformer_data.py')
@@ -181,6 +217,8 @@ display(Image(filename=str(RUN_ROOT / 'stage1/learning_curves.png')))
     DEVICE, RUN_ROOT / 'stage2', DATASET_PATH, CODE_SHA256, NOTEBOOK_PATH)
 display(Image(filename=str(RUN_ROOT / 'stage2/learning_curves.png')))
 ''', ('training', 'stage2'))
+    if early_stopping:
+        cells[-1].source += "\nprint('STAGE2_TRAINING_TERMINATION:', json.dumps(stage2['termination'], indent=2))\n"
     md('''## Genuine comparison, errors and completion
 
 Results use newly trained, development-selected and independently reloaded checkpoints. Preserve improvements and regressions. Two rows mean development-only; four rows include final test after each model was frozen. Error cases come from saved revised development predictions; proposed causes are inferences. This is a single-seed comparison of whole systems, not a controlled causal claim for any one addition.
@@ -228,4 +266,13 @@ if __name__ == '__main__':
     sys.path.insert(0, str(ROOT))
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path)
-    print(json.dumps(build(output=parser.parse_args().output)))
+    parser.add_argument('--regularized', action='store_true',
+                        help='Build a separate notebook with Stage 2 word dropout .25 and intent smoothing .05')
+    parser.add_argument('--early-stopping', action='store_true',
+                        help='Build regularized Stage 2 with max60/min20/patience8 and the original 20-epoch LR schedule')
+    args = parser.parse_args()
+    regularized = args.regularized or args.early_stopping
+    output = args.output or (ROOT / 'NLP_Final_project_revised_early_stopping.ipynb' if args.early_stopping
+                            else ROOT / 'NLP_Final_project_revised_regularized.ipynb' if regularized else None)
+    print(json.dumps(build(output=output, word_dropout_alpha=.25 if regularized else 0.,
+                          intent_label_smoothing=.05 if regularized else 0., early_stopping=args.early_stopping)))

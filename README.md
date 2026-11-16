@@ -1,6 +1,10 @@
 # SC4002: joint intent classification and slot filling
 
-Two model families for original **MASSIVE 1.0 English** predict intent and slot spans together: [main.ipynb](main.ipynb) contains our two BiLSTM stages; [NLP_Final_project.ipynb](NLP_Final_project.ipynb) is the supplied Transformer implementation; [NLP_Final_project_revised.ipynb](NLP_Final_project_revised.ipynb) is the separate improved Transformer study. Each stage is one joint model, and its complete parameter count must stay below **20 million**, including embeddings and output heads.
+**Final submission:** use [Group_71.zip](Group_71.zip), which contains the final Transformer as `main.ipynb`, the verified AI collaboration record and `report.pdf`. The editable [SC4002 Project Report.docx](SC4002%20Project%20Report.docx) preserves its original cover and adds exactly two report pages. See the [final instruction check](docs/FINAL_SUBMISSION_CHECK.md) and [verification record](results/final_submission/verification.json).
+
+The selected [Transformer notebook](NLP_Final_project_revised_early_stopping.ipynb) now retains a complete final run with **four validation/test rows**. It uses portable cache settings and supports the required `main.ipynb` filename. Stage 1 test performance is **82.92% intent / 66.77% slot F1**; Stage 2 is **85.44% / 77.79%**. Its default `evaluate_test=True` is for the frozen final configuration; set it to **False before future tuning** and use a fresh run directory. Stage 1 AI use follows the lecturer-approved exception confirmed by the group; cover membership/contribution checks were excluded at the user's request.
+
+Two model families for original **MASSIVE 1.0 English** predict intent and slot spans together: [main.ipynb](main.ipynb) contains our two BiLSTM stages; [NLP_Final_project.ipynb](NLP_Final_project.ipynb) is the supplied Transformer implementation. The latest Transformer is [NLP_Final_project_revised_early_stopping.ipynb](NLP_Final_project_revised_early_stopping.ipynb), with the revised architecture, word dropout, intent label smoothing and patience-based training beyond epoch 20. The earlier [revised](NLP_Final_project_revised.ipynb) and [20-epoch regularized](NLP_Final_project_revised_regularized.ipynb) notebooks remain references. Each stage is one joint model, and its complete parameter count must stay below **20 million**, including embeddings and output heads.
 
 **Yes: after environment setup, you can run `main.ipynb` to train, select checkpoints and generate results.** For later experiments, change its editable configuration cell, save it, and run all cells in a **new directory with a fresh kernel**. Ordinary hyperparameter changes do not require rebuilding the notebook or manually changing source hashes. Both BiLSTM stages run; the notebook is not a Stage 1-only launcher.
 
@@ -8,9 +12,38 @@ The active notebooks use evaluator **`exact_character_span_v2`**. Read each run'
 
 ## Revised Transformer notebook
 
-Use [NLP_Final_project_revised.ipynb](NLP_Final_project_revised.ipynb) for the improved Transformer: six independently initialized encoder blocks, width 512, eight heads, masked character CNN, attention/max intent pooling, predicted-intent context and a constrained CRF. The default complete model has **19,748,595 parameters**. It also trains the original-size **4,345,243-parameter** baseline under the same declared new training protocol, data, initialization and evaluator.
+The improved Transformer uses six independently initialized encoder blocks, width 512, eight heads, masked character CNN, attention/max intent pooling, predicted-intent context and a constrained CRF. The default complete model has **19,748,595 parameters**. Each revised notebook also trains the original-size **4,345,243-parameter** baseline. Both stages share the original data, task-embedding initialization and evaluator; their training budgets are recorded explicitly.
 
-After the environment setup below, execute it from PowerShell in a fresh run directory:
+Use **[NLP_Final_project_revised_early_stopping.ipynb](NLP_Final_project_revised_early_stopping.ipynb)** for the latest training policy. Stage 2 uses word dropout `0.25`, intent smoothing `0.05`, a maximum of **60 epochs**, minimum **20**, patience **8**, and joint-score improvement threshold **0.0005** (0.05 percentage points). Every actual best checkpoint is saved independently of that patience threshold. The original first-20 learning-rate schedule is preserved, followed by a constant low rate; Stage 1 retains 20 epochs. These training procedures add no parameters.
+
+The notebook is organized into labelled data, model, optimization and verification sections, with one editable configuration cell. Support utilities are collapsed by default; expand them when needed. Results and development errors appear as compact tables, while complete JSON evidence remains in the run folder. All implementation code stays embedded, so notebook execution needs no repository imports or formatting tools.
+
+The readability refactor passed a fresh complete execution of all **35 code cells** and independent acceptance. Both stages reproduced their previous weights, predictions, metrics and stopping decisions exactly. Its [historical readability records](results/notebook_readability_refactor/) remain preserved; the [final submission verification](results/final_submission/verification.json) identifies the current evaluated version.
+
+The [early-stopping run guide](docs/TRANSFORMER_EARLY_STOPPING.md) gives **Jupyter-only and terminal instructions**, explains the stopping and schedule controls, and lists the evidence files. Read the [longer-training results](docs/TRANSFORMER_EARLY_STOPPING_RESULTS.md) for its measured comparison. The earlier [regularization guide](docs/TRANSFORMER_REGULARIZATION.md) and [four-way results](docs/TRANSFORMER_REGULARIZATION_RESULTS.md) retain the original 20-epoch experiment.
+
+The fresh seed-42 early-stopping run **stopped at epoch 28 and selected epoch 20**, retaining **86.62% intent accuracy / 80.84% exact slot micro-F1**. Its first 20 epochs, selected weights and predictions exactly reproduce the preserved reference. The eight extra epochs did not improve the joint development score in this seed, so the registered rule did not trigger confirmation seeds 17 and 101. This verifies the longer-training workflow; it does not establish how those other seeds would behave beyond epoch 20. The new notebook contains genuine completed outputs and passed independent acceptance. No new test evaluation was performed.
+
+The completed **20-epoch regularization comparison** trained all four settings at matched seeds 42, 17 and 101. Development results below are means ± sample standard deviations across independently trained models, not an ensemble:
+
+| Stage 2 training | Intent accuracy | Exact slot micro-F1 |
+| --- | ---: | ---: |
+| Unregularized control | 85.60% ± 0.49 | 77.88% ± 0.64 |
+| Word dropout only | **86.95% ± 0.24** | 79.53% ± 0.27 |
+| Intent smoothing only | 85.69% ± 0.15 | 78.29% ± 0.78 |
+| Both additions | 86.67% ± 0.67 | **80.27% ± 0.51** |
+
+Both additions together improve the control by **1.07 intent points and 2.39 F1 points** on average and improve both metrics in every seed. They give the highest equally weighted mean intent/F1 selection score. Word dropout alone gives higher mean intent accuracy: adding smoothing to it gains 0.74 F1 points but loses 0.28 intent points. The preserved 20-epoch regularized notebook retains the genuine seed-42 combined run (**86.62% / 80.84%**). This is development evidence; no new test evaluation was performed. Seed 42 screened the proposals and triggered the predeclared two-seed confirmation; the report also separates those confirmation results.
+
+Run the new notebook from PowerShell after environment setup:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/execute_revised_transformer.py --notebook NLP_Final_project_revised_early_stopping.ipynb --execution-dir artifacts/early_stopping_runs/run_001 --dataset-cache data/1.0/data/en-US.jsonl --embedding-cache data/pretrained/nlpl_model_6.zip
+```
+
+Use a fresh directory for each run. Cache flags are optional; the final notebook's cache settings are `None` for portability. The executor retains the source filename and saves actual outputs back to the notebook supplied with `--notebook`. For future hyperparameter experiments, first set `evaluate_test=False`, edit/save the configuration cell, then run every cell in a fresh kernel/directory. The archived experimental studies remain development-only records; the final run above supplies the selected models' actual test scores.
+
+To rerun the preserved unregularized revised notebook instead:
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/execute_revised_transformer.py --execution-dir artifacts/revised_transformer/run_001
@@ -179,11 +212,16 @@ Portable offline checks, after installing requirements:
 
 The earlier BiLSTM rerun-workflow revision passed **199 full-workspace tests** and **97 portable offline tests**. Its end-to-end check used one epoch of small E16/H16 models, full original train/development splits, verified cached data and development-only mode; independent reload and acceptance passed without test inference.
 
-For the separate revised Transformer, **59 dedicated model/data/training/notebook/auditor tests pass**. The current full-workspace run reports **11 existing failures tied to `main.ipynb`**: its protected source/contract metadata differs from the reviewed contents. Those BiLSTM files and saved results were preserved; resolve that source-provenance mismatch before treating a BiLSTM rerun as accepted. The revised Transformer has its own standalone execution and independent acceptance path.
+For the revised Transformer, regularization, early-stopping and notebook-refactor workflows, **159 targeted model/data/training/notebook/auditor/analysis tests pass**. A previous full-workspace audit reported **11 failures tied to `main.ipynb`**: its protected source/contract metadata differed from the reviewed contents. These Transformer revisions preserved those BiLSTM files and did not rerun the full-workspace suite; resolve that recorded source-provenance mismatch before treating a BiLSTM rerun as accepted. The revised Transformer has its own standalone execution and independent acceptance path.
 
 ```powershell
-.\.venv\Scripts\python.exe -m unittest tests.test_revised_transformer_model tests.test_revised_transformer_data tests.test_revised_transformer_training tests.test_revised_transformer_notebook tests.test_revised_transformer_validation -v
+.\.venv\Scripts\python.exe -m unittest discover -s tests -p "test_revised_transformer*.py"
+.\.venv\Scripts\python.exe -m unittest tests.test_transformer_regularization_analysis tests.test_transformer_regularization_confidence
+.\.venv\Scripts\python.exe -m unittest tests.test_transformer_early_stopping_runner tests.test_transformer_early_stopping_analysis
+.\.venv\Scripts\python.exe -m unittest tests.test_transformer_notebook_refactor
 ```
+
+The refactor test module uses the isolated Black formatter installed by the [maintainer rebuild instructions](docs/TRANSFORMER_EARLY_STOPPING.md#maintainers-rebuild-the-readable-notebook). It is a development tool; running the notebook needs only the project environment.
 
 Full discovery also uses ignored local data and historical evidence. Correctness tests and contract checks do not replace a completed final training/reload/test-evaluation run.
 
@@ -197,4 +235,4 @@ Full discovery also uses ignored local data and historical evidence. Correctness
 
 The original Phases 1–7 completed under evaluator v1. Fresh assessed v2 execution/acceptance remains necessary before report results are current. Phase 8 still includes the two-page report, genuine AI history, verified group details and exact three-file submission ZIP. The brief requires Stage 1 without generative AI; assistance occurred at the user's request and no lecturer-approved exception is claimed. Group ID, full names and confirmed contributions remain pending.
 
-The coursework ZIP contains one final `main.ipynb`, one `ai_collaboration.md` or `.txt`, and `report.pdf`. Preserve genuine notebook outputs. The two development notebooks are not instructions to submit two notebooks.
+The coursework ZIP contains one final notebook named `main.ipynb`, one `ai_collaboration.md` or `.txt`, and `report.pdf`. Preserve genuine notebook outputs. The repository keeps several model versions for comparison; choose one final notebook for submission.

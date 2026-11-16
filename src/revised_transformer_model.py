@@ -242,7 +242,12 @@ class JointTransformer(nn.Module):
             encoded = torch.cat((encoded, context.unsqueeze(1).expand(-1, encoded.shape[1], -1)), dim=-1)
         return {'intent_logits': intent_logits, 'slot_logits': self.slot_head(self.slot_norm(encoded))}
 
-    def loss(self, outputs, intent_targets, slot_targets, mask):
+    def loss(self, outputs, intent_targets, slot_targets, mask, *, intent_label_smoothing=0.0):
+        if (isinstance(intent_label_smoothing, bool)
+                or not isinstance(intent_label_smoothing, (int, float))
+                or not math.isfinite(intent_label_smoothing)
+                or not 0 <= intent_label_smoothing < 1):
+            raise ValueError('Intent label smoothing must be finite and in [0, 1)')
         logits, emissions = outputs['intent_logits'], outputs['slot_logits']
         self._validate_mask(mask, emissions.shape[:2])
         if (logits.shape != (mask.shape[0], self.num_intents)
@@ -256,7 +261,13 @@ class JointTransformer(nn.Module):
             raise ValueError('Intent target is outside the fitted label inventory')
         if bool(((slot_targets[mask] < 0) | (slot_targets[mask] >= self.num_tags)).any()):
             raise ValueError('Real slot target is outside the fitted label inventory')
-        intent_sum = F.cross_entropy(logits.float(), intent_targets, reduction='sum')
+        # Keep the historical call exactly when disabled. Evaluation always
+        # reports ordinary CE, even if a training coefficient is supplied.
+        if self.training and intent_label_smoothing > 0:
+            intent_sum = F.cross_entropy(logits.float(), intent_targets, reduction='sum',
+                                         label_smoothing=float(intent_label_smoothing))
+        else:
+            intent_sum = F.cross_entropy(logits.float(), intent_targets, reduction='sum')
         if self.crf is None:
             safe_targets = slot_targets.masked_fill(~mask, -100)
             slot_sum = F.cross_entropy(emissions.float().reshape(-1, self.num_tags),

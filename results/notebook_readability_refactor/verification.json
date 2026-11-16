@@ -1,0 +1,195 @@
+{
+  "status": "passed",
+  "completed_at_utc": "2026-11-11T05:02:57.344683+00:00",
+  "scope": "Readability-only refactor with a fresh complete development-only execution",
+  "notebook_delivery": {
+    "status": "passed",
+    "notebook": "NLP_Final_project_revised_early_stopping.ipynb",
+    "sha256": "c53a0e8a2fba649843032c22bad3885c9cd7ff1ce92a526dafd4b673fcd81d5f",
+    "code_sha256": "5f4bbe0f325adb624e9a83b39f64d9b114b6b941a66e858765aeed1fe37b68fd",
+    "code_cells_executed": 35,
+    "definition_layout_version": 2,
+    "source": "artifacts/notebook_readability_refactor/full_notebook/NLP_Final_project_revised_early_stopping.ipynb",
+    "acceptance": "artifacts/notebook_readability_refactor/full_notebook/acceptance.json",
+    "before_notebook_sha256": "1759a39e2f014619e4992bdcf049d8eae6556a6494ae87b31cc2885b0644cc0f",
+    "before_notebook_archive": "artifacts/notebook_readability_refactor/prechange/NLP_Final_project_revised_early_stopping.ipynb",
+    "mode": "development_only",
+    "stage1_epochs_trained": 20,
+    "stage2_epochs_trained": 28,
+    "stage2_selected_epoch": 20,
+    "all_reference_model_states_and_predictions_identical": true,
+    "new_test_model_evaluations": 0
+  },
+  "semantic_equivalence": {
+    "status": "passed",
+    "before_notebook_sha256": "1759a39e2f014619e4992bdcf049d8eae6556a6494ae87b31cc2885b0644cc0f",
+    "candidate_code_sha256": "5f4bbe0f325adb624e9a83b39f64d9b114b6b941a66e858765aeed1fe37b68fd",
+    "modules": {
+      "src/comparison_contract.py": {
+        "normalized_ast_sha256": "320d3bcf79d79298feca700dc23d9a29a52b3a14ebf79e7d5eadabd2c93adea9",
+        "equivalent": true
+      },
+      "src/revised_transformer_data.py": {
+        "normalized_ast_sha256": "239988719da3d27624bc72231fa1bf017a2bd904ee0b3baf0d02bc1d26e9e468",
+        "equivalent": true
+      },
+      "src/stage2_model.py": {
+        "normalized_ast_sha256": "fc32f07f787b183a0058572ee0119318b0707258d8b401e7f823674030431da7",
+        "equivalent": true
+      },
+      "src/revised_transformer_model.py": {
+        "normalized_ast_sha256": "bba3a068d0da9419010ec60e12bfe6096ab80814a7af1f894fea26c1426340b5",
+        "equivalent": true
+      },
+      "src/revised_transformer_training.py": {
+        "normalized_ast_sha256": "a5738c01621388697e86265b85f9ffffa613787f59077710ca531b7b252aac04",
+        "equivalent": true
+      }
+    },
+    "all_54_function_and_class_asts_identical": true,
+    "allowed_unused_crf_import_removals": [
+      "asdict",
+      "dataclass",
+      "fields",
+      "math",
+      "Any",
+      "F",
+      "pack_padded_sequence",
+      "pad_packed_sequence"
+    ],
+    "presentation_only_changes": [
+      "pandas import",
+      "compact data print",
+      "compact embedding print",
+      "actual result/error tables"
+    ],
+    "configuration_unchanged": true,
+    "before": {
+      "cells": 22,
+      "code_cells": 13,
+      "markdown_words": 1313,
+      "code_lines_over_140": 74
+    },
+    "after": {
+      "cells": 74,
+      "code_cells": 35,
+      "markdown_words": 981,
+      "code_lines_over_140": 3
+    },
+    "focused_refactor_tests": 13
+  },
+  "execution_parity": {
+    "status": "passed",
+    "stages": {
+      "stage1": {
+        "status": "passed",
+        "epochs": 20,
+        "selected_epoch": 20,
+        "all_trajectory_values_except_timing_identical": true,
+        "model_state_sha256": "686b1f7e54a05d530ed93294534118f4000e9081180a5e9bd24fc711aded7093",
+        "ordered_prediction_bytes_identical": true,
+        "metrics": {
+          "intent_accuracy": 0.8416133792424988,
+          "slot_micro_f1": 0.6956095168015698,
+          "slot_tp": 1418,
+          "slot_fp": 647,
+          "slot_fn": 594,
+          "num_examples": 2033,
+          "correct_intents": 1711
+        },
+        "termination": {
+          "reason": "max_epochs",
+          "epochs_trained": 20,
+          "max_epochs": 20,
+          "optimizer_steps": 7200,
+          "maximum_optimizer_steps": 7200,
+          "schedule_epochs": 20,
+          "schedule_steps": 7200,
+          "last_meaningful_improvement_epoch": 20,
+          "meaningful_improvement_anchor_score": 0.7686114480220343,
+          "non_improving_epochs": 0,
+          "stopped_early": false
+        }
+      },
+      "stage2": {
+        "status": "passed",
+        "epochs": 28,
+        "selected_epoch": 20,
+        "all_trajectory_values_except_timing_identical": true,
+        "model_state_sha256": "9da4177bd12d0f0f5c063b57d41d9408b37f39c3b95971af6eeeac239e75e3e3",
+        "ordered_prediction_bytes_identical": true,
+        "metrics": {
+          "intent_accuracy": 0.8662075750122971,
+          "slot_micro_f1": 0.8084135833755702,
+          "slot_tp": 1595,
+          "slot_fp": 339,
+          "slot_fn": 417,
+          "num_examples": 2033,
+          "correct_intents": 1761
+        },
+        "termination": {
+          "reason": "patience",
+          "epochs_trained": 28,
+          "max_epochs": 60,
+          "optimizer_steps": 10080,
+          "maximum_optimizer_steps": 21600,
+          "schedule_epochs": 20,
+          "schedule_steps": 7200,
+          "last_meaningful_improvement_epoch": 20,
+          "meaningful_improvement_anchor_score": 0.8373105791939337,
+          "non_improving_epochs": 8,
+          "stopped_early": true
+        }
+      }
+    },
+    "result_json_csv_and_error_case_bytes_identical": true
+  },
+  "targeted_tests_passed": 159,
+  "full_workspace_tests_rerun": false,
+  "new_test_model_evaluations": 0,
+  "protected_inputs_unchanged": {
+    "main.ipynb": "618821ea7fe841312c1ecc3f4693388143ffc1f9eb711e3fff6dedaf840ab456",
+    "NLP_Final_project.ipynb": "d64228204d1d8a130dafa45929efb78fd61a174deb26d2547fc796a61435e56f",
+    "NLP_Final_project_revised.ipynb": "7f76093e9d4be928e3065e5e40ae6bb8b77f1bd09857d2f9a92ecd19f310c269",
+    "NLP_Final_project_revised_regularized.ipynb": "3f343ddca775eaac736f97c6020a11080a4c26dbfda00036cdd32600badea42b",
+    "src/comparison_contract.py": "c57d46c76642edf0a1e5b283c52d153631b2b4c30b639166c3761fd8ade4a37c",
+    "src/revised_transformer_data.py": "50484170a7408ca072151ef9ed9ef2830a5af09a924c3f52ee549ca4a4826530",
+    "src/revised_transformer_model.py": "625641753d2655119eaffd5bea0805908873e14f618ae315ec658433691f8747",
+    "src/revised_transformer_training.py": "a10629c81eba1461f2cbe685f6867a2402801af322a7a183c216e558f6a7cea0",
+    "src/stage2_model.py": "4b0fd0290b0789b8d234e0b2c812a49f0d80a24773e2d35677280e48f3fea8aa",
+    "requirements.txt": "63a4e66b561865478ca385c76b2424a4f0dc3b0a71c8e3b5e5dfeb339569043d",
+    "results/transformer_early_stopping/results.json": "9129ace0274f9001d75eadcea5637c31bfb9bbc742d3385c56f325b09f710b5f",
+    "results/transformer_early_stopping/notebook_delivery.json": "9f77d5c4e3eea0b4640ee93750f608b470a41955bb9fa8a9cfe64f2280e01d28",
+    "results/transformer_early_stopping/verification.json": "a45295ff0bbe45814339fbb006740e05f0593a71c04fc28f2b2cabb27495023b",
+    "docs/TRANSFORMER_EARLY_STOPPING_RESULTS.md": "e24371679bbec15855b6ffd291ac310b38fc3b5ca1c7cbaa5e2bef28ae1dd434"
+  },
+  "registered_source_files_unchanged": {
+    "src/comparison_contract.py": "c57d46c76642edf0a1e5b283c52d153631b2b4c30b639166c3761fd8ade4a37c",
+    "src/revised_transformer_data.py": "50484170a7408ca072151ef9ed9ef2830a5af09a924c3f52ee549ca4a4826530",
+    "src/stage2_model.py": "4b0fd0290b0789b8d234e0b2c812a49f0d80a24773e2d35677280e48f3fea8aa",
+    "src/revised_transformer_model.py": "625641753d2655119eaffd5bea0805908873e14f618ae315ec658433691f8747",
+    "src/revised_transformer_training.py": "a10629c81eba1461f2cbe685f6867a2402801af322a7a183c216e558f6a7cea0",
+    "scripts/refactor_transformer_notebook.py": "87c08cf93e31e6f25a7d6f66d6c95e0d616d66c85dece650220da2fb7a832de6",
+    "scripts/execute_revised_transformer.py": "9b80aeb6ce657279a4649600074455557949490b80dd55b1c7dbfc25229295af"
+  },
+  "reference_artifacts_unchanged": {
+    "artifacts/transformer_early_stopping/seed_42/full_notebook/acceptance.json": "0d2cd7c4b711af9e97767c1618a94d79e9012ce881865ab16e0af9fb7cb713af",
+    "artifacts/transformer_early_stopping/seed_42/full_notebook/NLP_Final_project_revised_early_stopping.ipynb": "1759a39e2f014619e4992bdcf049d8eae6556a6494ae87b31cc2885b0644cc0f",
+    "artifacts/transformer_early_stopping/seed_42/full_notebook/transformer_run_artifacts/stage1/best.pt": "a4cfc9b11643df67663df172ccce5827a86be3032268cadaff47c963ee42e0c7",
+    "artifacts/transformer_early_stopping/seed_42/full_notebook/transformer_run_artifacts/stage1/history.jsonl": "d0c1911c90503268f45246faf17b8f33a62ea38e3c600f3000bf6f0180eac979",
+    "artifacts/transformer_early_stopping/seed_42/full_notebook/transformer_run_artifacts/stage1/final_summary.json": "863ba7ce7e91a0bf976ce5dfe19d0b537c2db932a0b2f154b2e979af71123a9d",
+    "artifacts/transformer_early_stopping/seed_42/full_notebook/transformer_run_artifacts/stage1/dev_predictions.jsonl": "0b980b152accd6f345dccd95ebd41569f644a812301697bd7b8de435f025c96e",
+    "artifacts/transformer_early_stopping/seed_42/full_notebook/transformer_run_artifacts/stage2/best.pt": "113c27160c0edbdbd804e9500b72a3142cc4c252c36c656622e558fcb581b391",
+    "artifacts/transformer_early_stopping/seed_42/full_notebook/transformer_run_artifacts/stage2/history.jsonl": "0304eeb6322f350847010725f7f16dd610602212ebc1a05006c86f8dc579a988",
+    "artifacts/transformer_early_stopping/seed_42/full_notebook/transformer_run_artifacts/stage2/final_summary.json": "ca7edf14ac155f12c5cf22261d0dbded87eba2f73447f3e6bb8b86a04425b964",
+    "artifacts/transformer_early_stopping/seed_42/full_notebook/transformer_run_artifacts/stage2/dev_predictions.jsonl": "2669f6eaa0a2e4d712ad81989e0e06caacd6954647a86ad0acc743fb9f5c7240"
+  },
+  "independent_full_notebook_acceptance": "passed",
+  "all_35_cells_executed_without_errors": true,
+  "actual_dataframe_outputs": 2,
+  "raw_results_and_errors_preserved": true,
+  "requirements_unchanged": true,
+  "ai_collaboration_original_prefix_preserved": true,
+  "ai_collaboration_original_prefix_bytes": 12787,
+  "ai_collaboration_original_prefix_sha256": "90c731dc2e421886ede0d936a7284ccdb9bc2a408ec72ce697abccc5ddcfdd77"
+}

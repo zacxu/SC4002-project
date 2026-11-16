@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "notebook": "NLP_Final_project_revised_early_stopping.ipynb",
+  "sha256": "c53a0e8a2fba649843032c22bad3885c9cd7ff1ce92a526dafd4b673fcd81d5f",
+  "code_sha256": "5f4bbe0f325adb624e9a83b39f64d9b114b6b941a66e858765aeed1fe37b68fd",
+  "code_cells_executed": 35,
+  "definition_layout_version": 2,
+  "source": "artifacts/notebook_readability_refactor/full_notebook/NLP_Final_project_revised_early_stopping.ipynb",
+  "acceptance": "artifacts/notebook_readability_refactor/full_notebook/acceptance.json",
+  "before_notebook_sha256": "1759a39e2f014619e4992bdcf049d8eae6556a6494ae87b31cc2885b0644cc0f",
+  "before_notebook_archive": "artifacts/notebook_readability_refactor/prechange/NLP_Final_project_revised_early_stopping.ipynb",
+  "mode": "development_only",
+  "stage1_epochs_trained": 20,
+  "stage2_epochs_trained": 28,
+  "stage2_selected_epoch": 20,
+  "all_reference_model_states_and_predictions_identical": true,
+  "new_test_model_evaluations": 0
+}

@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "scope": "Fresh zero-regularizer seed42 run versus preserved historical revised Stage2; no model inference",
+  "epochs": 20,
+  "all_epoch_losses_metrics_schedule_identical": true,
+  "selected_epoch_identical": true,
+  "selected_development_metrics_identical": true,
+  "selected_model_state_identical": true,
+  "saved_development_prediction_bytes_identical": true,
+  "model_state_sha256": "468b4c88e3d79852bde0e180db3c0222ebfbfebc20837a1e059428d622f98fb0",
+  "historical_checkpoint_sha256": "2bbcebad84b3df6671afa84997259f158903360743ea8b1795cec808381843aa",
+  "new_checkpoint_sha256": "c3ed119d19d2642c8159ed486e9aef4e57c78337b2aca8dba413be9ca1ccb393",
+  "note": "Checkpoint metadata/code provenance differs; learned tensor state and predictions are identical."
+}
