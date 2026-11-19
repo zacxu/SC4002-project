@@ -1,0 +1,78 @@
+{
+  "comparison": "r1 Word2Vec + SAM minus r0 Word2Vec, Stage 2, test",
+  "bootstrap_draws": 5000,
+  "groups": {
+    "all": {
+      "n": 2974,
+      "intent": 1.08,
+      "intent_ci95": [
+        0.23,
+        1.95
+      ],
+      "slot_f1": 0.94,
+      "slot_f1_ci95": [
+        -0.02,
+        1.91
+      ],
+      "joint": 1.01,
+      "joint_ci95": [
+        0.35,
+        1.67
+      ]
+    },
+    "no_oov": {
+      "n": 2411,
+      "intent": 0.66,
+      "intent_ci95": [
+        -0.17,
+        1.49
+      ],
+      "slot_f1": 0.37,
+      "slot_f1_ci95": [
+        -0.52,
+        1.32
+      ],
+      "joint": 0.52,
+      "joint_ci95": [
+        -0.12,
+        1.18
+      ]
+    },
+    "nonslot_oov": {
+      "n": 222,
+      "intent": 3.6,
+      "intent_ci95": [
+        -1.35,
+        8.56
+      ],
+      "slot_f1": -3.95,
+      "slot_f1_ci95": [
+        -10.38,
+        2.43
+      ],
+      "joint": -0.17,
+      "joint_ci95": [
+        -4.19,
+        3.94
+      ]
+    },
+    "slot_oov": {
+      "n": 341,
+      "intent": 2.35,
+      "intent_ci95": [
+        -0.88,
+        5.57
+      ],
+      "slot_f1": 7.51,
+      "slot_f1_ci95": [
+        3.87,
+        11.3
+      ],
+      "joint": 4.93,
+      "joint_ci95": [
+        2.52,
+        7.33
+      ]
+    }
+  }
+}

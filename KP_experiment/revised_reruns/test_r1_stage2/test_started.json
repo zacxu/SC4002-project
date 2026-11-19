@@ -1,0 +1,8 @@
+{
+  "started_at_utc": "2026-11-03T16:51:54.950145+00:00",
+  "reason": "user approved one evaluation of r1 Stage 2, chosen on dev",
+  "checkpoint_sha256": "1c1082f54d0be1e0fd4c0b5ca0ffe49e1cffcbcfc593ebf8375be6e75724335c",
+  "model_state_sha256": "e9616a1c7b68a898a2aafcbdd12f7821b78ea7da94a3255ca2489bdeaacd79da",
+  "selected_epoch": null,
+  "test_model_evaluations": 1
+}

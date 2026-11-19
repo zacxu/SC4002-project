@@ -1,0 +1,47 @@
+Paired bootstrap, 5000 draws, 95% intervals of the difference (first minus second)
+stage1 SAM on Word2Vec                joint -1.15 [-2.07, -0.22]  slot-OOV F1 +0.54 [-2.72, +3.98]
+stage1 SAM on fastText                joint -1.25 [-2.19, -0.33]  slot-OOV F1 -6.09 [-10.69, -1.56]
+stage1 SAM on GloVe                   joint -2.31 [-3.25, -1.37]  slot-OOV F1 -8.16 [-12.54, -4.00]
+stage1 fastText vs Word2Vec, no SAM   joint +1.87 [+0.83, +2.92]  slot-OOV F1 +15.08 [+9.96, +20.34]
+stage1 GloVe vs Word2Vec, no SAM      joint +1.68 [+0.61, +2.80]  slot-OOV F1 +15.21 [+9.93, +20.72]
+stage1 fastText+SAM vs Word2Vec+SAM   joint +1.77 [+0.75, +2.78]  slot-OOV F1 +8.45 [+3.97, +13.02]
+stage1 GloVe+SAM vs Word2Vec+SAM      joint +0.52 [-0.54, +1.59]  slot-OOV F1 +6.51 [+2.00, +11.02]
+stage1 fastText+SAM vs baseline       joint +0.62 [-0.44, +1.70]  slot-OOV F1 +8.99 [+4.08, +14.07]
+stage1 GloVe+SAM vs baseline          joint -0.63 [-1.72, +0.51]  slot-OOV F1 +7.05 [+1.98, +12.18]
+stage2 SAM on Word2Vec                joint +1.23 [+0.46, +2.01]  slot-OOV F1 +14.77 [+9.85, +19.83]
+stage2 SAM on fastText                joint +0.17 [-0.63, +0.95]  slot-OOV F1 +1.18 [-3.42, +5.78]
+stage2 SAM on GloVe                   joint +1.72 [+0.87, +2.58]  slot-OOV F1 +4.80 [+0.03, +9.74]
+stage2 fastText vs Word2Vec, no SAM   joint +1.12 [+0.21, +2.04]  slot-OOV F1 +20.52 [+14.43, +26.80]
+stage2 GloVe vs Word2Vec, no SAM      joint -0.43 [-1.43, +0.57]  slot-OOV F1 +14.46 [+8.64, +20.42]
+stage2 fastText+SAM vs Word2Vec+SAM   joint +0.07 [-0.81, +0.94]  slot-OOV F1 +6.94 [+1.23, +12.57]
+stage2 GloVe+SAM vs Word2Vec+SAM      joint +0.07 [-0.84, +0.96]  slot-OOV F1 +4.49 [-1.04, +9.90]
+stage2 fastText+SAM vs baseline       joint +1.29 [+0.38, +2.23]  slot-OOV F1 +21.71 [+15.94, +27.57]
+stage2 GloVe+SAM vs baseline          joint +1.29 [+0.28, +2.27]  slot-OOV F1 +19.26 [+13.36, +25.45]
+
+Learning curves: dev slot F1 at epochs 5, 10, 15, 18, 19, 20; last train loss; selected epoch
+stage1 r0_word2vec_base    51.13  63.77  68.78  69.36  69.27  69.51  loss 0.161  selected 16
+stage1 r1_word2vec_sam     49.05  60.70  65.51  66.08  65.61  65.78  loss 0.306  selected 18
+stage1 r2_fasttext_base    56.45  66.99  69.91  71.57  71.36  71.61  loss 0.103  selected 18
+stage1 r3_glove_base       56.36  63.82  68.55  70.85  70.22  70.28  loss 0.128  selected 18
+stage1 r4_fasttext_sam     58.66  65.28  67.53  68.49  68.21  67.70  loss 0.195  selected 18
+stage1 r5_glove_sam        57.60  62.87  65.22  66.87  66.68  66.84  loss 0.250  selected 17
+stage2 r0_word2vec_base    70.40  75.19  76.20  77.25  77.03  77.24  loss 0.072  selected 20
+stage2 r1_word2vec_sam     72.66  75.48  78.14  78.49  78.26  78.74  loss 0.094  selected 20
+stage2 r2_fasttext_base    69.98  75.19  78.65  79.07  78.75  79.17  loss 0.101  selected 20
+stage2 r3_glove_base       70.54  74.62  75.02  76.71  76.07  76.03  loss 0.123  selected 19
+stage2 r4_fasttext_sam     71.83  76.12  78.66  78.89  79.42  78.71  loss 0.127  selected 19
+stage2 r5_glove_sam        71.43  75.76  78.32  78.58  77.73  78.27  loss 0.164  selected 17
+
+Word table in the selected checkpoint: UNK row norm against the mean norm of train words
+stage1 r0_word2vec_base   embedding.weight: UNK 0.89, words 0.88
+stage1 r1_word2vec_sam    embedding.weight: UNK 0.89, words 0.89
+stage1 r2_fasttext_base   embedding.weight: UNK 0.89, words 4.10
+stage1 r3_glove_base      embedding.weight: UNK 0.89, words 6.82
+stage1 r4_fasttext_sam    embedding.weight: UNK 0.89, words 4.10
+stage1 r5_glove_sam       embedding.weight: UNK 0.89, words 6.82
+stage2 r0_word2vec_base   embedding.weight: UNK 0.89, words 0.87
+stage2 r1_word2vec_sam    embedding.weight: UNK 0.89, words 0.87
+stage2 r2_fasttext_base   embedding.weight: UNK 0.89, words 4.09
+stage2 r3_glove_base      embedding.weight: UNK 0.89, words 6.81
+stage2 r4_fasttext_sam    embedding.weight: UNK 0.89, words 4.09
+stage2 r5_glove_sam       embedding.weight: UNK 0.89, words 6.81

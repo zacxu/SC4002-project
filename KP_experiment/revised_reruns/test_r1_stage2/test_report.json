@@ -1,0 +1,39 @@
+{
+  "run": "r1_word2vec_sam",
+  "stage": "stage2",
+  "split": "test",
+  "intent": 85.91,
+  "slot_f1": 76.41,
+  "joint": 81.16,
+  "exact_match": 65.6,
+  "intent_ci95": [
+    84.67,
+    87.19
+  ],
+  "slot_f1_ci95": [
+    74.82,
+    78.03
+  ],
+  "joint_ci95": [
+    80.07,
+    82.28
+  ],
+  "bootstrap_draws": 5000,
+  "groups": {
+    "no_oov": {
+      "n": 2411,
+      "intent": 88.97,
+      "slot_f1": 83.09
+    },
+    "nonslot_oov": {
+      "n": 222,
+      "intent": 63.51,
+      "slot_f1": 63.28
+    },
+    "slot_oov": {
+      "n": 341,
+      "intent": 78.89,
+      "slot_f1": 47.51
+    }
+  }
+}
